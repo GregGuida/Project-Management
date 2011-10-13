@@ -43,11 +43,8 @@ def generate_sql(json_loc, save_loc):
 	# This is such a dirty way of doing this...but i don't know of any other way that doesn't require numpy
 	for table in input:
 		for row in input[table]:
-			keys = []
-			values = []
-			for key in row:
-				keys.append("`%s`" % key)
-				values.append("'%s'" % row[key])
+			keys = map(lambda key: "`%s`" % key, row.keys())
+			values = map(lambda value: "'%s'" % value, row.values())
 			print 'INSERT INTO `%s` (%s) values (%s);' % (table, ", ".join(keys), ", ".join(values)) 
 				
 	#print 'Saving Generated SQL to "%s"' % save_loc
