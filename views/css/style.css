@@ -15,7 +15,6 @@ body, button, input, select, textarea { font-family: sans-serif; color: #222; }
 ::selection { background: #fe57a1; color: #fff; text-shadow: none; }
 
 a { color: #00e; }
-a:visited { color: #551a8b; }
 a:hover { color: #06e; }
 a:focus { outline: thin dotted; }
 a:hover, a:active { outline: 0; }
@@ -176,7 +175,6 @@ padding: 3px 0;
   -ms-transition: all .2s ease-in-out;
 }
 
-
 #categories-nav-tab {
   position: relative;
   z-index: -1;
@@ -202,17 +200,24 @@ padding: 3px 0;
   height:300px;
 }
 
-
 #categories-nav-tab:hover {
   margin-top: -290px;
 }
 
-#categories-nav-tab-pull{
+#close-category-nav {
+  color: #eee;
   position: absolute;
-  bottom: -20px;
+  top: 2px;
+  right: 8px;
+}
+
+#categories-nav-tab-pull{
+  cursor: pointer;
+  position: absolute;
+  bottom: -25px;
   left: 50%;
   z-index: -1;
-  height: 20px;
+  height: 26px;
   background: #808080;
   width: 120px;
   color: #000;
@@ -225,9 +230,40 @@ padding: 3px 0;
   -ms-border-radius: 0 0 5px 5px;
 }
 
+#category-nav-list {
+  margin-top: 20px;
+  width: 85%;
+  margin: 0 auto;
+  padding: 10px 20px;
+  height: 85%;
+  border-left: 1px solid #333;
+  border-bottom: 1px solid #333;
+  border-right: 1px solid #333;
+  overflow: auto;
+  background: #ddd;
+}
+#category-nav-list li {
+  border-bottom: 1px solid #aaa;
+  min-height: 30px;
+  padding: 5px;
+}
 
-
-
+#pull-marker {
+  height: 9px;
+  width: 40px;
+  margin: 0 auto;
+}
+#pull-marker li{
+  height: 1px;
+  margin-top: 1px;
+  border: 1px solid #444;
+  background: #999;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  -moz-border-radius: 10px;
+}
 
 /* ==|== non-semantic helper classes ======================================== */
 .ir { display: block; border: 0; text-indent: -999em; overflow: hidden; background-color: transparent; background-repeat: no-repeat; text-align: left; direction: ltr; }
