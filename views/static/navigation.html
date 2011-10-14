@@ -60,12 +60,22 @@
               <li>Photo? <a href="#">item</a></li>
               <li>Photo? <a href="#">item</a></li>
             </ul>
-            <div id="categories-nav-tab-pull">&nbsp;</div>
+            <div id="categories-nav-tab-pull"><em>Categories</em></div>
           </div>
         </div>
       </div>
     </header>
+
+    <div class="container">
+      <section>
+        <div class="page-header">
+          <h1>Content!</h1>
+        </div>
+      </section>
+    </div>
+
   </div> <!--! end of #container -->
+
 
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
@@ -79,9 +89,9 @@
 
   <script>
     $(document).ready(function() {
-      var categories_tab = $("#categories-nav-tab");
+      var category_row = $("#category-nav");
       $("#categories-nav-tab-pull").click(function() {
-        categories_tab.toggleClass('show');
+        category_row.toggleClass('show');
       });
     });
   </script>
