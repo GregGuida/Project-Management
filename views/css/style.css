@@ -82,13 +82,18 @@ section {
 }
 
 #link-nav {
-  background: #fff;
-  font: 12px/14px arial,helvetica,sans-serrif;
-  height:18px;
-  vertical-align:center;
+background: white;
+font: 12px/14px arial,helvetica,sans-serrif;
+height: 14px;
+vertical-align: middle;
+text-align: right;
+background-color: #2D2D2D;
+padding: 3px 0;
 }
 
 #link-nav a{
+  margin:0 10px;
+  color:#fff;
 }
 
 #action-nav {
@@ -101,20 +106,38 @@ section {
   color:#888;
 }
 #action-nav form{
-  margin:12px;
+  margin: 12px auto;
+  display: block;
+  width: 550px;
+}
+
+#nav-search{
+  height:55px;
+  float:left;
+  width:700px;
 }
 
 #nav-logo {
   background-color: rgb(166,52,42);
   background-image: linear-gradient(bottom, rgb(166,52,42) 8%, rgb(191,59,49) 54%);
-background-image: -o-linear-gradient(bottom, rgb(166,52,42) 8%, rgb(191,59,49) 54%);
-background-image: -moz-linear-gradient(bottom, rgb(166,52,42) 8%, rgb(191,59,49) 54%);
-background-image: -webkit-linear-gradient(bottom, rgb(166,52,42) 8%, rgb(191,59,49) 54%);
-background-image: -ms-linear-gradient(bottom, rgb(166,52,42) 8%, rgb(191,59,49) 54%);
-
-  font: 48px/55px arial,helvetica,sans-serif;
+  background-image: -o-linear-gradient(bottom, rgb(166,52,42) 8%, rgb(191,59,49) 54%);
+  background-image: -moz-linear-gradient(bottom, rgb(166,52,42) 8%, rgb(191,59,49) 54%);
+  background-image: -webkit-linear-gradient(bottom, rgb(166,52,42) 8%, rgb(191,59,49) 54%);
+  background-image: -ms-linear-gradient(bottom, rgb(166,52,42) 8%, rgb(191,59,49) 54%);
+  float: left;
+  width: 140px;
+  text-align: center;
+  font-family: serif;
+  height: 55px;
+  vertical-align: middle;
+  font: 48px/55px serif;
   color:#FFF;
   text-shadow:1px 1px 4px #8c2b24;
+}
+#nav-logo a, #nav-logo a:hover, #nav-logo a:active, #nav-logo a:visited{
+  color:#fff;
+  font: 48px/55px serif;
+  text-decoration:none;
 }
 
 #nav-logo:hover {
@@ -127,9 +150,10 @@ background-image: -ms-linear-gradient(bottom, rgb(166,52,42) 8%, rgb(191,59,49) 
 }
 
 #nav-cart {
-  border-left:1px solid #888;
-  border-right:1px solid #888;
+  border-left:1px solid #808080;
   height:55px;
+  width:99px;
+  float:left;
 }
 
 #nav-cart:hover{
