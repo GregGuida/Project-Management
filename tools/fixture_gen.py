@@ -50,11 +50,11 @@ def generate_sql(json_loc, save_loc):
 	print 'Generating the SQL'
 	# ...Generate the SQL
 	sql_statements = []
-	# This is such a dirty way of doing this...but i don't know of any other way that doesn't require numpy
+	# This is such a dirty way of doing this...but i don't know of any other way that doesn't require numpy and matrices or is absolutely unreadable.
 	for table in input:
 		for row in input[table]:
-			keys = map(lambda key: "`%s`" % key, row.keys())
-			values = map(lambda value: "'%s'" % value, row.values())
+			keys = ["`{0}`".format(key) for key in row.keys()]
+			values = ["'{0}'".format(value) for value in  row.values()]
 			sql_statements.append('INSERT INTO `{0}` ({1}) values ({2});'.format(table, ", ".join(keys), ", ".join(values)))
 				
 	print 'Saving Generated SQL to "{}"'.format(save_loc)
