@@ -127,16 +127,18 @@ padding: 3px 0;
   width: 140px;
   text-align: center;
   font-family: serif;
-  height: 55px;
+  height: 52px;
   vertical-align: middle;
-  font: 48px/55px serif;
+  font: 48px/48px serif;
   color:#FFF;
   text-shadow:1px 1px 4px #8c2b24;
+  border-top: 3px solid #DF9C20;
 }
 #nav-logo a, #nav-logo a:hover, #nav-logo a:active, #nav-logo a:visited{
-  color:#fff;
-  font: 48px/55px serif;
-  text-decoration:none;
+  color: white;
+  font: 48px/46px serif;
+  text-decoration: none;
+  display: block;
 }
 
 #nav-logo:hover {
@@ -149,9 +151,8 @@ padding: 3px 0;
 }
 
 #nav-cart {
-  border-left:1px solid #808080;
   height:55px;
-  width:99px;
+  width:100px;
   float:left;
 }
 
@@ -159,8 +160,16 @@ padding: 3px 0;
   background-color:rgb(166,166,166);
 }
 
-#nav-cart a {
-  
+#nav-cart a, #nav-cart a:hover, #nav-cart a:active, #nav-cart a:visited {
+  color: white;
+font-size: 20px;
+text-shadow: 1px 1px 1px #999;
+display: block;
+height: 25px;
+width: 30px;
+padding: 15px 25px 15px 45px;
+background: url('../img/shopping-cart.png') no-repeat 10px 14px transparent;
+text-decoration: none;
 }
 
 
