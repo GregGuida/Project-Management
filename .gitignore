@@ -1,1 +1,3 @@
 user_guide/
+.DS_Store
+tools/*.sql
