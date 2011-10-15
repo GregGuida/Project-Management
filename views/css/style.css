@@ -137,7 +137,22 @@ section > .row {
   text-shadow:1px 1px 4px #8c2b24;
   border-top: 3px solid #DF9C20;
 }
-#nav-logo a, #nav-logo a:hover, #nav-logo a:active, #nav-logo a:visited{
+
+#footer-logo{
+  float: left;
+  width: 140px;
+  text-align: center;
+  font-family: serif;
+  height: 52px;
+  vertical-align: middle;
+  font: 48px/48px serif;
+  color:#FFF;
+  text-shadow:1px 1px 4px #808080;
+}
+
+
+#nav-logo a, #nav-logo a:hover, #nav-logo a:active, #nav-logo a:visited,
+#footer-logo a, #footer-logo a:hover, #footer-logo a:active, #footer-logo a:visited{
   color: white;
   font: 48px/46px serif;
   text-decoration: none;
@@ -304,6 +319,52 @@ section > .row {
 .category-list .row:hover .thumbnail {
   border: 1px solid #666;
 }
+
+
+/* Sticky Footer Action */
+html, body {
+height: 100%;
+}
+#container {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -300px;
+}
+footer, .push {
+	height: 300px;
+}
+
+footer {
+	background-color:rgb(191,191,191);
+	border:none !important;
+}
+
+#footer-category-links, #footer-nav-links{
+	width:249px;
+	padding:0 50px;
+	margin-left:50px;
+	float:left;
+	text-align:right;
+	border-left:1px solid #808080;
+}
+
+#footer-category-links a, #footer-nav-links a{
+	color:#fff;
+}
+
+header #action-nav, footer {
+	background-color: #BFBFBF;
+	box-shadow: 0 0 15px #000;
+}
+
+
+
+
+
+
+
+
 
 /* ==|== non-semantic helper classes ======================================== */
 .ir { display: block; border: 0; text-indent: -999em; overflow: hidden; background-color: transparent; background-repeat: no-repeat; text-align: left; direction: ltr; }
