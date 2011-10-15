@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
-
+	public $layout = 'main';
 	/**
 	 * Index Page for this controller.
 	 *
