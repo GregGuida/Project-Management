@@ -329,6 +329,7 @@ section > .row {
 }
 
 #product-actions section {
+  margin: 0 0 25px;
   font-weight: bold;
   border: 1px solid #aaa;
   text-align: center;
