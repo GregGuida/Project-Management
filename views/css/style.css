@@ -219,30 +219,26 @@ section > .row {
   -webkit-border-radius: 0 0 10px 10px;
   -ms-border-radius: 0 0 10px 10px;
 }
-
 #category-nav.show #categories-nav-tab {
   margin-top: 0;
 }
 #category-nav.show {
   height:300px;
 }
-
 #categories-nav-tab:hover {
   margin-top: -290px;
 }
-
 #close-category-nav {
   color: #eee;
   position: absolute;
   top: 2px;
   right: 8px;
 }
-
 #categories-nav-tab-pull{
   cursor: pointer;
   position: absolute;
   bottom: -25px;
-  left: 50%;
+  left: 400px;
   z-index: -1;
   height: 26px;
   background: #808080;
@@ -320,7 +316,36 @@ section > .row {
   border: 1px solid #666;
 }
 
+#main {
+  margin-top: 50px;
+}
 
+
+#product-review-section {
+  margin-top: 40px;
+}
+#product-reviews li {
+  min-height: 25px;
+}
+
+#product-actions section {
+  font-weight: bold;
+  border: 1px solid #aaa;
+  text-align: center;
+  padding: 8px 0;
+  background: #eee;
+  border-radius: 10px;
+}
+#product-actions section:hover {
+  border: 1px solid #ccc;
+}
+#product-actions .product-price {
+  color: #805817;
+}
+#product-actions .product-rating p{
+  font-weight: bold;
+  color: green;
+}
 /* Sticky Footer Action */
 html, body {
 height: 100%;
