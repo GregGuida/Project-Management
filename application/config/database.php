@@ -49,9 +49,9 @@ $active_record = TRUE;
 
 // Database config for the PHP Fog deployment. Comment out when developing locally.
 
-$db['default']['hostname'] = 'db01-share';
-$db['default']['username'] = 'CodeIgnite-13379';
-$db['default']['password'] = 'm4r1stpmfm';
+$db['default']['hostname'] = 'localhost';
+$db['default']['username'] = 'root';
+$db['default']['password'] = '';
 $db['default']['database'] = 'fightingmongooses-phpfogapp-com';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
