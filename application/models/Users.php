@@ -18,15 +18,19 @@
  		parent :: Model();
  	}
  	
- 	protected function getCustomerInfo($cid, $data)
+ 	protected function getCustomerInfo($uid, $data)
 	{
-		$query = $this->db->get_where('Users', array('cid'=>$cid));
+		$userData = array();
+		
+		$query = $this->db->get_where('Users', array('uid'=>$id));
 		if($query->num_rows()==0)
 			return false;
-		$result = $query->result();
+		$userData = $query->row_array();
 		
 		$query->free_result(); //Free our mind
-		return $result[0]; //There should Never be more than one row... But just in case.
+		
+		$result = array_merge($userData,$data);
+		return $result;
 	}
 	
 	protected function getEmployeeInfo($eid, $data)
@@ -36,7 +40,7 @@
 			return false;
 		$result = $query->result();
 		
-		$query->free_result(); //Free our mind
+		$query->free_result();
 		return $result[0]; 
 	}
 	
@@ -47,7 +51,7 @@
 			return false;
 		$result = $query->result();
 		
-		$query->free_result(); //Free our mind
+		$query->free_result();
 		return $result[0]; 
 	}
 	

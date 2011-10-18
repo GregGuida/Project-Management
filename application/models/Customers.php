@@ -16,16 +16,19 @@ class Customers extends Users
 		parent :: Users();
 	}
 	
-	//Returns the Customer with the given id# as an array of objects
+	//Returns the Customer with the given id# as an array
 	function getCustomer($id)
 	{
+		$data = array();
+		
 		$query = $this->db->get_where('Customers', array('cid'=>$id));
 		if($query->num_rows()==0)
 			return false;
-		$result = $query->result();
+		$data = $query->row_array();
 		
-		$query->free_result(); //Free our mind
-		return $result[0]; //There should Never be more than one row... But just in case.
+		$query->free_result(); //Free up memory
+		$uid = $this->getUid($id);
+		return parent::getCustomerInfo($uid,$data); //Get the rest of Customer's data from the User table;
 	}
 	
 	//Returns the Customers Table
@@ -34,27 +37,31 @@ class Customers extends Users
 		$data = array();
 		$query = $this->db->get('Customers');
 		
+		//Check that Table is not empty
 		if($query->num_rows() < 0)
 			return false;
 		
-		foreach($query->result() as $row)
+		foreach($query->result_array() as $row)
 			$data[] = $row;		
 		
 		$query->free_result();
 		return $data;
 	}
 	
+	//Delete the Customer entirely from both the Customers & Users table
 	function deleteCustomer($id)
 	{
+		$uid = $this->getUid($cid);
+		
 		$this->db->delete('Customers', array('cid' => $id));
+		parent::deleteUser($uid);
+		
+		return true;
 	}
 	
 	function updateCustomer($cid, $last, $first, $email, $pass, $dob)
 	{
-		//Get the uid of the Customer
-		$this->db->select('uid');
-		$this->db->get('Customers');
-		$uid = $this->db->where('cid',$cid);
+		$uid = $this->getUid($cid);
 		
 		$data = array(
 				'LastName' => $last,
@@ -69,6 +76,16 @@ class Customers extends Users
 		$this->db->update('Customers', array('DOB' => $dob), array('cid' => $cid));
 		
 		return true;
+	}
+	
+	//Get the uid of the Customer
+	private function getUid($cid)
+	{
+		$this->db->select('uid');
+		$this->db->get('Customers');
+		$uid = $this->db->where('cid',$cid);
+		
+		return $uid;
 	}
 	
 }

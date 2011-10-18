@@ -19,16 +19,18 @@ class Products extends Model
 		parent :: Model();
 	}
 	
-	//Returns the Product with the given id# as an array of objects
+	//Returns the Product with the given id# as an array
 	function getProduct($id)
 	{
+		$data = array();
+		
 		$query = $this->db->get_where('Products', array('pid'=>$id));
 		if($query->num_rows()==0)
 			return false;
-		$result = $query->result();
+		$data = $query->row_array();
 		
 		$query->free_result(); //Release our memory
-		return $result[0]; //There should Never be more than one row... But just in case.
+		return $data;
 	}
 	
 	//Returns the Product's ID number, given it's name
@@ -44,7 +46,7 @@ class Products extends Model
 	}
 	
 	//Returns an array of all the rows in the Products Table
-	function getProductsTable()
+	function getAllProducts()
 	{
 		$data = array();
 		$query = $this->db->get('Products');
@@ -52,7 +54,7 @@ class Products extends Model
 		
 		if($query->num_rows() > 0)
 		{
-			foreach($query->result() as $row)
+			foreach($query->result_array() as $row)
 				$data[] = $row;
 		}
 		else
