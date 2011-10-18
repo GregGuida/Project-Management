@@ -31,7 +31,7 @@ class Customers extends Users
 		return parent::getCustomerInfo($uid,$data); //Get the rest of Customer's data from the User table;
 	}
 	
-	//Returns the Customers Table
+	//Returns the Customers Table as an array of arrays
 	function getAllCustomers($id)
 	{
 		$data = array();
@@ -41,8 +41,13 @@ class Customers extends Users
 		if($query->num_rows() < 0)
 			return false;
 		
+		//Get each customer and store it into an array
 		foreach($query->result_array() as $row)
-			$data[] = $row;		
+		{
+			$cid = $row['cid'];
+			$curCustomer = $this->getCustomer($cid);
+			$data[] = $curCustomer;
+		}
 		
 		$query->free_result();
 		return $data;
