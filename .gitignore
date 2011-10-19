@@ -4,4 +4,8 @@ user_guide/
 =======
 .DS_Store
 tools/*.sql
+<<<<<<< HEAD
+>>>>>>> master
+=======
+hidden/*
 >>>>>>> master
