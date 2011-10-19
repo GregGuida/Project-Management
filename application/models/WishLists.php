@@ -36,7 +36,7 @@ class WishLists extends Models
 		
 		//Gets the products in our wish list from the WishListItems Table
 		$this->db->select('pid');
-		$query2 = $this->db->get_where('WishListItems', array('wishID' => $wishID);
+		$query2 = $this->db->get_where('WishListItems', array('wishID' => $wishID));
 		$items = $query2->result_array(); //Use result_array because we may have multiple products in a given list
 		
 		//Put all our info into one array and return it
@@ -66,6 +66,24 @@ class WishLists extends Models
 		);
 		
 		$this->db->delete('WishListItems', $data);		
+	}
+
+	//Create a new wishlist
+	function newWishList($cid,$name)
+	{
+		$data = array(
+			'cid'  => $cid,
+			'name' => $name
+		);
+		
+		$this->db->insert('WishLists', $data);
+	}
+	
+	//Delete a given wishlist
+	function deleteWishList($wishID)
+	{
+		$this->db->delete('WishListItems', array('wishID' => $wishID));
+		$this->db->delete('WishLists', array('wishID' => $wishID));	
 	}
 
 	//Helper function... Not sure yet if it will be needed
