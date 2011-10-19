@@ -48,7 +48,6 @@ $active_group = 'default';
 $active_record = TRUE;
 
 // Database config for the PHP Fog deployment. Comment out when developing locally.
-
 $db['default']['hostname'] = 'db01-share';
 $db['default']['username'] = 'CodeIgnite-13379';
 $db['default']['password'] = 'm4r1stpmfm';
@@ -64,7 +63,6 @@ $db['default']['dbcollat'] = 'utf8_general_ci';
 $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
-
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */
