@@ -1,8 +1,0 @@
-{
-	"users": [
-		{"lastname":"Dunn", "firstname":"Sean", "username":"attamusc", "email":"sean@attamusc.com", "password":"derp"},
-		{"lastname":"Doe", "firstname":"John", "username":"john_doe", "email":"john@imaginary.com", "password":"faker"},
-		{"lastname":"Carpanzano", "firstname":"Gabrielle", "username":"gab2much98", "email":"gaby.carp@gmail.com", "password":"gabster"},
-		{"lastname":"Fukunaggi", "firstname":"Rin", "username":"rfukunaggi", "email":"rin@flamenation.com", "password":"firestarter"}
-	]
-}
