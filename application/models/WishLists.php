@@ -32,12 +32,12 @@ class WishLists extends Models
 		$query = $this->db->get_where('WishLists', array('wishID' => $wishID));
 		if($query->num_rows()==0)
 			return false;
-		$list = $query->row_array();
+		$list = $query->row_array(); //Use row_array because there should never be more than 1 row
 		
-		//Gets the info from the WishListItems Table
+		//Gets the products in our wish list from the WishListItems Table
 		$this->db->select('pid');
 		$query2 = $this->db->get_where('WishListItems', array('wishID' => $wishID);
-		$items = $query2->row_array();
+		$items = $query2->result_array(); //Use result_array because we may have multiple products in a given list
 		
 		//Put all our info into one array and return it
 		$result = array_merge($list,$items);
