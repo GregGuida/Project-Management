@@ -1,2 +1,7 @@
 user_guide/
+<<<<<<< HEAD
 *.DS_Store
+=======
+.DS_Store
+tools/*.sql
+>>>>>>> master
