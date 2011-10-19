@@ -46,6 +46,28 @@ class WishLists extends Models
 		return $result;
 	}
 
+	//Add a single item to a given wishlist
+	function addItemToWishList($pid,$wishID)
+	{
+		$data = array(
+			'wishID' => $wishID,
+			'pid' 	 => $pid
+		);
+		
+		$this->db->insert('WishListItems', $data);
+	}
+
+	//Remove a single item from a given wishlist
+	function removeItemFromWishList($pid,$wishID)
+	{
+		$data = array(
+			'wishID' => $wishID,
+			'pid' 	 => $pid
+		);
+		
+		$this->db->delete('WishListItems', $data);		
+	}
+
 	//Helper function... Not sure yet if it will be needed
 	private function getWishID($cid)
 	{
