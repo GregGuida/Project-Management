@@ -7,5 +7,10 @@ class Customers extends CI_Controller {
   public function signup() {
     $this->load->view('customers/new');
   }
+
+  // my account page
+  public function account() {
+    $this->load->view('customers/account');
+  }
 }
 

@@ -6,5 +6,9 @@ class Products extends CI_Controller {
   public function show() {
     $this->load->view('products/show');
   }
+
+  public function search() {
+    $this->load->view('products/search');
+  }
 }
 

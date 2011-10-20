@@ -26,17 +26,17 @@
       <div>
         <div class="row" id="link-nav">
           <div class="container">
-            <a href="/sessions/new">Login</a>
-            <a href="/customers/new">Signup</a>
-            <a href="#">My Account</a>
-            <a href="#">Help</a>
+            <a href="/sessions/login">Login</a>
+            <a href="/customers/signup">Signup</a>
+            <a href="/customers/account">My Account</a>
+            <a href="/statics/help">Help</a>
           </div>
         </div>
         <div class="row" id="action-nav">
           <div class="container">
             <div class="" id="nav-logo"><a href="/">Logo</a></div>
             <div class="" id="nav-search">
-              <form action="/search"  method="post">
+              <form action="/products/search"  method="post">
                 <input type="text" name="q" class="span8" />
                 <input type="submit" class="btn" >
               </form>

@@ -5,8 +5,11 @@ class Statics extends CI_Controller {
 
   // homepage
   public function index() {
- 
    $this->load->view('statics/homepage');
+  }
+
+  public function help() {
+    $this->load->view('statics/help');
   }
 }
 
