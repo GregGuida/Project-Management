@@ -21,7 +21,7 @@
                   </div>
                 </div>
                 <div class="span3" id="product-actions">
-                  <section class="add-product-to-cart"><img src="../img/shopping-cart.png" /> <a href="#">Add to cart</a></section>
+                  <section class="add-product-to-cart"><img src="/img/shopping-cart.png" /> <a href="/cart">Add to cart</a></section>
                   <section class="product-price"><h3>Price</h3>$399.99</section>
                   <section class="product-rating"><h3>Rating</h3><p><button class="btn">+</button> <button class="btn">-</button></p><p>98%</p></section>
                 </div>

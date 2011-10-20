@@ -42,7 +42,7 @@
               </form>
             </div>
             <div id="nav-cart" class="">
-              <a href="#">Cart</a>
+              <a href="/cart/">Cart</a>
             </div>
           </div>
         </div>
@@ -55,15 +55,9 @@
               <li><img src="http://placekitten.com/g/90/90" class="thumbnail" /> <a href="/products/show">item</a></li>
               <li><img src="http://placekitten.com/g/90/90" class="thumbnail" /> <a href="/products/show">item</a></li>
               <li><img src="http://placekitten.com/g/90/90" class="thumbnail" /> <a href="/products/show">item</a></li>
-              <li><img src="http://placekitten.com/g/90/90" class="thumbnail" /> <a href="/products/show">item</a></li>
-              <li><img src="http://placekitten.com/g/90/90" class="thumbnail" /> <a href="/products/show">item</a></li>
-              <li><img src="http://placekitten.com/g/90/90" class="thumbnail" /> <a href="/products/show">item</a></li>
-              <li><img src="http://placekitten.com/g/90/90" class="thumbnail" /> <a href="/products/show">item</a></li>
-              <li><img src="http://placekitten.com/g/90/90" class="thumbnail" /> <a href="/products/show">item</a></li>
-              <li><img src="http://placekitten.com/g/90/90" class="thumbnail" /> <a href="/products/show">item</a></li>
             </ul>
             <div id="categories-nav-tab-pull">
-              <em>Categories</em>
+              Categories
               <ul id="pull-marker" class="unstyled"><li></li><li></li></ul>
             </div>
           </div>
@@ -97,12 +91,12 @@
                 <div id="footer-nav-links">
                         <h3>Links</h3>
                         <ul class="unstyled">
-                                <li><a href="#">home</a></li>
-                                <li><a href="#">my account</a></li>
-                                <li><a href="#">cart</a></li>
-                                <li><a href="#">about</a></li>
-                                <li><a href="#">privacy policy</a></li>
-                                <li><a href="#">legal</a></li>
+                                <li><a href="/">home</a></li>
+                                <li><a href="/customers/account">my account</a></li>
+                                <li><a href="/cart">cart</a></li>
+                                <li><a href="/statics/about">about</a></li>
+                                <li><a href="/statics/privacy">privacy policy</a></li>
+                                <li><a href="/statics/legal">legal</a></li>
                         </ul>
                 </div>
         </section>

@@ -11,5 +11,17 @@ class Statics extends CI_Controller {
   public function help() {
     $this->load->view('statics/help');
   }
+
+  public function about() {
+    $this->load->view('statics/about');
+  }
+
+  public function legal() {
+    $this->load->view('statics/legal');
+  }
+
+  public function privacy() {
+    $this->load->view('statics/privacy');
+  }
 }
 

@@ -12,5 +12,9 @@ class Customers extends CI_Controller {
   public function account() {
     $this->load->view('customers/account');
   }
+
+  public function forgot_password() {
+    $this->load->view('customers/forgot_password');
+  }
 }
 
