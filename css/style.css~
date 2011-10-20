@@ -431,9 +431,7 @@ header #action-nav, footer {
     width: 100px;
     float: left;
 }
-.checkout-button{
-    float:right;
-}
+
 
 
 
