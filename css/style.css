@@ -62,7 +62,7 @@ td { vertical-align: top; }
 
 
 /* ==|== primary styles =====================================================
-   Author: 
+   Author: joey & greg
    ========================================================================== */
 
 
@@ -385,6 +385,27 @@ header #action-nav, footer {
 }
 
 
+.product-image-container {
+    float: left;
+    width: 110px;
+    margin-right: 10px;
+}
+.product-price, .product-rating{ 
+    float: right;
+    width: 100px;
+}
+.rating-bar { 
+    width:100px;
+    height:5px;
+    border:1px solid #fff;
+    box-shadow: 0 0 3px #333;
+    background-color:#ff0000;
+}
+
+.rating-bar-inner{
+    height:5px;
+    background-color:#00ff00;
+}
 
 
 
