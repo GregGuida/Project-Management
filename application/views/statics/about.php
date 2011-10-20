@@ -1,0 +1,3 @@
+<div class="page-header">
+  <h2>About</h2>
+</div>
