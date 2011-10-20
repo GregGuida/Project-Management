@@ -1,4 +1,4 @@
-<form action="/sessions/new" method="post">
+<form action="/sessions/login" method="post">
   <fieldset>
     <legend>Login to TFM</legend>
     <div class="clearfix">
