@@ -153,6 +153,9 @@ section > .row {
   color:#FFF;
   text-shadow:1px 1px 4px #808080;
 }
+#footer-logo .help-block {
+  color: #444;
+}
 
 
 #nav-logo a, #nav-logo a:hover, #nav-logo a:active, #nav-logo a:visited,
@@ -448,9 +451,7 @@ header #action-nav, footer {
     float:right;
     color:#fff;
 }
-.checkout-button h2{
-    color:#fff;
-}
+
 .cart-totals {
     text-align:right;
     background-color:#f2f2f2;
@@ -459,6 +460,9 @@ header #action-nav, footer {
     margin-bottom:40px;
 }
 
+#checkout-with-paypal {
+  cursor: pointer;
+}
 
 
 /* ==|== non-semantic helper classes ======================================== */

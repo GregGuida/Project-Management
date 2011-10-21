@@ -10,8 +10,8 @@
           <h3>Your Active Orders</h3>
         </div>
         <ul id="account-active-orders" class="unstyled">
-          <li><p><b>10/10/2011 - $100.95</b> 3 Items. <a href="#" class="btn">View</a></p><p>Status: processing</p></li>
-          <li><p><b>10/10/2011 - $100.95</b> 3 Items. <a href="#" class="btn">View</a></p><p>Status: processing</p></li>
+          <li><p><b>10/10/2011 - $100.95</b> 3 Items. <a href="/orders/complete" class="btn">View</a></p><p>Status: Processing</p></li>
+          <li><p><b>10/10/2011 - $100.95</b> 3 Items. <a href="/orders/complete" class="btn">View</a></p><p>Status: Processing</p></li>
         </ul>
       </div>
       <div class="span8">
