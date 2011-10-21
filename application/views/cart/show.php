@@ -16,8 +16,9 @@
 	<? endfor; ?>
 	<div class="cart-totals row">
 	    <div class="span16">
-		<p>Zip Code:</p>
-		<input type="text" class="span2" value="12601" />
+		<p>
+                  Zip Code: <input type="text" class="span2" value="12601" />
+                </p>
         	<p>Subtotal: $1175.00</p>
 		<p>Shipping: $40.00</p>
 		<p><strong>Total: $1280.00</strong></p>

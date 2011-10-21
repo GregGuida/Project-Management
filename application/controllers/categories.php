@@ -4,7 +4,11 @@ class Categories extends CI_Controller {
   public $layout = 'main';
 
   public function index() {
-    $this->load->view('welcome_message');
+    $this->load->view('categories/index');
+  }
+
+  public function show($id = 0) {
+    $this->load->view('categories/show');
   }
 }
 
