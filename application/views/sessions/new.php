@@ -1,4 +1,4 @@
-<form action="/sessions/create" method="post">
+<form action="/sessions/login" method="post">
   <fieldset>
     <legend>Login to TFM</legend>
     <div class="clearfix">
@@ -20,7 +20,7 @@
       <a href="/" class="btn">Signup Instead</a>
     </p>
     <p>
-      <a href="#">I forgot my password</a>
+      <a href="/customers/forgot_password">I forgot my password</a>
     </p>
   </div>
 </form>
