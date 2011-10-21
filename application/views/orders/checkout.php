@@ -92,7 +92,7 @@
           <img id="checkout-with-paypal" src="/img/paypal.gif" />
         </p>
         <p>
-          <a href="/customers/account">I'll think on it</a>
+          <a href="/customers/account">I'll sleep on it</a>
         </p>
       </div>
     </form>

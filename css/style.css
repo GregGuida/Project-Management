@@ -1,4 +1,4 @@
-/* HTML5 ✰ Boilerplate
+y* HTML5 ✰ Boilerplate
  * ==|== normalize ==========================================================
  */
 
@@ -215,6 +215,7 @@ section > .row {
   background: #808080;
   height: 300px;
   margin-top: -300px;
+  text-align: center;
   transition: all .2s ease-in-out;
   -moz-transition: all .2s ease-in-out;
   -webkit-transition: all .2s ease-in-out;
@@ -235,12 +236,6 @@ section > .row {
 #categories-nav-tab:hover {
   margin-top: -290px;
 }
-#close-category-nav {
-  color: #eee;
-  position: absolute;
-  top: 2px;
-  right: 8px;
-}
 #categories-nav-tab-pull{
   cursor: pointer;
   position: absolute;
@@ -259,25 +254,22 @@ section > .row {
   -webkit-border-radius: 0 0 5px 5px;
   -ms-border-radius: 0 0 5px 5px;
 }
-
 #category-nav-list {
   margin-top: 20px;
   width: 85%;
   margin: 0 auto;
-  padding: 10px 20px;
-  height: 85%;
+  height: 90%;
   border-left: 1px solid #333;
   border-bottom: 1px solid #333;
   border-right: 1px solid #333;
-  overflow: auto;
   background: #ddd;
+  overflow:hidden;
 }
 #category-nav-list li {
   border-bottom: 1px solid #aaa;
   min-height: 30px;
   padding: 5px;
 }
-
 #pull-marker {
   height: 9px;
   width: 40px;
@@ -294,7 +286,6 @@ section > .row {
   -o-border-radius: 10px;
   -moz-border-radius: 10px;
 }
-
 .category-list .row {
   padding: 40px 0;
   margin-bottom: 20px;
@@ -325,6 +316,44 @@ section > .row {
 .category-list .row:hover .thumbnail:hover {
   border: 1px solid #FFCC00;
 }
+.roundabout-holder {
+  list-style: none;
+  width: 40em;
+  height: 10em;
+  margin: 1em auto;
+}
+.roundabout-moveable-item {
+  height: 10em;
+  width: 15em;
+  cursor: pointer;
+}
+.roundabout-moveable-item img {
+  width: 100%;
+}
+.roundabout-in-focus {
+   cursor: auto;
+}
+#category-nav-list li a {
+  display: block;
+  position: relative;
+  text-decoration:none;
+}
+#category-nav-list .category-name {
+  display: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  color: #fff;
+  background: #333;
+  background: rgba(15, 15, 15, 0.7);
+  /* For IE 5.5 - 7*/
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#333333333, endColorstr=#333333333);
+  /* For IE 8*/
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#333333333, endColorstr=#333333333)";
+}
+
 
 #main {
   margin-top: 50px;
@@ -363,36 +392,36 @@ html, body {
 height: 100%;
 }
 #container {
-	min-height: 100%;
-	height: auto !important;
-	height: 100%;
-	margin: 0 auto -300px;
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -300px;
 }
 footer, .push {
-	height: 300px;
+  height: 300px;
 }
 
 footer {
-	background-color:rgb(191,191,191);
-	border:none !important;
+  background-color:rgb(191,191,191);
+  border:none !important;
 }
 
 #footer-category-links, #footer-nav-links{
-	width:249px;
-	padding:0 50px;
-	margin-left:50px;
-	float:left;
-	text-align:right;
-	border-left:1px solid #808080;
+  width:249px;
+  padding:0 50px;
+  margin-left:50px;
+  float:left;
+  text-align:right;
+  border-left:1px solid #808080;
 }
 
 #footer-category-links a, #footer-nav-links a{
-	color:#fff;
+  color:#fff;
 }
 
 header #action-nav, footer {
-	background-color: #BFBFBF;
-	box-shadow: 0 0 15px #000;
+  background-color: #BFBFBF;
+  box-shadow: 0 0 15px #000;
 }
 
 
