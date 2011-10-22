@@ -1,0 +1,445 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2E6E352614530F3A00EE8B70 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E352514530F3A00EE8B70 /* UIKit.framework */; };
+		2E6E352814530F3A00EE8B70 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E352714530F3A00EE8B70 /* Foundation.framework */; };
+		2E6E352A14530F3A00EE8B70 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E352914530F3A00EE8B70 /* CoreGraphics.framework */; };
+		2E6E353014530F3A00EE8B70 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2E6E352E14530F3A00EE8B70 /* InfoPlist.strings */; };
+		2E6E353214530F3A00EE8B70 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E353114530F3A00EE8B70 /* main.m */; };
+		2E6E353614530F3A00EE8B70 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E353514530F3A00EE8B70 /* AppDelegate.m */; };
+		2E6E353914530F3A00EE8B70 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E6E353714530F3A00EE8B70 /* MainStoryboard.storyboard */; };
+		2E6E353C14530F3A00EE8B70 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E353B14530F3A00EE8B70 /* ViewController.m */; };
+		2E6E354414530F3A00EE8B70 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E354314530F3A00EE8B70 /* SenTestingKit.framework */; };
+		2E6E354514530F3A00EE8B70 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E352514530F3A00EE8B70 /* UIKit.framework */; };
+		2E6E354614530F3A00EE8B70 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E6E352714530F3A00EE8B70 /* Foundation.framework */; };
+		2E6E354E14530F3B00EE8B70 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2E6E354C14530F3B00EE8B70 /* InfoPlist.strings */; };
+		2E6E355114530F3B00EE8B70 /* TFMMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E355014530F3B00EE8B70 /* TFMMobileTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2E6E354714530F3A00EE8B70 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2E6E351814530F3A00EE8B70 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2E6E352014530F3A00EE8B70;
+			remoteInfo = TFMMobile;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2E6E352114530F3A00EE8B70 /* TFMMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TFMMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E6E352514530F3A00EE8B70 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2E6E352714530F3A00EE8B70 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2E6E352914530F3A00EE8B70 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2E6E352D14530F3A00EE8B70 /* TFMMobile-Info.plist */ = {isa = PBXFileReference; path = "TFMMobile-Info.plist"; sourceTree = "<group>"; };
+		2E6E352F14530F3A00EE8B70 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2E6E353114530F3A00EE8B70 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2E6E353314530F3A00EE8B70 /* TFMMobile-Prefix.pch */ = {isa = PBXFileReference; path = "TFMMobile-Prefix.pch"; sourceTree = "<group>"; };
+		2E6E353414530F3A00EE8B70 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		2E6E353514530F3A00EE8B70 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2E6E353814530F3A00EE8B70 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		2E6E353A14530F3A00EE8B70 /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		2E6E353B14530F3A00EE8B70 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		2E6E354214530F3A00EE8B70 /* TFMMobileTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TFMMobileTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E6E354314530F3A00EE8B70 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		2E6E354B14530F3B00EE8B70 /* TFMMobileTests-Info.plist */ = {isa = PBXFileReference; path = "TFMMobileTests-Info.plist"; sourceTree = "<group>"; };
+		2E6E354D14530F3B00EE8B70 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2E6E354F14530F3B00EE8B70 /* TFMMobileTests.h */ = {isa = PBXFileReference; path = TFMMobileTests.h; sourceTree = "<group>"; };
+		2E6E355014530F3B00EE8B70 /* TFMMobileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TFMMobileTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2E6E351E14530F3A00EE8B70 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E6E352614530F3A00EE8B70 /* UIKit.framework in Frameworks */,
+				2E6E352814530F3A00EE8B70 /* Foundation.framework in Frameworks */,
+				2E6E352A14530F3A00EE8B70 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E6E353E14530F3A00EE8B70 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E6E354414530F3A00EE8B70 /* SenTestingKit.framework in Frameworks */,
+				2E6E354514530F3A00EE8B70 /* UIKit.framework in Frameworks */,
+				2E6E354614530F3A00EE8B70 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2E6E351614530F3A00EE8B70 = {
+			isa = PBXGroup;
+			children = (
+				2E6E352B14530F3A00EE8B70 /* TFMMobile */,
+				2E6E354914530F3A00EE8B70 /* TFMMobileTests */,
+				2E6E352414530F3A00EE8B70 /* Frameworks */,
+				2E6E352214530F3A00EE8B70 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2E6E352214530F3A00EE8B70 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2E6E352114530F3A00EE8B70 /* TFMMobile.app */,
+				2E6E354214530F3A00EE8B70 /* TFMMobileTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2E6E352414530F3A00EE8B70 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2E6E352514530F3A00EE8B70 /* UIKit.framework */,
+				2E6E352714530F3A00EE8B70 /* Foundation.framework */,
+				2E6E352914530F3A00EE8B70 /* CoreGraphics.framework */,
+				2E6E354314530F3A00EE8B70 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2E6E352B14530F3A00EE8B70 /* TFMMobile */ = {
+			isa = PBXGroup;
+			children = (
+				2E6E353414530F3A00EE8B70 /* AppDelegate.h */,
+				2E6E353514530F3A00EE8B70 /* AppDelegate.m */,
+				2E6E353714530F3A00EE8B70 /* MainStoryboard.storyboard */,
+				2E6E353A14530F3A00EE8B70 /* ViewController.h */,
+				2E6E353B14530F3A00EE8B70 /* ViewController.m */,
+				2E6E352C14530F3A00EE8B70 /* Supporting Files */,
+			);
+			path = TFMMobile;
+			sourceTree = "<group>";
+		};
+		2E6E352C14530F3A00EE8B70 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2E6E352D14530F3A00EE8B70 /* TFMMobile-Info.plist */,
+				2E6E352E14530F3A00EE8B70 /* InfoPlist.strings */,
+				2E6E353114530F3A00EE8B70 /* main.m */,
+				2E6E353314530F3A00EE8B70 /* TFMMobile-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2E6E354914530F3A00EE8B70 /* TFMMobileTests */ = {
+			isa = PBXGroup;
+			children = (
+				2E6E354F14530F3B00EE8B70 /* TFMMobileTests.h */,
+				2E6E355014530F3B00EE8B70 /* TFMMobileTests.m */,
+				2E6E354A14530F3B00EE8B70 /* Supporting Files */,
+			);
+			path = TFMMobileTests;
+			sourceTree = "<group>";
+		};
+		2E6E354A14530F3B00EE8B70 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2E6E354B14530F3B00EE8B70 /* TFMMobileTests-Info.plist */,
+				2E6E354C14530F3B00EE8B70 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2E6E352014530F3A00EE8B70 /* TFMMobile */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2E6E355414530F3B00EE8B70 /* Build configuration list for PBXNativeTarget "TFMMobile" */;
+			buildPhases = (
+				2E6E351D14530F3A00EE8B70 /* Sources */,
+				2E6E351E14530F3A00EE8B70 /* Frameworks */,
+				2E6E351F14530F3A00EE8B70 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TFMMobile;
+			productName = TFMMobile;
+			productReference = 2E6E352114530F3A00EE8B70 /* TFMMobile.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2E6E354114530F3A00EE8B70 /* TFMMobileTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2E6E355714530F3B00EE8B70 /* Build configuration list for PBXNativeTarget "TFMMobileTests" */;
+			buildPhases = (
+				2E6E353D14530F3A00EE8B70 /* Sources */,
+				2E6E353E14530F3A00EE8B70 /* Frameworks */,
+				2E6E353F14530F3A00EE8B70 /* Resources */,
+				2E6E354014530F3A00EE8B70 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2E6E354814530F3A00EE8B70 /* PBXTargetDependency */,
+			);
+			name = TFMMobileTests;
+			productName = TFMMobileTests;
+			productReference = 2E6E354214530F3A00EE8B70 /* TFMMobileTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2E6E351814530F3A00EE8B70 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Marist College";
+			};
+			buildConfigurationList = 2E6E351B14530F3A00EE8B70 /* Build configuration list for PBXProject "TFMMobile" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2E6E351614530F3A00EE8B70;
+			productRefGroup = 2E6E352214530F3A00EE8B70 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2E6E352014530F3A00EE8B70 /* TFMMobile */,
+				2E6E354114530F3A00EE8B70 /* TFMMobileTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2E6E351F14530F3A00EE8B70 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E6E353014530F3A00EE8B70 /* InfoPlist.strings in Resources */,
+				2E6E353914530F3A00EE8B70 /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E6E353F14530F3A00EE8B70 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E6E354E14530F3B00EE8B70 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2E6E354014530F3A00EE8B70 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2E6E351D14530F3A00EE8B70 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E6E353214530F3A00EE8B70 /* main.m in Sources */,
+				2E6E353614530F3A00EE8B70 /* AppDelegate.m in Sources */,
+				2E6E353C14530F3A00EE8B70 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E6E353D14530F3A00EE8B70 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E6E355114530F3B00EE8B70 /* TFMMobileTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2E6E354814530F3A00EE8B70 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2E6E352014530F3A00EE8B70 /* TFMMobile */;
+			targetProxy = 2E6E354714530F3A00EE8B70 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2E6E352E14530F3A00EE8B70 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2E6E352F14530F3A00EE8B70 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2E6E353714530F3A00EE8B70 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2E6E353814530F3A00EE8B70 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		2E6E354C14530F3B00EE8B70 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2E6E354D14530F3B00EE8B70 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2E6E355214530F3B00EE8B70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2E6E355314530F3B00EE8B70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2E6E355514530F3B00EE8B70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TFMMobile/TFMMobile-Prefix.pch";
+				INFOPLIST_FILE = "TFMMobile/TFMMobile-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		2E6E355614530F3B00EE8B70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TFMMobile/TFMMobile-Prefix.pch";
+				INFOPLIST_FILE = "TFMMobile/TFMMobile-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		2E6E355814530F3B00EE8B70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TFMMobile.app/TFMMobile";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TFMMobile/TFMMobile-Prefix.pch";
+				INFOPLIST_FILE = "TFMMobileTests/TFMMobileTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		2E6E355914530F3B00EE8B70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TFMMobile.app/TFMMobile";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TFMMobile/TFMMobile-Prefix.pch";
+				INFOPLIST_FILE = "TFMMobileTests/TFMMobileTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2E6E351B14530F3A00EE8B70 /* Build configuration list for PBXProject "TFMMobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E6E355214530F3B00EE8B70 /* Debug */,
+				2E6E355314530F3B00EE8B70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2E6E355414530F3B00EE8B70 /* Build configuration list for PBXNativeTarget "TFMMobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E6E355514530F3B00EE8B70 /* Debug */,
+				2E6E355614530F3B00EE8B70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		2E6E355714530F3B00EE8B70 /* Build configuration list for PBXNativeTarget "TFMMobileTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E6E355814530F3B00EE8B70 /* Debug */,
+				2E6E355914530F3B00EE8B70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2E6E351814530F3A00EE8B70 /* Project object */;
+}
