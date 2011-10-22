@@ -88,8 +88,10 @@ class Customers extends Users
 	{
 		$this->db->select('uid');
 		$this->db->get('Customers');
-		$uid = $this->db->where('cid',$cid);
+		$query = $this->db->where('cid',$cid);
 		
+		$result = $query->row_array();
+		$uid = $result['uid'];
 		return $uid;
 	}
 	

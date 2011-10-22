@@ -37,18 +37,42 @@ class CartItems extends Models
 			'stockID' => $item['stockID']
 		);
 		
-		$query->free_result();
 		$this->db->insert('CartItems',$data);
+		$query->free_result();
 		return true;		
 	}
 	
-	//Gets items in a customer's cart that have not been purchased yet
-	function getCart($id)
+	//Gets items in a customer's cart that have not been purchased yet as an array
+	function getCart($customer)
 	{
+		$this->db->get('CartItems');
+		$this->db->where('cid',$customer);
+		$query = $this->db->where('DidPurchase',false);
 		
+		if($query->num_rows() == 0)
+			return false;
+		
+		$result = $query->result_array();
+		$query->free_result();
+		return $result;
 	}
 	
-	
+	//Get every single cart.
+	function getAllCarts()
+	{
+		$data = array();
+		$query = $this->db->get('CartItems');
+		
+		if($query->num_rows() > 0)
+		{
+			foreach($query->result_array() as $row)
+			{
+				$data[] = $row;	
+			}
+		}
+		$query->free_result();
+		return $data;
+	}
 	
 }
 
