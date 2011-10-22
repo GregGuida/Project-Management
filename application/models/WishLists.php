@@ -68,8 +68,8 @@ class WishLists extends Models
 		$this->db->delete('WishListItems', $data);		
 	}
 
-	//Create a new wishlist
-	function newWishList($cid,$name)
+	//Create a new wishlist. Name not required.
+	function newWishList($cid,$name='')
 	{
 		$data = array(
 			'cid'  => $cid,
