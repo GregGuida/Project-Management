@@ -37,20 +37,20 @@
 		2E6E352514530F3A00EE8B70 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2E6E352714530F3A00EE8B70 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2E6E352914530F3A00EE8B70 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		2E6E352D14530F3A00EE8B70 /* TFMMobile-Info.plist */ = {isa = PBXFileReference; path = "TFMMobile-Info.plist"; sourceTree = "<group>"; };
+		2E6E352D14530F3A00EE8B70 /* TFMMobile-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TFMMobile-Info.plist"; sourceTree = "<group>"; };
 		2E6E352F14530F3A00EE8B70 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2E6E353114530F3A00EE8B70 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2E6E353314530F3A00EE8B70 /* TFMMobile-Prefix.pch */ = {isa = PBXFileReference; path = "TFMMobile-Prefix.pch"; sourceTree = "<group>"; };
-		2E6E353414530F3A00EE8B70 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		2E6E353314530F3A00EE8B70 /* TFMMobile-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TFMMobile-Prefix.pch"; sourceTree = "<group>"; };
+		2E6E353414530F3A00EE8B70 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2E6E353514530F3A00EE8B70 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2E6E353814530F3A00EE8B70 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		2E6E353A14530F3A00EE8B70 /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		2E6E353A14530F3A00EE8B70 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		2E6E353B14530F3A00EE8B70 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		2E6E354214530F3A00EE8B70 /* TFMMobileTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TFMMobileTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E6E354314530F3A00EE8B70 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		2E6E354B14530F3B00EE8B70 /* TFMMobileTests-Info.plist */ = {isa = PBXFileReference; path = "TFMMobileTests-Info.plist"; sourceTree = "<group>"; };
+		2E6E354B14530F3B00EE8B70 /* TFMMobileTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TFMMobileTests-Info.plist"; sourceTree = "<group>"; };
 		2E6E354D14530F3B00EE8B70 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		2E6E354F14530F3B00EE8B70 /* TFMMobileTests.h */ = {isa = PBXFileReference; path = TFMMobileTests.h; sourceTree = "<group>"; };
+		2E6E354F14530F3B00EE8B70 /* TFMMobileTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TFMMobileTests.h; sourceTree = "<group>"; };
 		2E6E355014530F3B00EE8B70 /* TFMMobileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TFMMobileTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
