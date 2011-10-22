@@ -6,7 +6,6 @@
  *		`Name` VARCHAR( 100 ) NOT NULL ,
  *		`Description` VARCHAR( 100 ) NOT NULL ,
  *		`PriceUSD` DOUBLE NOT NULL ,
- *		`Image` VARCHAR( 100 ) ,
  *		PRIMARY KEY ( `pid` )
  *	) ENGINE = INNODB;
 */
@@ -95,13 +94,13 @@ class Products extends Model
 		return $data;
 	}
 	
-	function newProduct($name,$description,$price,$image=null)
+	function newProduct($name,$description,$price,$catID)
 	{
 		$data = array(
 				'Name' => $name,
 				'Description' => $description,
 				'PriceUSD' => $price,
-				'Image' => $image
+				'catID' => $catID
 				);
 		$this->db->insert('Products', $data);
 		
@@ -113,13 +112,13 @@ class Products extends Model
 		$this->db->delete('Products', array('pid' => $id));
 	}
 	
-	function updateProduct($id,$name,$description,$price,$image=null)
+	function updateProduct($id,$name,$description,$price,$catID)
 	{
 		$data = array(
 				'Name' => $name,
 				'Description' => $description,				
 				'PriceUSD' => $price,
-				'Image' => $image
+				'catID' => $catID
 				);
 		$this->db->update('Products', $data, array('pid' => $id));
 		
