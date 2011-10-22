@@ -33,7 +33,7 @@ class CartItems extends Models
 			return "No Items in Stock";
 		
 		$data = array(
-			'cid' => $cid,
+			'cid' 	  => $cid,
 			'stockID' => $item['stockID']
 		);
 		
@@ -72,6 +72,18 @@ class CartItems extends Models
 		}
 		$query->free_result();
 		return $data;
+	}
+	
+	//Delete an item from a cart
+	function deleteCartItem($cid,$stockID,$date)
+	{
+		$data = array(
+			'cid' 		=> $cid,
+			'stockID' 	=> $stockID,
+			'dateAdded' => $date
+		);
+		
+		$this->db->delete('CartItems',$data);
 	}
 	
 }
