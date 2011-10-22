@@ -33,6 +33,7 @@ class WishLists extends Models
 		if($query->num_rows()==0)
 			return false;
 		$list = $query->row_array(); //Use row_array because there should never be more than 1 row
+		$query->free_result();
 		
 		//Gets the products in our wish list from the WishListItems Table
 		$this->db->select('pid');
@@ -41,7 +42,6 @@ class WishLists extends Models
 		
 		//Put all our info into one array and return it
 		$result = array_merge($list,$items);
-		$query->free_result();
 		$query2->free_result();
 		return $result;
 	}
@@ -84,16 +84,6 @@ class WishLists extends Models
 	{
 		$this->db->delete('WishListItems', array('wishID' => $wishID));
 		$this->db->delete('WishLists', array('wishID' => $wishID));	
-	}
-
-	//Helper function... Not sure yet if it will be needed
-	private function getWishID($cid)
-	{
-		$this->db->select('wishID');
-		$this->db->get('WishLists');
-		$wishID = $this->db->where('cid',$cid);
-		
-		return $wishID;
 	}
 	
 }

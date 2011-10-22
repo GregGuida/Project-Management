@@ -37,6 +37,7 @@ class CartItems extends Models
 			'stockID' => $item['stockID']
 		);
 		
+		$query->free_result();
 		$this->db->insert('CartItems',$data);
 		return true;		
 	}
