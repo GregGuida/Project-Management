@@ -91,7 +91,7 @@ class Orders extends Model
 	}
 	
 	//Add an Order
-	function addOrder($customer,$address,$status,$total){
+	function addOrder($customer,$address,$status='Processed',$total){
 		$data = array(
 			'cid' 	 		=> $customer,
 			'sid'	 		=> $address,
@@ -102,17 +102,36 @@ class Orders extends Model
 		$this->db->insert('Orders',$data);
 	}
 
-	function addOrderToItem($order,$cid,$stockID){
-	
+	function addOrderToItem($order,$customer,$stock,$date){
+		$data = array(
+			'OrderNum'	=> $order,
+			'cid'		=> $customer,
+			'stockID'	=> $stock,
+			'dateAdded' => $date
+		);
+		
+		$this->db->insert('OrderedItem', $data);
 	}
 	
 	
-	function removeOrderedItem(){
+	function removeOrderedItem($order,$customer,$stock,$dateAdded){
+		$where = array(
+			'OrderNum'	=> $order,
+			'cid'		=> $customer,
+			'stockID'	=> $stock,
+			'dateAdded' => $dateAdded;
+		);
+		
+		$this->db->delete->('OrderedItems', $where);
+	}
 	
+	//Delete the given Order
+	function deleteOrder($order){
+		$this->db->delete('Orders', array('OrderNum'=> $order));
 	}
 
 	//Update an Order
-	function updateOrder($oid,$customer,$address,$status,$total){
+	function updateOrder($order,$customer,$address,$status,$total){
 		$data = array(
 			'cid' 	 		=> $customer,
 			'sid'	 		=> $address,
@@ -120,12 +139,7 @@ class Orders extends Model
 			'TotalPriceUSD' => $total		
 		);
 		
-		$this->db->update('Orders', $data, array('OrderNum'=>$oid));
-	}
-	
-	//Delete the given Order
-	function deleteOrder($id){
-		$this->db->delete('Orders', array('OrderNum'=> $id));
+		$this->db->update('Orders', $data, array('OrderNum'=>$order));
 	}
 	
 }
