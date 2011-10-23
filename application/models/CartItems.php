@@ -35,6 +35,7 @@ class CartItems extends Models
 		$data = array(
 			'cid' 	  => $cid,
 			'stockID' => $item['stockID']
+			'didPurchase' => false;
 		);
 		
 		$this->db->insert('CartItems',$data);
@@ -47,7 +48,7 @@ class CartItems extends Models
 	{
 		$this->db->get('CartItems');
 		$this->db->where('cid',$customer);
-		$query = $this->db->where('DidPurchase',false);
+		$query = $this->db->where('didPurchase',false);
 		
 		if($query->num_rows() == 0)
 			return false;
@@ -84,6 +85,17 @@ class CartItems extends Models
 		);
 		
 		$this->db->delete('CartItems',$data);
+	}
+	
+	//update CartItems <cid> to change didPurchase to true
+	function purchased($cart,$stockID,$date)
+	{
+		$where = array(
+			'cid' 		=> $cid,
+			'stockID' 	=> $stockID,
+			'dateAdded' => $date
+		);
+		$this->db->update('CartItems',array('didPurchase'=>true),$where);
 	}
 	
 }
