@@ -50,10 +50,10 @@ class Orders extends Model
 	}
 	
 	//Add an Order
-	function addOrder($customer,$stock,$status,$total){
+	function addOrder($customer,$address,$status,$total){
 		$data = array(
 			'cid' 	 		=> $customer,
-			'sid'	 		=> $stock,
+			'sid'	 		=> $address,
 			'Status' 		=> $status,
 			'TotalPriceUSD' => $total
 		);
@@ -62,8 +62,15 @@ class Orders extends Model
 	}
 
 	//Update an Order
-	function updateOrder($oid){
-	
+	function updateOrder($oid,$customer,$address,$status,$total){
+		$data = array(
+			'cid' 	 		=> $customer,
+			'sid'	 		=> $address,
+			'Status' 		=> $status,
+			'TotalPriceUSD' => $total		
+		);
+		
+		$this->db->update('Orders', $data, array('oid'=>$oid));
 	}
 	
 	//Delete the given Order
