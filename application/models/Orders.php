@@ -40,7 +40,7 @@ class Orders extends Model
 			return false;
 		$order = $query->row_array();
 		$query->free_result();
-		
+//////////// NEED TO CHANGE - SOME FIELDS COME FROM CART ITEMS >_< /////////////////		
 		$where = array(
 			'OrderNum'	=> $oid,
 			'cid'		=> $order['cid'],
@@ -63,8 +63,7 @@ class Orders extends Model
 		$data = array();
 		$item = array();
 		$query = $this->db->get('Orders');
-//////////// Complicated --- But I think it works /////////////////
-///////////  aka don't fucking touch without talking to me! //////////////
+//////////// NEED TO CHANGE - SOME FIELDS COME FROM CART ITEMS >_< /////////////////
 		if($query->num_rows() > 0)
 		{
 			foreach($query->result_array() as $row)
