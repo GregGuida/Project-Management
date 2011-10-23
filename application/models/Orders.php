@@ -41,13 +41,13 @@ class Orders extends Model
 		$order = $query->row_array();
 		$query->free_result();
 		
-		$this->db->select('stockID','dataAdded');
 		$array = array(
 			'OrderNum'	=> $oid,
 			'cid'		=> $order['cid'],
 			'stockID'	=> $order['stockID'],
 			'dateAdded' => $order['dateAdded']
 		);
+		$this->db->select('stockID','dataAdded');
 		$query2 = $this->db->get_where('OrderedItems', $array);
 		if($query2->num_rows() == 0)
 			return false;
@@ -61,16 +61,30 @@ class Orders extends Model
 	//Returns all the orders as an array of arrays
 	function getAllOrders(){
 		$data = array();
+		$item = array();
 		$query = $this->db->get('Orders');
-		
+//////////// Complicated --- But I think it works ////////////////	
 		if($query->num_rows() > 0)
 		{
 			foreach($query->result_array() as $row)
-				$data[] = $row;
+			{
+				
+				$where = array(
+					'OrderNum'	=> $row['OrderNum'],
+					'cid'		=> $row['cid'],
+					'stockID'	=> $row['stockID'],
+					'dateAdded' => $row['dateAdded']
+				);
+				$this->select('stockID','dateAdded');
+				$query2 = $this->get_where('OrderedItems',$where);
+				if($query2->num_rows() > 0)
+					$item = $query2->row_array();
+				$merged = array_merge($row,$item);
+				$data[] = $merged;
+			}
 		}
 		else
-			return false;
-		
+			return false;		
 		$query->free_result();
 		return $data;
 	}
