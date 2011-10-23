@@ -98,7 +98,8 @@ class Orders extends Model
 		$this->db->insert('Orders',$data);
 	}
 
-	function addOrderToItem($order,$customer,$stock,$date){
+	//Add an item to an order by inserting into the OrderedItems table
+	function addItemToOrder($order,$customer,$stock,$date){
 		$data = array(
 			'OrderNum'	=> $order,
 			'cid'		=> $customer,
@@ -109,8 +110,8 @@ class Orders extends Model
 		$this->db->insert('OrderedItem', $data);
 	}
 	
-	
-	function removeOrderedItem($order,$customer,$stock,$dateAdded){
+	//Remove an item from an order by deleting it from the OrderedItems table
+	function removeItemFromOrder($order,$customer,$stock,$dateAdded){
 		$where = array(
 			'OrderNum'	=> $order,
 			'cid'		=> $customer,
