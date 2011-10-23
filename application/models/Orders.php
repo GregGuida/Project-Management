@@ -33,6 +33,7 @@ class Orders extends Model
 	function getOrder($oid){
 		$order = array();
 		$item  = array();
+		$cart  = array();
 		
 		$query = $this->db->get_where('Orders', array('OrderNum'=>$oid));
 		
@@ -62,6 +63,8 @@ class Orders extends Model
 	function getAllOrders(){
 		$data = array();
 		$item = array();
+		$cart = array();
+		
 		$query = $this->db->get('Orders');
 //////////// NEED TO CHANGE - SOME FIELDS COME FROM CART ITEMS >_< /////////////////
 		if($query->num_rows() > 0)
