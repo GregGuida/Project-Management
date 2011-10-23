@@ -7,7 +7,7 @@
  *	`sid` INT NOT NULL REFERENCES `CodeIgniter2`.`ShippingAddresses` (`sid`),
  *	`Date` TIMESTAMP NOT NULL ,
  *	`Status` VARCHAR( 20 ) NOT NULL ,
- *	`PriceUSD` DECIMAL NOT NULL ,
+ *	`TotalPriceUSD` DECIMAL NOT NULL ,
  *	PRIMARY KEY( `OrderNum`),
  *	INDEX ( `cid` , `sid` )
  * ) ENGINE = INNODB;
@@ -43,7 +43,7 @@ class Orders extends Model
 	
 	//Delete the given Order
 	function deleteOrder($id){
-	
+		$this->db->delete('Orders', array('oid'=> $id));
 	}
 	
 }
