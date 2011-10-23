@@ -11,6 +11,14 @@
  *	PRIMARY KEY( `OrderNum`),
  *	INDEX ( `cid` , `sid` )
  * ) ENGINE = INNODB;
+ 
+ * CREATE TABLE `CodeIgniter2`.`OrderedItems` (
+ *	`OrderNum` INT NOT NULL REFERENCES `CodeIgniter2`.`Orders` (`OrderNum`),
+ *	`cid` INT NOT NULL REFERENCES `CodeIgniter2`.`CartItems` (`cid`),
+ *	`stockID` INT NOT NULL REFERENCES `CodeIgniter2`.`CartItems` (`stockID`),
+ *	`dateAdded` TIMESTAMP NOT NULL REFERENCES `CodeIgniter2`.`CartItems` (`dateAdded`),
+ *	PRIMARY KEY ( `OrderNum` , `cid` , `stockID` , `dateAdded` )
+ * ) ENGINE = INNODB;
 */
 
 class Orders extends Model
@@ -22,9 +30,9 @@ class Orders extends Model
 	}
 	
 	//Get an order of the given oid as an array
-	function getOrder($id){
+	function getOrder($order){
 		$data = array();
-		$query = $this->db->get_where('Orders', array('oid',$oid));
+		$query = $this->db->get_where('Orders', array('OrderNum',$order));
 		
 		if($query->num_rows() > 0)
 			$data = $query->row_array();
@@ -70,12 +78,12 @@ class Orders extends Model
 			'TotalPriceUSD' => $total		
 		);
 		
-		$this->db->update('Orders', $data, array('oid'=>$oid));
+		$this->db->update('Orders', $data, array('OrderNum'=>$oid));
 	}
 	
 	//Delete the given Order
 	function deleteOrder($id){
-		$this->db->delete('Orders', array('oid'=> $id));
+		$this->db->delete('Orders', array('OrderNum'=> $id));
 	}
 	
 }
