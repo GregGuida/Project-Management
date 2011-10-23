@@ -452,7 +452,7 @@ header #action-nav, footer {
     border-radius:10px;
     padding:10px 0;
 }
-.cart-item:nth-child(2n){
+.cart-item:nth-child(2n), .wishlist-item:nth-child(2n), .wishlist-row:nth-child(2n){
     background-color:#f2f2f2;
 }
 .cart-item .item-photo {
@@ -479,6 +479,11 @@ header #action-nav, footer {
 .checkout-button{
     float:right;
     color:#fff;
+}
+
+.wishlist-share {
+    float:right;
+    text-align:right;
 }
 
 .cart-totals {
