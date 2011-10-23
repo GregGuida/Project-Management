@@ -23,12 +23,30 @@ class Orders extends Model
 	
 	//Get an order of the given oid as an array
 	function getOrder($id){
-	
+		$data = array();
+		$query = $this->db->get_where('Orders', array('oid',$oid));
+		
+		if($query->num_rows() > 0)
+			$data = $query->row_array();
+		$query->free_result();
+		return $data;
 	}
 	
 	//Returns all the orders as an array of arrays
 	function getAllOrders(){
-	
+		$data = array();
+		$query = $this->db->get('Orders');
+		
+		if($query->num_rows() > 0)
+		{
+			foreach($query->result_array() as $row)
+				$data[] = $row;
+		}
+		else
+			return false;
+		
+		$query->free_result();
+		return $data;
 	}
 	
 	//Add an Order
