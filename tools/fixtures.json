@@ -1,8 +1,50 @@
 {
-	"users": [
-		{"last name":"Dunn", "first name":"Sean", "username":"attamusc", "email":"sean@attamusc.com", "password":"derp"},
-		{"last name":"Doe", "first name":"John", "username":"john_doe", "email":"john@imaginary.com", "password":"faker"},
-		{"last name":"Carpanzano", "first name":"Gabrielle", "username":"gab2much98", "email":"gaby.carp@gmail.com", "password":"gabster"},
-		{"last name":"Fukunaggi", "first name":"Rin", "username":"rfukunaggi", "email":"rin@flamenation.com", "password":"firestarter"}
-	]
+	"Users": [
+		{"Last Name":"Dunn", "First Name":"Sean", "Username":"attamusc", "Email":"sean@attamusc.com", "Password":"derp"},
+		{"Last Name":"Doe", "First Name":"John", "Username":"john_doe", "Email":"john@imaginary.com", "Password":"faker"},
+		{"Last Name":"Carpanzano", "First Name":"Gabrielle", "Username":"gab2much98", "Email":"gaby.carp@gmail.com", "Password":"gabster"},
+		{"Last Name":"Fukunaggi", "First Name":"Rin", "Username":"rfukunaggi", "Email":"rin@flamenation.com", "Password":"firestarter"}
+	],
+	"Employees": [
+		{"eid":"", "uid":""}
+	], 				
+	"Customers": [
+		{"cid":"","uid":"","DOB":""}
+	], 			
+	"Shipping Addresses":[
+		{"sid":"", "cid":"", "Street":"", "City":"", "State":"", "Zip":""}
+	],
+	"Comments": [
+		{"comID":"", "pid":"", "cid":"", "Remark":"", "Date":""}
+	],
+	"Orders": [
+		{"OrdNum":"", "cid":"", "sid":"", "Date":"", "Status":"", "PriceUSD":""}
+	],
+	"Products": [
+		{"pid":"", "catID":"", "Name":"", "Description":"", "PriceUSD":"", "Rating":""}
+	],
+	"OrderedItems": [
+		{"OrdNum":"", "cid":"", "stockID":"", "dateAdded":""}
+	],
+	"CartItems": [
+		{"cid":"", "stockID":"", "dateAdded":"", "didPurchase":""}
+	],
+	"StockItems": [
+		{"stockID":"", "pid":"", "ticketNum":"", "priceUSD":"", "status":"", "dateAdded":""}
+	],
+	"StockTickets": [
+		{"ticketNum":"", "pid":"", "eid":"", "NumOrdered":"", "PriceUSD":"", "DateSubmitted":"", "Status":""}
+	],
+	"WishlistItems": [
+		{"wishID":"", "pid":""}
+	],
+	"Wishlists": [
+		{"wishID":"", "cid":"", "name":""}
+	],
+	"Images": [
+		{"imgID":"", "pid":"", "location":""}
+	],
+	"Categories": [
+		{"catID":"", "Name":""}
+	] 
 }
