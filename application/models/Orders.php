@@ -32,8 +32,7 @@ class Orders extends Model
 	//Get an order of the given oid as an array
 	function getOrder($oid){
 		$order = array();
-		$item  = array();
-		$cart  = array();
+		$items  = array();
 		
 		$query = $this->db->get_where('Orders', array('OrderNum'=>$oid));
 		
@@ -41,48 +40,43 @@ class Orders extends Model
 			return false;
 		$order = $query->row_array();
 		$query->free_result();
-//////////// NEED TO CHANGE - SOME FIELDS COME FROM CART ITEMS >_< /////////////////		
+		
 		$where = array(
 			'OrderNum'	=> $oid,
 			'cid'		=> $order['cid'],
-			'stockID'	=> $order['stockID'],
-			'dateAdded' => $order['dateAdded']
 		);
-		$this->db->select('stockID','dataAdded');
+		$this->db->select('stockID');
 		$query2 = $this->db->get_where('OrderedItems', $where);
 		if($query2->num_rows() == 0)
 			return false;
-		$item = $query2->row_array();
+		$items = $query2->result_array();
 		$query2->free_result();
-		
-		$data = array_merge($order,$item);		
+//May not want to merge, and just have the last index of $data be an array of items...Something to think about		
+		$data = array_merge($order,$items);		
 		return $data;
 	}
 	
 	//Returns all the orders as an array of arrays
 	function getAllOrders(){
 		$data = array();
-		$item = array();
+		$items = array();
 		$cart = array();
 		
 		$query = $this->db->get('Orders');
-//////////// NEED TO CHANGE - SOME FIELDS COME FROM CART ITEMS >_< /////////////////
 		if($query->num_rows() > 0)
 		{
 			foreach($query->result_array() as $row)
 			{
-				
 				$where = array(
 					'OrderNum'	=> $row['OrderNum'],
 					'cid'		=> $row['cid'],
-					'stockID'	=> $row['stockID'],
-					'dateAdded' => $row['dateAdded']
 				);
-				$this->select('stockID','dateAdded');
-				$query2 = $this->get_where('OrderedItems',$where);
+				//We are going to add the stockID for the products in this order
+				$this->select('stockID');
+				$query2 = $this->get_where('OrderedItems', $where);
 				if($query2->num_rows() > 0)
-					$item = $query2->row_array();
-				$merged = array_merge($row,$item);
+					$items = $query2->result_array();
+				$merged = array_merge($row,$items);
 				$data[] = $merged;
 			}
 		}
@@ -127,8 +121,9 @@ class Orders extends Model
 		$this->db->delete->('OrderedItems', $where);
 	}
 	
-	//Delete the given Order
+	//Delete the given Order, and it's associated items
 	function deleteOrder($order){
+		$this->db->delete('OrderedItems', array('OrderNum'=> $order));
 		$this->db->delete('Orders', array('OrderNum'=> $order));
 	}
 
