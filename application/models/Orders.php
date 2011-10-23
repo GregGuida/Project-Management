@@ -30,11 +30,11 @@ class Orders extends Model
 	}
 	
 	//Get an order of the given oid as an array
-	function getOrder($order){
+	function getOrder($oid){
 		$order = array();
 		$item  = array();
 		
-		$query = $this->db->get_where('Orders', array('OrderNum'=>$order));
+		$query = $this->db->get_where('Orders', array('OrderNum'=>$oid));
 		
 		if($query->num_rows() == 0)
 			return false;
@@ -43,10 +43,10 @@ class Orders extends Model
 		
 		$this->db->select('stockID','dataAdded');
 		$array = array(
-			'OrderNum'	=> $order,
-			'cid'		=> $data['cid'],
-			'stockID'	=> $data['stockID'],
-			'dateAdded' => $data['dateAdded']
+			'OrderNum'	=> $oid,
+			'cid'		=> $order['cid'],
+			'stockID'	=> $order['stockID'],
+			'dateAdded' => $order['dateAdded']
 		);
 		$query2 = $this->db->get_where('OrderedItems', $array);
 		if($query2->num_rows() == 0)
@@ -54,7 +54,7 @@ class Orders extends Model
 		$item = $query2->row_array();
 		$query2->free_result();
 		
-		$data = array_merge($order,$items);		
+		$data = array_merge($order,$item);		
 		return $data;
 	}
 	
@@ -102,6 +102,12 @@ class Orders extends Model
 	//Delete the given Order
 	function deleteOrder($id){
 		$this->db->delete('Orders', array('OrderNum'=> $id));
+	}
+	
+	function createOrderedItem(){
+	}
+	
+	function deleteOrderedItem(){
 	}
 	
 }
