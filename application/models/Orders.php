@@ -50,8 +50,15 @@ class Orders extends Model
 	}
 	
 	//Add an Order
-	function addOrder(){
-	
+	function addOrder($customer,$stock,$status,$total){
+		$data = array(
+			'cid' 	 		=> $customer,
+			'sid'	 		=> $stock,
+			'Status' 		=> $status,
+			'TotalPriceUSD' => $total
+		);
+		
+		$this->db->insert('Orders',$data);
 	}
 
 	//Update an Order
