@@ -41,14 +41,14 @@ class Orders extends Model
 		$order = $query->row_array();
 		$query->free_result();
 		
-		$array = array(
+		$where = array(
 			'OrderNum'	=> $oid,
 			'cid'		=> $order['cid'],
 			'stockID'	=> $order['stockID'],
 			'dateAdded' => $order['dateAdded']
 		);
 		$this->db->select('stockID','dataAdded');
-		$query2 = $this->db->get_where('OrderedItems', $array);
+		$query2 = $this->db->get_where('OrderedItems', $where);
 		if($query2->num_rows() == 0)
 			return false;
 		$item = $query2->row_array();
@@ -63,7 +63,8 @@ class Orders extends Model
 		$data = array();
 		$item = array();
 		$query = $this->db->get('Orders');
-//////////// Complicated --- But I think it works ////////////////	
+//////////// Complicated --- But I think it works /////////////////
+///////////  aka don't fucking touch without talking to me! //////////////
 		if($query->num_rows() > 0)
 		{
 			foreach($query->result_array() as $row)
@@ -101,6 +102,15 @@ class Orders extends Model
 		$this->db->insert('Orders',$data);
 	}
 
+	function addOrderToItem($order,$cid,$stockID){
+	
+	}
+	
+	
+	function removeOrderedItem(){
+	
+	}
+
 	//Update an Order
 	function updateOrder($oid,$customer,$address,$status,$total){
 		$data = array(
@@ -116,12 +126,6 @@ class Orders extends Model
 	//Delete the given Order
 	function deleteOrder($id){
 		$this->db->delete('Orders', array('OrderNum'=> $id));
-	}
-	
-	function createOrderedItem(){
-	}
-	
-	function deleteOrderedItem(){
 	}
 	
 }
