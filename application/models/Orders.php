@@ -31,12 +31,30 @@ class Orders extends Model
 	
 	//Get an order of the given oid as an array
 	function getOrder($order){
-		$data = array();
-		$query = $this->db->get_where('Orders', array('OrderNum',$order));
+		$order = array();
+		$item  = array();
 		
-		if($query->num_rows() > 0)
-			$data = $query->row_array();
+		$query = $this->db->get_where('Orders', array('OrderNum'=>$order));
+		
+		if($query->num_rows() == 0)
+			return false;
+		$order = $query->row_array();
 		$query->free_result();
+		
+		$this->db->select('stockID','dataAdded');
+		$array = array(
+			'OrderNum'	=> $order,
+			'cid'		=> $data['cid'],
+			'stockID'	=> $data['stockID'],
+			'dateAdded' => $data['dateAdded']
+		);
+		$query2 = $this->db->get_where('OrderedItems', $array);
+		if($query2->num_rows() == 0)
+			return false;
+		$item = $query2->row_array();
+		$query2->free_result();
+		
+		$data = array_merge($order,$items);		
 		return $data;
 	}
 	
