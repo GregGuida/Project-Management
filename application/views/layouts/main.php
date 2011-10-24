@@ -34,7 +34,7 @@
         </div>
         <div class="row" id="action-nav">
           <div class="container">
-            <div class="" id="nav-logo"><a href="/">Logo</a></div>
+            <div class="" id="nav-logo"><a href="/">TFM</a></div>
             <div class="" id="nav-search">
               <form action="/products/search"  method="post">
                 <input type="text" name="q" class="span8" />
@@ -48,13 +48,14 @@
         </div>
         <div class="row" id="category-nav">
           <div class="container" id="categories-nav-tab">
-            <a href="#" id="close-category-nav"><b>Close</b></a>
             <ul class="unstyled" id="category-nav-list">
-              <li><img src="http://placekitten.com/g/90/90" class="thumbnail" /> <a href="/products/show">item</a></li>
-              <li><img src="http://placekitten.com/g/90/90" class="thumbnail" /> <a href="/products/show">item</a></li>
-              <li><img src="http://placekitten.com/g/90/90" class="thumbnail" /> <a href="/products/show">item</a></li>
-              <li><img src="http://placekitten.com/g/90/90" class="thumbnail" /> <a href="/products/show">item</a></li>
-              <li><img src="http://placekitten.com/g/90/90" class="thumbnail" /> <a href="/products/show">item</a></li>
+              <li data-text="Kitties"><a href="/categories/show/1"><span class="category-name"></span><img src="http://placekitten.com/90/90" class="thumbnail" /></a></li>
+              <li data-text="Kitties"><a href="/categories/show/1"><span class="category-name"></span><img src="http://placekitten.com/g/90/90" class="thumbnail" /></a></li>
+              <li data-text="Kitties"><a href="/categories/show/1"><span class="category-name"></span><img src="http://placekitten.com/90/90" class="thumbnail" /></a></li>
+              <li data-text="Kitties"><a href="/categories/show/1"><span class="category-name"></span><img src="http://placekitten.com/g/90/90" class="thumbnail" /></a></li>
+              <li data-text="Kitties"><a href="/categories/show/1"><span class="category-name"></span><img src="http://placekitten.com/90/90" class="thumbnail" /></a></li>
+              <li data-text="Kitties"><a href="/categories/show/1"><span class="category-name"></span><img src="http://placekitten.com/g/90/90" class="thumbnail" /></a></li>
+              <li data-text="Kitties"><a href="/categories/show/1"><span class="category-name"></span><img src="http://placekitten.com/90/90" class="thumbnail" /></a></li>
             </ul>
             <div id="categories-nav-tab-pull">
               Categories
@@ -75,28 +76,30 @@
   <footer>
         <section class="container">
                 <div id="footer-logo">
-                        <a href="/">Logo</a>
+                        <a href="/">TFM</a> <span class="help-block">Where things get sold</span>
                 </div>
                 <div id="footer-category-links">
                         <h3>Categories</h3>
                         <ul class="unstyled">
-                                <li><a href="#">kittens</a></li>
-                                <li><a href="#">kittens</a></li>
-                                <li><a href="#">kittens</a></li>
-                                <li><a href="#">kittens</a></li>
-                                <li><a href="#">kittens</a></li>
-                                <li><a href="#">kittens</a></li>
+                                <li><a href="/categories/show/">Kittens</a></li>
+                                <li><a href="/categories/show/">Grey Kittens</a></li>
+                                <li><a href="/categories/show/">Cute Kittens</a></li>
+                                <li><a href="/categories/show/">Green Kittens</a></li>
+                                <li><a href="/categories/show/">Happy Kittens</a></li>
+                                <li><a href="/categories/show/">Cats</a></li>
+                                <li><a href="/categories/show/">Happy Cats</a></li>
                         </ul>
                 </div>
                 <div id="footer-nav-links">
                         <h3>Links</h3>
                         <ul class="unstyled">
-                                <li><a href="/">home</a></li>
-                                <li><a href="/customers/account">my account</a></li>
-                                <li><a href="/cart">cart</a></li>
-                                <li><a href="/statics/about">about</a></li>
-                                <li><a href="/statics/privacy">privacy policy</a></li>
-                                <li><a href="/statics/legal">legal</a></li>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/customers/account">My account</a></li>
+                                <li><a href="/cart">Cart</a></li>
+                                <li><a href="/statics/about">About</a></li>
+                                <li><a href="/statics/privacy">Privacy policy</a></li>
+                                <li><a href="/statics/legal">Legal</a></li>
+                                <li><a href="/statics/help">Help</a></li>
                         </ul>
                 </div>
         </section>
@@ -105,6 +108,7 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="/js/libs/jquery-1.6.2.min.js"><\/script>')</script>
 
+  <script src="/js/libs/roundabout.js"></script>
   <!-- scripts concatenated and minified via ant build script-->
   <script defer src="/js/plugins.js"></script>
   <script defer src="/js/script.js"></script>
@@ -120,14 +124,17 @@
     });
   </script>
 
+  <script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26460479-1']);
+  _gaq.push(['_trackPageview']);
 
-  <script> // Change UA-XXXXX-X to be your site's ID
-    window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
-    Modernizr.load({
-      load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
-    });
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
   </script>
-
 
   <!--[if lt IE 7 ]>
     <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
