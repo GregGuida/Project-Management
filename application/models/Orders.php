@@ -11,7 +11,7 @@
  *	PRIMARY KEY( `OrderNum`),
  *	INDEX ( `cid` , `sid` )
  * ) ENGINE = INNODB;
- 
+ *
  * CREATE TABLE `CodeIgniter2`.`OrderedItems` (
  *	`OrderNum` INT NOT NULL REFERENCES `CodeIgniter2`.`Orders` (`OrderNum`),
  *	`cid` INT NOT NULL REFERENCES `CodeIgniter2`.`CartItems` (`cid`),
@@ -60,7 +60,6 @@ class Orders extends Model
 	function getAllOrders(){
 		$data = array();
 		$items = array();
-		$cart = array();
 		
 		$query = $this->db->get('Orders');
 		if($query->num_rows() > 0)
@@ -104,7 +103,7 @@ class Orders extends Model
 			'OrderNum'	=> $order,
 			'cid'		=> $customer,
 			'stockID'	=> $stock,
-			'dateAdded' => $date
+			'dateAdded'	=> $date
 		);
 		
 		$this->db->insert('OrderedItem', $data);
@@ -116,7 +115,7 @@ class Orders extends Model
 			'OrderNum'	=> $order,
 			'cid'		=> $customer,
 			'stockID'	=> $stock,
-			'dateAdded' => $dateAdded;
+			'dateAdded'	=> $dateAdded;
 		);
 		
 		$this->db->delete->('OrderedItems', $where);
@@ -134,7 +133,7 @@ class Orders extends Model
 			'cid' 	 		=> $customer,
 			'sid'	 		=> $address,
 			'Status' 		=> $status,
-			'TotalPriceUSD' => $total		
+			'TotalPriceUSD'	=> $total		
 		);
 		
 		$this->db->update('Orders', $data, array('OrderNum'=>$order));

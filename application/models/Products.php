@@ -32,18 +32,6 @@ class Products extends Model
 		return $data;
 	}
 	
-	//Returns the Product's ID number, given it's name
-	function getProductId($name)
-	{
-		$query = $this->db->get_where('Products', array('Name'=>$name));
-		if($query->num_rows()==0)
-			return false;
-		$result = $query->result();
-		
-		$query->free_result();
-		return $result->pid;
-	}
-	
 	//Returns an array of all the rows in the Products Table
 	function getAllProducts()
 	{
@@ -62,18 +50,30 @@ class Products extends Model
 		$query->free_result();
 		return $data;
 	}
+	
+	//Returns the Product's ID number, given it's name
+	function getProductId($name)
+	{
+		$query = $this->db->get_where('Products', array('Name'=>$name));
+		if($query->num_rows()==0)
+			return false;
+		$result = $query->result();
+		
+		$query->free_result();
+		return $result['pid'];
+	}
 
 	//Getters for our field values based on the Products ID
 	function getProductName($id)
 	{
 		$product = getProduct($id);
-		return $product->Name;
+		return $product['Name'];
 	}
 	
 	function getProductPrice($id)
 	{
 		$product = getProduct($id);
-		return $product->PriceUSD;
+		return $product['PriceUSD'];
 	}
 	
 	
