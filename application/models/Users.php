@@ -32,12 +32,14 @@
 		$result = array_merge($userData,$data);
 		return $result;
 	}
-	
-	protected function getEmployeeInfo($eid, $data)
+
+/*
+ * Probably not going to use.
+	protected function getEmployeeInfo($uid, $data)
 	{
 		$userData = array();
 		
-		$query = $this->db->get_where('Users', array('eid'=>$eid));
+		$query = $this->db->get_where('Users', array('uid'=>$uid));
 		if($query->num_rows()==0)
 			return false;
 		$userData = $query->row_array(); //Row because there should only be 1
@@ -47,7 +49,7 @@
 		$result = array_merge($userData,$data);
 		return $result;
 	}
-	
+*/	
 	function getUser($uid)
 	{
 		$query = $this->db->get_where('Users', array('uid'=>$uid));
@@ -63,6 +65,18 @@
 	{
 		$this->db->delete('Users', array('uid' => $id));
 	}
+	
+	function addUser($last,$first,$email,$pass)
+	{
+		$data = array(
+			'Last Name'  => $last,
+			'First Name' => $first,
+			'Email'		 =>	$email,
+			'Password'	 => md5($pass)
+		);
+	}
+	
+	//TODO: AuthenticateByCredentials
 	
  }
  

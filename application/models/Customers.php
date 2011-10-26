@@ -69,10 +69,10 @@ class Customers extends Users
 		$uid = $this->getUid($cid);
 		
 		$data = array(
-				'LastName' => $last,
-				'FirstName' => $first,				
+				'Last Name' => $last,
+				'First Name' => $first,				
 				'Email' => $email,
-				'Password' => $pass,
+				'Password' => md5($pass)
 				);
 		
 		//Update the Customers field which are stored in the Parent Users Table
