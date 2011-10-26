@@ -9,12 +9,33 @@ class Employees extends Users
 //Returns the Employee with the given id# as an array
 	function getEmployee($eid)
 	{
-		$data = array('eid' => $eid);
+		$data = array('eid' => $eid); //Because uid id duplicated in the Users Table
 
 		$uid = $this->getUid($eid);
 		$user = parent::getUser($uid);
 		$result = array_merge($data,$user);
 		return $result;
+	}
+	
+	function getAllEmployees()
+	{
+		$data = array();
+		$query = $this->db->get('Employees');
+		
+		//Check that Table is not empty
+		if($query->num_rows() < 0)
+			return false;
+		
+		//Get each customer and store it into an array
+		foreach($query->result_array() as $row)
+		{
+			$eid = $row['eid'];
+			$curEmployee = $this->getEmployee($eid);
+			$data[] = $curEmployee;
+		}
+		
+		$query->free_result();
+		return $data;
 	}
 	
 	function deleteEmployee($eid)

@@ -32,7 +32,7 @@ class Customers extends Users
 	}
 	
 	//Returns the Customers Table as an array of arrays
-	function getAllCustomers($id)
+	function getAllCustomers()
 	{
 		$data = array();
 		$query = $this->db->get('Customers');
@@ -51,6 +51,16 @@ class Customers extends Users
 		
 		$query->free_result();
 		return $data;
+	}
+	
+	function addCustomer($last,$first,$email,$pass,$dob)
+	{
+		$uid = parent :: addUser($last,$first,$email,$pass);
+		$custData = array(
+			'uid'	=>	$uid,
+			'DOB'	=>	$dob,
+		);
+		$this->db->insert('Customers', $custData);
 	}
 	
 	//Delete the Customer entirely from both the Customers & Users table
