@@ -177,12 +177,16 @@ section > .row {
 
 #nav-cart {
   height:55px;
-  width:100px;
+  width:96px;
   float:left;
+  border-color:lightgray;
+  border-style:groove;
+  border-width:0 2px;
 }
 
 #nav-cart:hover{
   background-color:rgb(166,166,166);
+  border-color:rgb(166,166,166);
 }
 
 #nav-cart a, #nav-cart a:hover, #nav-cart a:active, #nav-cart a:visited {
@@ -195,7 +199,7 @@ section > .row {
   padding: 15px 25px 15px 45px;
   background: url('../img/shopping-cart.png') no-repeat 10px 14px transparent;
   text-decoration: none;
-}
+ }
 
 
 #category-nav {
@@ -240,11 +244,11 @@ section > .row {
   cursor: pointer;
   position: absolute;
   bottom: -25px;
-  left: 400px;
+  left: 300px;
   z-index: -1;
   height: 26px;
   background: #808080;
-  width: 120px;
+  width: 320px;
   color: #dda35a;
   font-weight: bold;
   text-align: center;
