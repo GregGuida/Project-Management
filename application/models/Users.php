@@ -74,6 +74,18 @@
 			'Email'		 =>	$email,
 			'Password'	 => md5($pass)
 		);
+		
+		//I wish I could just somehow get the insert method to return the primary
+		//key of the row I just inserted... Anyone know how?
+		$this->db->insert->('Users',$data);
+		
+		$this->db->select('uid');
+		$this->db->get('Users');
+		$query = $this->db->where('Email',$email);
+		
+		$result = $query->row_array();
+		$uid = $result['uid'];
+		return $uid;
 	}
 	
 	//TODO: AuthenticateByCredentials

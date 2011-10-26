@@ -27,9 +27,10 @@ class Employees extends Users
 		return true;
 	}
 	
-	function addEmployee()
+	function addEmployee($last,$first,$email,$pass)
 	{
-	
+		$uid = parent :: addUser($last,$first,$email,$pass);
+		$this->db->insert('Employees', array('uid' => $uid));
 	}
 	
 	function updateEmployee($eid,$last,$first,$email,$pass)
