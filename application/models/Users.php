@@ -22,7 +22,7 @@
 	{
 		$userData = array();
 		
-		$query = $this->db->get_where('Users', array('uid'=>$id));
+		$query = $this->db->get_where('Users', array('uid'=>$uid));
 		if($query->num_rows()==0)
 			return false;
 		$userData = $query->row_array();
@@ -35,13 +35,17 @@
 	
 	protected function getEmployeeInfo($eid, $data)
 	{
+		$userData = array();
+		
 		$query = $this->db->get_where('Users', array('eid'=>$eid));
 		if($query->num_rows()==0)
 			return false;
-		$result = $query->result();
+		$userData = $query->row_array(); //Row because there should only be 1
 		
 		$query->free_result();
-		return $result[0]; 
+		
+		$result = array_merge($userData,$data);
+		return $result;
 	}
 	
 	function getUser($uid)
@@ -49,10 +53,10 @@
 		$query = $this->db->get_where('Users', array('uid'=>$uid));
 		if($query->num_rows()==0)
 			return false;
-		$result = $query->result();
+		$result = $query->row_array();
 		
 		$query->free_result();
-		return $result[0]; 
+		return $result; 
 	}
 	
 	function deleteUser($id)

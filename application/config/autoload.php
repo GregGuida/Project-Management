@@ -52,7 +52,8 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array();
+// TODO: set database here
+$autoload['libraries'] = array(/*'database', */'session');
 
 
 /*
@@ -80,7 +81,7 @@ $autoload['helper'] = array();
 |
 */
 
-$autoload['config'] = array();
+$autoload['config'] = array('tfm_config');
 
 
 /*
