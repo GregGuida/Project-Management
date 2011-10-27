@@ -3,8 +3,9 @@
 </div>
 
 <div class="row">
-  <div class="span4">
-    <label for="generate-password">Generate a new password:</label><input type="button" id="new-user-password" class="btn info" />
+  <div class="span6">
+    <p class="block-message"><input type="button" id="new-user-password" class="btn info" value="Generate password" /></p>
+    <p class="well block_message"><code id="new-password-area" class="alert-message">N/A</code></p>
   </div>
 
   <div class="span7">
@@ -32,21 +33,3 @@
   </div>
 </div>
 
-<script>
-  $(document).ready(function() {
-    function make_password() {
-      var tmp, pass = '';
-      for(var i = 0; i < 10; i++) {
-        tmp = (parseInt(Math.random() * 1000) % 94) + 33;
-        pass += String.fromCharCode(tmp);
-      }
-      return pass;
-    }
-
-    $('#new-user-password').click(function(e) {
-      e.preventDefault();
-      var new_password = make_password();
-      $('#reset-password-password, #reset-password-confirm').val(new_password);
-    });
-  });
-</script>

@@ -1,3 +1,4 @@
+<?php $this->load->helper('html'); ?>
 <!doctype html>
 <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
@@ -105,6 +106,8 @@
       $('.tabs').tabs();
     });
   </script>
+
+  <?php echo isset($js) ? $this->htmlbuilder->makeHeadJS($js) : ''; ?>
 
   <script>
   var _gaq = _gaq || [];
