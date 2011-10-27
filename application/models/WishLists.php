@@ -55,6 +55,7 @@ class WishLists extends Models
 		);
 		
 		$this->db->insert('WishListItems', $data);
+		return true;
 	}
 
 	//Remove a single item from a given wishlist
@@ -65,7 +66,8 @@ class WishLists extends Models
 			'pid' 	 => $pid
 		);
 		
-		$this->db->delete('WishListItems', $data);		
+		$this->db->delete('WishListItems', $data);
+		return true;
 	}
 
 	//Create a new wishlist. Name not required.
@@ -77,13 +79,15 @@ class WishLists extends Models
 		);
 		
 		$this->db->insert('WishLists', $data);
+		return true;
 	}
 	
 	//Delete a given wishlist
 	function deleteWishList($wishID)
 	{
 		$this->db->delete('WishListItems', array('wishID' => $wishID));
-		$this->db->delete('WishLists', array('wishID' => $wishID));	
+		$this->db->delete('WishLists', array('wishID' => $wishID));
+		return true;
 	}
 	
 }

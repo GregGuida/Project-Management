@@ -4,7 +4,7 @@ class Products_Test
 {
 	$this->load->library('unit_test');
 	
-	$p1 = new Products();
+	$p1 = new Products;
 	
 	$test1 = $p1->getProduct(1);
 	$test2 = $p1->getAllProducts();
