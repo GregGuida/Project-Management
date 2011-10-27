@@ -83,7 +83,8 @@ class StockItems extends Models
 			'DateAdded'	=>	$date
 		);
 		
-		$this
+		$this->db->update('StockItems', $data, array('stockID' => $stockID));
+		return true;
 	}
 	
 }
