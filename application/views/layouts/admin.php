@@ -20,8 +20,7 @@
   <script src="/js/libs/modernizr-2.0.6.min.js"></script>
 </head>
 
-<body>
-
+<body class="admin">
   <div id="container">
     <header>
       <div>
@@ -33,7 +32,7 @@
         <div class="row" id="action-nav">
           <div class="container">
             <div class="" id="nav-logo"><a href="/">TFM</a></div>
-            <ul class="tabs">
+            <ul class="dropdowns">
 		<li><a href="/admin/">Dashboard</a></li>
 		<li class="dropdown" data-dropdown="dropdown">
 			<a href="#" class="dropdown-toggle">Products</a>
@@ -44,7 +43,7 @@
 			</ul>
 		</li>
 		<li class="dropdown" data-dropdown="dropdown">
-			<a href="#" class="dropdown-toggle">Employee</br>Management</a>
+			<a href="#" class="dropdown-toggle">Employees</a>
 			<ul class="dropdown-menu">
 				<li><a href="#">Browse Employees</a></li>
 				<li><a href="#">Add Employees</a></li>
@@ -58,7 +57,7 @@
 			</ul>
 		</li>
 		<li class="dropdown" data-dropdown="dropdown">
-			<a href="#" class="dropdown-toggle">Customer<br/>Management</a>
+			<a href="#" class="dropdown-toggle">Customer</a>
 			<ul class="dropdown-menu">
 				<li><a href="#">Find Customers</a></li>
 				<li><a href="#">Customer Chat</a></li>
@@ -87,7 +86,7 @@
   <!-- scripts concatenated and minified via ant build script-->
   <script defer src="/js/plugins.js"></script>
   <script defer src="/js/script.js"></script>
-  <script defer src="/js/libs/bootstrap/bootstrap-tabs.js"></script>
+  <script defer src="/js/libs/bootstrap/bootstrap-dropdown.js"></script>
   <script type="text/javascript"></script>
   <script defer src="/js/libs/nivo-slider/jquery.nivo.slider.pack.js"></script>
   <link rel="stylesheet" type="text/css" href="/js/libs/nivo-slider/nivo-slider.css"/>        
@@ -103,7 +102,7 @@
         e.preventDefault();
         category_row.toggleClass('show');
       });
-      $('.tabs').tabs();
+      $('.dropdowns').dropdown();
     });
   </script>
 
