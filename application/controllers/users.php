@@ -6,7 +6,8 @@ class Users extends CI_Controller {
   // new is a php keyword....
   public function reset_password() {
     $this->layout = 'admin';
-    $this->load->view('users/reset_password');
+    $data = array('js' => 'reset_password.js');
+    $this->load->view('users/reset_password', $data);
   }
 }
 

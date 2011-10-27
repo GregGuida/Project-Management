@@ -1,3 +1,4 @@
+<?php $this->load->helper('html'); ?>
 <!doctype html>
 <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
@@ -116,7 +117,6 @@
   <link rel="stylesheet" type="text/css" href="/js/libs/nivo-slider/nivo-slider.css"/>        
   <link rel="stylesheet" type="text/css" href="/js/libs/nivo-slider/themes/default/default.css"/>
    <script type="text/javascript"> jQuery(document).ready(function(){     jQuery("#main-slider").nivoSlider({         effect:"random",         slices:15,         boxCols:8,         boxRows:4,         animSpeed:500,         pauseTime:3000,         startSlide:0,         directionNav:true,         directionNavHide:true,         controlNav:true,         controlNavThumbs:false,         controlNavThumbsFromRel:true,         keyboardNav:true,         pauseOnHover:true,         manualAdvance:false     }); });         </script>
-  <!-- end scripts-->
 
   <script>
     $(document).ready(function() {
@@ -127,6 +127,10 @@
       });
     });
   </script>
+
+  <?php
+    echo isset($js) ? $this->htmlbuilder->makeHeadJS($js) : '';
+  ?>
 
   <script>
   var _gaq = _gaq || [];
@@ -139,6 +143,7 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
   </script>
+  <!-- end scripts-->
 
   <!--[if lt IE 7 ]>
     <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
