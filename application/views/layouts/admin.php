@@ -32,7 +32,7 @@
         <div class="row" id="action-nav">
           <div class="container">
             <div class="" id="nav-logo"><a href="/">TFM</a></div>
-            <ul class="tabs">
+            <ul class="">
 		<li><a href="/admin/">Dashboard</a></li>
 		<li class="dropdown" data-dropdown="dropdown">
 			<a href="#" class="dropdown-toggle">Products</a>
@@ -66,6 +66,7 @@
 	    </ul>
           </div>
         </div>
+      </div>
     </header>
 
     <div id="main" class="container">
@@ -90,6 +91,7 @@
   <link rel="stylesheet" type="text/css" href="/js/libs/nivo-slider/themes/default/default.css"/>
    <script type="text/javascript"> jQuery(document).ready(function(){     jQuery("#main-slider").nivoSlider({         effect:"random",         slices:15,         boxCols:8,         boxRows:4,         animSpeed:500,         pauseTime:3000,         startSlide:0,         directionNav:true,         directionNavHide:true,         controlNav:true,         controlNavThumbs:false,         controlNavThumbsFromRel:true,         keyboardNav:true,         pauseOnHover:true,         manualAdvance:false     }); });         </script>
   <!-- end scripts-->
+
 
   <script>
     $(document).ready(function() {
