@@ -32,7 +32,7 @@
         <div class="row" id="action-nav">
           <div class="container">
             <div class="" id="nav-logo"><a href="/">TFM</a></div>
-            <ul class="">
+            <ul class="tabs">
 		<li><a href="/admin/">Dashboard</a></li>
 		<li class="dropdown" data-dropdown="dropdown">
 			<a href="#" class="dropdown-toggle">Products</a>
@@ -86,6 +86,8 @@
   <!-- scripts concatenated and minified via ant build script-->
   <script defer src="/js/plugins.js"></script>
   <script defer src="/js/script.js"></script>
+  <script defer src="/js/libs/bootstrap/bootstrap-tabs.js"></script>
+  <script type="text/javascript"></script>
   <script defer src="/js/libs/nivo-slider/jquery.nivo.slider.pack.js"></script>
   <link rel="stylesheet" type="text/css" href="/js/libs/nivo-slider/nivo-slider.css"/>        
   <link rel="stylesheet" type="text/css" href="/js/libs/nivo-slider/themes/default/default.css"/>
@@ -94,12 +96,13 @@
 
 
   <script>
-    $(document).ready(function() {
+    jQuery(document).ready(function() {
       var category_row = $("#category-nav");
       $("#categories-nav-tab-pull, #close-category-nav").click(function(e) {
         e.preventDefault();
         category_row.toggleClass('show');
       });
+      $('.tabs').tabs();
     });
   </script>
 
