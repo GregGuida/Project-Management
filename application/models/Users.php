@@ -87,8 +87,19 @@
 		$uid = $result['uid'];
 		return $uid;
 	}
-	
-	//TODO: AuthenticateByCredentials
+
+	function authenticateUser($email, $pass)
+	{
+		$this->db->select('Password');
+		$query = $this->db->get_where('Users', array('Email' => $email);
+		$result = $query->row_array();
+		$storedPass = $result['Password'];
+		
+		if(md5($pass) == $storedPass)
+			return true;
+		else
+			return false;
+	}
 	
  }
  

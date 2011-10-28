@@ -16,7 +16,6 @@
  *	`OrderNum` INT NOT NULL REFERENCES `CodeIgniter2`.`Orders` (`OrderNum`),
  *	`cid` INT NOT NULL REFERENCES `CodeIgniter2`.`CartItems` (`cid`),
  *	`stockID` INT NOT NULL REFERENCES `CodeIgniter2`.`CartItems` (`stockID`),
- *	`dateAdded` TIMESTAMP NOT NULL REFERENCES `CodeIgniter2`.`CartItems` (`dateAdded`),
  *	PRIMARY KEY ( `OrderNum` , `cid` , `stockID` , `dateAdded` )
  * ) ENGINE = INNODB;
 */
@@ -98,24 +97,22 @@ class Orders extends Model
 	}
 
 	//Add an item to an order by inserting into the OrderedItems table
-	function addItemToOrder($order,$customer,$stock,$date){
+	function addItemToOrder($order,$customer,$stock){
 		$data = array(
 			'OrderNum'	=> $order,
 			'cid'		=> $customer,
-			'stockID'	=> $stock,
-			'dateAdded'	=> $date
+			'stockID'	=> $stock
 		);
 		
-		$this->db->insert('OrderedItem', $data);
+		$this->db->insert('OrderedItems', $data);
 	}
 	
 	//Remove an item from an order by deleting it from the OrderedItems table
-	function removeItemFromOrder($order,$customer,$stock,$dateAdded){
+	function removeItemFromOrder($order,$customer,$stock){
 		$where = array(
 			'OrderNum'	=> $order,
 			'cid'		=> $customer,
-			'stockID'	=> $stock,
-			'dateAdded'	=> $dateAdded;
+			'stockID'	=> $stock
 		);
 		
 		$this->db->delete->('OrderedItems', $where);
