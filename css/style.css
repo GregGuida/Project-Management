@@ -363,6 +363,10 @@ section > .row {
   margin-top: 50px;
 }
 
+.alt-images img{
+  float:left;
+  margin:0 5px 5px 0;
+}
 
 #product-review-section {
   margin-top: 40px;
@@ -426,6 +430,19 @@ footer {
 header #action-nav, footer {
   background-color: #BFBFBF;
   box-shadow: 0 0 15px #000;
+}
+
+#tag-sidebar{
+  height:100%;
+  background-color:#f2f2f2;
+  border-radius:10px;
+}
+#tag-sidebar ul{
+  list-style:none;
+  padding:0 5px 0 5px;
+}
+#tag-sidebar h3 {
+  padding: 10px 5px 0 20px;
 }
 
 
@@ -503,9 +520,7 @@ header #action-nav, footer {
 }
 
 /*==|== admin specific css styles =========================================== */
-body.admin {
-  background-color:#d9d9d9;
-}
+
 .admin footer, .admin .push {
   height: 20px;
 }
@@ -516,6 +531,7 @@ body.admin {
   box-shadow:inset 0 10px 10px #808080;
 }
 .admin #container {
+  background-color:#d9d9d9;
   min-height: 100%;
   height: auto !important;
   height: 100%;
@@ -559,6 +575,17 @@ body.admin {
 
 .dropdowns .dropdown-menu {
   margin: 16px 0 0 -2px;
+}
+
+.admin-product-edit, .admin-product-delete{
+  margin:10px 0 10px 20px;
+}
+
+#new-image{
+  height:60px;
+  width:60px;
+  float:left;
+  font-weight:bold;
 }
 
 
