@@ -1,12 +1,32 @@
       <div class="row">
-        <div id="tag-sidebar" class="span4">&nbsp;</div>
+        <div id="tag-sidebar" class="span4">
+          <h3>Sub-Categories in:<br/>Kittens</h3>
+          <ul>
+            <li><a href="/categories/show/1">kitties</a></li>
+            <li><a href="/categories/show/1">kitens</a></li>
+            <li><a href="/categories/show/1">cute kitties</a></li>
+            <li><a href="/categories/show/1">cuddly kitties</a></li>
+            <li><a href="/categories/show/1">krazy kittens</a></li>
+            <li><a href="/categories/show/1">cute cats</a></li>
+            <li><a href="/categories/show/1">fluffy kitties</a></li>
+            <li><a href="/categories/show/1">funny kitties</a></li>
+            <li><a href="/categories/show/1">kitties</a></li>
+            <li><a href="/categories/show/1">kitens</a></li>
+            <li><a href="/categories/show/1">cute kitties</a></li>
+            <li><a href="/categories/show/1">cuddly kitties</a></li>
+            <li><a href="/categories/show/1">krazy kittens</a></li>
+            <li><a href="/categories/show/1">cute cats</a></li>
+            <li><a href="/categories/show/1">fluffy kitties</a></li>
+            <li><a href="/categories/show/1">funny kitties</a></li>
+          </ul>
+        </div>
         <div id="product-area" class="span12">
           <div class="row">
             <div class="span6">
               <p>
                 <img src="http://placekitten.com/340/340" alt="product photo large thumbnail" />
               </p>
-              <p>
+              <p class="alt-images">
                 <img src="http://placekitten.com/60/60" alt="product photo small thumbnail" />
                 <img src="http://placekitten.com/60/60" alt="product photo small thumbnail" />
                 <img src="http://placekitten.com/60/60" alt="product photo small thumbnail" />
