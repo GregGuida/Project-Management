@@ -4,7 +4,11 @@ class WishLists extends CI_Controller {
   public $layout = 'main';
 
   public function index() {
-    $this->load->view('welcome_message');
+    $this->load->view('wishlists/index');
+  }
+  
+  public function show() {
+    $this->load->view('wishlists/show');
   }
 }
 

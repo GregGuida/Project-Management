@@ -6,5 +6,13 @@ class Orders extends CI_Controller {
   public function index() {
     $this->load->view('welcome_message');
   }
+
+  public function checkout() {
+    $this->load->view('orders/checkout');
+  }
+
+  public function complete() {
+    $this->load->view('orders/complete');
+  }
 }
 

@@ -29,7 +29,7 @@
             </div>
           </div>
           <div id="product-review-section" class="row">
-            <form method="post" action="products/1/reviews/create">
+            <form method="post" action="/comments/create/1">
               <fieldset>
                 <legend>Write a Review</legend>
                 <div class="clearfix">
