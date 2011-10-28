@@ -528,17 +528,16 @@ body.admin {
 
 .dropdowns > li {
   width:158px;
-  height:30px;
+  height:55px;
   margin:0;
-  padding:13px 0 12px 0;
-  color:#fff;
+  padding:0;
   text-decoration:none;
   float:left;
   border-right:2px groove lightgray;
   text-align:center;
 }
 
-.dropdowns > li:hover, .dropdowns > li:active {
+.dropdowns > li:hover, .dropdowns > li:active, .dropdowns > li.open{
   background-color:#808080;
 }
 
@@ -546,6 +545,9 @@ body.admin {
   color:#ffffff;
   font-size:18px;
   text-shadow:-1px -1px -1px #808080;
+  line-height:25px;
+  padding:15px 0;
+  display:block;
 }
 
 .dropdowns > li > a.dropdown-toggle:hover, 
