@@ -588,6 +588,15 @@ header #action-nav, footer {
   font-weight:bold;
 }
 
+.admin #edit-actions{
+  margin-top:20px;
+}
+
+.admin #edit-actions button{
+  float:left;
+  margin:0 20px 20px 0;
+}
+
 
 /* ==|== non-semantic helper classes ======================================== */
 .ir { display: block; border: 0; text-indent: -999em; overflow: hidden; background-color: transparent; background-repeat: no-repeat; text-align: left; direction: ltr; }
