@@ -37,29 +37,29 @@
 		<li class="dropdown" data-dropdown="dropdown">
 			<a href="#" class="dropdown-toggle">Products</a>
 			<ul class="dropdown-menu">
-				<li><a href="#">Browse Products</a></li>
-				<li><a href="#">Add Products</a></li>
-				<li><a href="#">Manage Categories</a></li>
+				<li><a href="/products/admin_browse">Browse Products</a></li>
+				<li><a href="/products/admin_new">Add Products</a></li>
+				<li><a href="/categories/admin">Manage Categories</a></li>
 			</ul>
 		</li>
 		<li class="dropdown" data-dropdown="dropdown">
 			<a href="#" class="dropdown-toggle">Employees</a>
 			<ul class="dropdown-menu">
-				<li><a href="#">Browse Employees</a></li>
-				<li><a href="#">Add Employees</a></li>
+				<li><a href="/employees/">Browse Employees</a></li>
+				<li><a href="/employees/new">Add Employees</a></li>
 			</ul>
 		</li>
 		<li class="dropdown" data-dropdown="dropdown">
 			<a href="#" class="dropdown-toggle">Orders</a>
 			<ul class="dropdown-menu">
-				<li><a href="#">Browse Orders</a></li>
+				<li><a href="/orders/admin_browse">Browse Orders</a></li>
 			</ul>
 		</li>
 		<li class="dropdown" data-dropdown="dropdown">
 			<a href="#" class="dropdown-toggle">Customer</a>
 			<ul class="dropdown-menu">
-				<li><a href="#">Find Customers</a></li>
-				<li><a href="#">Customer Chat</a></li>
+				<li><a href="/users/">Find Customers</a></li>
+				<li><a href="/users/contact/">Customer Chat</a></li>
 			</ul>
 		</li>
     <li class="dropdown" data-dropdown="dropdown">

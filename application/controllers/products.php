@@ -12,6 +12,11 @@ class Products extends CI_Controller {
     $this->load->view('products/admin_show');
   }
 
+  public function admin_browse() {
+    $this->layout = 'admin';
+    $this->load->view('products/admin_browse');
+  }
+
   public function edit() {
     $this->layout = 'admin';
     $this->load->view('products/edit');
