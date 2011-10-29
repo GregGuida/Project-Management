@@ -20,5 +20,10 @@ class Products extends CI_Controller {
   public function search() {
     $this->load->view('products/search');
   }
+
+  public function upload_image() {
+    $this->layout = 'ajax';
+    $this->load->view('products/upload_image');
+  }
 }
 

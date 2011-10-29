@@ -14,5 +14,15 @@ class Orders extends CI_Controller {
   public function complete() {
     $this->load->view('orders/complete');
   }
+
+  public function admin_browse() {
+    $this->layout = "admin";
+    $this->load->view('orders/admin_browse');
+  }
+  public function admin_show() {
+    $this->layout = "admin";
+    $this->load->view('orders/admin_show');
+  }
+
 }
 

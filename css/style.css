@@ -543,7 +543,7 @@ header #action-nav, footer {
 }
 
 .dropdowns > li {
-  width:158px;
+  width:131px;
   height:55px;
   margin:0;
   padding:0;
@@ -597,6 +597,10 @@ header #action-nav, footer {
   margin:0 20px 20px 0;
 }
 
+.admin option, .admin select {
+background-color: white;
+color: black;
+}
 
 /* ==|== non-semantic helper classes ======================================== */
 .ir { display: block; border: 0; text-indent: -999em; overflow: hidden; background-color: transparent; background-repeat: no-repeat; text-align: left; direction: ltr; }
