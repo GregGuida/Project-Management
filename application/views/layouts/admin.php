@@ -53,7 +53,6 @@
 			<a href="#" class="dropdown-toggle">Orders</a>
 			<ul class="dropdown-menu">
 				<li><a href="#">Browse Orders</a></li>
-				<li><a href="#">Add Orders</a></li>
 			</ul>
 		</li>
 		<li class="dropdown" data-dropdown="dropdown">
@@ -63,6 +62,13 @@
 				<li><a href="#">Customer Chat</a></li>
 			</ul>
 		</li>
+    <li class="dropdown" data-dropdown="dropdown">
+      <a href="#" class="dropdown-toggle">Stock</a>
+      <ul class="dropdown-menu">
+        <li><a href="#">View Stock</a></li>
+        <li><a href="#">Add Stock</a></li>
+      </ul>
+    </li>
 	    </ul>
           </div>
         </div>
@@ -87,6 +93,7 @@
   <script defer src="/js/plugins.js"></script>
   <script defer src="/js/script.js"></script>
   <script defer src="/js/libs/bootstrap/bootstrap-dropdown.js"></script>
+  <script defer src="/js/libs/bootstrap/bootstrap-modal.js"></script>
   <script type="text/javascript"></script>
   <script defer src="/js/libs/nivo-slider/jquery.nivo.slider.pack.js"></script>
   <link rel="stylesheet" type="text/css" href="/js/libs/nivo-slider/nivo-slider.css"/>        
@@ -103,6 +110,22 @@
         category_row.toggleClass('show');
       });
       $('.dropdowns').dropdown();
+
+      $('#new-image').click(function(){
+        
+
+
+
+
+        $('<div id="modal-from-dom" class="modal hide fade" style="display: none; ">'+
+          '<div class="modal-header"><a href="#" class="close">×</a><h3>Upload Image</h3></div>'+
+          '<iframe style="margin:0 auto;display:block;width:560px;padding:0;border:none;" src="/products/upload_image"></iframe></div>')
+          .appendTo('body').modal({
+          'backdrop':true,
+          'keyboard':true,
+          'show':true
+        })
+      });
     });
   </script>
 
