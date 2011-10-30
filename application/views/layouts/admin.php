@@ -102,6 +102,8 @@
   <!-- end scripts-->
 
 
+   <?php echo isset($js) ? $this->htmlbuilder->makeHeadJS($js) : ''; ?>
+
   <script>
     jQuery(document).ready(function() {
       var category_row = $("#category-nav");
@@ -113,6 +115,7 @@
       $('.dropdowns').dropdown();
 
       $("#orderSortTable").tablesorter();
+      $('#employeeTableSorter').tablesorter();
 
       $('#new-image').click(function(){
         $('<div id="modal-from-dom" class="modal hide fade" style="display: none; ">'+
@@ -127,7 +130,6 @@
     });
   </script>
 
-  <?php echo isset($js) ? $this->htmlbuilder->makeHeadJS($js) : ''; ?>
 
   <script>
   var _gaq = _gaq || [];
@@ -142,7 +144,7 @@
   </script>
 
 <script>
-document.write(unescape('%3Cscript src="' + protocol + '//mixpanel.com/site_media/api/platform/platform.1.min.js" type="text/javascript"%3E%3C/script%3E'));
+//document.write(unescape('%3Cscript src="' + protocol + '//mixpanel.com/site_media/api/platform/platform.1.min.js" type="text/javascript"%3E%3C/script%3E'));
 </script>
   <!--[if lt IE 7 ]>
     <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>

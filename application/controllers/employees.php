@@ -1,10 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Employees extends CI_Controller {
-  public $layout = 'main';
+  public $layout = 'admin';
 
   public function index() {
-    $this->load->view('employees/index');
+    $data = array('js' => '/libs/jquery.tablesorter.min.js');
+    $this->load->view('employees/index', $data);
   }
 }
 
