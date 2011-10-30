@@ -31,14 +31,14 @@
         </div>
         <div class="row" id="action-nav">
           <div class="container">
-            <div class="" id="nav-logo"><a href="/">TFM</a></div>
+            <div class="" id="nav-logo"><a href="/statics/admin">TFM</a></div>
             <ul class="dropdowns">
-		<li><a href="/admin/">Dashboard</a></li>
+		<li><a href="/statics/admin/">Dashboard</a></li>
 		<li class="dropdown" data-dropdown="dropdown">
 			<a href="#" class="dropdown-toggle">Products</a>
 			<ul class="dropdown-menu">
 				<li><a href="/products/admin_browse">Browse Products</a></li>
-				<li><a href="/products/admin_new">Add Products</a></li>
+				<li><a href="/products/edit">Add Products</a></li>
 				<li><a href="/categories/admin">Manage Categories</a></li>
 			</ul>
 		</li>
@@ -114,8 +114,11 @@
 
       $('.dropdowns').dropdown();
 
-      $("#orderSortTable").tablesorter();
-      $('#employeeTableSorter').tablesorter();
+      // table sorters
+      var table_sorters = $('#orderSortTable,#employeeTableSorter');
+      if (table_sorters.size() > 0) {
+        table_sorters.tablesorter();
+      }
 
       $('#new-image').click(function(){
         $('<div id="modal-from-dom" class="modal hide fade" style="display: none; ">'+

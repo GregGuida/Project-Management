@@ -5,10 +5,10 @@
 <table id="employeeTableSorter" class="zebra-striped">
   <thead>
     <tr>
-      <th>ID</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Email</th>
+      <th class="blue">ID</th>
+      <th class="red">First Name</th>
+      <th class="yellow">Last Name</th>
+      <th class="purple">Email</th>
     </tr>
   </thead>
   <tbody>
