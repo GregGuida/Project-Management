@@ -9,6 +9,7 @@ class Statics extends CI_Controller {
   }
 
   public function admin() {
+    $this->layout = 'admin';
     $this->load->view('statics/admin_dashboard');
   }
 
