@@ -525,6 +525,18 @@ header #action-nav, footer {
   height: 20px;
 }
 
+.admin #main{
+  border-radius:5px;
+  -o-border-radius:5px;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  background-color:#fff;
+  box-shadow:0 0 10px #333;
+  -o-box-shadow:0 0 10px #333;
+  -moz-box-shadow:0 0 10px #333;
+  -webkit-box-shadow:0 0 10px #333;
+}
+
 .admin footer {
   background-color:rgb(191,191,191);
   border:5px solid lightgrey;

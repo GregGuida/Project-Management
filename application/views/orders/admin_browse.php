@@ -1,11 +1,11 @@
 
-<table class="zebra-striped" id="sortTableExample" style="box-shadow:0 0 10px #333;">
+<table class="zebra-striped" id="orderSortTable">
 	<thead>
 		<tr>
-		<th class="header">Order #</th>
-		<th class="red header">Customer #</th>
-		<th class="yellow header">Shipping<br/>Zip Code</th>
-		<th class="blue header">Status</th>
+		<th class="header headerSortUp">Order #</th>
+		<th class="red header headerSortUp">Customer #</th>
+		<th class="yellow header headerSortUp">Shipping<br/>Zip Code</th>
+		<th class="blue header headerSortUp">Status</th>
 		<th class="purple header headerSortUp">Date Processed</th>
 		<th class="green header headerSortUp">Total Amount</th>
 		</tr>

@@ -109,14 +109,12 @@
         e.preventDefault();
         category_row.toggleClass('show');
       });
+
       $('.dropdowns').dropdown();
 
+      $("#orderSortTable").tablesorter();
+
       $('#new-image').click(function(){
-        
-
-
-
-
         $('<div id="modal-from-dom" class="modal hide fade" style="display: none; ">'+
           '<div class="modal-header"><a href="#" class="close">×</a><h3>Upload Image</h3></div>'+
           '<iframe style="margin:0 auto;display:block;width:560px;padding:0;border:none;" src="/products/upload_image"></iframe></div>')

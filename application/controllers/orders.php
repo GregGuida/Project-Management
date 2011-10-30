@@ -17,7 +17,8 @@ class Orders extends CI_Controller {
 
   public function admin_browse() {
     $this->layout = "admin";
-    $this->load->view('orders/admin_browse');
+    $data = array('js' => '/libs/jquery.tablesorter.min.js');
+    $this->load->view('orders/admin_browse', $data);
   }
   public function admin_show() {
     $this->layout = "admin";
