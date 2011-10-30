@@ -4,7 +4,7 @@ class Employees extends CI_Controller {
   public $layout = 'main';
 
   public function index() {
-    $this->load->view('welcome_message');
+    $this->load->view('employees/index');
   }
 }
 
