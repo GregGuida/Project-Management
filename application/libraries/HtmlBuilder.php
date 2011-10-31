@@ -22,9 +22,9 @@ class HtmlBuilder {
     function buildJS($j) {
 
         if (file_exists('js/' . $j)) {
-            return '<script src="/js/' . $j . '" type="text/javascript"></script>';
+            return '<script src="/js/' . $j . '"></script>';
         } else {
-            return '<script type="text/javascript" src="' . $j . '"></script>';
+            return '<script src="' . $j . '"></script>';
         }
     }
 
