@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class stock_tickets extends CI_Controller {
+class Stock_tickets extends CI_Controller {
   public $layout = 'main';
 
   public function admin_browse() {
