@@ -614,6 +614,12 @@ background-color: white;
 color: black;
 }
 
+#stock-ticket-show, #stock-item-show, #stock-ticket-form{
+  margin-top:50px;
+  margin-bottom:50px;
+}
+
+
 /* ==|== non-semantic helper classes ======================================== */
 .ir { display: block; border: 0; text-indent: -999em; overflow: hidden; background-color: transparent; background-repeat: no-repeat; text-align: left; direction: ltr; }
 .ir br { display: none; }
