@@ -7,5 +7,9 @@ class Employees extends CI_Controller {
     $data = array('js' => '/libs/jquery.tablesorter.min.js');
     $this->load->view('employees/index', $data);
   }
+
+  public function add() {
+    $this->load->view('employees/new');
+  }
 }
 
