@@ -45,12 +45,41 @@ class Categories extends Models
 	
 	function getCategory($catID)
 	{
-	
+		$data = array();
+		$query = $this->db->get_where('Categories', array('catID' => $catID));
+		//Check if empty query
+		if($query->num_rows() > 0)
+			$data = $query->row_array();
+		
+		$query->free_result();
+		return $data;
 	}
 	
 	function getAllCategories()
 	{
+		$data = array();
+		$query = $this->db->get_where('Categories', array('catID' => $catID));
+		//Check if empty query
+		if($query->num_rows() <= 0)
+			return false;
+		foreach($query->result_array() as $row)
+			$data[] = $row;
+		
+		$query->free_result();
+		return $data;
+	}
 	
+	//Gets the parent of the given category
+	function getParentCategory($catID)
+	{
+		$data = array();
+				 $this->db->select('parent');
+		$query = $this->db->get_where('Categories', array('catID' => $catID));
+		
+		if($query->num_rows() <= 0)
+			return false;
+		$data = $query->row_array();
+		return $data['parent'];
 	}
 	
 }
