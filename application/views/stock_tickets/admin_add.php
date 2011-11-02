@@ -19,6 +19,9 @@
     		$<input class="xlarge" type="text" name="product-title" value="" />
     		<h4>Total Price</h4>
     		$<input class="xlarge disabled" type="text" name="product-title" value="" disabled=""/>
+	<div class="actions">
+		<input type="submit" class="btn primary" />
+	</div>
     	</form>
     </div>
 </div>

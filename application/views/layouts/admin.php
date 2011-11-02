@@ -46,7 +46,7 @@
 			<a href="#" class="dropdown-toggle">Employees</a>
 			<ul class="dropdown-menu">
 				<li><a href="/employees/">Browse Employees</a></li>
-				<li><a href="/employees/new">Add Employees</a></li>
+				<li><a href="/employees/add">Add Employees</a></li>
 			</ul>
 		</li>
 		<li class="dropdown" data-dropdown="dropdown">
@@ -65,8 +65,8 @@
     <li class="dropdown" data-dropdown="dropdown">
       <a href="#" class="dropdown-toggle">Stock</a>
       <ul class="dropdown-menu">
-        <li><a href="#">View Stock</a></li>
-        <li><a href="#">Add Stock</a></li>
+        <li><a href="/stock_items/admin_browse">View Stock</a></li>
+        <li><a href="/stock_tickets/admin_add">Add Stock</a></li>
       </ul>
     </li>
 	    </ul>
