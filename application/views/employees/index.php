@@ -9,6 +9,7 @@
       <th class="red">First Name</th>
       <th class="yellow">Last Name</th>
       <th class="purple">Email</th>
+      <th class="green">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -18,6 +19,7 @@
       <td>E. First Name</td>
       <td>E. Last Name</td>
       <td>lastname@tfm.com</td>
+      <td><a href="/employees/edit/1">Edit</a> | <a href="/employees/delete/1">Delete</a></td>
     </tr>
     <?php } ?>
   </tbody>
