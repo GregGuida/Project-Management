@@ -19,5 +19,9 @@ class Employees extends CI_Controller {
   public function delete($id = 0) {
     redirect('/employees/');
   }
+
+  public function login() {
+    $this->load->view('employees/login');
+  }
 }
 
