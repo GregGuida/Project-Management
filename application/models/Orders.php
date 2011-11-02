@@ -94,6 +94,7 @@ class Orders extends Model
 		);
 		
 		$this->db->insert('Orders',$data);
+		return true;
 	}
 
 	//Add an item to an order by inserting into the OrderedItems table
@@ -105,6 +106,7 @@ class Orders extends Model
 		);
 		
 		$this->db->insert('OrderedItems', $data);
+		return true;
 	}
 	
 	//Remove an item from an order by deleting it from the OrderedItems table
@@ -116,12 +118,14 @@ class Orders extends Model
 		);
 		
 		$this->db->delete->('OrderedItems', $where);
+		return true;
 	}
 	
 	//Delete the given Order, and it's associated items
 	function deleteOrder($order){
 		$this->db->delete('OrderedItems', array('OrderNum'=> $order));
 		$this->db->delete('Orders', array('OrderNum'=> $order));
+		return true;
 	}
 
 	//Update an Order
@@ -134,6 +138,7 @@ class Orders extends Model
 		);
 		
 		$this->db->update('Orders', $data, array('OrderNum'=>$order));
+		return true;
 	}
 	
 }

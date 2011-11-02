@@ -3,8 +3,8 @@
 class WishList_Test
 {
 	$this->load->library('unit_test');
-	
 	$w1 = new WishLists;
+	
 	$test = $w1->getWishList(1);
 	$test2 = $w1->addItemToWishList(1,1);
 	$test3 = $w1->removeItemFromWishList(1,1);

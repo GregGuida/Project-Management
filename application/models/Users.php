@@ -64,6 +64,7 @@
 	function deleteUser($id)
 	{
 		$this->db->delete('Users', array('uid' => $id));
+		return true;
 	}
 	
 	function addUser($last,$first,$email,$pass)

@@ -85,6 +85,7 @@ class CartItems extends Models
 		);
 		
 		$this->db->delete('CartItems',$data);
+		return true;
 	}
 	
 	//update CartItems <cid> to change didPurchase to true
@@ -96,6 +97,7 @@ class CartItems extends Models
 			'dateAdded' => $date
 		);
 		$this->db->update('CartItems',array('didPurchase'=>true),$where);
+		return true;
 	}
 	
 }

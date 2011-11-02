@@ -109,6 +109,7 @@ class Products extends Model
 	function deleteProduct($id)
 	{
 		$this->db->delete('Products', array('pid' => $id));
+		return true;
 	}
 	
 	function updateProduct($id,$name,$description,$price,$catID)
