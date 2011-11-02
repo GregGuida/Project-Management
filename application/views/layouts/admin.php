@@ -39,7 +39,7 @@
 			<ul class="dropdown-menu">
 				<li><a href="/products/admin_browse">Browse Products</a></li>
 				<li><a href="/products/edit">Add Products</a></li>
-				<li><a href="/categories/admin">Manage Categories</a></li>
+				<li><a href="/categories/admin_browse">Manage Categories</a></li>
 			</ul>
 		</li>
 		<li class="dropdown" data-dropdown="dropdown">
