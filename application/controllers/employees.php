@@ -8,8 +8,16 @@ class Employees extends CI_Controller {
     $this->load->view('employees/index', $data);
   }
 
-  public function add() {
+  public function add($id = 0) {
     $this->load->view('employees/new');
+  }
+
+  public function edit($id = 0) {
+    $this->load->view('employees/edit');
+  }
+
+  public function delete($id = 0) {
+    redirect('/employees/');
   }
 }
 
