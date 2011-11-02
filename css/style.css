@@ -620,6 +620,11 @@ color: black;
   margin-bottom:50px;
 }
 
+/* dashboard styles */
+.chart-wrapper {
+  margin-bottom: 100px;
+}
+
 
 /* ==|== non-semantic helper classes ======================================== */
 .ir { display: block; border: 0; text-indent: -999em; overflow: hidden; background-color: transparent; background-repeat: no-repeat; text-align: left; direction: ltr; }
