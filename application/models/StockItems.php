@@ -21,7 +21,7 @@ class StockItems extends Models
 	}
 	
 	//Returns the given StockItems as an array
-	function getStock($id)
+	function getStockItem($id)
 	{
 		$data = array();
 		
@@ -52,14 +52,13 @@ class StockItems extends Models
 	}
 	
 	//Adds a Stock Item. Foreign Keys: pid, ticketNum
-	function newStockItems($pid, $ticket, $price, $status='OnOrder', $date)
+	function newStockItems($pid, $ticket, $price, $status='OnOrder')
 	{
 		$data = (
 			'pid'		=>	$pid,
 			'ticketNum'	=>	$ticket,
 			'PriceUSD'	=>	$price,
-			'Status'	=>	$status,
-			'DateAdded'	=>	$date
+			'Status'	=>	$status
 		);
 		
 		$this->db->insert('StockItems', $data);
@@ -73,14 +72,13 @@ class StockItems extends Models
 		return true;
 	}
 	
-	function updateStockItem($stockId, $pid, $ticket, $price, $status='OnOrder', $date)
+	function updateStockItem($stockId, $pid, $ticket, $price, $status='OnOrder')
 	{
 		$data = (
 			'pid'		=>	$pid,
 			'ticketNum'	=>	$ticket,
 			'PriceUSD'	=>	$price,
-			'Status'	=>	$status,
-			'DateAdded'	=>	$date
+			'Status'	=>	$status
 		);
 		
 		$this->db->update('StockItems', $data, array('stockID' => $stockID));

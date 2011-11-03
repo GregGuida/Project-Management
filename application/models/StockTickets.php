@@ -53,14 +53,13 @@ class StockTickets extends Models
 	}
 	
 	//Create a Ticket and add it to the StockTickets table
-	function createStockTicket($product, $employee, $price, $numOrdered, $date, $status='Submitted')
+	function createTicket($product, $employee, $price, $numOrdered, $status='Submitted')
 	{
 		 $data = array(
 		 	'pid'		=>	$product,
 		 	'eid'		=>	$employee,
 		 	'PriceUSD'	=>	$price,
 		 	'NumOrdered'=>	$numOrdered,
-		 	'DateSubmitted'	=>	$date,
 		 	'Status'	=>	$status
 		 );
 		 
