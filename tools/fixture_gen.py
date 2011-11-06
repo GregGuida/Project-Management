@@ -2,7 +2,7 @@
 
 # Path to MySQL:
 # /Applications/XAMPP/xamppfiles/bin/mysql
-import sys, json, argparse, subprocess
+import sys, json, argparse, subprocess, re
          
 def main():
 	#Instantiate an arguments Parser
@@ -53,14 +53,14 @@ def generate_sql(json_loc, save_loc):
 	# This is such a dirty way of doing this...but i don't know of any other way that doesn't require numpy and matrices or is absolutely unreadable.
 	for table in input:
 		for row in input[table]:
-			keys = ["`{0}`".format(key) for key in row.keys()]
-			values = ["'{0}'".format(value) for value in  row.values()]
-			sql_statements.append('INSERT INTO `{0}` ({1}) values ({2});'.format(table, ", ".join(keys), ", ".join(values)))
+			keys = [u"`{0}`".format(key) for key in row.keys()]
+			values = [u"'{0}'".format(re.sub('''(['"\n\r\t])''', r"\\\1", value)) for value in  row.values()]
+			sql_statements.append(u'INSERT INTO `{0}` ({1}) values ({2});'.format(table, ", ".join(keys), ", ".join(values)))
 				
 	print 'Saving Generated SQL to "{}"'.format(save_loc)
 	# ...Save the SQL
 	output = open(save_loc, "w")
-	output.write("\n".join(sql_statements))
+	output.write(("\n".join(sql_statements)).encode('utf-8'))
 	output.close()
 	
 def execute_sql(sql_file, mysql_path, mysql_user, mysql_password, mysql_database):

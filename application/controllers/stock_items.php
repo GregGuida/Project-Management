@@ -14,4 +14,3 @@ class Stock_items extends CI_Controller {
   }
 
 }
-

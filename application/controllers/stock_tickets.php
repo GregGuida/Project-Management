@@ -19,4 +19,3 @@ class Stock_tickets extends CI_Controller {
   }
 
 }
-

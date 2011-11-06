@@ -31,4 +31,3 @@ class Statics extends CI_Controller {
     $this->load->view('statics/privacy');
   }
 }
-
