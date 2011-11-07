@@ -2,11 +2,11 @@
 
 class Employees extends Users
 {
-	function Employees() {
-		parent :: Users();
-	}
+        function __construct() {
+                parent::__construct();
+        }
 	
-//Returns the Employee with the given id# as an array
+	//Returns the Employee with the given id# as an array
 	function getEmployee($eid)
 	{
 		$data = array('eid' => $eid); //Because uid id duplicated in the Users Table

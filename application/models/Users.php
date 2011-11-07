@@ -11,11 +11,11 @@
  *
  */
 
- class Users extends Model
+ class Users extends CI_Model
  {
  	
- 	function Users(){
- 		parent :: Model();
+ 	function __construct() {
+ 		parent::__construct();
  	}
  	
  	protected function getCustomerInfo($uid, $data)
@@ -78,7 +78,7 @@
 		
 		//I wish I could just somehow get the insert method to return the primary
 		//key of the row I just inserted... Anyone know how?
-		$this->db->insert->('Users',$data);
+		$this->db->insert('Users',$data);
 		
 		$this->db->select('uid');
 		$this->db->get('Users');
@@ -92,7 +92,7 @@
 	function authenticateUser($email, $pass)
 	{
 		$this->db->select('Password');
-		$query = $this->db->get_where('Users', array('Email' => $email);
+		$query = $this->db->get_where('Users', array('Email' => $email));
 		$result = $query->row_array();
 		$storedPass = $result['Password'];
 		
