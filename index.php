@@ -19,6 +19,7 @@
  *
  */
 	define('ENVIRONMENT', 'development');
+	define('LOCALHOST', 'localhost'===$_SERVER['SERVER_NAME']);
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
