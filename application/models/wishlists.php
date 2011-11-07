@@ -19,7 +19,7 @@ class WishLists extends Models
 {
 	//Constructor
 	public WishLists(){
-		parent :: Models();
+		parent::__construct());
 	}
 	
 	//Returns the Wish List and its items as a single array for the given wishID

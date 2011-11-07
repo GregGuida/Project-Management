@@ -13,7 +13,7 @@ class Categories extends Models
 {
 	//Constructor
 	function Categories() {
-		parent :: Models();
+		parent::__construct());
 	}
 	
 	//Add a Category to a table. Category will be a 'Root' if no parent is given.

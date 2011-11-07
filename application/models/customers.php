@@ -13,7 +13,7 @@ class Customers extends Users
 	
 	//Constructor
 	function Customers() {
-		parent :: Users();
+		parent::__construct());
 	}
 	
 	//Returns the Customer with the given id# as an array

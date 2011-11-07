@@ -18,7 +18,7 @@ class StockTickets extends Models
 {
 	//Constructor
 	function StockTickets() {
-		parent :: Models();
+		parent::__construct());
 	}
 	
 	//Returns the given StockTicket as an array

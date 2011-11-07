@@ -17,7 +17,7 @@ class StockItems extends Models
 {
 	//Constructor
 	function StockItems(){
-		parent :: Models();
+		parent::__construct());
 	}
 	
 	//Returns the given StockItems as an array

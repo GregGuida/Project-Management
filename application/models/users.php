@@ -96,10 +96,11 @@
 		$result = $query->row_array();
 		$storedPass = $result['Password'];
 		
-		if(md5($pass) == $storedPass)
+		if(md5($pass) == $storedPass) {
 			return true;
-		else
+		} else {
 			return false;
+		}
 	}
 	
  }

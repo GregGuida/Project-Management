@@ -25,7 +25,7 @@ class Orders extends Model
 	
 	//Constructor
 	function Orders(){
-		parent :: Models();
+		parent::__construct());
 	}
 	
 	//Get an order of the given oid as an array

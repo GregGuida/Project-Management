@@ -13,7 +13,7 @@ class CartItems extends Models
 {
 	
 	function CartItems(){
-		parent :: Models();
+		parent::__construct());
 	}
 	
 	//This will allow you to add a StockItem to a Customer's cart,

@@ -12,7 +12,7 @@
 class Images extends Models
 {
 	function Images() {
-		parent :: Models();
+		parent::__construct());
 	}
 	
 	//Returns the Image with the given ID as an array
