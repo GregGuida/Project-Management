@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://fightingmongooses.phpfogapp.com/" />
+<title>ProductShow</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">ProductShow</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=p &gt; a &gt; img.thumbnail</td>
+	<td></td>
+</tr>
+<!--Check for Image-->
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=img[alt=&quot;product photo large thumbnail&quot;]</td>
+	<td></td>
+</tr>
+<!--Check for Name-->
+<tr>
+	<td>verifyTextPresent</td>
+	<td>A kitty!</td>
+	<td></td>
+</tr>
+<!--Check for Add to Cart Link-->
+<tr>
+	<td>assertText</td>
+	<td>link=Add to cart</td>
+	<td>Add to cart</td>
+</tr>
+<!--Check for Price-->
+<tr>
+	<td>assertElementPresent</td>
+	<td>css=section.product-price</td>
+	<td></td>
+</tr>
+<!--Check for Reviews section-->
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Reviews</td>
+	<td></td>
+</tr>
+<!--Stubbed for Now-->
+
+</tbody></table>
+</body>
+</html>
