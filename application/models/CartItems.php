@@ -9,11 +9,11 @@
  * ) ENGINE = INNODB;
 */
 
-class CartItems extends Models
+class CartItems extends CI_Model
 {
 	
-	function CartItems(){
-		parent :: Models();
+	function __construct(){
+		parent :: __construct();
 	}
 	
 	//This will allow you to add a StockItem to a Customer's cart,

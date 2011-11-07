@@ -20,12 +20,12 @@
  * ) ENGINE = INNODB;
 */
 
-class Orders extends Model
+class Orders extends CI_Model
 {
 	
 	//Constructor
-	function Orders(){
-		parent :: Models();
+	function __construct(){
+		parent::__construct();
 	}
 	
 	//Get an order of the given oid as an array

@@ -9,11 +9,11 @@
  *	) ENGINE = INNODB;
 */
 
-class Categories extends Models
+class Categories extends CI_Model
 {
 	//Constructor
-	function Categories() {
-		parent :: Models();
+	function __construct() {
+		parent :: __construct();
 	}
 	
 	//Add a Category to a table. Category will be a 'Root' if no parent is given.

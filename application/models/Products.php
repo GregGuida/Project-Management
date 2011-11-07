@@ -10,12 +10,12 @@
  *	) ENGINE = INNODB;
 */
 
-class Products extends Model
+class Products extends CI_Model
 {
 	
 	//Constructor
-	function Products() {
-		parent :: Model();
+	function __construct() {
+		parent::__construct();
 	}
 	
 	//Returns the Product with the given id# as an array

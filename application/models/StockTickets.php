@@ -14,11 +14,11 @@
  * ) ENGINE = INNODB;
 */
 
-class StockTickets extends Models
+class StockTickets extends CI_Model
 {
 	//Constructor
-	function StockTickets() {
-		parent :: Models();
+	function __construct() {
+		parent :: __construct();
 	}
 	
 	//Returns the given StockTicket as an array

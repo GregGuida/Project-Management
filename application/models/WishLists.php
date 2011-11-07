@@ -15,11 +15,11 @@
  *	) ENGINE = INNODB;
 */
 
-class WishLists extends Models
+class WishLists extends CI_Model
 {
 	//Constructor
-	public WishLists(){
-		parent :: Models();
+	public __construct(){
+		parent :: __construct();
 	}
 	
 	//Returns the Wish List and its items as a single array for the given wishID

@@ -11,11 +11,11 @@
  *
  */
 
- class Users extends Model
+ class Users extends CI_Model
  {
  	
- 	function Users(){
- 		parent :: Model();
+ 	function __construct(){
+ 		parent :: __construct();
  	}
  	
  	protected function getCustomerInfo($uid, $data)
