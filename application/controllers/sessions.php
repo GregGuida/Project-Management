@@ -7,47 +7,40 @@ class Sessions extends CI_Controller {
   public function login() {
     $this->load->view('sessions/new');
   }
-}
 
-  public function index()
-   {
-       /*check whether the user is already logged in or not */
-         if($this->login->check_session())
-         {
-         redirect(‘some_page’);
-         }
-   /*validating the username and password field */
+  public function index() {
+    /*check whether the user is already logged in or not */
+    if($this->login->check_session()) {
+       redirect('some_page');
+    }
 
-   $this->load->library(‘validation’);
+    /*validating the username and password field */
 
-   $rules['username'] = “required”;
-   $rules['password'] = “required”;
-   $this->validation->set_rules($rules);
+    $this->load->library('validation');
 
-   $fields['username'] = ‘Username’;
-   $fields['password'] = ‘Password’;
-   $this->validation->set_fields($fields);
+    $rules['username'] = "required";
+    $rules['password'] = "required";
+    $this->validation->set_rules($rules);
 
-   /* check all fields are validated correctly */
-      if($this->validation->run() == FALSE)
-      {
-          $this->load->view(‘login_view’);
+    $fields['username'] = 'Username';
+    $fields['password'] = 'Password';
+    $this->validation->set_fields($fields);
+
+    /* check all fields are validated correctly */
+    if($this->validation->run() == FALSE) {
+      $this->load->view('login_view');
+    } else {
+      $userName = $this->input->post('username');
+      $password = $this->input->post('password');
+
+      $chkAuth = $this->login->checkAuth($userName,$password);
+      if($chkAuth) {
+        redirect('some_page'); //Enter the page name
+      } else {
+        redirect('/login/invalid'); //failed auth – return to the login form
       }
-      else{
-          $userName = $this->input->post(‘username’);
-          $password = $this->input->post(‘password’);
-
-          $chkAuth = $this->login->checkAuth($userName,$password);
-            if($chkAuth)
-            {
-                redirect('some_page’); //Enter the page name
-            }
-            else
-            {
-               redirect(‘/login/invalid’); //failed auth – return to the login form
-            }
-          }
-      }
+    }
+  }
 }
 
 ?>

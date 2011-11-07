@@ -15,7 +15,7 @@ class Products extends Model
 	
 	//Constructor
 	function Products() {
-		parent :: Model();
+		parent::__construct());
 	}
 	
 	//Returns the Product with the given id# as an array
@@ -103,7 +103,7 @@ class Products extends Model
 				);
 		$this->db->insert('Products', $data);
 		
-		return true;
+		return $this->db->insert_id();
 	}
 	
 	function deleteProduct($id)
