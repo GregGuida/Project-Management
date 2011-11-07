@@ -34,24 +34,20 @@ class Employees extends CI_Controller {
       $this->load->view('Employee_view',$empdetails);
   }
   
-  public function Employees()
-  {
-      $empsdetails = array();
-      if($query = $this->Users->getAllEmployees())
-      {
-         $empsdetails['records'] = $query;
-      }
-      $this->load->view('Employee_view',$empsdetails);
+  public function show($eid,$data) {
+    $empdetails = array();
+    if($query = $this->Users->getEmployeeInfo($eid,$data)) { 
+      $empdetails['records'] = $query;
+    } 
+    $this->load->view('employees/show',$empdetails);
   }
   
-   public function deleteEmployee($eid)
-   {
-	 $this->Users->deleteEmployee($eid);
-	 $this->load->view('Welcome_Message');
+   public function delete($eid) {
+     $this->Users->deleteEmployee($eid);
+     $this->load->view('Welcome_Message');
    }
      
-  public function updateEmployee()
-   {
+  public function update() {
       $empdetails = array(
        'LastName' => $this->input->post('LastName'),
        'First Name' => $this->input->post('First Name'),
@@ -62,13 +58,12 @@ class Employees extends CI_Controller {
       $this->load->view('welcome_meesage');
    }
 
-   public function addEmployee()
-   {
+   public function create() {
       $empdetails = array(
-       'LastName' => $this->input->post('LastName'),
-       'First Name' => $this->input->post('First Name'),
-       'Email' => $this->input->post('Email'),
-       'Password' => $this->input->post('Password'),
+         'LastName' => $this->input->post('LastName'),
+         'First Name' => $this->input->post('First Name'),
+         'Email' => $this->input->post('Email'),
+         'Password' => $this->input->post('Password'),
        );
       $this->Products->addemployee($empdetais);
       $this->load->view('welcome_meesage');
