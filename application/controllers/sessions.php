@@ -12,41 +12,43 @@ class Sessions extends CI_Controller {
   // POST - 302 redirect
   function customer_auth_handle() {
 
-    $this->load->model('users');
+    $this->load->model('Users');
 
     $email = $this->input->post('email');
     $password = $this->input->post('password');
 
-    $chkAuth = $this->login->checkAuth($email, $password);
-    if($chkAuth) {
-      redirect('/'); // redirecting home so that the customer can start purchasing things
+    $user = $this->Users->authenticate($email, $password);
+
+    if($user) {
+      set_current_user($user);
+      header('Location: /'); // redirecting home so that the customer can start purchasing things
     } else {
-      redirect('/customers/login'); // failed auth return to the login form
+      header('Location: /customers/login'); // failed auth return to the login form
     }
   }
 
   // POST - 302 redirect
   function employee_auth_handle() {
 
-    $this->load->model('users');
+    $this->load->model('Users');
 
     $email = $this->input->post('email');
     $password = $this->input->post('password');
 
-    $user = $this->users->authenticate($username, $password);
+    $user = $this->Users->authenticate($username, $password);
 
     if($user && $user['Employee']) {
-      // TODO: add user to the session
-      redirect('/statics/admin'); // redirecting to admin panel so employee can see updates
+      set_current_user($user);
+      header('Location: /statics/admin'); // redirecting to admin panel so employee can see updates
     } else {
-      redirect('/employees/login'); // failed auth return to the login form
+      header('Location: /employees/login'); // failed auth return to the login form
     }
   }
 
   // GET - 302 redirect
   function logout() {
     set_current_user(''); // destroy the user's session
-    redirect('/'); // redirect to the homepage
+    header('Location: /'); // redirect to the homepage
   }
 }
 

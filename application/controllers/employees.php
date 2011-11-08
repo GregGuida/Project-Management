@@ -2,7 +2,8 @@
 
 class Employees extends CI_Controller {
   public $layout = 'admin';
-  public $auth = array('index', 'add', 'edit', 'delete', 'update', 'create');
+  public $auth = array();
+  public $admin = array('index', 'add', 'edit', 'delete', 'update', 'create');
 
   // GET - 200
   public function index() {
@@ -48,16 +49,29 @@ class Employees extends CI_Controller {
   }
 
   // POST - 302 redirect
-  public function create() {
-    $empdetails = array(
-      'LastName' => $this->input->post('lastname'),
-      'FirstName' => $this->input->post('firstname'),
-      'Email' => $this->input->post('email'),
-      'Password' => $this->input->post('password'),
-      'Employee' => 1 // they are certainly an employee if they hit this action // TODO: check auth first
-    );
-    $this->Products->addemployee($empdetais);
-    redirect('/employees');
+  function create() {
+ 
+    $this->load->model('Users');
+    $confirm = $this->input->post('confirm');
+    $lastname = $this->input->post('lastname');
+    $firstname = $this->input->post('firstname');
+    $email = $this->input->post('email');
+    $password = $this->input->post('password');
+ 
+    // make sure the user is 
+    if ($confirm == $password && strlen($password) > 0) {
+
+      // TODO: check if user already exists before adding, then you'd just update employee field
+      $user_id = $this->Users->create($lastname, $firstname, $email, $password, 1);
+      if ($user_id) {
+        header('Location: /statics/admin');
+      } else {
+        header('Location: /employees/');
+      }
+ 
+    } else {
+      header('Location: /employees/add');
+    }
   }
 }
 

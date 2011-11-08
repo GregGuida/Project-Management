@@ -92,7 +92,8 @@ class Customers extends CI_Controller {
  
       $user_id = $this->Users->create($lastname, $firstname, $email, $password);
       if ($user_id) {
-        // TODO: automatically log this user in
+        $user = $this->Users->authenticate($email, $password);
+        set_current_user($user);
         header('Location: /');
       } else {
         header('Location: /customers/signup');

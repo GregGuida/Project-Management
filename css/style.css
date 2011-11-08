@@ -98,7 +98,7 @@ section > .row {
   padding: 3px 0;
 }
 
-#link-nav a{
+#link-nav a, #link-nav span.nav-text{
   margin:0 10px;
   color:#fff;
 }

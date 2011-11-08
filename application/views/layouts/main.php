@@ -30,9 +30,14 @@
       <div>
         <div class="row" id="link-nav">
           <div class="container">
+          <?php if (is_logged()) { ?>
+            <span class="nav-text"><b>Hello <?php echo get_current_user_stuff('FirstName') ?></b> - </span>  
+            <a href="/customers/show">My Account</a>
+            <a href="/sessions/logout">Logout</a>
+          <?php } else { ?>
             <a href="/customers/login">Login</a>
             <a href="/customers/signup">Signup</a>
-            <a href="/customers/show">My Account</a>
+          <?php } ?>
             <a href="/statics/help">Help</a>
           </div>
         </div>
