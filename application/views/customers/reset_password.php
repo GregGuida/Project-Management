@@ -9,7 +9,7 @@
   </div>
 
   <div class="span7">
-    <form action="/somewhere" method="post">
+    <form action="/customers/reset_password_handle" method="post">
       <fieldset>
         <div class="clearfix">
           <label for="reset-password-password">New Password</label>

@@ -1,4 +1,8 @@
-<form action="/sessions/login" method="post">
+<div class="page-header">
+  <h2>Customer Login</h2>
+</div>
+
+<form action="/sessions/customer_auth_handle" method="post">
   <fieldset>
     <legend>Login to TFM</legend>
     <div class="clearfix">
@@ -17,7 +21,7 @@
   <div class="actions">
     <p>
       <input type="submit" value="Login" class="btn primary" />
-      <a href="/" class="btn">Signup Instead</a>
+      <a href="/customers/signup" class="btn">Signup Instead</a>
     </p>
     <p>
       <a href="/customers/forgot_password">I forgot my password</a>

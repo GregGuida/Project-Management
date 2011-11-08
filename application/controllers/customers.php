@@ -14,7 +14,7 @@ class Customers extends CI_Controller {
   public function reset_password() {
     $this->layout = 'admin';
     $data = array('js' => 'reset_password.js');
-    $this->load->view('users/reset_password', $data);
+    $this->load->view('customers/reset_password', $data);
   }
 
   public function index() {

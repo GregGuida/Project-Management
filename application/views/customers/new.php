@@ -1,4 +1,4 @@
-<form action="/customers/create" method="post">
+<form action="/users/create" method="post">
   <fieldset>
     <legend>Create an Account</legend>
     <div class="clearfix">
@@ -34,6 +34,6 @@
   <fieldset>
   <div class="actions">
     <input type="submit" value="Save" class="btn primary" />
-    <a href="/" class="btn">Login Instead</a>
+    <a href="/sessions/login" class="btn">Login Instead</a>
   </div>
 </form>

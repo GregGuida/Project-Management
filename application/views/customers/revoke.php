@@ -11,6 +11,6 @@
 <form action="/somewhere" method="post">
   <div class="actions">
     <input type="submit" value="Revoke" class="btn error" />
-    <a href="/users/">Cancel</a>
+    <a href="/customers/">Cancel</a>
   </div>
 </form>

@@ -14,9 +14,9 @@
   <div class="span7">
     <div class="well">
       <h4>Actions</h4>
-      <p><a href="/users/reset_password">Reset Password</a></p>
-      <p><a href="/users/contact">Contact this User</a></p>
-      <p><a href="/users/revoke">Revoke Account</a></p>
+      <p><a href="/customers/reset_password">Reset Password</a></p>
+      <p><a href="/customers/contact">Contact this User</a></p>
+      <p><a href="/customers/revoke">Revoke Account</a></p>
     </div>
   </div>
 </div>
