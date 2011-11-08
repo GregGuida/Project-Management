@@ -2,8 +2,8 @@
 
 /* CREATE TABLE  `CodeIgniter`.`Users` (
  *    `uid` INT NOT NULL AUTO_INCREMENT,
- *     `Last Name` VARCHAR( 50 ) NOT NULL ,
- *    `First Name` VARCHAR( 50 ) NOT NULL ,
+ *     `LastName` VARCHAR( 50 ) NOT NULL ,
+ *    `FirstName` VARCHAR( 50 ) NOT NULL ,
  *    `Password` VARCHAR( 25 ) NOT NULL ,
  *     `Email` VARCHAR( 75 ) NOT NULL ,
  *     `DOB` DATE,
@@ -52,8 +52,8 @@
 
     $result = false;
     $data = array(
-      'Last Name'  => $last,
-      'First Name' => $first,
+      'LastName'  => $last,
+      'FirstName' => $first,
       'Email'      => $email,
       'Password'   => md5($pass),
       'Employee'   => $employee

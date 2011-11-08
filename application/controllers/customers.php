@@ -21,6 +21,11 @@ class Customers extends CI_Controller {
     $this->load->view('customers/forgot_password');
   }
 
+  function send_email_reminder() {
+    // TODO: send an email to the user
+    header('Location: /customers/login');
+  }
+
   // GET - 200
   // this is for an admin to manually set the password of another user
   // TODO: needs handler
@@ -74,15 +79,28 @@ class Customers extends CI_Controller {
   // POST - 302 redirect
   // signup handler
   function create() {
-    $userdetails = array(
-      'LastName' => $this->input->post('LastName'),
-      'FirstName' => $this->input->post('FirstName'),
-      'Email' => $this->input->post('Email'),
-      'Password' => $this->input->post('Password'),
-    );
+
+    $this->load->model('Users');
+    $confirm = $this->input->post('confirm');
+    $lastname = $this->input->post('lastname');
+    $firstname = $this->input->post('firstname');
+    $email = $this->input->post('email');
+    $password = $this->input->post('password');
+
+    // make sure the user is 
+    if ($confirm == $password && strlen($password) > 0) {
  
-    $this->Users_model->add_record($userdetails);
-    redirect('/');
+      $user_id = $this->Users->create($lastname, $firstname, $email, $password);
+      if ($user_id) {
+        // TODO: automatically log this user in
+        header('Location: /');
+      } else {
+        header('Location: /customers/signup');
+      }
+
+    } else {
+      header('Location: /customers/signup');
+    }
   }
  
   // GET - 200
@@ -90,7 +108,7 @@ class Customers extends CI_Controller {
   function delete($uid) {
     // delete User
     $this->Users->deleteUser($uid);
-    redirect('/users/');
-   }
+    header('Location: /users/');
+  }
 }
 
