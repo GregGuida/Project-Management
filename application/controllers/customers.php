@@ -9,6 +9,10 @@ class Customers extends CI_Controller {
     // Your own constructor code
   }
 
+  function account() {
+    $this->load->view('customers/account');
+  }
+
   function login() {
     $this->load->view('customers/login');
   }

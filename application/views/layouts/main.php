@@ -30,7 +30,7 @@
       <div>
         <div class="row" id="link-nav">
           <div class="container">
-            <a href="/sessions/login">Login</a>
+            <a href="/customers/login">Login</a>
             <a href="/customers/signup">Signup</a>
             <a href="/customers/account">My Account</a>
             <a href="/statics/help">Help</a>
