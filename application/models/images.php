@@ -9,10 +9,10 @@
  * ) ENGINE = INNODB;
 */
 
-class Images extends Models
+class Images extends CI_Model
 {
-	function Images() {
-		parent::__construct());
+	function __construct() {
+		parent :: __construct();
 	}
 	
 	//Returns the Image with the given ID as an array

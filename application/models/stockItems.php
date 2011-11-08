@@ -13,11 +13,11 @@
  * ) ENGINE = INNODB;
 */
 
-class StockItems extends Models
+class StockItems extends CI_Model
 {
 	//Constructor
-	function StockItems(){
-		parent::__construct());
+	function __construct(){
+		parent :: __construct();
 	}
 	
 	//Returns the given StockItems as an array

@@ -14,8 +14,8 @@
  class Users extends CI_Model
  {
  	
- 	function __construct() {
- 		parent::__construct();
+ 	function __construct(){
+ 		parent :: __construct();
  	}
  	
  	protected function getCustomerInfo($uid, $data)
