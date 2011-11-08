@@ -6,7 +6,8 @@
  *    `First Name` VARCHAR( 50 ) NOT NULL ,
  *    `Password` VARCHAR( 25 ) NOT NULL ,
  *     `Email` VARCHAR( 75 ) NOT NULL ,
- *     `Employee` TINYINT( 1 ) NOT NULL 
+ *     `DOB` DATE,
+ *     `Employee` TINYINT( 1 ) NOT NULL DEFAULT false 
  *   PRIMARY KEY (  `uid` )
  * ) ENGINE = INNODB;
  *

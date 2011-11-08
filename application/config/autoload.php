@@ -53,7 +53,7 @@ $autoload['packages'] = array();
 */
 
 // TODO: set database here
-$autoload['libraries'] = array(/*'database', */'session');
+$autoload['libraries'] = array('database', 'session');
 
 
 /*
@@ -111,7 +111,6 @@ $autoload['language'] = array();
 */
 
 $autoload['model'] = array();
-
 
 /* End of file autoload.php */
 /* Location: ./application/config/autoload.php */

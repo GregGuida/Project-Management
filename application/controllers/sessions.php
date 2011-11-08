@@ -35,7 +35,7 @@ class Sessions extends CI_Controller {
 
     $user = $this->users->authenticate($username, $password);
 
-    if($user) {
+    if($user && $user['Employee']) {
       // TODO: add user to the session
       redirect('/statics/admin'); // redirecting to admin panel so employee can see updates
     } else {
