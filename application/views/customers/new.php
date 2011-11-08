@@ -2,7 +2,7 @@
   <h2>Create an Account <small>So you can buy things!</small></h2>
 </div>
 
-<form action="/users/create" method="post">
+<form action="/customers/create" method="post">
   <fieldset>
     <div class="clearfix">
       <label for="signup_firstname">First Name</label>

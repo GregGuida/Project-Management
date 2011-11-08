@@ -32,7 +32,7 @@
           <div class="container">
             <a href="/customers/login">Login</a>
             <a href="/customers/signup">Signup</a>
-            <a href="/customers/account">My Account</a>
+            <a href="/customers/show">My Account</a>
             <a href="/statics/help">Help</a>
           </div>
         </div>
@@ -99,7 +99,7 @@
                         <h3>Links</h3>
                         <ul class="unstyled">
                                 <li><a href="/">Home</a></li>
-                                <li><a href="/customers/account">My account</a></li>
+                                <li><a href="/customers/show">My account</a></li>
                                 <li><a href="/cart">Cart</a></li>
                                 <li><a href="/statics/about">About</a></li>
                                 <li><a href="/statics/privacy">Privacy policy</a></li>

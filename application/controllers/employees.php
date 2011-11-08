@@ -2,7 +2,9 @@
 
 class Employees extends CI_Controller {
   public $layout = 'admin';
+  public $auth = array('index', 'add', 'edit', 'delete', 'update', 'create');
 
+  // GET - 200
   public function index() {
     $this->load->model('Users');
     $this->load->model('Employees');
@@ -12,33 +14,28 @@ class Employees extends CI_Controller {
     $this->load->view('employees/index', $data);
   }
 
+  // GET - 200
   public function add($id = 0) {
     $this->load->view('employees/new');
   }
 
+  // GET - 200
   public function edit($id = 0) {
     $this->load->view('employees/edit');
   }
 
+  // GET - 200
   public function login() {
     $this->load->view('employees/login');
   }
 
-  /* 
-  public function show($eid) {
-    $empdetails = array();
-    if($query = $this->Users->getEmployee($eid)) {
-       $empdetails['records'] = $query;
-    }
-    $this->load->view('employees/show', $empdetails);
-  }
-  */
-  
+  // POST - 302 redirect
   public function delete($eid) {
     $this->Users->deleteEmployee($eid);
     redirect('/employees');
   }
-     
+  
+  // POST - 302 redirect
   public function update() {
     $empdetails = array(
       'LastName' => $this->input->post('lastName'),
@@ -50,12 +47,14 @@ class Employees extends CI_Controller {
     redirect('/employees');
   }
 
+  // POST - 302 redirect
   public function create() {
     $empdetails = array(
       'LastName' => $this->input->post('lastname'),
       'FirstName' => $this->input->post('firstname'),
       'Email' => $this->input->post('email'),
       'Password' => $this->input->post('password'),
+      'Employee' => 1 // they are certainly an employee if they hit this action // TODO: check auth first
     );
     $this->Products->addemployee($empdetais);
     redirect('/employees');
