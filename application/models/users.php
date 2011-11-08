@@ -1,108 +1,97 @@
 <?php
 
 /* CREATE TABLE  `CodeIgniter`.`Users` (
- *		`uid` INT NOT NULL AUTO_INCREMENT,
- * 		`Last Name` VARCHAR( 50 ) NOT NULL ,
- *		`First Name` VARCHAR( 50 ) NOT NULL ,
- *		`Password` VARCHAR( 25 ) NOT NULL ,
- * 		`Email` VARCHAR( 75 ) NOT NULL ,
- *	 PRIMARY KEY (  `uid` )
+ *    `uid` INT NOT NULL AUTO_INCREMENT,
+ *     `Last Name` VARCHAR( 50 ) NOT NULL ,
+ *    `First Name` VARCHAR( 50 ) NOT NULL ,
+ *    `Password` VARCHAR( 25 ) NOT NULL ,
+ *     `Email` VARCHAR( 75 ) NOT NULL ,
+ *     `Employee` TINYINT( 1 ) NOT NULL 
+ *   PRIMARY KEY (  `uid` )
  * ) ENGINE = INNODB;
  *
  */
 
- class Users extends CI_Model
- {
- 	
- 	function __construct(){
- 		parent :: __construct();
- 	}
- 	
- 	protected function getCustomerInfo($uid, $data)
-	{
-		$userData = array();
-		
-		$query = $this->db->get_where('Users', array('uid'=>$uid));
-		if($query->num_rows()==0)
-			return false;
-		$userData = $query->row_array();
-		
-		$query->free_result(); //Free our mind
-		
-		$result = array_merge($userData,$data);
-		return $result;
-	}
+ class Users extends CI_Model {
+   
+   function __construct() {
+     parent::__construct();
+   }
 
-/*
- * Probably not going to use.
-	protected function getEmployeeInfo($uid, $data)
-	{
-		$userData = array();
-		
-		$query = $this->db->get_where('Users', array('uid'=>$uid));
-		if($query->num_rows()==0)
-			return false;
-		$userData = $query->row_array(); //Row because there should only be 1
-		
-		$query->free_result();
-		
-		$result = array_merge($userData,$data);
-		return $result;
-	}
-*/	
-	function getUser($uid)
-	{
-		$query = $this->db->get_where('Users', array('uid'=>$uid));
-		if($query->num_rows()==0)
-			return false;
-		$result = $query->row_array();
-		
-		$query->free_result();
-		return $result; 
-	}
-	
-	function deleteUser($id)
-	{
-		$this->db->delete('Users', array('uid' => $id));
-		return true;
-	}
-	
-	function addUser($last,$first,$email,$pass)
-	{
-		$data = array(
-			'Last Name'  => $last,
-			'First Name' => $first,
-			'Email'		 =>	$email,
-			'Password'	 => md5($pass)
-		);
-		
-		//I wish I could just somehow get the insert method to return the primary
-		//key of the row I just inserted... Anyone know how?
-		$this->db->insert('Users',$data);
-		
-		$this->db->select('uid');
-		$this->db->get('Users');
-		$query = $this->db->where('Email',$email);
-		
-		$result = $query->row_array();
-		$uid = $result['uid'];
-		return $uid;
-	}
+  // accepts an optional limit
+  // and returns an array of user row arrays
+  function all($limit = 0) {
+    $cursor = $this->db->get('Users', $limit);
+  }
 
-	function authenticateUser($email, $pass)
-	{
-		$this->db->select('Password');
-		$query = $this->db->get_where('Users', array('Email' => $email));
-		$result = $query->row_array();
-		$storedPass = $result['Password'];
-		
-		if(md5($pass) == $storedPass) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
+
+  // accepts a user id
+  // returns a user row array if a valid user is found with the id provided
+  // or false otherwise
+  function find($uid) {
+
+    $result = false;
+
+    $cursor = $this->db->get_where('Users', array('uid' => $uid));
+
+    if($cursor->num_rows() > 0) {
+      $result = $cursor->row_array();
+      $cursor->free_result();
+    }
+
+    return $result; 
+  }
+  
+  
+  // acepts lastname, firstname, email, password, employee
+  // inserts a new user record into the database
+  // returns the new user id if successful
+  // or false otherwise
+  function create($last, $first, $email, $pass, $employee = 0) {
+
+    $result = false;
+    $data = array(
+      'Last Name'  => $last,
+      'First Name' => $first,
+      'Email'      => $email,
+      'Password'   => md5($pass),
+      'Employee'   => $employee
+    );
+    
+    $this->db->insert('Users', $data);
+
+    if (!$this->db->_error_message()) {
+      $result = $this->db->insert_id();
+    }
+
+    return $result;
+  }
+
+  // accepts email, password
+  // returns a user row array if a valid user is found with the email and password provided
+  // or false otherwise
+  function authenticate($email, $pass) {
+
+    $result = false;
+
+    $cursor = $this->db->get_where('Users', array('Email' => $email));
+    $user = $cursor->row_array();
+    $encrypted_password = $user['Password'];
+
+    if(md5($pass) == $encrypted_password) {
+      $result = $user;
+    }
+
+    return $result;
+  }
+
+  // accepts id
+  // deletes a user with the given id from the database
+  // and returns a boolean representing the success of the query
+  function destroy($id) {
+    $this->db->delete('Users', array('uid' => $id));
+    return !!$this->db->_error_message();
+  }
  }
  
  ?>

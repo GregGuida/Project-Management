@@ -2,39 +2,49 @@
 
 class Customers extends CI_Controller {
   public $layout = 'main';
+  public $auth = array();
 
-  public function signup() {
+  public function __construct() {
+    parent::__construct();
+    // Your own constructor code
+  }
+
+  function login() {
+    $this->load->view('customers/login');
+  }
+
+  function signup() {
     $this->load->view('customers/new');
   }
 
-  public function forgot_password() {
+  function forgot_password() {
     $this->load->view('customers/forgot_password');
   }
 
-  public function reset_password() {
+  function reset_password() {
     $this->layout = 'admin';
     $data = array('js' => 'reset_password.js');
     $this->load->view('customers/reset_password', $data);
   }
 
-  public function index() {
+  function index() {
     $this->layout = 'admin';
     $this->load->view('customers/index');
   }
   
-  public function contact() {
+  function contact() {
     $this->layout = 'admin';
     $this->load->view('customers/contact');
   }
   
-  public function revoke() {
+  function revoke() {
     $this->layout = 'admin';
     $this->load->view('customers/revoke');
   }
 
-  public function show($uid,$data) {
+  function show($uid) {
     $customerdetails = array();
-    if($query = $this->Users->getCustomerInfo($uid,$data)) {
+    if($query = $this->Users->getCustomerInfo($uid)) {
       $customerdetails['records'] = $query;
     }
     $this->load->view('customers/account', $customerdetails);
