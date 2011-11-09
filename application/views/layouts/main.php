@@ -31,8 +31,8 @@
         <div class="row" id="link-nav">
           <div class="container">
           <?php if (is_logged()) { ?>
-            <span class="nav-text"><b>Hello <?php echo get_current_user_stuff('FirstName') ?></b> - </span>  
-            <a href="/customers/show">My Account</a>
+            <span class="nav-text"><b>Hello <?php echo get_current_user_stuff('FirstName') ?></b></span>
+            <a href="/customers/show/<?php echo get_current_user_stuff('uid') ?>">My Account</a>
             <a href="/sessions/logout">Logout</a>
           <?php } else { ?>
             <a href="/customers/login">Login</a>
@@ -98,17 +98,19 @@
                                 <li><a href="/categories/show/">Happy Kittens</a></li>
                                 <li><a href="/categories/show/">Cats</a></li>
                                 <li><a href="/categories/show/">Happy Cats</a></li>
+                                <li><a href="/categories/show/">Angry Cats</a></li>
                         </ul>
                 </div>
                 <div id="footer-nav-links">
                         <h3>Links</h3>
                         <ul class="unstyled">
                                 <li><a href="/">Home</a></li>
-                                <li><a href="/customers/show">My account</a></li>
+                                <li><a href="/customers/show/<?php echo get_current_user_stuff('uid') ?>">My account</a></li>
                                 <li><a href="/cart">Cart</a></li>
                                 <li><a href="/statics/about">About</a></li>
                                 <li><a href="/statics/privacy">Privacy policy</a></li>
                                 <li><a href="/statics/legal">Legal</a></li>
+                                <li><a href="/employees/dashboard">Employee</a></li>
                                 <li><a href="/statics/help">Help</a></li>
                         </ul>
                 </div>

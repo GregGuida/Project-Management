@@ -39,7 +39,7 @@ class Sessions extends CI_Controller {
 
     if($user && $user['Employee']) {
       set_current_user($user);
-      header('Location: /statics/admin'); // redirecting to admin panel so employee can see updates
+      header('Location: /employees/dashboard'); // redirecting to admin panel so employee can see updates
     } else {
       header('Location: /employees/login'); // failed auth return to the login form
     }

@@ -38,20 +38,29 @@ class Customers extends CI_Controller {
 
   // GET - 200
   // Admin
+  // TODO
   function index() {
     $this->layout = 'admin';
-    $this->load->view('customers/index');
+    $this->load->model('Users');
+    $users = $this->Users->all(30);
+    $data = array('users' => $users, 'js' => 'customer_index.js');
+    $this->load->view('customers/index', $data);
   }
   
   // GET - 200
   // Admin
-  function contact() {
+  // TODO: needs handler
+  function contact($uid) {
     $this->layout = 'admin';
-    $this->load->view('customers/contact');
+    $this->load->model('Users');
+    $user = $this->Users->find($uid);
+    $data = array('user' => $user, 'js');
+    $this->load->view('customers/contact', $data);
   }
   
   // GET - 200
   // Admin
+  // TODO: needs handler
   function revoke() {
     $this->layout = 'admin';
     $this->load->view('customers/revoke');

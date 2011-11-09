@@ -5,14 +5,14 @@
 <div class="row">
   <div class="span7">
     <input type="text" class="xlarge" name="query" placeholder="Search for a user" />
-    <ul>
-      <li><a href="#">Johnny Appleseed</a></li>
-      <li><a href="#">Greg Guida</a></li>
-      <li><a href=#">Chris Columbus</a></li>
+    <ul id="customer-list" class="unstyled">
+    <?php foreach($users as $user) { ?>
+      <li data-id="<?php echo $user['uid'] ?>"><a href="#"><?php echo $user['FirstName'] . ' ' . $user['LastName'] ?></a></li>
+    <?php } ?>
     </ul>
   </div>
   <div class="span7">
-    <div class="well">
+    <div id="customer-actions" class="well hide">
       <h4>Actions</h4>
       <p><a href="/customers/reset_password">Reset Password</a></p>
       <p><a href="/customers/contact">Contact this User</a></p>

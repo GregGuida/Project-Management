@@ -22,7 +22,13 @@
   // accepts an optional limit
   // and returns an array of user row arrays
   function all($limit = 0) {
+    $users = array();
     $cursor = $this->db->get('Users', $limit);
+
+    foreach($cursor->result_array() as $user) {
+      $users[] = $user;
+    }
+    return $users;
   }
 
 

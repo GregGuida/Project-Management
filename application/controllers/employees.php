@@ -64,7 +64,7 @@ class Employees extends CI_Controller {
       // TODO: check if user already exists before adding, then you'd just update employee field
       $user_id = $this->Users->create($lastname, $firstname, $email, $password, 1);
       if ($user_id) {
-        header('Location: /statics/admin');
+        header('Location: /employees/dashboard');
       } else {
         header('Location: /employees/');
       }
@@ -72,6 +72,13 @@ class Employees extends CI_Controller {
     } else {
       header('Location: /employees/add');
     }
+  }
+
+  public function dashboard() {
+    $this->layout = 'admin';
+    $data = array();
+    $data['js'] =array('libs/highcharts.js', 'admin_dashboard.js');
+    $this->load->view('employees/dashboard', $data);
   }
 }
 

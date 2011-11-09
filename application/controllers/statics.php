@@ -8,13 +8,6 @@ class Statics extends CI_Controller {
    $this->load->view('statics/homepage');
   }
 
-  public function admin() {
-    $this->layout = 'admin';
-    $data = array();
-    $data['js'] =array('libs/highcharts.js', 'admin_dashboard.js');
-    $this->load->view('statics/admin_dashboard', $data);
-  }
-
   public function help() {
     $this->load->view('statics/help');
   }
