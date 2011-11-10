@@ -26,14 +26,21 @@
       <div>
         <div class="row" id="link-nav">
           <div class="container">
-            <a href="/sessions/login">Logout</a>
+            <?php if (is_logged()) { ?>
+            <span class="nav-text"><b>Hello <?php echo get_current_user_stuff('FirstName') ?></b></span>
+            <a href="/employees/dashboard/">Home</a>
+            <a href="/sessions/logout">Logout</a>
+            <?php } else { ?>
+            <a href="/employees/login">Login</a>
+            <?php } ?>
+            <a href="/">Shop</a>
           </div>
         </div>
         <div class="row" id="action-nav">
           <div class="container">
-            <div class="" id="nav-logo"><a href="/statics/admin">TFM</a></div>
+            <div class="" id="nav-logo"><a href="/employees/dashboard">TFM</a></div>
             <ul class="dropdowns">
-		<li><a href="/statics/admin/">Dashboard</a></li>
+		<li><a href="/employees/dashboard/">Dashboard</a></li>
 		<li class="dropdown" data-dropdown="dropdown">
 			<a href="#" class="dropdown-toggle">Products</a>
 			<ul class="dropdown-menu">
@@ -102,7 +109,7 @@
   <!-- end scripts-->
 
 
-   <?php echo isset($js) ? $this->htmlbuilder->makeHeadJS($js) : ''; ?>
+  <?php echo isset($js) ? $this->htmlbuilder->makeHeadJS($js) : ''; ?>
 
   <script>
     jQuery(document).ready(function() {
