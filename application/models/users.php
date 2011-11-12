@@ -72,9 +72,24 @@
 
     return $result; 
   }
+
+
+  // accepts an associative array of parameters
+  // and returns an array of users
+  function find_by($data) {
+    $users = array();
+
+    $cursor = $this->db->get_where('Users', $data);
+
+    foreach($cursor->result_array() as $user) {
+      $users[] = $user;
+    }
+
+    return $users;
+  }
   
   
-  // acepts lastname, firstname, email, password, employee
+  // accepts lastname, firstname, email, password, employee
   // inserts a new user record into the database
   // returns the new user id if successful
   // or false otherwise
@@ -97,6 +112,23 @@
 
     return $result;
   }
+
+
+  // accepts a user id and data array
+  // updates the matching rows in the database and returns the id if successful
+  // or false otherwise
+  function update($id, $data) {
+    $result = false;
+
+    $this->db->update('Users', $data, array('uid' => $id));
+
+    if (!$this->db->_error_message()) {
+      $result = $id;
+    }
+
+    return $result;
+  }
+
 
   // accepts email, password
   // returns a user row array if a valid user is found with the email and password provided
@@ -130,6 +162,19 @@
   function revoke($id) {
     $this->db->update('Users', array('Active' => 0));
     return !!$this->db->_error_message();
+  }
+
+  // accepts a length parameter which determines how many random characters to return
+  function randomPassword($length = 8) {
+    $password = '';
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+    $numCharacters = strlen($characters);
+
+    for ($i = 0; $i < $length; $i++) {
+      $password .= $characters[mt_rand(0, $numCharacters)];
+    }
+
+    return $password;
   }
  }
  

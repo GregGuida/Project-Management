@@ -41,28 +41,37 @@ class Employees extends CI_Controller {
   
   // POST - 302 redirect
   public function update($id) {
-    $empdetails = array(
+    $data = array(
       'LastName' => $this->input->post('lastname'),
       'FirstName' => $this->input->post('firstname'),
       'Email' => $this->input->post('email'),
       'DOB' => $this->input->post('dob'),
     );
     $this->load->model('Users');
-    $this->Users->update($id, $empdetails);
+    $this->Users->update($id, $data);
     redirect('/employees/show/' . $id);
   }
 
   // POST - 302 redirect
   function create() {
- 
     $this->load->model('Users');
-    $lastname = $this->input->post('lastname');
     $firstname = $this->input->post('firstname');
+    $lastname = $this->input->post('lastname');
     $email = $this->input->post('email');
     $dob = $this->input->post('dob');
  
-    // TODO: check if user already exists before adding, then you'd just update employee field
-    $user_id = $this->Users->create($lastname, $firstname, $email, $password, 1);
+    $exists = $this->Users->find_by(array('Email' => $email));
+
+    // if the user already exists, just update them to an employee
+    if (count($exists) > 0) {
+
+      $user_id = $this->Users->update($exists[0]['uid'], array('Employee' => 1));
+
+    } else {
+      // otherwise, create a new user as an employee
+      $user_id = $this->Users->create($lastname, $firstname, $email, $password, 1);
+    }
+
     if ($user_id) {
       header('Location: /employees/dashboard');
     } else {
