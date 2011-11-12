@@ -124,9 +124,9 @@ class Customers extends CI_Controller {
   // GET - 200
   // Admin
   function delete($uid) {
-    // delete User
-    $this->Users->deleteUser($uid);
-    header('Location: /users/');
+    $this->load->model('Users');
+    $this->Users->destroy($uid);
+    header('Location: /Customers/');
   }
 }
 

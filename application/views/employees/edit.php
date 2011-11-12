@@ -1,8 +1,8 @@
 <div class="page-header">
-  <h2>Add an Employee</h2>
+  <h2>Updating Employee</h2>
 </div>
 
-<form action="/employees/create" method="post">
+<form action="/employees/update/<?php echo $employee['uid'] ?>" method="post">
   <fieldset>
     <div class="clearfix">
       <label for="new-employee-first-name">First Name</label>
