@@ -3,7 +3,7 @@
 class Customers extends CI_Controller {
   public $layout = 'main';
   public $auth = array('show');
-  public $admin = array('reset_password', 'revoke', 'contact', 'index', 'delete');
+  public $admin = array('reset_password', 'access', 'contact', 'index', 'delete');
 
   public function __construct() {
     parent::__construct();
@@ -64,19 +64,22 @@ class Customers extends CI_Controller {
   
   // GET - 200
   // Admin
-  function revoke($uid) {
+  function access($uid) {
     $this->layout = 'admin';
     $this->load->model('Users');
-    $this->Users->find($uid);
-    $this->load->view('customers/revoke');
+    $data = array();
+    $data['user'] = $this->Users->find($uid);
+    $this->load->view('customers/access', $data);
   }
 
   // POST - 302 redirect
   // admin
-  function revoke_handler($uid) {
+  function access_handler($uid) {
     $this->layout = 'admin';
     $this->load->model('Users');
-    $this->Users->revoke($uid);
+
+    $active = $this->input->post('active');
+    $this->Users->update($uid, array('Active' => $active));
     header('Location: /customers/');
   }
 

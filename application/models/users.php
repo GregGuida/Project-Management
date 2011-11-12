@@ -156,14 +156,6 @@
     return !!$this->db->_error_message();
   }
 
-  // accepts id 
-  // disables the user account specified by id
-  // and returns a boolean representing the success of the query
-  function revoke($id) {
-    $this->db->update('Users', array('Active' => 0));
-    return !!$this->db->_error_message();
-  }
-
   // accepts a length parameter which determines how many random characters to return
   function randomPassword($length = 8) {
     $password = '';
