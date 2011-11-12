@@ -7,7 +7,8 @@
  *    `Password` VARCHAR( 25 ) NOT NULL ,
  *     `Email` VARCHAR( 75 ) NOT NULL ,
  *     `DOB` DATE,
- *     `Employee` TINYINT( 1 ) NOT NULL DEFAULT false 
+ *     `Employee` TINYINT( 1 ) NOT NULL DEFAULT false ,
+ *     `createdAt` Timestamp NOT NULL,
  *   PRIMARY KEY (  `uid` )
  * ) ENGINE = INNODB;
  *
@@ -31,6 +32,29 @@
     return $users;
   }
 
+  // accepts an optional limit
+  // and returns an array of user row arrays where user's active field is 1
+  function active($limit = 0) {
+    $users = array();
+    $cursor = $this->db->get_where('Users', array('Active' => 1),  $limit);
+
+    foreach($cursor->result_array() as $user) {
+      $users[] = $user;
+    }
+    return $users;
+  }
+
+  // accepts an optional limit
+  // and returns an array of user row arrays where user's employee field is 1
+  function employees($limit = 0) {
+    $users = array();
+    $cursor = $this->db->get_where('Users', array('Employee' => 1),  $limit);
+
+    foreach($cursor->result_array() as $user) {
+      $users[] = $user;
+    }
+    return $users;
+  }
 
   // accepts a user id
   // returns a user row array if a valid user is found with the id provided
@@ -97,6 +121,14 @@
   // and returns a boolean representing the success of the query
   function destroy($id) {
     $this->db->delete('Users', array('uid' => $id));
+    return !!$this->db->_error_message();
+  }
+
+  // accepts id 
+  // disables the user account specified by id
+  // and returns a boolean representing the success of the query
+  function revoke($id) {
+    $this->db->update('Users', array('Active' => 0));
     return !!$this->db->_error_message();
   }
  }

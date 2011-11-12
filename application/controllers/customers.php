@@ -26,6 +26,10 @@ class Customers extends CI_Controller {
     header('Location: /customers/login');
   }
 
+  function send_email($uid) {
+    header('Location: /customers/');
+  }
+
   // GET - 200
   // this is for an admin to manually set the password of another user
   // TODO: needs handler
@@ -50,7 +54,7 @@ class Customers extends CI_Controller {
   // GET - 200
   // Admin
   // TODO: needs handler
-  function contact($uid) {
+  function contact($uid = 0) {
     $this->layout = 'admin';
     $this->load->model('Users');
     $user = $this->Users->find($uid);
@@ -60,24 +64,28 @@ class Customers extends CI_Controller {
   
   // GET - 200
   // Admin
-  // TODO: needs handler
-  function revoke() {
+  function revoke($uid) {
     $this->layout = 'admin';
+    $this->load->model('Users');
+    $this->Users->find($uid);
     $this->load->view('customers/revoke');
+  }
+
+  // POST - 302 redirect
+  // admin
+  function revoke_handler($uid) {
+    $this->layout = 'admin';
+    $this->load->model('Users');
+    $this->Users->revoke($uid);
+    header('Location: /customers/');
   }
 
   // GET - 200
   // account page
   // Auth
   function show($uid) {
-    $customerdetails = array();
-
-    // TODO: the user data should be in the session already since they are logged in
-    // query is unnecessary
-    if($query = $this->Users->getCustomerInfo($uid)) {
-      $customerdetails['records'] = $query;
-    }
-    $this->load->view('customers/account', $customerdetails);
+    // TODO: load 
+    $this->load->view('customers/account');
   }
 
   // GET - 200

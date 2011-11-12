@@ -8,9 +8,8 @@ class Employees extends CI_Controller {
   // GET - 200
   public function index() {
     $this->load->model('Users');
-    $this->load->model('Employees');
     $data = array();
-    $data['employees'] = $this->Employees->getAllEmployees();
+    $data['employees'] = $this->Users->employees(50);
     $data['js'] = '/libs/jquery.tablesorter.min.js';
     $this->load->view('employees/index', $data);
   }
@@ -22,7 +21,10 @@ class Employees extends CI_Controller {
 
   // GET - 200
   public function edit($id = 0) {
-    $this->load->view('employees/edit');
+    $this->load->model('Users');
+    $data = array();
+    $data['employee'] = $this->Users->find($id);
+    $this->load->view('employees/edit', $data);
   }
 
   // GET - 200
@@ -31,44 +33,38 @@ class Employees extends CI_Controller {
   }
 
   // POST - 302 redirect
-  public function delete($eid) {
-    $this->Users->deleteEmployee($eid);
+  public function delete($id) {
+    $this->load->model('Users');
+    $this->Users->delete($id);
     redirect('/employees');
   }
   
   // POST - 302 redirect
-  public function update() {
+  public function update($id) {
     $empdetails = array(
-      'LastName' => $this->input->post('lastName'),
+      'LastName' => $this->input->post('lastname'),
       'FirstName' => $this->input->post('firstname'),
       'Email' => $this->input->post('email'),
-      'Password' => $this->input->post('password'),
+      'DOB' => $this->input->post('dob'),
     );
-    $this->Products->updateemployee($empdetais);
-    redirect('/employees');
+    $this->load->model('Users');
+    $this->Users->update($id, $empdetails);
+    redirect('/employees/show/' . $id);
   }
 
   // POST - 302 redirect
   function create() {
  
     $this->load->model('Users');
-    $confirm = $this->input->post('confirm');
     $lastname = $this->input->post('lastname');
     $firstname = $this->input->post('firstname');
     $email = $this->input->post('email');
-    $password = $this->input->post('password');
+    $dob = $this->input->post('dob');
  
-    // make sure the user is 
-    if ($confirm == $password && strlen($password) > 0) {
-
-      // TODO: check if user already exists before adding, then you'd just update employee field
-      $user_id = $this->Users->create($lastname, $firstname, $email, $password, 1);
-      if ($user_id) {
-        header('Location: /employees/dashboard');
-      } else {
-        header('Location: /employees/');
-      }
- 
+    // TODO: check if user already exists before adding, then you'd just update employee field
+    $user_id = $this->Users->create($lastname, $firstname, $email, $password, 1);
+    if ($user_id) {
+      header('Location: /employees/dashboard');
     } else {
       header('Location: /employees/add');
     }
