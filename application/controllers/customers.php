@@ -3,7 +3,7 @@
 class Customers extends CI_Controller {
   public $layout = 'main';
   public $auth = array('show');
-  public $admin = array('reset_password', 'access', 'contact', 'index', 'delete');
+  public $admin = array('reset_password', 'reset_password_handle', 'access', 'contact', 'send_email', 'index', 'delete');
 
   public function __construct() {
     parent::__construct();
@@ -26,23 +26,32 @@ class Customers extends CI_Controller {
     header('Location: /customers/login');
   }
 
-  function send_email($uid) {
-    header('Location: /customers/');
-  }
 
   // GET - 200
   // this is for an admin to manually set the password of another user
   // TODO: needs handler
   // Admin
-  function reset_password() {
+  function reset_password($uid) {
     $this->layout = 'admin';
-    $data = array('js' => 'reset_password.js');
+    $this->load->model('Users');
+    $user = $this->Users->find($uid);
+    $data = array('user' => $user, 'js' => 'reset_password.js');
     $this->load->view('customers/reset_password', $data);
   }
 
+  // POST - 302 redirect
+  // Admin
+  function reset_password_handle($uid) {
+    $this->load->model('Users');
+    $user = $this->Users->find($uid);
+    $password = $this->input->post('password');
+    $confirm = $this->input->post('confirm');
+    header('Location: /customers');
+  }
+
+
   // GET - 200
   // Admin
-  // TODO
   function index() {
     $this->layout = 'admin';
     $this->load->model('Users');
@@ -53,15 +62,27 @@ class Customers extends CI_Controller {
   
   // GET - 200
   // Admin
-  // TODO: needs handler
   function contact($uid = 0) {
     $this->layout = 'admin';
     $this->load->model('Users');
     $user = $this->Users->find($uid);
-    $data = array('user' => $user, 'js');
+    $data = array('user' => $user);
     $this->load->view('customers/contact', $data);
   }
+
   
+  // POST - 302 redirect
+  // Admin
+  function send_email($uid) {
+    $this->load->model('Users');
+    $subject = $this->input->post('subject');
+    $message = $this->input->post('message');
+    $user = $this->Users->find($uid);
+    send_mail($user['Email'], $subject, $message);
+    header('Location: /customers/');
+  }
+
+
   // GET - 200
   // Admin
   function access($uid) {
