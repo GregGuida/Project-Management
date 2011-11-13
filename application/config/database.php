@@ -51,7 +51,11 @@ $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
 $db['default']['password'] = '';
 $db['default']['database'] = 'fightingmongooses';
+$db['default']['port'] = '3306';
 $db['default']['dbdriver'] = 'mysql';
+$db['default']['db_debug'] = TRUE;
+$db['default']['autoinit'] = TRUE;
+$db['default']['stricton'] = FALSE;
 // Database config for the PHP Fog deployment. Comment out when developing locally.
 // TODO: enable
 /*

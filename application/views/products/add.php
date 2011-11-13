@@ -1,18 +1,8 @@
 	<div class="row">
     <div id="product-area" class="span16">
       <div class="row">
-        <div class="span6">
-          <p>
-            <img src="http://placehold.it/340/340" alt="product photo large thumbnail" />
-          </p>
-          <p class="alt-images">
-            <img src="http://placehold.it/60/60" alt="product photo small thumbnail" />
-            <img src="http://placehold.it/60/60" alt="product photo small thumbnail" />
-            <img src="http://placehold.it/60/60" alt="product photo small thumbnail" />
-            <button id="new-image" class="btn"> Add An <br/>Image </button>
-          </p>
-        </div>
-        <div class="span10">
+
+        <div class="span8 offset4">
           <div class="row">
             <form action="/products/admin_show/" method="post" class="span3">
               <div class="page-header">
@@ -47,6 +37,7 @@
             </form>
           </div>
         </div>
+
       </div>
     </div>
   </div>
