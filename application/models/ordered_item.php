@@ -47,7 +47,7 @@ class Ordered_Item extends CI_Model {
 	 */
     function find_by($data) {
         $items = array();
-        $cursor = $this->db->get_where('items', $data);
+        $cursor = $this->db->get_where('OrderedItems', $data);
         
         foreach($cursor->result_array() as $item) {
             $items[] = $item;
@@ -66,11 +66,31 @@ class Ordered_Item extends CI_Model {
 	 */
     function all($limit = 0) {
       $items = array();
-      $cursor = $this->db->get('items', $limit);
+      $cursor = $this->db->get('OrderedItems', $limit);
 
       foreach($cursor->result_array() as $item) {
         $items[] = $item;
       }
       return $items;
-    }	
+    }
+    
+    /*
+	 * Create a new ordered item in the database
+	 * Batch inserts the items to reduce the number of queries needed to shift a users cart into an order of items
+	 *
+	 * @param array $data array of the items you want to create.
+	 *
+	 * @return boolean $result true if the insert succeeded, false otherwise.
+	 */
+    function create($data) {
+        $result = false;
+        
+        $this->db->insert_batch('OrderedItems', $data);
+        
+        if(!$this->db->_error_message()) {
+            $result = true;
+        }
+        
+        return $result;
+    }
 }
