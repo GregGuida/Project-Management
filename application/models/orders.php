@@ -1,6 +1,7 @@
 <?php
 
 /*
+ * ---Schema---
  * CREATE TABLE `CodeIgniter2`.`Orders` (
  *	`OrderNum` INT NOT NULL AUTO_INCREMENT,
  *	`cid` INT NOT NULL REFERENCES `CodeIgniter2`.`Customers` (`cid`),
@@ -11,14 +12,7 @@
  *	PRIMARY KEY( `OrderNum`),
  *	INDEX ( `cid` , `sid` )
  * ) ENGINE = INNODB;
- *
- * CREATE TABLE `CodeIgniter2`.`OrderedItems` (
- *	`OrderNum` INT NOT NULL REFERENCES `CodeIgniter2`.`Orders` (`OrderNum`),
- *	`cid` INT NOT NULL REFERENCES `CodeIgniter2`.`CartItems` (`cid`),
- *	`stockID` INT NOT NULL REFERENCES `CodeIgniter2`.`CartItems` (`stockID`),
- *	PRIMARY KEY ( `OrderNum` , `cid` , `stockID` , `dateAdded` )
- * ) ENGINE = INNODB;
-*/
+ */
 
 class Orders extends CI_Model
 {
