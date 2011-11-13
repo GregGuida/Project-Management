@@ -9,7 +9,9 @@ class Ordered_Items extends CI_Controller {
     }
 
   public function index() {
-      $this->load->view('welcome_message');
+      $this->load->model('Ordered_Item', 'item');
+      $data = $this->item->find(1);
+      echo $data;
   }
   
   public function test_run() {
