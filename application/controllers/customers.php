@@ -21,15 +21,56 @@ class Customers extends CI_Controller {
     $this->load->view('customers/forgot_password');
   }
 
+  // POST - 302 redirect
+  // where a user goes after submitting their password for a reset
   function send_email_reminder() {
-    // TODO: send an email to the user
+    $this->load->model('Users');
+    $email = $this->input->post('email');
+    $users = $this->Users->find_by(array('Email' => $email));
+    if (count($users)) {
+      $user = $users[0];
+      $new_salt = md5(time() . $user['uid']);
+      $this->Users->update($user['uid'], array('Salt' => $new_salt));
+      $subject = 'TFM password reset';
+      $message = "Hi $user[FirstName],<br /><br />You're receiving this email because you've requested a password reset. Please follow the link below to reset your password:<br /><br /> <a href=\"" . $this->config->item('BASE_URL') . "customers/forgot_password_response/$new_salt\">Reset</a>";
+      send_mail($user['Email'], $subject, $message);
+    }
+
+    header('Location: /customers/login');
+  }
+
+
+  // GET - 200
+  // where the reset link in the forgot password email brings you
+  function forgot_password_response($salt) {
+    $this->load->model('Users');
+    $users = $this->Users->find_by(array('Salt' => $salt));
+    if (count($users)) {
+      
+      $data['salt'] = $salt;
+      $data['js'] = 'reset_password.js';
+      $this->load->view('customers/forgot_password_response', $data);
+    } else {
+      header('Location: /customers/login');
+    }
+  }
+
+  // POST - 302 redirect
+  function forgot_password_final($salt) {
+    $this->load->model('Users');
+    $users = $this->Users->find_by(array('Salt' => $salt));
+    $password = $this->input->post('password');
+    $confirm = $this->input->post('confirm');
+    if (count($users) && $password == $confirm && strlen($password) > 0) {
+      $user = $users[0];
+      $this->Users->update($user['uid'], array('Password' => md5($password)));
+    }
     header('Location: /customers/login');
   }
 
 
   // GET - 200
   // this is for an admin to manually set the password of another user
-  // TODO: needs handler
   // Admin
   function reset_password($uid) {
     $this->layout = 'admin';
@@ -46,7 +87,15 @@ class Customers extends CI_Controller {
     $user = $this->Users->find($uid);
     $password = $this->input->post('password');
     $confirm = $this->input->post('confirm');
-    header('Location: /customers');
+    if ($password == $confirm && strlen($password) > 0) {
+      $this->Users->update($user['uid'], array('Password' => md5($password)));
+      $subject = 'TFM password reset';
+      $message = "Hi $user[FirstName],<br /><br />You're receiving this email because you're password has been reset.<br /><br />Your new password: $password<br /><br />Thank you";
+      send_mail($user['Email'], $subject, $message);
+      header('Location: /customers/');
+    } else {
+      header('Location: /customers/reset_password/' . $uid);
+    }
   }
 
 

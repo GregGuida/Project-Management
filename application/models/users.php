@@ -4,11 +4,13 @@
  *    `uid` INT NOT NULL AUTO_INCREMENT,
  *     `LastName` VARCHAR( 50 ) NOT NULL ,
  *    `FirstName` VARCHAR( 50 ) NOT NULL ,
- *    `Password` VARCHAR( 25 ) NOT NULL ,
+ *    `Password` VARCHAR( 32 ) NOT NULL ,
  *     `Email` VARCHAR( 75 ) NOT NULL ,
  *     `DOB` DATE,
  *     `Employee` TINYINT( 1 ) NOT NULL DEFAULT false ,
  *     `createdAt` Timestamp NOT NULL,
+ *     `Active` TINYINT( 1 ) NOT NULL DEFAULT true,
+ *     `Salt` VARCHAR( 32 ),
  *   PRIMARY KEY (  `uid` )
  * ) ENGINE = INNODB;
  *
