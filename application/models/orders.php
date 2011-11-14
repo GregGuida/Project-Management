@@ -4,22 +4,21 @@
  * ---Schema---
  * CREATE TABLE `CodeIgniter2`.`Orders` (
  *	`OrderNum` INT NOT NULL AUTO_INCREMENT,
- *	`cid` INT NOT NULL REFERENCES `CodeIgniter2`.`Customers` (`cid`),
+ *	`uid` INT NOT NULL REFERENCES `CodeIgniter2`.`Users` (`uid`),
  *	`sid` INT NOT NULL REFERENCES `CodeIgniter2`.`ShippingAddresses` (`sid`),
  *	`Date` TIMESTAMP NOT NULL ,
  *	`Status` VARCHAR( 20 ) NOT NULL ,
  *	`TotalPriceUSD` DECIMAL NOT NULL ,
  *	PRIMARY KEY( `OrderNum`),
- *	INDEX ( `cid` , `sid` )
+ *	INDEX ( `uid` , `sid` )
  * ) ENGINE = INNODB;
  */
 
-class Orders extends CI_Model
-{
-	
-	//Constructor
+class Orders extends CI_Model {
+
 	function __construct(){
 		parent::__construct();
+		// Custom constructor code goes here...
 	}
 	
 	//Get an order of the given oid as an array
