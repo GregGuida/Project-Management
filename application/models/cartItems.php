@@ -21,6 +21,7 @@ class CartItems extends CI_Model
 	//NOTE: Add via PID, NOT StockID!
 	function addItemToCart($pid,$uid)
 	{
+		$result = false;
 		//Find out if there are any StockItems available.
 		$query = $this->db->select('stockID')
 				          ->from('StockItems')
@@ -40,8 +41,11 @@ class CartItems extends CI_Model
 		);
 		
 		$this->db->insert('CartItems',$data);
+		if(!$this->db->_error_message()) {
+          $result = true;
+        }
 		$query->free_result();
-		return true;		
+		return $result;		
 	}
 	
 	//Gets items in a customer's cart that have not been purchased yet as an array
@@ -60,10 +64,10 @@ class CartItems extends CI_Model
 	}
 	
 	//Get every single cart.
-	function getAllCarts()
+	function getAllCarts($limit=0)
 	{
 		$data = array();
-		$query = $this->db->get('CartItems');
+		$query = $this->db->get('CartItems',$limit);
 		
 		if($query->num_rows() > 0)
 		{

@@ -20,15 +20,15 @@ class Cart extends CI_Controller {
       $date1 = date( 'Y-m-d H:i:s',mktime(0,17,35,11,15,2011));
       //Run some tests against the Fixture Data.
       $this->unit->run($this->item->getCart(1), 'is_array', 'CartItems getCart() General Test', 'Make sure that getCart(1) returns an array.');
-      $this->unit->run($this->item->getCart(1), array(array('uid' => 1, 'stockID' => 1, 'dateAdded' => $date1, 'didPurchase' => 0)), 'CartItems getCart(1) Test', 'Make sure that the value of using getCart(1) returns the data we expect from the database.');
-//      $this->unit->run(current($this->item->all(100)), array('OrderNum' => '1', 'cid' => '1', 'stockID' => '27'), 'Ordered Item all() test', 'Make sure that the value of using all() returns the data we expect from the database.');
-//      $this->unit->run($this->item->create(array(array('OrderNum' => '1', 'cid' => '1', 'stockID' => '5'), array('OrderNum' => '1', 'cid' => '1', 'stockID' => '6'))), true, 'Ordered Item create() General Test', 'Make sure that create() returns true and that it works for batches.');
+      $this->unit->run($this->item->getCart(1), array(array('uid' => 1, 'stockID' => 1, 'dateAdded' => $date1,'didPurchase' => 0)), 'CartItems getCart(1) Test', 'Make sure that the value of using getCart(1) returns the data we expect from the database.');
+      $this->unit->run(current($this->item->getAllCarts(100)), array('uid' => 1, 'stockID' => 1, 'dateAdded' => $date1,'didPurchase' => 0), 'Ordered Item all() test', 'Make sure that the value of using all() returns the data we expect from the database.');
+      $this->unit->run($this->item->addItemToCart(1,1), true, 'Ordered Item create() General Test', 'Make sure that create() returns true and that it works for batches.');
       
       //Pass a report to the view
       $data['test_result'] = $this->unit->report();
       
       $this->load->view('test_runner', $data);
-  }  
+  } 
   
 }
 
