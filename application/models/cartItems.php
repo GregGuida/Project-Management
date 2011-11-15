@@ -22,10 +22,11 @@ class CartItems extends CI_Model
 	function addItemToCart($pid,$cid)
 	{
 		//Find out if there are any StockItems available.
-		$this->db->select('stockID');
-		$this->db->get('StockItems');
-		$this->db->where('Status !=', 'Sold');
-		$query = $this->db->where('pid', $pid);
+		$query = $this->db->select('stockID')
+				          ->from('StockItems')
+				          ->where('Status !=', 'Sold')
+						  ->where('pid', $pid)
+						  ->get();
 		//If so, store the first one we find
 		if($query->num_rows() > 0)
 			$item = $query->row_array();
@@ -46,10 +47,10 @@ class CartItems extends CI_Model
 	//Gets items in a customer's cart that have not been purchased yet as an array
 	function getCart($customer)
 	{
-		$this->db->get('CartItems');
-		$this->db->where('cid',$customer);
-		$query = $this->db->where('didPurchase',false);
-		
+		$query = $this->db->select()->from('CartItems')
+		              ->where('cid',$customer)
+		              ->where('didPurchase',0)
+			          ->get();
 		if($query->num_rows() == 0)
 			return false;
 		
