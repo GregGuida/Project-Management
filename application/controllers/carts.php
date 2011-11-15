@@ -1,19 +1,21 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class WishLists extends CI_Controller {
+class Carts extends CI_Controller {
+
   public $layout = 'main';
 
+  public function __construct()
+  {
+    parent::__construct();
+  } 
+
   public function index() {
-    $this->load->view('wishlists/index');
-  }
-  
-  public function show() {
-    $this->load->view('wishlists/show');
+    $this->load->view('cart/show');
   }
   
   public function test_run() {
       $this->load->library('unit_test');
-      $this->load->model('wishLists', 'item');
+      $this->load->model('cartItems', 'item');
       
       $date1 = date( 'Y-m-d H:i:s',mktime(0,17,35,11,15,2011));
       //Run some tests against the Fixture Data.

@@ -83,6 +83,7 @@ class CartItems extends CI_Model
 	//Delete an item from a cart
 	function deleteCartItem($uid,$stockID,$date)
 	{
+		$result = false;
 		$data = array(
 			'uid' 		=> $uid,
 			'stockID' 	=> $stockID,
@@ -90,19 +91,26 @@ class CartItems extends CI_Model
 		);
 		
 		$this->db->delete('CartItems',$data);
-		return true;
+		if(!$this->db->_error_message()) {
+          $result = true;
+        }		
+		return $result;
 	}
 	
 	//update CartItems <uid> to change didPurchase to true
 	function purchased($cart,$stockID,$date)
 	{
+		$result = false;
 		$where = array(
 			'uid' 		=> $uid,
 			'stockID' 	=> $stockID,
 			'dateAdded' => $date
 		);
 		$this->db->update('CartItems',array('didPurchase'=>true),$where);
-		return true;
+		if(!$this->db->_error_message()) {
+          $result = true;
+        }		
+		return $result;
 	}
 	
 }

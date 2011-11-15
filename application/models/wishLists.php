@@ -49,45 +49,61 @@ class WishLists extends CI_Model
 	//Add a single item to a given wishlist
 	function addItemToWishList($pid,$wishID)
 	{
+		$result = false;
 		$data = array(
 			'wishID' => $wishID,
 			'pid' 	 => $pid
 		);
 		
 		$this->db->insert('WishListItems', $data);
-		return true;
+		if(!$this->db->_error_message()) {
+          $result = true;
+        }		
+		return $result;
 	}
 
 	//Remove a single item from a given wishlist
 	function removeItemFromWishList($pid,$wishID)
 	{
+		$result = false;
 		$data = array(
 			'wishID' => $wishID,
 			'pid' 	 => $pid
 		);
 		
 		$this->db->delete('WishListItems', $data);
-		return true;
+		if(!$this->db->_error_message()) {
+          $result = true;
+        }		
+		return $result;
 	}
 
 	//Create a new wishlist. Name not required.
 	function newWishList($cid,$name='')
 	{
+		$result = false;
 		$data = array(
 			'cid'  => $cid,
 			'name' => $name
 		);
 		
 		$this->db->insert('WishLists', $data);
-		return true;
+		if(!$this->db->_error_message()) {
+          $result = true;
+        }		
+		return $result;
 	}
 	
 	//Delete a given wishlist
 	function deleteWishList($wishID)
 	{
+		$result = false;
 		$this->db->delete('WishListItems', array('wishID' => $wishID));
 		$this->db->delete('WishLists', array('wishID' => $wishID));
-		return true;
+		if(!$this->db->_error_message()) {
+          $result = true;
+        }		
+		return $result;
 	}
 	
 }
