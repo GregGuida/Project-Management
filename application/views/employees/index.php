@@ -13,13 +13,13 @@
     </tr>
   </thead>
   <tbody>
-    <?php for($i = 0; $i < 50; $i++) { ?>
+    <?php foreach($employees as $key => $employee) { ?>
     <tr>
-      <td>#<?php echo $i ?></td>
-      <td>E. First Name</td>
-      <td>E. Last Name</td>
-      <td>lastname@tfm.com</td>
-      <td><a href="/employees/edit/1">Edit</a> | <a href="/employees/delete/1">Delete</a></td>
+      <td>#<?php echo $employee['uid'] ?></td>
+      <td><?php echo $employee['FirstName'] ?></td>
+      <td><?php echo $employee['LastName'] ?></td>
+      <td><?php echo $employee['Email'] ?></td>
+      <td><a href="/employees/edit/<?php echo $employee['uid'] ?>">Edit</a> | <a href="/employees/delete/<?php echo $employee['uid'] ?>">Delete</a></td>
     </tr>
     <?php } ?>
   </tbody>

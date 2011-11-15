@@ -19,7 +19,7 @@ class Sessions extends CI_Controller {
 
     $user = $this->Users->authenticate($email, $password);
 
-    if($user) {
+    if($user && $user['Active']) {
       set_current_user($user);
       set_message('Successfully logged in', 'success');
       header('Location: /'); // redirecting home so that the customer can start purchasing things
@@ -39,7 +39,7 @@ class Sessions extends CI_Controller {
 
     $user = $this->Users->authenticate($username, $password);
 
-    if($user && $user['Employee']) {
+    if($user && $user['Employee'] && $user['Active']) {
       set_current_user($user);
       set_message('Successfully logged in', 'success');
       header('Location: /employees/dashboard'); // redirecting to admin panel so employee can see updates
