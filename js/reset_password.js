@@ -1,9 +1,8 @@
 $(document).ready(function() {
   function make_password() {
-    var tmp, pass = '';
-    for(var i = 0; i < 10; i++) {
-      tmp = (parseInt(Math.random() * 1000) % 94) + 33;
-      pass += String.fromCharCode(tmp);
+    var i, possibilities = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890', posLen = possibilities.length, pass = '';
+    for(i = 0; i < 8; i++) {
+      pass += possibilities[Math.floor(Math.random() * posLen)];
     }
     return pass;
   }

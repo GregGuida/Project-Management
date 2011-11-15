@@ -16,7 +16,7 @@
       <h4>Actions</h4>
       <p><a href="/customers/reset_password">Reset Password</a></p>
       <p><a href="/customers/contact">Contact this User</a></p>
-      <p><a href="/customers/revoke">Revoke Account</a></p>
+      <p><a href="/customers/access">Account Access</a></p>
     </div>
   </div>
 </div>
