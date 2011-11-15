@@ -3,7 +3,7 @@
 class Customers extends CI_Controller {
   public $layout = 'main';
   public $auth = array('show');
-  public $admin = array('reset_password', 'revoke', 'contact', 'index', 'delete');
+  public $admin = array('reset_password', 'reset_password_handle', 'access', 'contact', 'send_email', 'index', 'delete');
 
   public function __construct() {
     parent::__construct();
@@ -21,24 +21,86 @@ class Customers extends CI_Controller {
     $this->load->view('customers/forgot_password');
   }
 
+  // POST - 302 redirect
+  // where a user goes after submitting their password for a reset
   function send_email_reminder() {
-    // TODO: send an email to the user
+    $this->load->model('Users');
+    $email = $this->input->post('email');
+    $users = $this->Users->find_by(array('Email' => $email));
+    if (count($users)) {
+      $user = $users[0];
+      $new_salt = md5(time() . $user['uid']);
+      $this->Users->update($user['uid'], array('Salt' => $new_salt));
+      $subject = 'TFM password reset';
+      $message = "Hi $user[FirstName],<br /><br />You're receiving this email because you've requested a password reset. Please follow the link below to reset your password:<br /><br /> <a href=\"" . $this->config->item('BASE_URL') . "customers/forgot_password_response/$new_salt\">Reset</a>";
+      send_mail($user['Email'], $subject, $message);
+    }
+
     header('Location: /customers/login');
   }
 
+
+  // GET - 200
+  // where the reset link in the forgot password email brings you
+  function forgot_password_response($salt) {
+    $this->load->model('Users');
+    $users = $this->Users->find_by(array('Salt' => $salt));
+    if (count($users)) {
+      
+      $data['salt'] = $salt;
+      $data['js'] = 'reset_password.js';
+      $this->load->view('customers/forgot_password_response', $data);
+    } else {
+      header('Location: /customers/login');
+    }
+  }
+
+  // POST - 302 redirect
+  function forgot_password_final($salt) {
+    $this->load->model('Users');
+    $users = $this->Users->find_by(array('Salt' => $salt));
+    $password = $this->input->post('password');
+    $confirm = $this->input->post('confirm');
+    if (count($users) && $password == $confirm && strlen($password) > 0) {
+      $user = $users[0];
+      $this->Users->update($user['uid'], array('Password' => md5($password)));
+    }
+    header('Location: /customers/login');
+  }
+
+
   // GET - 200
   // this is for an admin to manually set the password of another user
-  // TODO: needs handler
   // Admin
-  function reset_password() {
+  function reset_password($uid) {
     $this->layout = 'admin';
-    $data = array('js' => 'reset_password.js');
+    $this->load->model('Users');
+    $user = $this->Users->find($uid);
+    $data = array('user' => $user, 'js' => 'reset_password.js');
     $this->load->view('customers/reset_password', $data);
   }
 
+  // POST - 302 redirect
+  // Admin
+  function reset_password_handle($uid) {
+    $this->load->model('Users');
+    $user = $this->Users->find($uid);
+    $password = $this->input->post('password');
+    $confirm = $this->input->post('confirm');
+    if ($password == $confirm && strlen($password) > 0) {
+      $this->Users->update($user['uid'], array('Password' => md5($password)));
+      $subject = 'TFM password reset';
+      $message = "Hi $user[FirstName],<br /><br />You're receiving this email because you're password has been reset.<br /><br />Your new password: $password<br /><br />Thank you";
+      send_mail($user['Email'], $subject, $message);
+      header('Location: /customers/');
+    } else {
+      header('Location: /customers/reset_password/' . $uid);
+    }
+  }
+
+
   // GET - 200
   // Admin
-  // TODO
   function index() {
     $this->layout = 'admin';
     $this->load->model('Users');
@@ -49,35 +111,54 @@ class Customers extends CI_Controller {
   
   // GET - 200
   // Admin
-  // TODO: needs handler
-  function contact($uid) {
+  function contact($uid = 0) {
     $this->layout = 'admin';
     $this->load->model('Users');
     $user = $this->Users->find($uid);
-    $data = array('user' => $user, 'js');
+    $data = array('user' => $user);
     $this->load->view('customers/contact', $data);
   }
+
   
+  // POST - 302 redirect
+  // Admin
+  function send_email($uid) {
+    $this->load->model('Users');
+    $subject = $this->input->post('subject');
+    $message = $this->input->post('message');
+    $user = $this->Users->find($uid);
+    send_mail($user['Email'], $subject, $message);
+    header('Location: /customers/');
+  }
+
+
   // GET - 200
   // Admin
-  // TODO: needs handler
-  function revoke() {
+  function access($uid) {
     $this->layout = 'admin';
-    $this->load->view('customers/revoke');
+    $this->load->model('Users');
+    $data = array();
+    $data['user'] = $this->Users->find($uid);
+    $this->load->view('customers/access', $data);
+  }
+
+  // POST - 302 redirect
+  // admin
+  function access_handler($uid) {
+    $this->layout = 'admin';
+    $this->load->model('Users');
+
+    $active = $this->input->post('active');
+    $this->Users->update($uid, array('Active' => $active));
+    header('Location: /customers/');
   }
 
   // GET - 200
   // account page
   // Auth
   function show($uid) {
-    $customerdetails = array();
-
-    // TODO: the user data should be in the session already since they are logged in
-    // query is unnecessary
-    if($query = $this->Users->getCustomerInfo($uid)) {
-      $customerdetails['records'] = $query;
-    }
-    $this->load->view('customers/account', $customerdetails);
+    // TODO: load 
+    $this->load->view('customers/account');
   }
 
   // GET - 200
@@ -116,9 +197,9 @@ class Customers extends CI_Controller {
   // GET - 200
   // Admin
   function delete($uid) {
-    // delete User
-    $this->Users->deleteUser($uid);
-    header('Location: /users/');
+    $this->load->model('Users');
+    $this->Users->destroy($uid);
+    header('Location: /Customers/');
   }
 }
 

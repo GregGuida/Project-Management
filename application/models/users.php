@@ -4,10 +4,13 @@
  *    `uid` INT NOT NULL AUTO_INCREMENT,
  *     `LastName` VARCHAR( 50 ) NOT NULL ,
  *    `FirstName` VARCHAR( 50 ) NOT NULL ,
- *    `Password` VARCHAR( 25 ) NOT NULL ,
+ *    `Password` VARCHAR( 32 ) NOT NULL ,
  *     `Email` VARCHAR( 75 ) NOT NULL ,
  *     `DOB` DATE,
- *     `Employee` TINYINT( 1 ) NOT NULL DEFAULT false 
+ *     `Employee` TINYINT( 1 ) NOT NULL DEFAULT false ,
+ *     `createdAt` Timestamp NOT NULL,
+ *     `Active` TINYINT( 1 ) NOT NULL DEFAULT true,
+ *     `Salt` VARCHAR( 32 ),
  *   PRIMARY KEY (  `uid` )
  * ) ENGINE = INNODB;
  *
@@ -31,6 +34,29 @@
     return $users;
   }
 
+  // accepts an optional limit
+  // and returns an array of user row arrays where user's active field is 1
+  function active($limit = 0) {
+    $users = array();
+    $cursor = $this->db->get_where('Users', array('Active' => 1),  $limit);
+
+    foreach($cursor->result_array() as $user) {
+      $users[] = $user;
+    }
+    return $users;
+  }
+
+  // accepts an optional limit
+  // and returns an array of user row arrays where user's employee field is 1
+  function employees($limit = 0) {
+    $users = array();
+    $cursor = $this->db->get_where('Users', array('Employee' => 1),  $limit);
+
+    foreach($cursor->result_array() as $user) {
+      $users[] = $user;
+    }
+    return $users;
+  }
 
   // accepts a user id
   // returns a user row array if a valid user is found with the id provided
@@ -48,9 +74,24 @@
 
     return $result; 
   }
+
+
+  // accepts an associative array of parameters
+  // and returns an array of users
+  function find_by($data) {
+    $users = array();
+
+    $cursor = $this->db->get_where('Users', $data);
+
+    foreach($cursor->result_array() as $user) {
+      $users[] = $user;
+    }
+
+    return $users;
+  }
   
   
-  // acepts lastname, firstname, email, password, employee
+  // accepts lastname, firstname, email, password, employee
   // inserts a new user record into the database
   // returns the new user id if successful
   // or false otherwise
@@ -73,6 +114,23 @@
 
     return $result;
   }
+
+
+  // accepts a user id and data array
+  // updates the matching rows in the database and returns the id if successful
+  // or false otherwise
+  function update($id, $data) {
+    $result = false;
+
+    $this->db->update('Users', $data, array('uid' => $id));
+
+    if (!$this->db->_error_message()) {
+      $result = $id;
+    }
+
+    return $result;
+  }
+
 
   // accepts email, password
   // returns a user row array if a valid user is found with the email and password provided
@@ -98,6 +156,19 @@
   function destroy($id) {
     $this->db->delete('Users', array('uid' => $id));
     return !!$this->db->_error_message();
+  }
+
+  // accepts a length parameter which determines how many random characters to return
+  function randomPassword($length = 8) {
+    $password = '';
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+    $numCharacters = strlen($characters);
+
+    for ($i = 0; $i < $length; $i++) {
+      $password .= $characters[mt_rand(0, $numCharacters)];
+    }
+
+    return $password;
   }
  }
  
