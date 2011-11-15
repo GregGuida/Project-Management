@@ -1,7 +1,7 @@
 <?php
 
 /* CREATE TABLE `CodeIgniter2`.`CartItems` (
- *	`cid` INT NOT NULL REFERENCES `CodeIgniter2`.`Customers` (`cid`),
+ *	`uid` INT NOT NULL REFERENCES `CodeIgniter2`.`Customers` (`cid`),
  *	`stockID` INT NOT NULL REFERENCES `CodeIgniter2`.`StockItems` (`stockID`),
  *	`dateAdded` TIMESTAMP NOT NULL ,
  *	`didPurchase` BOOL NOT NULL ,
@@ -19,7 +19,7 @@ class CartItems extends CI_Model
 	//This will allow you to add a StockItem to a Customer's cart,
 	//as long as we have that Product in stock.
 	//NOTE: Add via PID, NOT StockID!
-	function addItemToCart($pid,$cid)
+	function addItemToCart($pid,$uid)
 	{
 		//Find out if there are any StockItems available.
 		$query = $this->db->select('stockID')
@@ -34,9 +34,9 @@ class CartItems extends CI_Model
 			return "No Items in Stock";
 		
 		$data = array(
-			'cid' 	  => $cid,
-			'stockID' => $item['stockID']
-			'didPurchase' => false;
+			'uid' 	  => $uid,
+			'stockID' => $item['stockID'],
+			'didPurchase' => 0
 		);
 		
 		$this->db->insert('CartItems',$data);
@@ -48,7 +48,7 @@ class CartItems extends CI_Model
 	function getCart($customer)
 	{
 		$query = $this->db->select()->from('CartItems')
-		              ->where('cid',$customer)
+		              ->where('uid',$customer)
 		              ->where('didPurchase',0)
 			          ->get();
 		if($query->num_rows() == 0)
@@ -77,10 +77,10 @@ class CartItems extends CI_Model
 	}
 	
 	//Delete an item from a cart
-	function deleteCartItem($cid,$stockID,$date)
+	function deleteCartItem($uid,$stockID,$date)
 	{
 		$data = array(
-			'cid' 		=> $cid,
+			'uid' 		=> $uid,
 			'stockID' 	=> $stockID,
 			'dateAdded' => $date
 		);
@@ -89,11 +89,11 @@ class CartItems extends CI_Model
 		return true;
 	}
 	
-	//update CartItems <cid> to change didPurchase to true
+	//update CartItems <uid> to change didPurchase to true
 	function purchased($cart,$stockID,$date)
 	{
 		$where = array(
-			'cid' 		=> $cid,
+			'uid' 		=> $uid,
 			'stockID' 	=> $stockID,
 			'dateAdded' => $date
 		);
