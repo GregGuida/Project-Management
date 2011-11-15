@@ -25,4 +25,3 @@ class Ordered_Items extends CI_Controller {
       $this->load->view('test_runner', $data);
   }
 }
-
