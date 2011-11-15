@@ -36,6 +36,7 @@ class Employees extends CI_Controller {
   function delete($id) {
     $this->load->model('Users');
     $this->Users->destroy($id);
+    set_message('Employee deleted successfully', 'success');
     header('Location: /employees');
   }
   
@@ -50,8 +51,10 @@ class Employees extends CI_Controller {
     $this->load->model('Users');
     $user_id = $this->Users->update($id, $data);
     if ($user_id) {
+      set_message('Employee updated successfully', 'success');
       header('Location: /employees/');
     } else {
+      set_message('Employee could not be updated.', 'error');
       header('Location: /employees/edit/' . $id);
     }
   }
@@ -78,8 +81,10 @@ class Employees extends CI_Controller {
     }
 
     if ($user_id) {
+      set_message('Employee created successfully', 'success');
       header('Location: /employees/');
     } else {
+      set_message('Employee could not be created.', 'error');
       header('Location: /employees/add');
     }
   }

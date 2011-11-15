@@ -36,6 +36,7 @@ class Customers extends CI_Controller {
       send_mail($user['Email'], $subject, $message);
     }
 
+    set_message('Password reset email sent. Please check your inbox', 'success');
     header('Location: /customers/login');
   }
 
@@ -46,7 +47,6 @@ class Customers extends CI_Controller {
     $this->load->model('Users');
     $users = $this->Users->find_by(array('Salt' => $salt));
     if (count($users)) {
-      
       $data['salt'] = $salt;
       $data['js'] = 'reset_password.js';
       $this->load->view('customers/forgot_password_response', $data);
@@ -65,6 +65,7 @@ class Customers extends CI_Controller {
       $user = $users[0];
       $this->Users->update($user['uid'], array('Password' => md5($password)));
     }
+    set_message('Password reset successfully', 'success');
     header('Location: /customers/login');
   }
 
@@ -92,8 +93,10 @@ class Customers extends CI_Controller {
       $subject = 'TFM password reset';
       $message = "Hi $user[FirstName],<br /><br />You're receiving this email because you're password has been reset.<br /><br />Your new password: $password<br /><br />Thank you";
       send_mail($user['Email'], $subject, $message);
+      set_message('Customer password reset successful', 'success');
       header('Location: /customers/');
     } else {
+      set_message('Error resetting the customer\'s password', 'error');
       header('Location: /customers/reset_password/' . $uid);
     }
   }
@@ -128,6 +131,7 @@ class Customers extends CI_Controller {
     $message = $this->input->post('message');
     $user = $this->Users->find($uid);
     send_mail($user['Email'], $subject, $message);
+    set_message('Message successfully sent to customer', 'success');
     header('Location: /customers/');
   }
 
@@ -150,6 +154,7 @@ class Customers extends CI_Controller {
 
     $active = $this->input->post('active');
     $this->Users->update($uid, array('Active' => $active));
+    set_message('Successfully ' . ($active ? 'enabled' : 'disabled') . ' customer\'s account', 'success');
     header('Location: /customers/');
   }
 
@@ -184,12 +189,15 @@ class Customers extends CI_Controller {
       if ($user_id) {
         $user = $this->Users->authenticate($email, $password);
         set_current_user($user);
+        set_message('Thanks for signing up! Welcome to TFM Commerce', 'success');
         header('Location: /');
       } else {
+        set_message('Error signing up. Please try again', 'error');
         header('Location: /customers/signup');
       }
 
     } else {
+      set_message('Oops, your password is invalid. Passwords must be greater than 0 characters and must match confirmation', 'error');
       header('Location: /customers/signup');
     }
   }
@@ -199,6 +207,7 @@ class Customers extends CI_Controller {
   function delete($uid) {
     $this->load->model('Users');
     $this->Users->destroy($uid);
+    set_message('Successfully deleted customer', 'error');
     header('Location: /Customers/');
   }
 }
