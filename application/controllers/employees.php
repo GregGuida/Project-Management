@@ -6,75 +6,87 @@ class Employees extends CI_Controller {
   public $admin = array('index', 'add', 'edit', 'delete', 'update', 'create');
 
   // GET - 200
-  public function index() {
+  function index() {
     $this->load->model('Users');
-    $this->load->model('Employees');
     $data = array();
-    $data['employees'] = $this->Employees->getAllEmployees();
+    $data['employees'] = $this->Users->employees(50);
     $data['js'] = '/libs/jquery.tablesorter.min.js';
     $this->load->view('employees/index', $data);
   }
 
   // GET - 200
-  public function add($id = 0) {
+  function add($id = 0) {
     $this->load->view('employees/new');
   }
 
   // GET - 200
-  public function edit($id = 0) {
-    $this->load->view('employees/edit');
+  function edit($id = 0) {
+    $this->load->model('Users');
+    $data = array();
+    $data['employee'] = $this->Users->find($id);
+    $this->load->view('employees/edit', $data);
   }
 
   // GET - 200
-  public function login() {
+  function login() {
     $this->load->view('employees/login');
   }
 
   // POST - 302 redirect
-  public function delete($eid) {
-    $this->Users->deleteEmployee($eid);
-    redirect('/employees');
+  function delete($id) {
+    $this->load->model('Users');
+    $this->Users->destroy($id);
+    header('Location: /employees');
   }
   
   // POST - 302 redirect
-  public function update() {
-    $empdetails = array(
-      'LastName' => $this->input->post('lastName'),
+  function update($id) {
+    $data = array(
       'FirstName' => $this->input->post('firstname'),
+      'LastName' => $this->input->post('lastname'),
       'Email' => $this->input->post('email'),
-      'Password' => $this->input->post('password'),
+      'DOB' => $this->input->post('dob'),
     );
-    $this->Products->updateemployee($empdetais);
-    redirect('/employees');
+    $this->load->model('Users');
+    $user_id = $this->Users->update($id, $data);
+    if ($user_id) {
+      header('Location: /employees/');
+    } else {
+      header('Location: /employees/edit/' . $id);
+    }
   }
 
   // POST - 302 redirect
   function create() {
- 
     $this->load->model('Users');
-    $confirm = $this->input->post('confirm');
-    $lastname = $this->input->post('lastname');
     $firstname = $this->input->post('firstname');
+    $lastname = $this->input->post('lastname');
     $email = $this->input->post('email');
-    $password = $this->input->post('password');
+    $dob = $this->input->post('dob');
  
-    // make sure the user is 
-    if ($confirm == $password && strlen($password) > 0) {
+    $exists = $this->Users->find_by(array('Email' => $email));
 
-      // TODO: check if user already exists before adding, then you'd just update employee field
-      $user_id = $this->Users->create($lastname, $firstname, $email, $password, 1);
-      if ($user_id) {
-        header('Location: /employees/dashboard');
-      } else {
-        header('Location: /employees/');
-      }
- 
+    // if the user already exists, just update them to an employee
+    if (count($exists) > 0) {
+
+      $user_id = $this->Users->update($exists[0]['uid'], array('Employee' => 1));
+
+    } else {
+      // otherwise, create a new user as an employee
+      $newPassword = $this->Users->randomPassword();
+      $user_id = $this->Users->create($lastname, $firstname, $email, $newPassword, 1);
+    }
+
+    if ($user_id) {
+      header('Location: /employees/');
     } else {
       header('Location: /employees/add');
     }
   }
 
-  public function dashboard() {
+  // GET
+  // Admin
+  function dashboard() {
     $this->layout = 'admin';
     $data = array();
     $data['js'] =array('libs/highcharts.js', 'admin_dashboard.js');
