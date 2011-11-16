@@ -7,8 +7,19 @@ class Orders extends CI_Controller {
     $this->load->view('welcome_message');
   }
   
-  public function show() {
-      $this->load->view('orders/show');
+  public function show($order_num = 0) {
+      $data = array();
+      $this->load->model('Order', 'order');
+      $order = $this->order->find($order_num);
+      
+      if($order && $order['uid'] === get_current_user_stuff('uid')) {
+          $products = $this->order->get_products_in_order($order_num);
+          $data['order'] = $order;
+          $data['products'] = $products;
+          $this->load->view('orders/show', $data);
+      }
+      
+      $this->load->view('orders/show', $data);
   }
 
   public function checkout() {

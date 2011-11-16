@@ -174,7 +174,7 @@ class Order extends CI_Model {
             $success = true;
         }
 	    
-	    return $success;
+	    return $success ? $order_num : false;
 	}
 	
 	/*
