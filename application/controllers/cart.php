@@ -14,14 +14,24 @@ class Cart extends CI_Controller {
     $this->load->helper('session');
     //Get the logged in user's ID
     $user = current_user();
-    $uid = $user['uid'];
-
-	//Things for customer's cart
-    $cart = $this->cartItems->getCart($uid);
-    $data['size'] = count($cart);
-    $data['cart'] = $this->cartItems->getDisplayArray($uid);
+    //Only populate a cart if there is someone signed in.
+    if($user)
+    {
+      $uid = $user['uid'];
+	  //Things for customer's cart
+      $cart = $this->cartItems->getCart($uid);
+      $data['size'] = count($cart);
+      $data['cart'] = $this->cartItems->getDisplayArray($uid);
     
-    $this->load->view('cart/show', $data);
+      $this->load->view('cart/show', $data);
+    }
+    else
+      $this->load->view('cart/invalid');
+  }
+  
+  function invalid()
+  {
+          $this->load->view('cart/invalid', array());
   }
   
   public function test_run() {

@@ -22,7 +22,7 @@
                 </p>
         	<p>Subtotal: <?=$sum?></p>
 		<p>Shipping: $40.00</p>
-		<p><strong>Total: $1280.00</strong></p>
+		<p><strong>Total: <?=$sum+40?></strong></p>
             </div>
         </div>
 	<input type="submit" class="btn primary clearfix checkout-button" value="CHECKOUT" />
