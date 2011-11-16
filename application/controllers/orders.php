@@ -34,6 +34,7 @@ class Orders extends CI_Controller {
     $this->load->model('Order', 'order');
 
     //Run some tests against the Fixture Data.
+    $this->unit->run(current($this->order->get_products_in_order(1)), array("pid"=>"10", "name"=>"Carved Black  Bead and Yellow Agate Ribbon Necklace", "priceUSD"=>"25", "location"=>"http://img1.etsystatic.com/il_fullxfull.279457005.jpg"), 'Orders get_products_in_order() Return Test', 'Checks to makes sure what is returned is what is the expected result.');
     $this->unit->run($this->order->convert_cart_to_order(1, 1), true, 'Orders convert_cart_to_order() Return Type Test', 'Make sure that convert_cart_to_order() doesn\'t fail.');
     
     //Pass a report to the view

@@ -13,11 +13,12 @@ class Ordered_Items extends CI_Controller {
       $this->load->library('unit_test');
       $this->load->model('Ordered_Item', 'item');
       
-      //Run some tests against the Fixture Data.
+      //Run some tests against the Fixture Data. Results not verified against other data.
       $this->unit->run($this->item->find(1), 'is_array', 'Ordered Item find() General Test', 'Make sure that find() returns an array.');
-      $this->unit->run($this->item->find(1), array('OrderNum' => '1', 'cid' => '1', 'stockID' => '27'), 'Ordered Item find(1) Test', 'Make sure that the value of using find(1) returns the data we expect from the database.');
-      $this->unit->run(current($this->item->all(100)), array('OrderNum' => '1', 'cid' => '1', 'stockID' => '27'), 'Ordered Item all() test', 'Make sure that the value of using all() returns the data we expect from the database.');
-      $this->unit->run($this->item->create(array(array('OrderNum' => '1', 'cid' => '1', 'stockID' => '5'), array('OrderNum' => '1', 'cid' => '1', 'stockID' => '6'))), true, 'Ordered Item create() General Test', 'Make sure that create() returns true and that it works for batches.');
+      $this->unit->run($this->item->find(1), array('OrderNum' => '1', 'uid' => '1', 'stockID' => '27'), 'Ordered Item find(1) Test', 'Make sure that the value of using find(1) returns the data we expect from the database.');
+      $this->unit->run(current($this->item->find_by(array('stockID' => '27'))), array('OrderNum' => '1', 'uid' => '1', 'stockID' => '27'), 'Ordered Item find_by() Test', 'Makes sure that find_by returns the correct row from the database');
+      $this->unit->run(current($this->item->all(100)), array('OrderNum' => '1', 'uid' => '1', 'stockID' => '27'), 'Ordered Item all() test', 'Make sure that the value of using all() returns the data we expect from the database.');
+      //$this->unit->run($this->item->create(array(array('OrderNum' => '1', 'uid' => '1', 'stockID' => '5'), array('OrderNum' => '1', 'uid' => '1', 'stockID' => '6'))), true, 'Ordered Item create() General Test', 'Make sure that create() returns true and that it works for batches.');
       
       //Pass a report to the view
       $data['test_result'] = $this->unit->report();
