@@ -4,6 +4,12 @@ class WishLists extends CI_Controller {
   public $layout = 'main';
 
   public function index() {
+    $this->load->model('wishList');
+    $this->load->helper('session');
+    //Get the logged in user's ID
+    $user = current_user();
+    $uid = $user['uid'];  
+  
     $this->load->view('wishlists/index');
   }
   
