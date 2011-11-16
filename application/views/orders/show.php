@@ -28,7 +28,7 @@
           <p><a href="/customers/show/<?php echo get_current_user_stuff('uid') ?>">Find all this and more on the My Account page</a></p>
         </section>
         <?php } else { ?>
-            <section class="center">
+            <section class="alert-message error">
                 <p>Uh oh, looks like either this order doesn't exist or you don't have the ability to view it.</p>
             </section>
         <?php } ?>
