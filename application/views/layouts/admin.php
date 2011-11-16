@@ -83,6 +83,12 @@
     </header>
 
     <div id="main" class="container">
+      <?php $response = get_message(); ?>
+      <?php if ($response) { ?>
+        <p class="alert-message <?php echo $response['status'] ?>">
+          <?php echo $response['message']; ?>
+        </p>
+      <?php } ?>
       {yield}
     </div>
 

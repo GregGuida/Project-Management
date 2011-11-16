@@ -21,8 +21,10 @@ class Sessions extends CI_Controller {
 
     if($user && $user['Active']) {
       set_current_user($user);
+      set_message('Successfully logged in', 'success');
       header('Location: /'); // redirecting home so that the customer can start purchasing things
     } else {
+      set_message('Error logging in. Customer not found with given credentials', 'error');
       header('Location: /customers/login'); // failed auth return to the login form
     }
   }
@@ -39,8 +41,10 @@ class Sessions extends CI_Controller {
 
     if($user && $user['Employee'] && $user['Active']) {
       set_current_user($user);
+      set_message('Successfully logged in', 'success');
       header('Location: /employees/dashboard'); // redirecting to admin panel so employee can see updates
     } else {
+      set_message('Error logging in. Employee not found with given credentials', 'error');
       header('Location: /employees/login'); // failed auth return to the login form
     }
   }
@@ -48,6 +52,7 @@ class Sessions extends CI_Controller {
   // GET - 302 redirect
   function logout() {
     set_current_user(''); // destroy the user's session
+    set_message('Successfully logged out', 'success');
     header('Location: /'); // redirect to the homepage
   }
 }

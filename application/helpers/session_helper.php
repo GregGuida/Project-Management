@@ -82,4 +82,29 @@ if (!function_exists('is_employee')) {
 
 }
 
+
+// accepts a message string
+// and a status in the set (success, error, info) to the session,
+// where it can then be displayed as a responsive message
+if (!function_exists('set_message')) {
+
+    function set_message($message, $status = 'info') {
+
+        $CI = & get_instance();
+        $CI->session->set_flashdata('response', array('status' => $status, 'message' => $message));
+    }
+
+}
+
+// where it can then be displayed as a responsive message
+if (!function_exists('get_message')) {
+
+    function get_message() {
+
+        $CI = & get_instance();
+        return $CI->session->flashdata('response');
+    }
+
+}
+
 ?>
