@@ -113,6 +113,32 @@ class CartItems extends CI_Model
 		return $result;
 	}
 	
+// ---------- Convienence functions -----------
+
+  //Runs query in order to get all info to be displayed on the Cart View
+  function getDisplayArray($uid)
+  {
+    /* 
+     * SELECT p.name, p.description, p.PriceUSD, i.location
+     * FROM Products as p, Images as i, Users as u
+     * JOIN  StockItems as s ON ON s.pid = p.pid
+       JOIN  CartItems as c ON c.stockID = s.stockID 
+       WHERE i.pid = p.pid
+     * AND   u.uid = $uid
+     */
+     
+     $result = array();
+     $clause = array(
+			   'CartItems.stockID = StockItems.stockID',
+			   'StockItems.pid = Products.pid',
+			   'Users.uid'		   => $uid
+     );
+     
+     $query = $this->db->select("Products.description, Products.name, Products.priceUSD, Images.location")->from("Products, Images, Users")->join("StockItems", "StockItems.pid = Products.pid")->join("CartItems", "CartItems.stockId = StockItems.stockId")->where("Products.pid = Images.pid")->where("Users.uid", $uid)->get();
+     $result = $query->result_array();
+     return $result;
+  }
+	
 }
 
 ?>
