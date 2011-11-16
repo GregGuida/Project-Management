@@ -151,6 +151,8 @@ class CartItems extends CI_Model
   {
      $ids = array();
      $result = array();
+     $temp = array();
+     
      foreach($array as $row)
      {
         $pid = $row['pid'];
@@ -159,18 +161,26 @@ class CartItems extends CI_Model
         $count = $a[$pid];
         $row['quantity'] = $count;
         if($count >= 2)
-          array_push($result,$row);
+        foreach($array as $row2)
+        {
+           if($row2['pid'] == $pid)
+           {
+              $row['dup'] = 'true';
+           }
+        }
+       array_push($temp,$row);
      }
      
-     foreach($array as $row)
+     foreach($temp as $row)
      {
           $pid = $row['pid'];
           $a = array_count_values($ids);
           $count = $a[$pid];
           $row['quantity'] = $count;
-          if($count < 2)
+          if($row['dup'] != 'true')
             array_push($result,$row);
      }
+
      return $result;
   }
   
