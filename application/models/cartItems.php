@@ -1,11 +1,11 @@
 <?php
 
 /* CREATE TABLE `CodeIgniter2`.`CartItems` (
- *	`uid` INT NOT NULL REFERENCES `CodeIgniter2`.`Customers` (`cid`),
+ *	`uid` INT NOT NULL REFERENCES `CodeIgniter2`.`Users` (`uid`),
  *	`stockID` INT NOT NULL REFERENCES `CodeIgniter2`.`StockItems` (`stockID`),
  *	`dateAdded` TIMESTAMP NOT NULL ,
  *	`didPurchase` BOOL NOT NULL ,
- *	PRIMARY KEY ( `cid` , `stockID` , `dateAdded` )
+ *	PRIMARY KEY ( `uid` , `stockID` , `dateAdded` )
  * ) ENGINE = INNODB;
 */
 
@@ -119,7 +119,7 @@ class CartItems extends CI_Model
   function getDisplayArray($uid)
   {
     /* 
-     * SELECT p.name, p.description, p.PriceUSD, i.location
+     * SELECT p.name, p.description, p.PriceUSD, p.pid, i.location
      * FROM Products as p, Images as i, Users as u
      * JOIN  StockItems as s ON ON s.pid = p.pid
        JOIN  CartItems as c ON c.stockID = s.stockID 
@@ -134,11 +134,46 @@ class CartItems extends CI_Model
 			   'Users.uid'		   => $uid
      );
      
-     $query = $this->db->select("Products.description, Products.name, Products.priceUSD, Images.location")->from("Products, Images, Users")->join("StockItems", "StockItems.pid = Products.pid")->join("CartItems", "CartItems.stockId = StockItems.stockId")->where("Products.pid = Images.pid")->where("Users.uid", $uid)->get();
+     $query = $this->db->select("Products.description, Products.name, Products.priceUSD, Products.pid, Images.location")->from("Products, Images, Users")->join("StockItems", "StockItems.pid = Products.pid")->join("CartItems", "CartItems.stockId = StockItems.stockId")->where("Products.pid = Images.pid")->where("Users.uid", $uid)->get();
      $result = $query->result_array();
+     $moreResult = array();
+     foreach($result as $item)
+     {
+       $item['quantity'] = 0;
+       $item['dup'] = 'false';
+       array_push($moreResult,$item);
+     }
+     $result = $this->getQuantities($moreResult);
      return $result;
   }
-	
+  
+  function getQuantities($array)
+  {
+     $ids = array();
+     $result = array();
+     foreach($array as $row)
+     {
+        $pid = $row['pid'];
+        $ids[] = $pid;
+        $a = array_count_values($ids);
+        $count = $a[$pid];
+        $row['quantity'] = $count;
+        if($count >= 2)
+          array_push($result,$row);
+     }
+     
+     foreach($array as $row)
+     {
+          $pid = $row['pid'];
+          $a = array_count_values($ids);
+          $count = $a[$pid];
+          $row['quantity'] = $count;
+          if($count < 2)
+            array_push($result,$row);
+     }
+     return $result;
+  }
+  
 }
 
 ?>
