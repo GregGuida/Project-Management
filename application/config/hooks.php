@@ -10,6 +10,13 @@
 |
 */
 
+$hook['post_controller_constructor'][] = array(
+    'class' => 'Auth',
+    'function' => 'authenticate',
+    'filename' => 'Auth.php',
+    'filepath' => 'hooks'
+);
+
 
 $hook['display_override'][] = array(
     'class' => 'Yield',

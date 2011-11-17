@@ -66,7 +66,7 @@
 			<a href="#" class="dropdown-toggle">Customer</a>
 			<ul class="dropdown-menu">
 				<li><a href="/customers/">Find Customers</a></li>
-				<li><a href="/customers/contact/">Customer Chat</a></li>
+				<!-- <li><a href="/customers/contact/">Customer Chat</a></li> -->
 			</ul>
 		</li>
     <li class="dropdown" data-dropdown="dropdown">

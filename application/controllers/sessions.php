@@ -12,12 +12,12 @@ class Sessions extends CI_Controller {
   // POST - 302 redirect
   function customer_auth_handle() {
 
-    $this->load->model('Users');
+    $this->load->model('User');
 
     $email = $this->input->post('email');
     $password = $this->input->post('password');
 
-    $user = $this->Users->authenticate($email, $password);
+    $user = $this->User->authenticate($email, $password);
 
     if($user && $user['Active']) {
       set_current_user($user);
@@ -32,12 +32,12 @@ class Sessions extends CI_Controller {
   // POST - 302 redirect
   function employee_auth_handle() {
 
-    $this->load->model('Users');
+    $this->load->model('User');
 
     $email = $this->input->post('email');
     $password = $this->input->post('password');
 
-    $user = $this->Users->authenticate($username, $password);
+    $user = $this->User->authenticate($username, $password);
 
     if($user && $user['Employee'] && $user['Active']) {
       set_current_user($user);
