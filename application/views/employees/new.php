@@ -25,7 +25,7 @@
     <div class="clearfix">
       <label for="new-employee-dob">Date of Birth</label>
       <div class="input">
-        <input type="text" id="new-employee-dob" name="dob" />
+        <input type="text" id="new-employee-dob" name="dob" class="im-a-datepicker" />
       </div>
     </div>
   </fieldset>

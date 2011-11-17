@@ -77,7 +77,7 @@ if (!function_exists('is_employee')) {
         $CI = & get_instance();
         $current_user = current_user();
 
-        return is_logged() && $current_user['employee'] == 1;
+        return is_logged() && $current_user['Employee'] == 1;
     }
 
 }
