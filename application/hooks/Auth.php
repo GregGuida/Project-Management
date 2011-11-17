@@ -10,6 +10,7 @@ if (!defined('BASEPATH')) {
 class Auth {
 
     private $UNAUTHED_PATH_REDIRECT = '/';
+    private $ADMIN_PATH_REDIRECT = '/employees/login';
 
     function authenticate() {
 
@@ -18,11 +19,34 @@ class Auth {
         $auth = isset($CI->auth) ? $CI->auth : array();
         $admin = isset($CI->admin) ? $CI->admin: array();
 
+        // only if there is actually an action
+        // when wouldn't there be an action? hah
         if ($action) {
-            if ((in_array($action, $auth) && !is_logged()) || 
-                (in_array($action, $admin) && !is_employee())) {
+            // check for authed authorization first
+            if (isset($auth[$action]) && !is_logged()) {
 
-                header('Location:' . $this->UNAUTHED_PATH_REDIRECT);
+                if (array_key_exists('message', $auth[$admin])) {
+                  set_message($auth[$action]['message'], 'error');
+                }
+
+                if (array_key_exists('redirect', $auth[$action])) {
+                  header('Location:' . $auth[$action]['redirect']);
+                } else {
+                  header('Location:' . $this->UNAUTHED_PATH_REDIRECT);
+                }
+            } 
+            // check for admin authorization next
+            else if(array_key_exists($action, $admin) && !is_employee()) {
+
+                if (array_key_exists('message', $admin[$action])) {
+                  set_message($admin[$action]['message'], 'error');
+                }
+
+                if (array_key_exists('redirect', $admin[$action])) {
+                  header('Location:' . $admin[$action]['redirect']);
+                } else {
+                  header('Location:' . $this->ADMIN_PATH_REDIRECT);
+                }
             }
         }
     }

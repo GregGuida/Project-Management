@@ -2,8 +2,19 @@
 
 class Customers extends CI_Controller {
   public $layout = 'main';
-  public $auth = array('show');
-  public $admin = array('reset_password', 'reset_password_handle', 'access', 'contact', 'send_email', 'index', 'delete');
+  public $auth = array(
+    'show' => array()
+  );
+  public $admin = array(
+    'reset_password' => array(),
+    'reset_password_handle' => array(),
+    'access' => array(),
+    'access_handler' => array(),
+    'send_email' => array(),
+    'index' => array(),
+    'delete' => array(),
+    'contact' => array()
+  );
 
   public function __construct() {
     parent::__construct();
