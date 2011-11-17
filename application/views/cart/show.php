@@ -1,13 +1,13 @@
 <div class="row">
    <form action="/orders/checkout" method="post">
 	<h2>Shopping Cart</h2>
-	<? $sum=0;foreach ($cart as $item): $sum+=$item['priceUSD']*$item['quantity'];?>
+	<? foreach ($cart as $item): ?>
 	<div class="row clearfix cart-item">
 		<div class="span4 item-photo">
 			<img src=<?=$item['location']?> />
 		</div>
 		<div class="span12 item-info">
-			<button class="remove-item btn">remove</button>
+			<a class="remove-item btn">remove</a>
 			<h3 class="item-title"><a href="/products/show/<?php echo $item ?>"><?=$item['name']?></a></h3>
 			<div class="item-price"><h4>Price:</h4><p>$<?=$item['priceUSD']?></p></div>
 			<div class="item-description"><h4>Description</h4><p><?=$item['description']?></p></div>
