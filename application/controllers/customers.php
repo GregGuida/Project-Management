@@ -287,5 +287,31 @@ class Customers extends CI_Controller {
     set_message('Successfully deleted customer', 'error');
     header('Location: /Customers/');
   }
+
+  
+  function test_run() {
+      $this->load->library('unit_test');
+      $this->load->model('User', 'item');
+      
+      $date1 = date('Y-m-d H:i:s',mktime(0,17,35,11,15,2011));
+      //Run some tests against the Fixture Data.
+      $this->unit->run($this->item->all(), 'is_array', 'User all() General test', 'Make sure that all() returns an array.');
+      $this->unit->run(count($this->item->all(0)), 0, 'User all(0) limit test', 'Make sure that all(0) returns 0 results.');
+      $this->unit->run(count($this->item->all(1)), 1, 'User all(1) limit test', 'Make sure that all(1) returns 1 result.');
+      $this->unit->run(count($this->item->all(2)), 2, 'User all(2) limit test', 'Make sure that all(2) returns 2 result.');
+      $this->unit->run(count($this->item->active(0)), 0, 'User active(0) limit test', 'Make sure that active(0) returns 0 active results.');
+      $this->unit->run(count($this->item->active(1)), 1, 'User active(1) limit test', 'Make sure that active(1) returns 1 active result.');
+      $this->unit->run(count($this->item->employees(0)), 0, 'User employees(0) limit test', 'Make sure that employee(0) returns 0 employee results.');
+      $this->unit->run(count($this->item->employees(1)), 1, 'User employees(1) limit test', 'Make sure that employee(1) returns 1 employee result.');
+      $this->unit->run(count($this->item->find(1)), 1, 'User find(1) count test', 'Make sure that find(1) returns 1 result.');
+      $this->unit->run($this->item->find(100000), false, 'User find(100000) count test', 'Make sure that find(100000) returns false.');
+      $this->unit->run(count($this->item->find(1)), array('FirstName' => 'Test', 'LastName' => 'McTester', 'Email' => 'test@fakeemail.com', 'Password' => 'password', 'Active' => 1, 'Employee' => 0), 'User find(1) test', 'Make sure that find(1) returns the correct row.');
+      $this->unit->run($this->item->destroy(1), true, 'User destroy(1) test', 'Make sure that destroy(1) returns true.');
+      
+      //Pass a report to the view
+      $data['test_result'] = $this->unit->report();
+      
+      $this->load->view('test_runner', $data);
+  }
 }
 
