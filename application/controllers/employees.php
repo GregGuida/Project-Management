@@ -2,8 +2,16 @@
 
 class Employees extends CI_Controller {
   public $layout = 'admin';
-  public $auth = array();
-  public $admin = array('index', 'add', 'edit', 'delete', 'update', 'create');
+  public $auth = array(); // don't need to fill auth since this all requires admin access
+  public $admin = array(
+    'dashboard' => array('message' => 'Please login'),
+    'index' => array(),
+    'add' => array(),
+    'edit' => array(),
+    'update' => array(),
+    'delete' => array(),
+    'create' => array()
+  );
 
   // GET - 200
   function index() {

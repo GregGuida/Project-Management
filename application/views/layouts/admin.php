@@ -39,6 +39,7 @@
         <div class="row" id="action-nav">
           <div class="container">
             <div class="" id="nav-logo"><a href="/employees/dashboard">TFM</a></div>
+            <?php if (is_employee()) { ?>
             <ul class="dropdowns">
 		<li><a href="/employees/dashboard/">Dashboard</a></li>
 		<li class="dropdown" data-dropdown="dropdown">
@@ -77,6 +78,7 @@
       </ul>
     </li>
 	    </ul>
+          <?php } ?>
           </div>
         </div>
       </div>
