@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Auth :: HOOKS
@@ -14,12 +15,11 @@ class Auth {
 
         $CI = & get_instance();
         $action = $CI->router->fetch_method();
-        $auth = $CI->auth ?: array();
-        $admin = $CI->admin ?: array();
+        $auth = isset($CI->auth) ? $CI->auth : array();
+        $admin = isset($CI->admin) ? $CI->admin: array();
 
         if ($action) {
-
-            if ((in_array($action, $auth) && !is_logged()) && 
+            if ((in_array($action, $auth) && !is_logged()) || 
                 (in_array($action, $admin) && !is_employee())) {
 
                 header('Location:' . $this->UNAUTHED_PATH_REDIRECT);
