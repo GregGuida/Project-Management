@@ -1,11 +1,11 @@
 <?php
 
 /* CREATE TABLE `CodeIgniter2`.`CartItems` (
- *	`cid` INT NOT NULL REFERENCES `CodeIgniter2`.`Customers` (`cid`),
+ *	`uid` INT NOT NULL REFERENCES `CodeIgniter2`.`Users` (`uid`),
  *	`stockID` INT NOT NULL REFERENCES `CodeIgniter2`.`StockItems` (`stockID`),
  *	`dateAdded` TIMESTAMP NOT NULL ,
  *	`didPurchase` BOOL NOT NULL ,
- *	PRIMARY KEY ( `cid` , `stockID` , `dateAdded` )
+ *	PRIMARY KEY ( `uid` , `stockID` , `dateAdded` )
  * ) ENGINE = INNODB;
 */
 
@@ -18,14 +18,16 @@ class CartItems extends CI_Model
 	
 	//This will allow you to add a StockItem to a Customer's cart,
 	//as long as we have that Product in stock.
-	//NOTE: Add via PID, NOT StockID!
-	function addItemToCart($pid,$cid)
+	//NOTE: Add via PID, NOT StockID
+	function addItem($pid,$uid)
 	{
+		$result = false;
 		//Find out if there are any StockItems available.
-		$this->db->select('stockID');
-		$this->db->get('StockItems');
-		$this->db->where('Status !=', 'Sold');
-		$query = $this->db->where('pid', $pid);
+		$query = $this->db->select('stockID')
+				          ->from('StockItems')
+				          ->where('Status !=', 'Sold')
+						  ->where('pid', $pid)
+						  ->get();
 		//If so, store the first one we find
 		if($query->num_rows() > 0)
 			$item = $query->row_array();
@@ -33,23 +35,26 @@ class CartItems extends CI_Model
 			return "No Items in Stock";
 		
 		$data = array(
-			'cid' 	  => $cid,
-			'stockID' => $item['stockID']
-			'didPurchase' => false;
+			'uid' 	  => $uid,
+			'stockID' => $item['stockID'],
+			'didPurchase' => 0
 		);
 		
 		$this->db->insert('CartItems',$data);
+		if(!$this->db->_error_message()) {
+          $result = true;
+        }
 		$query->free_result();
-		return true;		
+		return $result;		
 	}
 	
 	//Gets items in a customer's cart that have not been purchased yet as an array
-	function getCart($customer)
+	function get($customer)
 	{
-		$this->db->get('CartItems');
-		$this->db->where('cid',$customer);
-		$query = $this->db->where('didPurchase',false);
-		
+		$query = $this->db->select()->from('CartItems')
+		              ->where('uid',$customer)
+		              ->where('didPurchase',0)
+			          ->get();
 		if($query->num_rows() == 0)
 			return false;
 		
@@ -59,10 +64,10 @@ class CartItems extends CI_Model
 	}
 	
 	//Get every single cart.
-	function getAllCarts()
+	function getAll($limit=0)
 	{
 		$data = array();
-		$query = $this->db->get('CartItems');
+		$query = $this->db->get('CartItems',$limit);
 		
 		if($query->num_rows() > 0)
 		{
@@ -76,30 +81,109 @@ class CartItems extends CI_Model
 	}
 	
 	//Delete an item from a cart
-	function deleteCartItem($cid,$stockID,$date)
+	function deleteItem($uid,$stockID,$date)
 	{
+		$result = false;
 		$data = array(
-			'cid' 		=> $cid,
+			'uid' 		=> $uid,
 			'stockID' 	=> $stockID,
 			'dateAdded' => $date
 		);
 		
 		$this->db->delete('CartItems',$data);
-		return true;
+		if(!$this->db->_error_message()) {
+          $result = true;
+        }		
+		return $result;
 	}
 	
-	//update CartItems <cid> to change didPurchase to true
+	//update CartItems <uid> to change didPurchase to true
 	function purchased($cart,$stockID,$date)
 	{
+		$result = false;
 		$where = array(
-			'cid' 		=> $cid,
+			'uid' 		=> $uid,
 			'stockID' 	=> $stockID,
 			'dateAdded' => $date
 		);
 		$this->db->update('CartItems',array('didPurchase'=>true),$where);
-		return true;
+		if(!$this->db->_error_message()) {
+          $result = true;
+        }		
+		return $result;
 	}
 	
+// ---------- Convienence functions -----------
+
+  //Runs query in order to get all info to be displayed on the Cart View
+  function getDisplayArray($uid)
+  {
+    /* 
+     * SELECT p.name, p.description, p.PriceUSD, p.pid, i.location
+     * FROM Products as p, Images as i, Users as u
+     * JOIN  StockItems as s ON ON s.pid = p.pid
+       JOIN  CartItems as c ON c.stockID = s.stockID 
+       WHERE i.pid = p.pid
+     * AND   u.uid = $uid
+     */
+     
+     $result = array();
+     $clause = array(
+			   'CartItems.stockID = StockItems.stockID',
+			   'StockItems.pid = Products.pid',
+			   'Users.uid'		   => $uid
+     );
+     
+     $query = $this->db->select("Products.description, Products.name, Products.priceUSD, Products.pid, Images.location")->from("Products, Images, Users")->join("StockItems", "StockItems.pid = Products.pid")->join("CartItems", "CartItems.stockId = StockItems.stockId")->where("Products.pid = Images.pid")->where("Users.uid", $uid)->get();
+     $result = $query->result_array();
+     $moreResult = array();
+     foreach($result as $item)
+     {
+       $item['quantity'] = 0;
+       $item['dup'] = 'false';
+       array_push($moreResult,$item);
+     }
+     $result = $this->getQuantities($moreResult);
+     return $result;
+  }
+  
+  private function getQuantities($array)
+  {
+     $ids = array();
+     $result = array();
+     $temp = array();
+     
+     foreach($array as $row)
+     {
+        $pid = $row['pid'];
+        $ids[] = $pid;
+        $a = array_count_values($ids);
+        $count = $a[$pid];
+        $row['quantity'] = $count;
+        if($count >= 2)
+        foreach($array as $row2)
+        {
+           if($row2['pid'] == $pid)
+           {
+              $row['dup'] = 'true';
+           }
+        }
+       array_push($temp,$row);
+     }
+     
+     foreach($temp as $row)
+     {
+          $pid = $row['pid'];
+          $a = array_count_values($ids);
+          $count = $a[$pid];
+          $row['quantity'] = $count;
+          if($row['dup'] != 'true')
+            array_push($result,$row);
+     }
+
+     return $result;
+  }
+  
 }
 
 ?>

@@ -2,14 +2,22 @@
 
 class Employees extends CI_Controller {
   public $layout = 'admin';
-  public $auth = array();
-  public $admin = array('index', 'add', 'edit', 'delete', 'update', 'create');
+  public $auth = array(); // don't need to fill auth since this all requires admin access
+  public $admin = array(
+    'dashboard' => array('message' => 'Please login'),
+    'index' => array(),
+    'add' => array(),
+    'edit' => array(),
+    'update' => array(),
+    'delete' => array(),
+    'create' => array()
+  );
 
   // GET - 200
   function index() {
-    $this->load->model('Users');
+    $this->load->model('User');
     $data = array();
-    $data['employees'] = $this->Users->employees(50);
+    $data['employees'] = $this->User->employees(50);
     $data['js'] = '/libs/jquery.tablesorter.min.js';
     $this->load->view('employees/index', $data);
   }
@@ -21,9 +29,9 @@ class Employees extends CI_Controller {
 
   // GET - 200
   function edit($id = 0) {
-    $this->load->model('Users');
+    $this->load->model('User');
     $data = array();
-    $data['employee'] = $this->Users->find($id);
+    $data['employee'] = $this->User->find($id);
     $this->load->view('employees/edit', $data);
   }
 
@@ -34,52 +42,88 @@ class Employees extends CI_Controller {
 
   // POST - 302 redirect
   function delete($id) {
-    $this->load->model('Users');
-    $this->Users->destroy($id);
+    $this->load->model('User');
+    $this->User->destroy($id);
+    set_message('Employee deleted successfully', 'success');
     header('Location: /employees');
   }
   
   // POST - 302 redirect
   function update($id) {
-    $data = array(
-      'FirstName' => $this->input->post('firstname'),
-      'LastName' => $this->input->post('lastname'),
-      'Email' => $this->input->post('email'),
-      'DOB' => $this->input->post('dob'),
+    $rules = array(
+      array('field' => 'email', 'label' => 'Email', 'rules' => 'required|valid_email'),
+      array('field' => 'firstname', 'label' => 'First Name', 'rules' => 'required'),
+      array('field' => 'lastname', 'label' => 'Last Name', 'rules' => 'required'),
+      array('field' => 'dob', 'label' => 'Date of Birth', 'rules' => 'required')
     );
-    $this->load->model('Users');
-    $user_id = $this->Users->update($id, $data);
-    if ($user_id) {
-      header('Location: /employees/');
+    $this->form_validation->set_rules($rules);
+
+    if ($this->form_validation->run() == TRUE) {
+
+      list($m, $d, $y) = explode('/', $this->input->post('dob'));
+
+      $data = array(
+        'FirstName' => $this->input->post('firstname'),
+        'LastName' => $this->input->post('lastname'),
+        'Email' => $this->input->post('email'),
+        'DOB' => $y . '-' . $m . '-' . $d
+      );
+      $this->load->model('User');
+      $user_id = $this->User->update($id, $data);
+      if ($user_id) {
+        set_message('Employee updated successfully', 'success');
+        header('Location: /employees/');
+      } else {
+        set_message('Employee could not be updated.', 'error');
+        header('Location: /employees/edit/' . $id);
+      }
     } else {
+      set_message(validation_errors(), 'error');
       header('Location: /employees/edit/' . $id);
     }
   }
 
   // POST - 302 redirect
   function create() {
-    $this->load->model('Users');
-    $firstname = $this->input->post('firstname');
-    $lastname = $this->input->post('lastname');
-    $email = $this->input->post('email');
-    $dob = $this->input->post('dob');
- 
-    $exists = $this->Users->find_by(array('Email' => $email));
+    $rules = array(
+      array('field' => 'email', 'label' => 'Email', 'rules' => 'required|valid_email'),
+      array('field' => 'firstname', 'label' => 'First Name', 'rules' => 'required'),
+      array('field' => 'lastname', 'label' => 'Last Name', 'rules' => 'required'),
+      array('field' => 'dob', 'label' => 'Date of Birth', 'rules' => 'required')
+    );
+    $this->form_validation->set_rules($rules);
 
-    // if the user already exists, just update them to an employee
-    if (count($exists) > 0) {
+    if ($this->form_validation->run() == TRUE) {
 
-      $user_id = $this->Users->update($exists[0]['uid'], array('Employee' => 1));
+      $this->load->model('User');
+      $firstname = $this->input->post('firstname');
+      $lastname = $this->input->post('lastname');
+      $email = $this->input->post('email');
+      list($m, $d, $y) = explode('/', $this->input->post('dob'));
+      $dob = $y . '-' . $m . '-' . $d;
 
+      $exists = $this->User->find_by(array('Email' => $email));
+
+      // if the user already exists, just update them to an employee
+      if (count($exists) > 0) {
+
+        $user_id = $this->User->update($exists[0]['uid'], array('Employee' => 1));
+
+      } else {
+        // otherwise, create a new user as an employee
+        $newPassword = $this->User->randomPassword();
+        $user_id = $this->User->create($lastname, $firstname, $email, $newPassword, 1);
+      }
+
+      if ($user_id) {
+        set_message('Employee created successfully', 'success');
+        header('Location: /employees/');
+      } else {
+        set_message('Employee could not be created.', 'error');
+        header('Location: /employees/add');
+      }
     } else {
-      // otherwise, create a new user as an employee
-      $newPassword = $this->Users->randomPassword();
-      $user_id = $this->Users->create($lastname, $firstname, $email, $newPassword, 1);
-    }
-
-    if ($user_id) {
-      header('Location: /employees/');
-    } else {
+      set_message(validation_errors(), 'error');
       header('Location: /employees/add');
     }
   }

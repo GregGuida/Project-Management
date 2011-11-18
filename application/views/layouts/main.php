@@ -13,6 +13,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
   <!-- CSS concatenated and minified via ant build script-->
+  <link rel="stylesheet" href="/css/vendor/flick/jquery-ui-1.8.16.custom.css">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/bootstrap.css">
   <!-- end CSS-->
@@ -78,9 +79,9 @@
     <div id="main" class="container">
       <?php $response = get_message(); ?>
       <?php if ($response) { ?>
-        <p class="alert-message <?php echo $response['status'] ?>">
+        <div class="alert-message <?php echo $response['status'] ?>">
           <?php echo $response['message']; ?>
-        </p>
+        </div>
       <?php } ?>
       {yield}
     </div>

@@ -25,7 +25,8 @@
     <div class="clearfix">
       <label for="new-employee-email">Date of Birth</label>
       <div class="input">
-        <input type="text" id="new-employee-dob" name="dob" value="<?php echo $employee['DOB'] ?>" />
+        <?php list($y, $m, $d) = explode('-', $employee['DOB']); ?>
+        <input type="text" id="new-employee-dob" name="dob" value="<?php echo $m . '/' . $d . '/' . $y ?>" class="im-a-datepicker" />
       </div>
     </div>
   </fieldset>
