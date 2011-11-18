@@ -86,7 +86,7 @@ class Stock_Ticket extends CI_Model
     function create($data) {
         $result = false;
         
-        $this->db->insert_batch('StockTickets', $data);
+        $this->db->insert('StockTickets', $data);
         
         if(!$this->db->_error_message()) {
             $result = true;
@@ -103,7 +103,15 @@ class Stock_Ticket extends CI_Model
 	 * @return boolean $ticket_id the id of the inserted Stock Ticket if the insert succeeded, false otherwise.
 	 */
 	 function update($ticket_num) {
-	     
+	     $ticket_num = false;
+
+         $this->db->update('StockTickets', $data, array('ticketNum' => $ticket_num));
+
+         if (!$this->db->_error_message()) {
+           $ticket_num = $id;
+         }
+
+         return $ticket_num;
 	 }
     
     /*
@@ -116,70 +124,5 @@ class Stock_Ticket extends CI_Model
     function destroy($ticket_num) {
         $this->db->delete('StockTickets', array('ticketNum' => $ticket_num));
         return !!$this->db->_error_message();
-      }
-
-/*	
-	//Returns the given StockTicket as an array
-	function getTicket($ticketNum)
-	{
-		$data = array();
-		$query = $this->db->get_where('StockTickets', array('ticketNum' => $ticketNum));
-		//Check if it was an empty query
-		if($query->num_rows() > 0)
-			$data = $query->row_array();
-		
-		$query->free_result();
-		return $data;
-	}
-	
-	//Returns the StockTicket Table as an array of arrays
-	function getAllTickets()
-	{
-		$data = array();
-		$query = $this->db->get('StockTickets');
-		
-		if($query->num_rows() > 0)
-		{
-			foreach($query->result_array() as $row)
-				$data[] = $row
-		}
-		else
-			return false;
-			
-		$query->free_result();
-		return $data;
-	}
-	
-	//Create a Ticket and add it to the StockTickets table
-	function createTicket($product, $employee, $price, $numOrdered, $status='Submitted')
-	{
-		 $data = array(
-		 	'pid'		=>	$product,
-		 	'eid'		=>	$employee,
-		 	'PriceUSD'	=>	$price,
-		 	'NumOrdered'=>	$numOrdered,
-		 	'Status'	=>	$status
-		 );
-		 
-		 $this->db->insert('StockTickets', $data);
-		 return true;
-	}
-	
-	//Update the status of the given StockTicket
-	function updateStatus($ticket, $status)
-	{
-		$this->db->update('StockTickets', array('Status' => $status), array('ticketNum' => $ticket));
-		return true;
-	}
-	
-	//Delete the StockTicket with the given ticketNum
-	function deleteTicket($ticketNum)
-	{
-		$this->db->delete('StockTickets', array('ticketNum', $ticketNum));
-		return true;
-	}
-	
+    }
 }
-*/
-
-?>
