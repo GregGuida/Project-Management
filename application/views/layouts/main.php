@@ -13,6 +13,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
   <!-- CSS concatenated and minified via ant build script-->
+  <link rel="stylesheet" href="/css/vendor/flick/jquery-ui-1.8.16.custom.css">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/bootstrap.css">
   <!-- end CSS-->
@@ -30,9 +31,14 @@
       <div>
         <div class="row" id="link-nav">
           <div class="container">
+          <?php if (is_logged()) { ?>
+            <span class="nav-text"><b>Hello <?php echo get_current_user_stuff('FirstName') ?></b></span>
+            <a href="/customers/show/<?php echo get_current_user_stuff('uid') ?>">My Account</a>
+            <a href="/sessions/logout">Logout</a>
+          <?php } else { ?>
             <a href="/customers/login">Login</a>
             <a href="/customers/signup">Signup</a>
-            <a href="/customers/account">My Account</a>
+          <?php } ?>
             <a href="/statics/help">Help</a>
           </div>
         </div>
@@ -71,6 +77,12 @@
     </header>
 
     <div id="main" class="container">
+      <?php $response = get_message(); ?>
+      <?php if ($response) { ?>
+        <div class="alert-message <?php echo $response['status'] ?>">
+          <?php echo $response['message']; ?>
+        </div>
+      <?php } ?>
       {yield}
     </div>
 
@@ -93,17 +105,19 @@
                                 <li><a href="/categories/show/">Happy Kittens</a></li>
                                 <li><a href="/categories/show/">Cats</a></li>
                                 <li><a href="/categories/show/">Happy Cats</a></li>
+                                <li><a href="/categories/show/">Angry Cats</a></li>
                         </ul>
                 </div>
                 <div id="footer-nav-links">
                         <h3>Links</h3>
                         <ul class="unstyled">
                                 <li><a href="/">Home</a></li>
-                                <li><a href="/customers/account">My account</a></li>
+                                <li><a href="/customers/show/<?php echo get_current_user_stuff('uid') ?>">My account</a></li>
                                 <li><a href="/cart">Cart</a></li>
                                 <li><a href="/statics/about">About</a></li>
                                 <li><a href="/statics/privacy">Privacy policy</a></li>
                                 <li><a href="/statics/legal">Legal</a></li>
+                                <li><a href="/employees/dashboard">Employee</a></li>
                                 <li><a href="/statics/help">Help</a></li>
                         </ul>
                 </div>
