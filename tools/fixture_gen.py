@@ -16,8 +16,8 @@ def main():
 	if arguments.execute_sql or arguments.execute_only:
 		mysql_path = raw_input("Please enter the absolute path to mysql command [/usr/local/mysql/bin/mysql]: ") or "/usr/local/mysql/bin/mysql"
 		mysql_user = raw_input("Please enter the mysql user name [root]: ") or "root"
-		mysql_password = raw_input("Please enter the mysql user password []: ") or "" 
-		mysql_database = raw_input("Please enter the mysql database name [fmdb]: ") or "fmdb"
+		mysql_password = raw_input("Please enter the mysql user password []: ") or "password" 
+		mysql_database = raw_input("Please enter the mysql database name [fmdb]: ") or "CodeIgniter2"
 	
 	# Read the file provided; if none provided, try using the default
 	print 'Using JSON File Path: "{0}"'.format(arguments.file)

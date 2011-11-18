@@ -7,13 +7,33 @@ class Products extends CI_Controller {
 
   public function show($id) {
     $this->load->model('Products');
+
+    $data = array();
     $products = array();
 
-    if ( $query = $this->Products->getProductId($id) ) {
+    if ( $query = $this->Products->find($id) ) {
        $products['records'] = $query;
     }
 
-    $this->load->view('products/show',$products);
+    $this->load->view( 'products/show', $products );
+  }
+
+  public function _getRating ($pid) {
+    $this->load->model('Votes');
+    $votes = array();
+    $total = 0.0;  
+
+    if ( $query = $this->Votes->find() ) {
+      $votes = $query;
+    }
+
+    foreach ($votes as $vote) {
+      if ( $vote["direction"] ) {
+        $total++;
+      }         
+    }  
+
+    return array( count($votes), floor(($total/count($votes))*100) );
   }
     
   public function admin_show($id) {

@@ -30,17 +30,17 @@
  */
 class CI_DB_driver {
 
-	var $username;
-	var $password;
-	var $hostname;
-	var $database;
+	var $username           = '';
+	var $password           = '';   
+	var $hostname           = '';
+	var $database           = '';
 	var $dbdriver		= 'mysql';
 	var $dbprefix		= '';
 	var $char_set		= 'utf8';
 	var $dbcollat		= 'utf8_general_ci';
 	var $autoinit		= TRUE; // Whether to automatically initialize the DB
 	var $swap_pre		= '';
-	var $port			= '';
+	var $port		= '';
 	var $pconnect		= FALSE;
 	var $conn_id		= FALSE;
 	var $result_id		= FALSE;

@@ -26,7 +26,7 @@
 		{"uid":"1", "Street":"3399 North Road", "City":"Poughkeepsie", "State":"NY", "Zip":"12601"},
 		{"uid":"1", "Street":"123 Over The Rainbow Lane", "City":"Not Kansas", "State":"KA", "Zip":"66115"}
 	],
-	"Wishlists": [
+	"WishLists": [
 		{"uid":"1", "name":"Birthday List"},
 		{"uid":"1", "name":"Stuff I Want"},
 		{"uid":"1", "name":"Christmas List"}
@@ -1405,7 +1405,7 @@
         {"pid":"100", "uid":"9", "direction":"1"},
         {"pid":"100", "uid":"10", "direction":"1"}
 	],
-	"WishlistItems": [
+	"WishListItems": [
 		{"wishID":"1", "pid":"14"},
 		{"wishID":"1", "pid":"40"},
 		{"wishID":"1", "pid":"23"},
