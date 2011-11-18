@@ -8,10 +8,6 @@ class Statics extends CI_Controller {
    $this->load->view('statics/homepage');
   }
 
-  public function admin() {
-    $this->load->view('statics/admin_dashboard');
-  }
-
   public function help() {
     $this->load->view('statics/help');
   }
@@ -28,4 +24,3 @@ class Statics extends CI_Controller {
     $this->load->view('statics/privacy');
   }
 }
-

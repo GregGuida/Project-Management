@@ -1,4 +1,5 @@
-y* HTML5 ✰ Boilerplate
+/*
+ * HTML5 ✰ Boilerplate
  * ==|== normalize ==========================================================
  */
 
@@ -97,9 +98,14 @@ section > .row {
   padding: 3px 0;
 }
 
-#link-nav a{
+#link-nav a {
   margin:0 10px;
-  color:#fff;
+  color: #fff;
+}
+
+#link-nav span.nav-text {
+  margin: 0 10px;
+  color: #E7AA81;
 }
 
 #action-nav {
@@ -525,6 +531,19 @@ header #action-nav, footer {
   height: 20px;
 }
 
+.admin #main{
+  padding: 15px;
+  border-radius:5px;
+  -o-border-radius:5px;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  background-color:#fff;
+  box-shadow:0 0 10px #333;
+  -o-box-shadow:0 0 10px #333;
+  -moz-box-shadow:0 0 10px #333;
+  -webkit-box-shadow:0 0 10px #333;
+}
+
 .admin footer {
   background-color:rgb(191,191,191);
   border:5px solid lightgrey;
@@ -543,7 +562,7 @@ header #action-nav, footer {
 }
 
 .dropdowns > li {
-  width:158px;
+  width:131px;
   height:55px;
   margin:0;
   padding:0;
@@ -588,6 +607,44 @@ header #action-nav, footer {
   font-weight:bold;
 }
 
+.admin #edit-actions{
+  margin-top:20px;
+}
+
+.admin #edit-actions button{
+  float:left;
+  margin:0 20px 20px 0;
+}
+
+.admin option, .admin select {
+background-color: white;
+color: black;
+}
+
+#stock-ticket-show, #stock-item-show, #stock-ticket-form{
+  margin-top:50px;
+  margin-bottom:50px;
+}
+
+/* dashboard styles */
+.chart-wrapper {
+  margin-bottom: 100px;
+}
+
+#customer-list li {
+  height: 20px;
+  padding: 4px;
+  margin-top: 12px;
+  transition: all .4s ease-in-out;
+  -moz-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  -m-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+}
+
+#customer-list li:hover, #customer-list li.hover {
+  background: #FCF8E9;
+}
 
 /* ==|== non-semantic helper classes ======================================== */
 .ir { display: block; border: 0; text-indent: -999em; overflow: hidden; background-color: transparent; background-repeat: no-repeat; text-align: left; direction: ltr; }

@@ -1,6 +1,6 @@
-<form action="/sessions/login" method="post">
+<form action="/sessions/employee_auth_handle" method="post">
   <fieldset>
-    <legend>Login to TFM</legend>
+    <legend>Employee Login Portal</legend>
     <div class="clearfix">
       <label for="login_email">Email</label>
       <div class="input">
@@ -17,7 +17,6 @@
   <div class="actions">
     <p>
       <input type="submit" value="Login" class="btn primary" />
-      <a href="/" class="btn">Signup Instead</a>
     </p>
     <p>
       <a href="/customers/forgot_password">I forgot my password</a>

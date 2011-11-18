@@ -47,12 +47,24 @@
 $active_group = 'default';
 $active_record = TRUE;
 
+$db['default']['hostname'] = 'localhost';
+$db['default']['username'] = 'root';
+$db['default']['password'] = '';
+$db['default']['database'] = 'fightingmongooses';
+$db['default']['port'] = '3306';
+$db['default']['dbdriver'] = 'mysql';
+$db['default']['db_debug'] = TRUE;
+$db['default']['autoinit'] = TRUE;
+$db['default']['stricton'] = FALSE;
 // Database config for the PHP Fog deployment. Comment out when developing locally.
+// TODO: enable
+/*
 $db['default']['hostname'] = 'db01-share';
 $db['default']['username'] = 'CodeIgnite-13379';
 $db['default']['password'] = 'm4r1stpmfm';
 $db['default']['database'] = 'fightingmongooses-phpfogapp-com';
 $db['default']['dbdriver'] = 'mysql';
+
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;
@@ -63,6 +75,6 @@ $db['default']['dbcollat'] = 'utf8_general_ci';
 $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
-
+*/
 /* End of file database.php */
 /* Location: ./application/config/database.php */

@@ -1,6 +1,9 @@
+<div class="page-header">
+  <h2>Create an Account <small>So you can buy things!</small></h2>
+</div>
+
 <form action="/customers/create" method="post">
   <fieldset>
-    <legend>Create an Account</legend>
     <div class="clearfix">
       <label for="signup_firstname">First Name</label>
       <div class="input">
@@ -34,6 +37,6 @@
   <fieldset>
   <div class="actions">
     <input type="submit" value="Save" class="btn primary" />
-    <a href="/" class="btn">Login Instead</a>
+    <a href="/customers/login" class="btn">Login Instead</a>
   </div>
 </form>

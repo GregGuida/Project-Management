@@ -13,11 +13,15 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
   <!-- CSS concatenated and minified via ant build script-->
+  <link rel="stylesheet" href="/css/vendor/flick/jquery-ui-1.8.16.custom.css">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/bootstrap.css">
   <!-- end CSS-->
 
   <script src="/js/libs/modernizr-2.0.6.min.js"></script>
+  <!-- start Mixpanel --><script type="text/javascript">var mpq=[];mpq.push(["init","83404691134345be69c8e274ebd34ee9"]);(function(){var b,a,e,d,c;b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=(document.location.protocol==="https:"?"https:":"http:")+"//api.mixpanel.com/site_media/js/api/mixpanel.js";a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a);e=function(f){return function(){mpq.push([f].concat(Array.prototype.slice.call(arguments,0)))}};d=["init","track","track_links","track_forms","register","register_once","identify","name_tag","set_config"];for(c=0;c<d.length;c++){mpq[d[c]]=e(d[c])}})();
+ mpq.name_tag('User email address');
+</script><!-- end Mixpanel -->
 </head>
 
 <body>
@@ -27,9 +31,14 @@
       <div>
         <div class="row" id="link-nav">
           <div class="container">
-            <a href="/sessions/login">Login</a>
+          <?php if (is_logged()) { ?>
+            <span class="nav-text"><b>Hello <?php echo get_current_user_stuff('FirstName') ?></b></span>
+            <a href="/customers/show/<?php echo get_current_user_stuff('uid') ?>">My Account</a>
+            <a href="/sessions/logout">Logout</a>
+          <?php } else { ?>
+            <a href="/customers/login">Login</a>
             <a href="/customers/signup">Signup</a>
-            <a href="/customers/account">My Account</a>
+          <?php } ?>
             <a href="/statics/help">Help</a>
           </div>
         </div>
@@ -68,6 +77,12 @@
     </header>
 
     <div id="main" class="container">
+      <?php $response = get_message(); ?>
+      <?php if ($response) { ?>
+        <div class="alert-message <?php echo $response['status'] ?>">
+          <?php echo $response['message']; ?>
+        </div>
+      <?php } ?>
       {yield}
     </div>
 
@@ -78,6 +93,7 @@
         <section class="container">
                 <div id="footer-logo">
                         <a href="/">TFM</a> <span class="help-block">Where things get sold</span>
+                        <a href="http://mixpanel.com/f/partner"><img src="http://mixpanel.com/site_media/images/partner/badge_blue.png" alt="Real Time Web Analytics" /></a>
                 </div>
                 <div id="footer-category-links">
                         <h3>Categories</h3>
@@ -89,17 +105,19 @@
                                 <li><a href="/categories/show/">Happy Kittens</a></li>
                                 <li><a href="/categories/show/">Cats</a></li>
                                 <li><a href="/categories/show/">Happy Cats</a></li>
+                                <li><a href="/categories/show/">Angry Cats</a></li>
                         </ul>
                 </div>
                 <div id="footer-nav-links">
                         <h3>Links</h3>
                         <ul class="unstyled">
                                 <li><a href="/">Home</a></li>
-                                <li><a href="/customers/account">My account</a></li>
+                                <li><a href="/customers/show/<?php echo get_current_user_stuff('uid') ?>">My account</a></li>
                                 <li><a href="/cart">Cart</a></li>
                                 <li><a href="/statics/about">About</a></li>
                                 <li><a href="/statics/privacy">Privacy policy</a></li>
                                 <li><a href="/statics/legal">Legal</a></li>
+                                <li><a href="/employees/dashboard">Employee</a></li>
                                 <li><a href="/statics/help">Help</a></li>
                         </ul>
                 </div>
