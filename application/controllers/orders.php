@@ -35,13 +35,22 @@ class Orders extends CI_Controller {
     $this->load->model('Order', 'order');
     
     $data['js'] = '/libs/jquery.tablesorter.min.js';
-    $data['all'] = $this->orders->all();
+    $data['orders'] = $this->order->all(50);
     
     $this->load->view('orders/admin_browse', $data);
   }
-  public function admin_show() {
+  public function admin_show($order_num = 0) {
     $this->layout = "admin";
-    $this->load->view('orders/admin_show');
+    $data = array();
+    $this->load->model('Order', 'order');
+    $order = $this->order->find($order_num);
+
+    if($order) {
+      $products = $this->order->get_products_in_order($order_num);
+      $data['order'] = $order;
+      $data['products'] = $products;
+    }
+    $this->load->view('orders/admin_show', $data);
   }
   
   public function test_run() {

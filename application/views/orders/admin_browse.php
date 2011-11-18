@@ -4,7 +4,7 @@
 		<tr>
 		<th class="header headerSortUp">Order #</th>
 		<th class="red header headerSortUp">Customer #</th>
-		<th class="yellow header headerSortUp">Shipping<br/>Zip Code #</th>
+		<th class="yellow header headerSortUp">Shipping<br/>Address #</th>
 		<th class="blue header headerSortUp">Status</th>
 		<th class="purple header headerSortUp">Date Processed</th>
 		<th class="green header headerSortUp">Total Amount</th>
