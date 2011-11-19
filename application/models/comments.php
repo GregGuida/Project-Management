@@ -29,7 +29,8 @@ class Comments extends CI_Model {
 
     $this->db->select('*');	
     $this->db->from('Comments');
-    $this->db->join('Users','User.uid = Comments.uid');
+    $this->db->where('Comments.comID',$id);
+    $this->db->join('Users','Users.uid = Comments.uid');
     $query = $this->db->get();
     
     if( $query->num_rows() == 0 ) {
@@ -41,11 +42,33 @@ class Comments extends CI_Model {
     $query->free_result(); //Release our memory
     return $data;
   }
+	
+  //Returns the Comment with the given pid# as an array
+  function find_by_product($pid) {
+    $comments = array();
+
+    $this->db->select('*');	
+    $this->db->from('Comments');
+    $this->db->where('Comments.pid',$id);
+    $this->db->join('Users','Users.uid = Comments.uid');
+    $query = $this->db->get();
+    
+    if( $query->num_rows() == 0 ) {
+      return false;
+    }
+    
+    foreach($query->result_array() as $comment) {
+      $comments[] = $comment;
+    }
+ 
+    $query->free_result(); //Release our memory
+    return $comments;
+  }
 
 
   // accepts an optional limit
   // and returns an array of user row arrays
-  function all($limit = 0, orderBy = null, direction = "desc") {
+  function all($limit = 0, $orderBy = null, $direction = "desc") {
     $comments = array();
 
     if (orderBy != null){
@@ -55,7 +78,7 @@ class Comments extends CI_Model {
     $query = $this->db->get('Comments', $limit);
 
     foreach($query->result_array() as $comment) {
-      $comments[] = $comment
+      $comments[] = $comment;
     }
 
     $cursor->free_result();

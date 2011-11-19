@@ -9,11 +9,40 @@ class Products extends CI_Controller {
     $this->load->model('Products');
     $products = array();
 
+    $data['comments'] =comments($id);
+    $data['votes'] = __votes($id); 
     if ( $query = $this->Products->getProductId($id) ) {
-       $products['records'] = $query;
+       $data['products'] = $query;
     }
 
     $this->load->view('products/show',$products);
+  }
+
+  public function __votes($pid){
+    $this->load->model('Votes');
+    $votes = array();
+    $total = 0;
+
+    if ( $votes = $this->Votes->find($pid,1) ) {
+      foreach( $votes as $vote ) {
+        $total += $vote['direction']; 
+      }
+      return array(count($votes),$total);   
+    } else {
+      return array(0,0);
+    }
+  }
+
+  public function comments($pid) {
+    $this->load->model('Comments');
+    $comments = array();
+    $this->layout = 'ajax';
+    if ( $comments  = $this->Comments->find($pid,-1) ) {
+      foreach ( $comments as $comment ) {
+        echo $comment;
+      }
+    }
+
   }
     
   public function admin_show($id) {
