@@ -4,3 +4,6 @@ tools/*.sql
 hidden/*
 *~
 *.swp
+phpmyadmin/
+.htaccess
+
