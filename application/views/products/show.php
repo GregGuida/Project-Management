@@ -19,14 +19,14 @@
             <div class="span10">
               <div class="row">
                 <div class="span7">
-                  <div class="page-header"><h2><?=$product[0]['Name'] ?></h2></div>
+                  <div class="page-header"><h2><?php echo $product[0]['Name'] ?></h2></div>
                   <div class="product_description">
-                    <p><?=$product[0]['Description'] ?></p>
+                    <p><?php echo $product[0]['Description'] ?></p>
                   </div>
                 </div>
                 <div class="span3" id="product-actions">
                   <section class="add-product-to-cart"><img src="/img/shopping-cart.png" /> <a href="/cart">Add to cart</a></section>
-                  <section class="product-price"><h3>Price</h3><?= $product[0]['PriceUSD'] ?></section>
+                  <section class="product-price"><h3>Price</h3><?php echo $product[0]['PriceUSD'] ?></section>
                   <section class="product-rating">
                     <h3>Rating</h3>
                     <p>

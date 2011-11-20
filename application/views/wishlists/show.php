@@ -1,6 +1,6 @@
 <div class="row">
 	<h2>Wishlist</h2>
-	<? for ($i = 0; $i<5; $i++): ?>
+	<?php for ($i = 0; $i<5; $i++) { ?>
 	<div class="row clearfix cart-item">
 		<div class="span4 item-photo">
 			<img src="http://placekitten.com/160/160" />
@@ -13,7 +13,7 @@
 			<div class="item-quantity"><h4>Quantity</h4><input class="span1" type="text" value="1" /></div>
 		</div>	
 	</div>
-	<? endfor; ?>
+	<?php } ?>
         </div>
 	<form class="wishlist-share clearfix" >
 		<h4>Share this wishlist</h4>
