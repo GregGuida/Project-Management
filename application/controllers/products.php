@@ -6,24 +6,26 @@ class Products extends CI_Controller {
   public $layout = 'main';
 
   public function show($id) {
-    $this->load->model('Products');
-    $products = array();
+    $this->load->model('Productmodel');
+    $data = array();
 
-    $data['comments'] =comments($id);
-    $data['votes'] = __votes($id); 
-    if ( $query = $this->Products->getProductId($id) ) {
-       $data['products'] = $query;
+    $data['comments'] = $this->_comments($id);
+    $data['votes'] = $this->_votes($id); 
+    $data['images'] = $this->_images($id);
+
+    if ( $query = $this->Productmodel->get($id) ) {
+       $data['product'] = $query;
     }
 
-    $this->load->view('products/show',$products);
+    $this->load->view('products/show',$data);
   }
 
-  public function __votes($pid){
+  private function _votes($pid){
     $this->load->model('Votes');
     $votes = array();
     $total = 0;
 
-    if ( $votes = $this->Votes->find($pid,1) ) {
+    if ( $votes = $this->Votes->find($pid) ) {
       foreach( $votes as $vote ) {
         $total += $vote['direction']; 
       }
@@ -33,23 +35,28 @@ class Products extends CI_Controller {
     }
   }
 
-  public function comments($pid) {
+  private function _comments($pid) {
     $this->load->model('Comments');
     $comments = array();
-    $this->layout = 'ajax';
-    if ( $comments  = $this->Comments->find($pid,-1) ) {
-      foreach ( $comments as $comment ) {
-        echo $comment;
-      }
+    if ( $comments  = $this->Comments->find_by_product($pid,-1) ) {
+      return $comments;
     }
-
   }
+
+  private function _images($pid) {
+    $this->load->model('Images');
+    $images = array();
+    if ( $images = $this->Images->find($pid) ) {
+      return $images;
+    }
+  }
+
     
   public function admin_show($id) {
-    $this->load->model('Products');
+    $this->load->model('Productmodel');
     $products = array();
 
-    if( $query = $this->Products->getProductId($id) ) {
+    if( $query = $this->Productmodel->getProductId($id) ) {
        $products['records'] = $query;
     }
 
@@ -58,10 +65,10 @@ class Products extends CI_Controller {
   }
 
   public function index($category = "") {
-    $this->load->model('Products');
+    $this->load->model('Productmodel');
     $products = array();
 
-    if ( $query = $this->Products->getProductId($id) ) {
+    if ( $query = $this->Productmodel->getProductId($id) ) {
       $products['records'] = $query;
     }
 
@@ -69,10 +76,10 @@ class Products extends CI_Controller {
   }
 
   public function admin_browse() {
-    $this->load->model('Products');
+    $this->load->model('Productmodel');
     $products = array();
 
-    if( $query = $this->Products->getAllProducts() ) {
+    if( $query = $this->Productmodel->getAllProducts() ) {
        $products['records'] = $query;
     }
 
@@ -86,7 +93,7 @@ class Products extends CI_Controller {
   }
 
   public function create(){
-    $this->load->model('Products');
+    $this->load->model('Productmodel');
 
     $data = array(
       'Name' => $this->input->post('product-name'),
@@ -95,14 +102,14 @@ class Products extends CI_Controller {
       'catID' => $this->input->post('product-category'),
     );
 
-    $this->Products->newProduct($data);
+    $this->Productmodel->newProduct($data);
     redirect( '/products/admin_show/'.$this->db->insert_id() );
   }
 
   public function edit() {
-    $this->load->model('Products');
+    $this->load->model('Productmodel');
 
-    if ( $query = $this->Products->getProductId($id) ) {
+    if ( $query = $this->Productmodel->getProductId($id) ) {
       $product['records'] = $query;
     }
 
@@ -111,7 +118,7 @@ class Products extends CI_Controller {
   }
 
   public function update(){
-    $this->load->model('Products');
+    $this->load->model('Productmodel');
 
     $data = array(
      'Name' => $this->input->post('Name'),
@@ -120,7 +127,7 @@ class Products extends CI_Controller {
      'catID' => $this->input->post('catID'),
     );
 
-    $this->Products->updateproduct($data);
+    $this->Productmodel->updateproduct($data);
     $this->load->view('updateproducts');
   }
 
@@ -130,8 +137,8 @@ class Products extends CI_Controller {
   }
 
   public function delete($id){
-    $this->load->model('Products');
-    $this->Products->deleteProduct($id);
+    $this->load->model('Productmodel');
+    $this->Productmodel->deleteProduct($id);
     redirect('/products/admin_browse');
   }
 

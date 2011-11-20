@@ -27,7 +27,8 @@ class Comments extends CI_Model {
   function find($id) {
     $data = array();
 
-    $this->db->select('*');	
+
+    $this->db->select('Remark,Date,FirstName,LastName,Email');	
     $this->db->from('Comments');
     $this->db->where('Comments.comID',$id);
     $this->db->join('Users','Users.uid = Comments.uid');
@@ -47,9 +48,9 @@ class Comments extends CI_Model {
   function find_by_product($pid) {
     $comments = array();
 
-    $this->db->select('*');	
+    $this->db->select('Remark,Date,FirstName,LastName,Email');	
     $this->db->from('Comments');
-    $this->db->where('Comments.pid',$id);
+    $this->db->where('Comments.pid',$pid);
     $this->db->join('Users','Users.uid = Comments.uid');
     $query = $this->db->get();
     

@@ -9,66 +9,61 @@
  * ) ENGINE = INNODB;
 */
 
-class Images extends CI_Model
-{
-	function __construct() {
-		parent :: __construct();
-	}
+class Images extends CI_Model {
+  function __construct() {
+    parent :: __construct();
+  }
+
+  //Returns the Image with the given ID as an array
+  //getImage() turned blue in my editor - not sure if already a PHP method??
+  function find($pid) {
+    $data = array();
+    $this->db->select('location');
+    $query = $this->db->get_where('Images', array('pid' => $pid));
+
+    if($query->num_rows() > 0) {
+      foreach($query->result_array() as $row) {
+        $data[] = $row;
+      }
+    }		
+
+    $query->free_result();
+    return $data;
+  }
 	
-	//Returns the Image with the given ID as an array
-	//getImage() turned blue in my editor - not sure if already a PHP method??
-	function getAnImage($imgID)
-	{
-		$data = array();
-		$query = $this->db->get_where('Images', array('imgID' => $imgID));
-		//Check if empty query
-		if($query->num_rows() > 0)
-			$data = $query->row_array();
+  //Returns an array of arrays of all Images
+  function all() {
+    $data = array();
+    $query = $this->db->get('Images');
 		
-		$query->free_result();
-		return $data;
-	}
+    if($query->num_rows() > 0) {
+      foreach($query->result_array() as $row) {
+        $data[] = $row;
+      }
+    }
+    $query->free_result();
+    return $data;		
+  }
 	
-	//Returns an array of arrays of all Images
-	function getAllImages()
-	{
-		$data = array();
-		$query = $this->db->get('Images');
-		
-		if($query->num_rows() > 0)
-		{
-			foreach($query->result_array() as $row)
-				$data[] = $row;
-		}
-		
-		$query->free_result();
-		return $data;		
-	}
+  function add($pid, $location) {
+    $data = array(
+      'pid'		=>	$pid,
+      'location'	=>	$location
+      );
+    $this->db->insert('Images', $data);
+  }
 	
-	//addImage() was turning blue in my editor - not sure if already a PHP method??
-	//naming this addAnImage() just in case :P
-	function addAnImage($pid, $location)
-	{
-		$data = array(
-			'pid'		=>	$pid,
-			'location'	=>	$location
-		);
-		$this->db->insert('Images', $data);
-	}
+  function update($imgID,$pid,$location) {
+    $data = array(
+       'pid'		=>	$pid,
+       'location'	=>	$location
+      );
+    $this->db->update('Images', $data, array('imgID' => $imgID));
+  }
 	
-	function updateImage($imgID,$pid,$location)
-	{
-		$data = array(
-			'pid'		=>	$pid,
-			'location'	=>	$location
-		);
-		$this->db->update('Images', $data, array('imgID' => $imgID));
-	}
-	
-	function deleteImage($imgID)
-	{
-		$this->db->delete('Images', array('imgID' => $imgID));
-	}
+  function destroy($imgID) {
+    $this->db->delete('Images', array('imgID' => $imgID));
+  }
 	
 }
 
