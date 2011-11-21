@@ -9,7 +9,7 @@
  * ) ENGINE = INNODB;
 */
 
-class CartItems extends CI_Model
+class Cart_Item extends CI_Model
 {
 	
 	function __construct(){
@@ -127,6 +127,8 @@ class CartItems extends CI_Model
      * AND   u.uid = $uid
      */
      
+     // select p.name, p.description, p.PriceUSD, p.pid, i.location from Products as p, Images as i join StockItems as s, CartItems as c where s.pid = p.pid and c.stockID = s.stockID and i.pid = p.pid and c.uid = 1 and c.didPurchase = 0 group by p.pid
+     
      $result = array();
      $clause = array(
 			   'CartItems.stockID = StockItems.stockID',
@@ -134,7 +136,7 @@ class CartItems extends CI_Model
 			   'Users.uid'		   => $uid
      );
      
-     $query = $this->db->select("Products.description, Products.name, Products.priceUSD, Products.pid, Images.location")->from("Products, Images, Users")->join("StockItems", "StockItems.pid = Products.pid")->join("CartItems", "CartItems.stockId = StockItems.stockId")->where("Products.pid = Images.pid")->where("Users.uid", $uid)->get();
+     $query = $this->db->select("Products.description, Products.name, Products.priceUSD, Products.pid, Images.location")->from("Products, Images")->join("StockItems", "StockItems.pid = Products.pid")->join("CartItems", "CartItems.stockId = StockItems.stockId")->where("Products.pid = Images.pid")->where("CartItems.uid", $uid)->where("CartItems.didPurchase", 0)->group_by("Products.pid")->get();
      $result = $query->result_array();
      $moreResult = array();
      foreach($result as $item)

@@ -10,34 +10,34 @@
  *	) ENGINE = INNODB;
 */
 
-class Products extends CI_Model
+class Product extends CI_Model
 {
-	
+
 	//Constructor
 	function __construct() {
 		parent::__construct();
 	}
-	
+
 	//Returns the Product with the given id# as an array
 	function getProduct($id)
 	{
 		$data = array();
-		
+
 		$query = $this->db->get_where('Products', array('pid'=>$id));
 		if($query->num_rows()==0)
 			return false;
 		$data = $query->row_array();
-		
+
 		$query->free_result(); //Release our memory
 		return $data;
 	}
-	
+
 	//Returns an array of all the rows in the Products Table
 	function getAllProducts()
 	{
 		$data = array();
 		$query = $this->db->get('Products');
-		
+
 		if($query->num_rows() > 0)
 		{
 			foreach($query->result_array() as $row)
@@ -45,11 +45,11 @@ class Products extends CI_Model
 		}
 		else
 			return false;
-		
+
 		$query->free_result();
 		return $data;
 	}
-	
+
 	//Returns the Product's ID number, given it's name
 	function getProductId($name)
 	{
@@ -57,7 +57,7 @@ class Products extends CI_Model
 		if($query->num_rows()==0)
 			return false;
 		$result = $query->result();
-		
+
 		$query->free_result();
 		return $result['pid'];
 	}
@@ -68,14 +68,14 @@ class Products extends CI_Model
 		$product = getProduct($id);
 		return $product['Name'];
 	}
-	
+
 	function getProductPrice($id)
 	{
 		$product = getProduct($id);
 		return $product['PriceUSD'];
 	}
-	
-	
+
+
 	//Returns an array of the IDs of Products cheaper than the given price
 	function getProductsLessThan($price)
 	{
@@ -83,16 +83,16 @@ class Products extends CI_Model
 		$data = array();
 		if($table == null || $table == false) //Just incase we lost something along the way
 			return false;
-		
+
 		foreach($table->result() as $row)
 		{
 			if($row->PriceUSD < $price)
 				$data[] = $row->PriceUSD;
 		}
-		
+
 		return $data;
 	}
-	
+
 	function newProduct($name,$description,$price,$catID)
 	{
 		$data = array(
@@ -102,16 +102,16 @@ class Products extends CI_Model
 				'catID' => $catID
 				);
 		$this->db->insert('Products', $data);
-		
+
 		return $this->db->insert_id();
 	}
-	
+
 	function deleteProduct($id)
 	{
 		$this->db->delete('Products', array('pid' => $id));
 		return true;
 	}
-	
+
 	function updateProduct($id,$name,$description,$price,$catID)
 	{
 		$data = array(
@@ -121,10 +121,10 @@ class Products extends CI_Model
 				'catID' => $catID
 				);
 		$this->db->update('Products', $data, array('pid' => $id));
-		
+
 		return true;
 	}
-	
+
 }
 
 ?>

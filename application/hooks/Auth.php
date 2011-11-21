@@ -25,7 +25,7 @@ class Auth {
             // check for authed authorization first
             if (isset($auth[$action]) && !is_logged()) {
 
-                if (array_key_exists('message', $auth[$admin])) {
+                if (array_key_exists('message', $auth[$action])) {
                   set_message($auth[$action]['message'], 'error');
                 }
 
