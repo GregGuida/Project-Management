@@ -74,7 +74,7 @@
     <li class="dropdown" data-dropdown="dropdown">
       <a href="#" class="dropdown-toggle">Stock</a>
       <ul class="dropdown-menu">
-        <li><a href="/stock_items/admin_browse">View Stock</a></li>
+        <li><a href="/stock_tickets/admin_browse">View Stock</a></li>
         <li><a href="/stock_tickets/admin_add">Add Stock</a></li>
       </ul>
     </li>
