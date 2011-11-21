@@ -3,7 +3,7 @@
 class Customers extends CI_Controller {
   public $layout = 'main';
   public $auth = array(
-    'show' => array()
+//    'show' => array()
   );
   public $admin = array(
     'reset_password' => array(),
@@ -222,10 +222,17 @@ class Customers extends CI_Controller {
 
   // GET - 200
   // account page
-  // Auth
-  function show($uid) {
-    // TODO: load 
-    $this->load->view('customers/account');
+  function show() {
+    // TODO: load
+        $user = current_user();
+    //Only show account if there is someone signed in.
+    if($user)
+      $this->load->view('customers/account');
+    else
+    {
+      set_message('You need to log in before viewing your account', 'error');
+      header('Location: /customers/login');
+    }
   }
 
   // GET - 200

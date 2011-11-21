@@ -33,12 +33,6 @@ class Cart extends CI_Controller {
     }
   }
   
-  function totalPrice($uid)
-  {
-    $totalPriceUSD = current($this->db->select("SUM(products.priceUSD)")->from("products")->join("stockitems", "products.pid = stockitems.pid")->join("cartitems", "cartitems.stockID = stockitems.stockID")->where("cartitems.uid", $uid)->where("didPurchase = 0")->get()->row_array());
-    return $totalPriceUSD;
-  }
-  
   public function test_run() {
       $this->load->library('unit_test');
       $this->load->model('cartItems', 'item');
