@@ -27,7 +27,10 @@ class Cart extends CI_Controller {
       $this->load->view('cart/show', $data);
     }
     else
-      $this->load->view('cart/invalid');
+    {
+      set_message('You need to log in before viewing your cart', 'error');
+      header('Location: /customers/login');
+    }
   }
   
   function totalPrice($uid)
