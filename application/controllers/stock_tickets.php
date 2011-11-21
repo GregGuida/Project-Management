@@ -8,6 +8,7 @@ class Stock_tickets extends CI_Controller {
     $this->load->model('Stock_Ticket', 'ticket');
     
     $data['stock_tickets'] = $this->ticket->all(500);
+    $data['js'] = '/libs/jquery.tablesorter.min.js';
     
     $this->load->view('stock_tickets/admin_browse', $data);
   }
