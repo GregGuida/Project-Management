@@ -2,6 +2,15 @@
 
 class Orders extends CI_Controller {
   public $layout = 'main';
+  public $auth = array(
+    'show' => array(),
+    'checkout' => array(),
+    'complete' => array()
+  );
+  public $admin = array(
+    'admin_show' => array('message' => 'Please login'),
+    'admin_browse' => array('message' => 'Please login')
+  );
 
   public function index() {
     $this->load->view('welcome_message');

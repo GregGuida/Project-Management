@@ -2,6 +2,12 @@
 
 class Stock_tickets extends CI_Controller {
   public $layout = 'main';
+  public $auth = array();
+  public $admin = array(
+    'admin_show' => array('message' => 'Please login'),
+    'admin_browse' => array('message' => 'Please login'),
+    'add' => array('message' => 'Please login')
+  );
 
   public function admin_browse() {
     $this->layout = "admin";
@@ -18,7 +24,7 @@ class Stock_tickets extends CI_Controller {
     $this->load->view('stock_tickets/admin_show');
   }
 
-  public function admin_add(){
+  public function add(){
     $this->layout = "admin";
     $this->load->view('stock_tickets/admin_add');
   }
