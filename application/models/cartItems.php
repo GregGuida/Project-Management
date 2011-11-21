@@ -184,6 +184,19 @@ class CartItems extends CI_Model
      return $result;
   }
   
+  function numItems($uid)
+  {
+      $cart = $this->get($uid);
+      return count($cart);
+  }
+  
+  //Returns the total Price of the given customer's cart
+  function totalPrice($uid)
+  {
+    $totalPriceUSD = current($this->db->select("SUM(products.priceUSD)")->from("products")->join("stockitems", "products.pid = stockitems.pid")->join("cartitems", "cartitems.stockID = stockitems.stockID")->where("cartitems.uid", $uid)->where("didPurchase = 0")->get()->row_array());
+    return $totalPriceUSD;
+  }
+  
 }
 
 ?>

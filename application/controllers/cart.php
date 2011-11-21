@@ -22,11 +22,11 @@ class Cart extends CI_Controller {
     $cart = $this->cartItems->get($uid);
     $data['size'] = count($cart);
     $data['cart'] = $this->cartItems->getDisplayArray($uid);
-    $data['sum'] = $this->totalPrice($uid);      
+    $data['sum'] = $this->totalPrice($uid);
     
     $this->load->view('cart/show', $data);
   }
-  
+
   function totalPrice($uid)
   {
     $totalPriceUSD = current($this->db->select("SUM(products.priceUSD)")->from("products")->join("stockitems", "products.pid = stockitems.pid")->join("cartitems", "cartitems.stockID = stockitems.stockID")->where("cartitems.uid", $uid)->where("didPurchase = 0")->get()->row_array());
