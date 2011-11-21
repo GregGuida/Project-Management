@@ -13,15 +13,15 @@ class Cart extends CI_Controller {
   } 
 
   public function index() {
-      $this->load->model('cartItems');
+      $this->load->model('Cart_Item', 'cart_item');
       //Get the logged in user's ID
       $user = current_user();
 
       $uid = $user['uid'];
       //Things for customer's cart
-      $cart = $this->cartItems->get($uid);
+      $cart = $this->cart_item->get($uid);
       $data['size'] = count($cart);
-      $data['cart'] = $this->cartItems->getDisplayArray($uid);
+      $data['cart'] = $this->cart_item->getDisplayArray($uid);
       $data['sum'] = $this->totalPrice($uid);
 
       $this->load->view('cart/show', $data);

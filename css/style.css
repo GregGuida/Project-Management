@@ -525,6 +525,11 @@ header #action-nav, footer {
   cursor: pointer;
 }
 
+.image_90x90 {
+    height: 90px;
+    width: 90px;
+}
+
 /*==|== admin specific css styles =========================================== */
 
 .admin footer, .admin .push {

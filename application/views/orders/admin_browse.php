@@ -14,7 +14,7 @@
 	    <?php foreach($orders as $order) { ?>
 	        <tr id="">
 			    <td class="ordno"><a href="/orders/admin_show/<?php echo $order['OrderNum'] ?>"><?php echo $order['OrderNum'] ?></a></td>
-			    <td class="custno"><a href="/customers/admin_show/<?php echo $order['uid'] ?>"><?php echo $order['uid'] ?></a></td>
+			    <td class="custno"><a href="/customers"><?php echo $order['uid'] ?></a></td>
 			    <td class="zip"><a href="/shipping_addresses/admin_show/<?php echo $order['sid'] ?>"><?php echo $order['sid'] ?></a></td>
 			    <td class="status"><?php echo $order['Status'] ?></td>
 			    <td class="date"><?php echo $order['Date'] ?></td>

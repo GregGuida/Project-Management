@@ -1,5 +1,5 @@
 <h2>Order #<?php echo $order['OrderNum'] ?></h2>
-<h3><a href="/customers/admin_show">Customer #<?php echo $order['uid'] ?></a></h3>
+<h3><a href="/customers">Customer #<?php echo $order['uid'] ?></a></h3>
 <div class="container">
   <div class="row">
         <section class="span8">
@@ -9,7 +9,7 @@
           <?php foreach($products as $product) { ?>
                 <div class="row">
                     <div class="span2">
-                        <a href="/products/show/<?php echo $product['pid'] ?>"><img src="<?php echo $product['location'] ?>" height="90" width="90" /></a>
+                        <a href="/products/show/<?php echo $product['pid'] ?>"><img class="image_90x90" src="<?php echo $product['location'] ?>" /></a>
                     </div>
                     <div class="span5">
                         <p><?php echo $product['name'] ?></p>
@@ -24,8 +24,10 @@
             </div>
             <address>
                 <strong>Gregory, Guida</strong><br>
-                <?php echo $shipping_address['Street'] ?><br>
-                <?php echo $shipping_address['City'] ?>, <?php echo $shipping_address['State'] ?> <?php echo $shipping_address['Zip'] ?><br>
+                3399 North Road<br>
+                Poughkeepsie, NY 12601<br>
+                <!-- <?php echo $shipping_address['Street'] ?><br>
+                <?php echo $shipping_address['City'] ?>, <?php echo $shipping_address['State'] ?> <?php echo $shipping_address['Zip'] ?><br> -->
                 <abbr title="Phone">P:</abbr> (631) 219-6632
             </address>
         </section>
