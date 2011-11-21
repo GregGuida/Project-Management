@@ -3,6 +3,9 @@
 class Cart extends CI_Controller {
 
   public $layout = 'main';
+  public $auth = array(
+      'index' => array('message' => 'Sign up now to start shopping!', 'redirect' => '/customers/signup')
+    );
 
   public function __construct()
   {
@@ -10,24 +13,18 @@ class Cart extends CI_Controller {
   } 
 
   public function index() {
-    $this->load->model('Cart_Item', 'cart_item');
-    $this->load->helper('session');
-    //Get the logged in user's ID
-    $user = current_user();
-    //Only populate a cart if there is someone signed in.
-    if($user)
-    {
+      $this->load->model('cartItems');
+      //Get the logged in user's ID
+      $user = current_user();
+
       $uid = $user['uid'];
-	  //Things for customer's cart
-      $cart = $this->cart_item->get($uid);
+      //Things for customer's cart
+      $cart = $this->cartItems->get($uid);
       $data['size'] = count($cart);
-      $data['cart'] = $this->cart_item->getDisplayArray($uid);
-      $data['sum'] = $this->totalPrice($uid);      
-    
+      $data['cart'] = $this->cartItems->getDisplayArray($uid);
+      $data['sum'] = $this->totalPrice($uid);
+
       $this->load->view('cart/show', $data);
-    }
-    else
-      $this->load->view('cart/invalid');
   }
   
   function totalPrice($uid)
