@@ -89,7 +89,7 @@ class Stock_Ticket extends CI_Model
         $this->db->insert('StockTickets', $data);
         
         if(!$this->db->_error_message()) {
-            $result = true;
+            $result = $this->db->insert_id();
         }
         
         return $result;

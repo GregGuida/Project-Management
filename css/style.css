@@ -659,6 +659,11 @@ color: black;
     text-align:right;
 }
 
+#stock-ticket-form select, #stock-ticket-form input[type="text"] {
+    width: 80%;
+    margin: 0px 10%;
+}
+
 .tabs > li{
   margin:0;
 }
