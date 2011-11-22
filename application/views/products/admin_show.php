@@ -1,36 +1,85 @@
-	<div class="row">
-        <div id="tag-sidebar" class="span4">
-        	<button class="btn admin-product-edit">Edit</button><br/>
-        	<button class="btn danger admin-product-delete">Delete Product</button>
+<div class="row">
+  <div id="tag-sidebar" class="span4">
+    <button class="btn admin-product-edit">Edit</button><br/>
+    <button class="btn danger admin-product-delete">Delete Product</button>
+  </div>
+  <div id="product-area" class="span12">
+    <div class="row">
+      <div class="span12">
+      <ul class="tabs admin-show-tabs">
+        <li class="active" title="product-details"><a href="#">Product Details</a></li>
+        <li title="comments"><a href="#">Comments</a></li>
+        <li title="votes"><a href="#">Votes</a></li>
+      </ul>
+      </div>
+    </div>
+    <div class="row tab-paine">
+      <div class="row span12 product-details">
+        <div class="page-header"><h2><?= $product[0]['Name'] ?></h2></div>
+        <div class="span6">
+          <p>
+           <? 
+             if(!empty($images)) {
+               echo '<img src="'.$images[0]['location'].'" style="width:340px;" class="product-image" />';
+             }?>
+          </p>
+          <p class="alt-images">
+            <?
+              foreach( $images as $preview_image) {
+                echo '<img src="'.$preview_image['location'].'"  style="width:60px;height:60px;class="thumbnail"/>';
+              }
+            ?>
+            <button id="new-image" class="btn"> Add An <br/>Image </button>
+          </p>
         </div>
-        <div id="product-area" class="span12">
+        <div class="span5">
           <div class="row">
-            <div class="span6">
-              <p>
-                <img src="http://placekitten.com/340/340" alt="product photo large thumbnail" />
-              </p>
-              <p class="alt-images">
-                <img src="http://placekitten.com/60/60" alt="product photo small thumbnail" />
-                <img src="http://placekitten.com/60/60" alt="product photo small thumbnail" />
-                <img src="http://placekitten.com/60/60" alt="product photo small thumbnail" />
-                <button id="new-image" class="btn"> Add An <br/>Image </button>
-              </p>
-            </div>
-            <div class="span6">
-              <div class="row">
-                <div class="span3">
-                  <div class="page-header"><h2>A kitty!</h2></div>
-                  <div class="product_description">
-                    <p>I am a curious kitty looking for a new owner. Buy me so that we can play together all day!</p>
-                  </div>
-                </div>
-                <div class="span3" id="product-actions">
-                  <section class="add-product-to-cart"><img src="/img/shopping-cart.png" /> <a href="/cart">Add to cart</a></section>
-                  <section class="product-price"><h3>Price</h3>$399.99</section>
-                  <section class="product-rating"><h3>Rating</h3><p>98%</p></section>
-                </div>
+            <div class="span5">
+              <div class="product_description">
+                <?= $product[0]['Description']  ?>
               </div>
+              <h2 class="admin-product-price"><?= $product[0]['PriceUSD'] ?></h2>
             </div>
           </div>
         </div>
       </div>
+      <div class="row span12 comments" style="display:none;">
+        <div class="">
+          <div class="page-header"><h2><?= $product[0]['Name'] ?></h2></div>  
+          <ul id="product-reviews" class="unstyled">
+          <?
+            foreach($comments as $comment) {
+              echo '<li class="clearfix">';
+              echo '<a href="comments/destroy/'.$comment['comID'].'" class="btn danger" style="float:right;">Delete</a>';
+              echo '<img src="http://gravatar.com/avatar/'.md5( strtolower( trim($comment['Email'] ) ) ).'" style="float:left;width:40px;margin:0 10px 10px 0;" />';
+              echo '<small>'.$comment['FirstName'].' '.$comment['LastName'].' on '.$comment['Date'].' said </small><br/>'; 
+              echo '<p>'.$comment['Remark'].'</p>';
+              echo '</li>';
+            }
+          ?>
+          </ul>
+        </div>
+      </div>
+      <div class="row span12 votes" style="display:none;">
+        <div class="">
+          <div class="page-header"><h2><?= $product[0]['Name'] ?></h2></div>
+          <ul class="unstyled">
+            <?
+              foreach ( $votes as $vote ) {
+                echo '<li class="clearfix">';
+                echo '<img src="http://gravatar.com/avatar/'.md5( strtolower( trim($comment['Email'] ) ) ).'" style="float:left;width:20px;margin:0 10px 10px 0;" />';
+                echo $vote['FirstName'].' '.$vote['LastName'];
+                if ( $vote['direction'] == 0 ){
+                  echo ' voted this down';
+                } else {
+                  echo ' voted this up';
+                }
+                echo '</li>';
+              }
+            ?>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
