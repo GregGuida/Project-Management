@@ -3,13 +3,13 @@
           <div class="row">
             <div class="span6">
               <p>
-               <? 
+               <?php
                  if(!empty($images)) {
                    echo '<img src="'.$images[0]['location'].'" style="width:340px;" class="product-image" />';
                  }?>
               </p>
               <p class="alt-images">
-	        <?
+	        <?php
                   foreach( $images as $preview_image) {
                     echo '<img src="'.$preview_image['location'].'" style="width:60px;height:60px;class="thumbnail"/>';
                   }
@@ -34,7 +34,7 @@
                       <button class="btn">-</button>
                     </p>
                     <p>
-                      <?
+                      <?php
                         if( $votes[0] == 0 ){
                           echo 'no votes yet';
                         } else {
@@ -63,7 +63,7 @@
             </form>
             <div class="page-header"><h3>Reviews</h3></div>
             <ul id="product-reviews" class="unstyled">
-              <?
+              <?php
                 foreach($comments as $comment) {
                   echo '<li class="clearfix">';
                   echo '<img src="http://gravatar.com/avatar/'.md5( strtolower( trim($comment['Email'] ) ) ).'" style="float:left;width:40px;margin:0 10px 10px 0;" />';

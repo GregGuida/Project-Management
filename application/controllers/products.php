@@ -21,11 +21,11 @@ class Products extends CI_Controller {
   }
 
   private function _votes($pid){
-    $this->load->model('Votes');
+    $this->load->model('Vote');
     $votes = array();
     $total = 0;
 
-    if ( $votes = $this->Votes->find($pid) ) {
+    if ( $votes = $this->Vote->find($pid) ) {
       foreach( $votes as $vote ) {
         $total += $vote['direction']; 
       }
@@ -54,14 +54,23 @@ class Products extends CI_Controller {
     
   public function admin_show($id) {
     $this->load->model('Product');
-    $products = array();
+    $this->load->model('Vote');
+    
+    $data = array();
+    
+    $data['comments'] = $this->_comments($id);
+    $data['images'] = $this->_images($id);
 
-    if( $query = $this->Product->getProductId($id) ) {
-       $products['records'] = $query;
+    if ( $query = $this->Product->get($id) ) {
+       $data['product'] = $query;
+    }
+    
+    if ( $votes = $this->Vote->find($id) ) {
+      $data['votes'] = $votes;
     }
 
     $this->layout = 'admin';
-    $this->load->view('products/admin_show', $products);
+    $this->load->view('products/admin_show', $data);
   }
 
   public function index($category = "") {
