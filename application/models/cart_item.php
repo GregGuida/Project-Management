@@ -106,7 +106,18 @@ class Cart_Item extends CI_Model
 			'stockID' 	=> $stockID,
 			'dateAdded' => $date
 		);
-		$this->db->update('CartItems',array('didPurchase'=>true),$where);
+		$this->db->update('CartItems', array('didPurchase' => '1'), array('uid' => $uid));
+		if(!$this->db->_error_message()) {
+          $result = true;
+        }		
+		return $result;
+	}
+	
+	function updatePurchased($uid) {
+		$result = false;
+		
+		$this->db->update('CartItems', array('didPurchase' => '1'), array('uid' => $uid));
+		
 		if(!$this->db->_error_message()) {
           $result = true;
         }		
