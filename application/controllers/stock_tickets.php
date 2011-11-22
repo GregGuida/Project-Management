@@ -19,14 +19,22 @@ class Stock_tickets extends CI_Controller {
     $this->load->view('stock_tickets/admin_browse', $data);
   }
 
-  public function admin_show() {
+  public function admin_show($ticket_num = 0) {
     $this->layout = "admin";
-    $this->load->view('stock_tickets/admin_show');
+    $this->load->model('Stock_Ticket', 'ticket');
+    $this->load->model('Stock_Item', 'item');
+    $this->load->model('Product', 'product');
+    
+    $data['stock_ticket'] = $this->ticket->get_ticket_show_info($ticket_num);
+    $data['stock_items'] = $this->item->find_by(array('ticketNum' => $ticket_num));
+    $data['js'] = '/libs/jquery.tablesorter.min.js';
+    
+    $this->load->view('stock_tickets/admin_show', $data);
   }
 
   public function add(){
     $this->layout = "admin";
-    $this->load->view('stock_tickets/admin_add');
+    $this->load->view('stock_tickets/add');
   }
   
   public function test_run() {

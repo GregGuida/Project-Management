@@ -4,12 +4,12 @@
  * CREATE TABLE `CodeIgniter2`.`StockItems` (
  *	`stockID` INT NOT NULL AUTO_INCREMENT,
  *	`pid` INT NOT NULL REFERENCES `CodeIgniter2`.`Products` (`pid`),
- *	`ticketNum` INT NOT NULL REFERENCES `CodeIgniter2`.`StockTickets` (`ticketNum`),
+ *	`stockID` INT NOT NULL REFERENCES `CodeIgniter2`.`StockItems` (`stockID`),
  *	`PriceUSD` DECIMAL NOT NULL ,
  *	`Status` VARCHAR( 20 ) NOT NULL ,
  *	`DateAdded` TIMESTAMP NOT NULL ,
  *	PRIMARY KEY( `stockID`),
- * INDEX ( `pid` , `ticketNum` )
+ * INDEX ( `pid` , `stockID` )
  * ) ENGINE = INNODB;
 */
 
@@ -21,15 +21,15 @@ class Stock_Item extends CI_Model
 	}
 	
 	/*
-	 * Finds a Stock Ticket by its ticketNum.
+	 * Finds a Stock item by its stockID.
 	 *
-	 * @param int $ticket_num the id of the concerned ticket
+	 * @param int $stock_id the id of the concerned item
 	 *
-	 * @return array $ticket the associative array of the returned tickets elements, or false. 
+	 * @return array $items the array of the returned items elements, or false. 
 	 */
-    function find($ticket_num) {
+    function find($stock_id) {
         $result = false;
-        $cursor = $this->db->get_where('StockTickets', array('ticketNum' => $ticket_num));
+        $cursor = $this->db->get_where('StockItems', array('stockID' => $stock_id));
         
         if($cursor->num_rows() > 0) {
             $result = $cursor->row_array();
@@ -40,52 +40,51 @@ class Stock_Item extends CI_Model
     }
 
     /*
-	 * Finds all stock tickets by equivalence to some arbitrary parameter.
-	 * Here for completeness, can't really see a need for this.
+	 * Finds all stock items by equivalence to some arbitrary parameter.
 	 *
 	 * @param array $data associative array of the data requested
 	 *
-	 * @return array $tickets the resulting array of stock tickets
+	 * @return array $items the resulting array of stock items
 	 */
     function find_by($data) {
-        $tickets = array();
-        $cursor = $this->db->get_where('StockTickets', $data);
+        $items = array();
+        $cursor = $this->db->get_where('StockItems', $data);
         
-        foreach($cursor->result_array() as $ticket) {
-            $tickets[] = $ticket;
+        foreach($cursor->result_array() as $item) {
+            $items[] = $item;
         }
         
-        return $tickets;
+        return $items;
     }
     
     /*
-	 * Finds all Stock Tickets.
+	 * Finds all Stock items.
 	 *
-	 * @param int $limit The number of stock tickets you would like returned.
+	 * @param int $limit The number of stock items you would like returned.
 	 *
-	 * @return array $tickets the resulting array of stock tickets
+	 * @return array $items the resulting array of stock items
 	 */
     function all($limit = 0) {
-      $tickets = array();
-      $cursor = $this->db->get('StockTickets', $limit);
+      $items = array();
+      $cursor = $this->db->get('StockItems', $limit);
 
-      foreach($cursor->result_array() as $ticket) {
-        $tickets[] = $ticket;
+      foreach($cursor->result_array() as $item) {
+        $items[] = $item;
       }
-      return $tickets;
+      return $items;
     }
     
     /*
-	 * Create a new Stock Ticket in the database
+	 * Create a new Stock item in the database
 	 *
 	 * @param array $data array of the items you want to create.
 	 *
-	 * @return boolean $ticket_id the id of the inserted Stock Ticket if the insert succeeded, false otherwise.
+	 * @return boolean $item_id the id of the inserted Stock item if the insert succeeded, false otherwise.
 	 */
     function create($data) {
         $result = false;
         
-        $this->db->insert('StockTickets', $data);
+        $this->db->insert('StockItems', $data);
         
         if(!$this->db->_error_message()) {
             $result = true;
@@ -95,33 +94,34 @@ class Stock_Item extends CI_Model
     }
     
     /*
-	 * Update a Stock Ticket in the database
+	 * Update a Stock item in the database
 	 *
-	 * @param array $data array of the parameters you want updated for the ticket.
+	 * @param array $data array of the parameters you want updated for the item.
 	 *
-	 * @return boolean $ticket_id the id of the inserted Stock Ticket if the insert succeeded, false otherwise.
+	 * @return boolean $item_id the id of the inserted Stock item if the insert succeeded, false otherwise.
 	 */
-	 function update($ticket_num) {
-	     $ticket_num = false;
+	 function update($stock_id) {
+	     $stock_id = false;
 
-         $this->db->update('StockTickets', $data, array('ticketNum' => $ticket_num));
+         $this->db->update('StockItems', $data, array('stockID' => $stock_id));
 
          if (!$this->db->_error_message()) {
-           $ticket_num = $id;
+           $stock_id = $id;
          }
 
-         return $ticket_num;
+         return $stock_id;
 	 }
     
     /*
-	 * Removes a Stock Ticket from the database
+	 * Removes a Stock item from the database
 	 *
-	 * @param int $ticket_num array of the items you want to create.
+	 * @param int $stock_id array of the items you want to create.
 	 *
 	 * @return boolean returns true is the delete executed without issue, otherwise false.
 	 */
-    function destroy($ticket_num) {
-        $this->db->delete('StockTickets', array('ticketNum' => $ticket_num));
+    function destroy($stock_id) {
+        $this->db->delete('StockItems', array('stockID' => $stock_id));
         return !!$this->db->_error_message();
-    }   
+    }
+     
 }
