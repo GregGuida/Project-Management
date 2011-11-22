@@ -89,7 +89,9 @@
           <?php echo $response['message']; ?>
         </p>
       <?php } ?>
+
       {yield}
+
     </div>
 
     <div class="push"></div>
@@ -107,13 +109,8 @@
   <script defer src="/js/script.js"></script>
   <script defer src="/js/libs/bootstrap/bootstrap-dropdown.js"></script>
   <script defer src="/js/libs/bootstrap/bootstrap-modal.js"></script>
+  <script defer src="/js/libs/bootstrap/bootstrap-tabs.js"></script>
   <script type="text/javascript"></script>
-  <script defer src="/js/libs/nivo-slider/jquery.nivo.slider.pack.js"></script>
-  <link rel="stylesheet" type="text/css" href="/js/libs/nivo-slider/nivo-slider.css"/>        
-  <link rel="stylesheet" type="text/css" href="/js/libs/nivo-slider/themes/default/default.css"/>
-   <script type="text/javascript"> jQuery(document).ready(function(){     jQuery("#main-slider").nivoSlider({         effect:"random",         slices:15,         boxCols:8,         boxRows:4,         animSpeed:500,         pauseTime:3000,         startSlide:0,         directionNav:true,         directionNavHide:true,         controlNav:true,         controlNavThumbs:false,         controlNavThumbsFromRel:true,         keyboardNav:true,         pauseOnHover:true,         manualAdvance:false     }); });         </script>
-  <!-- end scripts-->
-
 
   <?php echo isset($js) ? $this->htmlbuilder->makeHeadJS($js) : ''; ?>
 
@@ -132,6 +129,18 @@
       if (table_sorters.size() > 0) {
         table_sorters.tablesorter();
       }
+
+      $('.admin-show-tabs').tabs();
+      $('.admin-show-tabs li').click(function(){
+        $this = $(this);
+        $this.siblings().removeClass('active');
+        $this.addClass('active');
+        title = $this.attr('title');
+
+        console.log(title);
+        $('.tab-paine > div').css('display','none');
+        $('.tab-paine > div.'+title).css('display','block');
+      });
 
       $('#new-image').click(function(){
         $('<div id="modal-from-dom" class="modal hide fade" style="display: none; ">'+

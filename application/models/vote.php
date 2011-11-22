@@ -12,7 +12,7 @@
  *
  */
 
- class Votes extends CI_Model {
+ class Vote extends CI_Model {
     
    function __construct() {
      parent::__construct();
@@ -31,7 +31,11 @@
 
    function find( $pid, $limit = 0) {
      $votes = array();
-     $query = $this->db->get_where('Votes', array('pid' => $pid),  $limit);
+     $this->db->select('direction,FirstName,LastName,Email');  
+     $this->db->from('Votes');
+     $this->db->where('Votes.pid',$pid);
+     $this->db->join('Users','Users.uid = Votes.uid');
+     $query = $this->db->get_where();
 
      foreach($query->result_array() as $vote) {
        $votes[] = $vote;

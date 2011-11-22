@@ -6,14 +6,14 @@ class Products extends CI_Controller {
   public $layout = 'main';
 
   public function show($id) {
-    $this->load->model('Productmodel');
+    $this->load->model('Product');
     $data = array();
 
     $data['comments'] = $this->_comments($id);
     $data['votes'] = $this->_votes($id); 
     $data['images'] = $this->_images($id);
 
-    if ( $query = $this->Productmodel->get($id) ) {
+    if ( $query = $this->Product->get($id) ) {
        $data['product'] = $query;
     }
 
@@ -21,11 +21,11 @@ class Products extends CI_Controller {
   }
 
   private function _votes($pid){
-    $this->load->model('Votes');
+    $this->load->model('Vote');
     $votes = array();
     $total = 0;
 
-    if ( $votes = $this->Votes->find($pid) ) {
+    if ( $votes = $this->Vote->find($pid) ) {
       foreach( $votes as $vote ) {
         $total += $vote['direction']; 
       }
@@ -53,22 +53,31 @@ class Products extends CI_Controller {
 
     
   public function admin_show($id) {
-    $this->load->model('Productmodel');
-    $products = array();
+    $this->load->model('Product');
+    $this->load->model('Vote');
+    
+    $data = array();
+    
+    $data['comments'] = $this->_comments($id);
+    $data['images'] = $this->_images($id);
 
-    if( $query = $this->Productmodel->getProductId($id) ) {
-       $products['records'] = $query;
+    if ( $query = $this->Product->get($id) ) {
+       $data['product'] = $query;
+    }
+    
+    if ( $votes = $this->Vote->find($id) ) {
+      $data['votes'] = $votes;
     }
 
     $this->layout = 'admin';
-    $this->load->view('products/admin_show', $products);
+    $this->load->view('products/admin_show', $data);
   }
 
   public function index($category = "") {
-    $this->load->model('Productmodel');
+    $this->load->model('Product');
     $products = array();
 
-    if ( $query = $this->Productmodel->getProductId($id) ) {
+    if ( $query = $this->Product->getProductId($id) ) {
       $products['records'] = $query;
     }
 
@@ -76,10 +85,10 @@ class Products extends CI_Controller {
   }
 
   public function admin_browse() {
-    $this->load->model('Productmodel');
+    $this->load->model('Product');
     $products = array();
 
-    if( $query = $this->Productmodel->getAllProducts() ) {
+    if( $query = $this->Product->getAllProducts() ) {
        $products['records'] = $query;
     }
 
@@ -93,7 +102,7 @@ class Products extends CI_Controller {
   }
 
   public function create(){
-    $this->load->model('Productmodel');
+    $this->load->model('Product');
 
     $data = array(
       'Name' => $this->input->post('product-name'),
@@ -102,14 +111,14 @@ class Products extends CI_Controller {
       'catID' => $this->input->post('product-category'),
     );
 
-    $this->Productmodel->newProduct($data);
+    $this->Product->newProduct($data);
     redirect( '/products/admin_show/'.$this->db->insert_id() );
   }
 
   public function edit() {
-    $this->load->model('Productmodel');
+    $this->load->model('Product');
 
-    if ( $query = $this->Productmodel->getProductId($id) ) {
+    if ( $query = $this->Product->getProductId($id) ) {
       $product['records'] = $query;
     }
 
@@ -118,7 +127,7 @@ class Products extends CI_Controller {
   }
 
   public function update(){
-    $this->load->model('Productmodel');
+    $this->load->model('Product');
 
     $data = array(
      'Name' => $this->input->post('Name'),
@@ -127,7 +136,7 @@ class Products extends CI_Controller {
      'catID' => $this->input->post('catID'),
     );
 
-    $this->Productmodel->updateproduct($data);
+    $this->Product->updateproduct($data);
     $this->load->view('updateproducts');
   }
 
@@ -137,8 +146,8 @@ class Products extends CI_Controller {
   }
 
   public function delete($id){
-    $this->load->model('Productmodel');
-    $this->Productmodel->deleteProduct($id);
+    $this->load->model('Product');
+    $this->Product->deleteProduct($id);
     redirect('/products/admin_browse');
   }
 
