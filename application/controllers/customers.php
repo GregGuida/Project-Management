@@ -3,7 +3,7 @@
 class Customers extends CI_Controller {
   public $layout = 'main';
   public $auth = array(
-//    'show' => array()
+    'show' => array('message' => 'You need to Login before viewing your account', 'redirect' => '/customers/login')
   );
   public $admin = array(
     'reset_password' => array(),
@@ -223,16 +223,21 @@ class Customers extends CI_Controller {
   // GET - 200
   // account page
   function show() {
-    // TODO: load
-        $user = current_user();
-    //Only show account if there is someone signed in.
-    if($user)
-      $this->load->view('customers/account');
-    else
-    {
-      set_message('You need to log in before viewing your account', 'error');
-      header('Location: /customers/login');
-    }
+    $this->load->model('cart_item');
+    $this->load->model('order');
+    $this->load->model('wishList');
+    $data = array();
+    //Get current user
+    $user = current_user();
+    $uid = $user['uid'];
+    //Fill data array with the info we need
+    $data['numItems'] = $this->cart_item->numItems($uid);
+    $data['cart'] = $this->cart_item->getDisplayArray($uid);
+//    $data['activeOrders'];
+//    $data['prevOrders'];
+//	$data['wishLists']		= $this->wishList->getListsOfUser($uid);
+    
+    $this->load->view('customers/account', $data);
   }
 
   // GET - 200

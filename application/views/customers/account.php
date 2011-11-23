@@ -28,11 +28,13 @@
     <div class="row">
       <div class="span8">
         <div class="page-header">
-          <h3><a href="/cart">Your Cart</a> - 3 Items</h3>
+          <h3><a href="/cart">Your Cart</a> - <?=$numItems?> Items</h3>
         </div>
+        <?php foreach($cart as $item) { ?>
         <ul id="account-cart-items" class="unstyled">
-          <li class="row"><div class="span1"><a href="/products/show"><img src="http://placekitten.com/50/50" /></a></div><div class="span5"><h4><a href="/products/show/">Product Name</a> <small> - product description</small></h4></div></li>
+          <li class="row"><div class="span1"><a href="/products/show/<?php echo $item['pid'] ?>"><img class="image_90x90" src=<?php echo $item['location']?> /></a></div><div class="span5"><h4><?php echo $item['priceUSD']?><small> - product description</small></h4></div></li>
         </ul>
+        <? } ?>
       </div>
       <div class="span8">
         <div class="page-header">
