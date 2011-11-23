@@ -2,12 +2,18 @@
 
 class Orders extends CI_Controller {
   public $layout = 'main';
-
-  public function index() {
-    $this->load->view('welcome_message');
-  }
+  public $auth = array(
+      'show' => array('message' => 'Please Log In to see your Orders', 'redirect' => '/customers/login'),
+      'checkout' => array('message' => 'Please Log In to place an Order', 'redirect' => '/customers/login'),
+      'process' => array('message' => 'Please Log In to place an Order', 'redirect' => '/customers/login'),
+      'complete' => array('message' => 'Please Log In to place an Order', 'redirect' => '/customers/login')
+    );
+    public $admin = array(
+      'admin_browse' => array('message' => 'Please Log In to browse Orders'),
+      'admin_show' => array('message' => 'Please Log In to view an Order')
+    );
   
-  public function show($order_num = 0) {
+  public function show($order_num) {
       $data = array();
       $this->load->model('Order', 'order');
       $order = $this->order->find($order_num);
@@ -31,9 +37,31 @@ class Orders extends CI_Controller {
     
     $this->load->view('orders/checkout', $data);
   }
-
+  
   public function complete() {
-    $this->load->view('orders/complete');
+      $this->load->model('Order', 'order');
+      
+      $rules = array(
+          array('field' => 'order-sid', 'label' => 'Shipping Address', 'rules' => 'required')
+      );
+      $this->form_validation->set_rules($rules);
+
+      if ($this->form_validation->run() == TRUE) {
+          $new_order_num = $this->order->convert_cart_to_order(get_current_user_stuff('uid'), $this->input->post('order-sid'));
+          
+          if($new_order_num != false) {
+              set_message('Congratulations! Your Order had been placed.', 'success');
+              header('Location: /orders/show/'.$new_order_num);
+          }
+          else {
+              set_message('There was a Problem placing your order. Please try again.', 'error');
+              header('Location: /orders/checkout');
+          }
+      }
+      else {
+          set_message('A \'Shipping Address\' is required.', 'error');
+          header('Location: /orders/checkout');
+      }
   }
 
   public function admin_browse() {

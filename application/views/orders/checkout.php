@@ -3,13 +3,14 @@
 </div>
 
 <div class="container">
-  <div class="span8">
-    <form action="/orders/complete" method="post">
+  <div class="span16">
+    <form class="pull-left" action="/orders/complete" method="post">
       <fieldset>
         <legend><h3>Shipping Address <small>Last thing, we promise</small></h3></legend>
+        <h4>Choose an Existing Address</h4>
         <?php foreach($shipping_addresses as $address) { ?>
-        <div class="shipping-address-radio">
-            <input id="shipping-address-<?php echo $address['sid'] ?>"type="radio" name="order-sid" value="<?php echo $address['sid'] ?>">
+        <div class="shipping-address-radio offset1">
+            <input id="shipping-address-<?php echo $address['sid'] ?>" type="radio" name="order-sid" value="<?php echo $address['sid'] ?>">
             <div>
                 <span><?php echo $address['Street'] ?></span><br>
                 <span><?php echo $address['City'] ?>, <?php echo $address['State'] ?> <?php echo $address['Zip'] ?></span>
@@ -17,6 +18,16 @@
         </div>
         <?php } ?>
       </fieldset>
+      <div class="actions">
+          <p>Subtotal: $<?php echo $totalPrice ?></p>
+          <p>Shipping: $<?php echo $shippingCost ?></p>
+          <p><strong>Total: $<?php echo number_format($totalPrice + $shippingCost, 2) ?></strong></p>
+          <p><img id="checkout-with-paypal" src="/img/paypal.gif" /></p>
+          <p><a href="/customers/account">I'll sleep on it</a></p>
+      </div>
+  </form>
+  <form class="pull-left" action="/shipping_addresses/create" method="post">
+      <h4>Or, Add a New One</h4>
       <div class="clearfix">
         <label for="complete-address-one">Address 1</label>
         <div class="input">
@@ -93,16 +104,8 @@
           <input type="text" id="complete-zipcode" name="zip" />
         </div>
       </div>
-      <div class="actions">
-          <p>Subtotal: $<?php echo $totalPrice ?></p>
-          <p>Shipping: $<?php echo $shippingCost ?></p>
-          <p><strong>Total: $<?php echo number_format($totalPrice + $shippingCost, 2) ?></strong></p>
-        <p>
-          <img id="checkout-with-paypal" src="/img/paypal.gif" />
-        </p>
-        <p>
-          <a href="/customers/account">I'll sleep on it</a>
-        </p>
+      <div class="actions plainify">
+          <input id="shipping-address-create" type="submit" class="btn primary" value="Add Address" />
       </div>
     </form>
   </div>

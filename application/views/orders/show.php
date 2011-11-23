@@ -23,6 +23,7 @@
           <div class="page-header">
             <h3>And here's what you need to know:</h3>
           </div>
+          <p>Status: <strong><?php echo $order['Status'] ?></strong></p>
           <p>Total: <strong>$<?php echo $order['TotalPriceUSD'] ?></strong></p>
           <p><a href="http://www.fedex.com/Tracking">Tracking Information</a></p>
           <p><a href="/customers/show/<?php echo get_current_user_stuff('uid') ?>">Find all this and more on the My Account page</a></p>

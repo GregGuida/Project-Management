@@ -148,13 +148,13 @@ class Order extends CI_Model {
 	    
 	    // Get the Total Price of all items in the given order and add the shipping cost
 	    $tempTotal = current($this->db->select("SUM(products.priceUSD)")
-	                                      ->from("products")
-	                                      ->join("stockitems", "products.pid = stockitems.pid")
-	                                      ->join("cartitems", "cartitems.stockID = stockitems.stockID")
-	                                      ->where("cartitems.uid", $uid)
-	                                      ->where("didPurchase = 0")
-	                                      ->get()
-	                                      ->row_array());
+	                                  ->from("products")
+                                      ->join("stockitems", "products.pid = stockitems.pid")
+                                      ->join("cartitems", "cartitems.stockID = stockitems.stockID")
+                                      ->where("cartitems.uid", $uid)
+                                      ->where("didPurchase = 0")
+                                      ->get()
+                                      ->row_array());
 	    $totalPriceUSD = $tempTotal + number_format($tempTotal * 0.06, 2);
 	    
 	    // Get all the user's unpurchased cart items
@@ -175,10 +175,10 @@ class Order extends CI_Model {
         $items_creation_success = $this->item->create($ordered_items);
         
         // Set the 'didPurchase' flag in the CartItems table to 1 for the user.
-        $cart_update_success = $this->cart_item->updatePurchased($uid);
+        //$cart_update_success = $this->cart_item->updatePurchased($uid);
         
         // Check for error messages
-        if(!$this->db->_error_message() && $items_creation_success && $cart_update_success) {
+        if(!$this->db->_error_message() && $items_creation_success) {
             $success = true;
         }
 	    
