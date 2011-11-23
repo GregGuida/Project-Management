@@ -12,8 +12,9 @@
                         <a href="/products/show/<?php echo $product['pid'] ?>"><img class="image_90x90" src="<?php echo $product['location'] ?>" /></a>
                     </div>
                     <div class="span5">
-                        <p><?php echo $product['name'] ?></p>
-                        <p>Price: $<?php echo $product['priceUSD'] ?></p>
+                        <p><strong><?php echo $product['name'] ?></strong></p>
+                        <p><strong>Price:</strong> $<?php echo $product['priceUSD'] ?></p>
+                        <p><strong>Quantity:</strong> <?php echo $product['quantity'] ?></p>
                     </div>
                 </div>
             <?php } ?>

@@ -146,8 +146,8 @@ class Order extends CI_Model {
 	    $success = false;
 	    $ordered_items = array();
 	    
-	    // Get the Total Price of all items in the given order
-	    $totalPriceUSD = current($this->db->select("SUM(products.priceUSD)")
+	    // Get the Total Price of all items in the given order and add the shipping cost
+	    $tempTotal = current($this->db->select("SUM(products.priceUSD)")
 	                                      ->from("products")
 	                                      ->join("stockitems", "products.pid = stockitems.pid")
 	                                      ->join("cartitems", "cartitems.stockID = stockitems.stockID")
@@ -155,6 +155,7 @@ class Order extends CI_Model {
 	                                      ->where("didPurchase = 0")
 	                                      ->get()
 	                                      ->row_array());
+	    $totalPriceUSD = $tempTotal + number_format($tempTotal * 0.06, 2);
 	    
 	    // Get all the user's unpurchased cart items
 	    $stock_items_cursor = $this->db->get_where("CartItems", array("uid" => $uid, "didPurchase" => 0));
@@ -193,17 +194,9 @@ class Order extends CI_Model {
 	 */
 	function get_products_in_order($order_num) {
 	    $products = array();
-	    
-	    // select p.pid, p.name, p.priceusd, i.location from products as p, images as i join orders as o, ordereditems as oi, stockitems as s where o.ordernum = 2 and o.ordernum = oi.ordernum and oi.stockid = s.stockid and s.pid = p.pid and i.pid = p.pid group by pid;
-	    $products_cursor = $this->db->select("Products.pid, Products.name, Products.priceUSD, Images.location")
-	                                ->from("Products, Images")
-	                                ->join("StockItems", "StockItems.pid = Products.pid")
-	                                ->join("OrderedItems", "OrderedItems.stockId = StockItems.stockId")
-	                                ->join("Orders", "Orders.orderNum = OrderedItems.orderNum")
-	                                ->where("Products.pid = Images.pid")
-	                                ->where("Orders.orderNum", $order_num)
-	                                ->group_by("pid")
-	                                ->get();
+
+	    // This is awful...but it must be done: A Straight Query!!
+	    $products_cursor = $this->db->query("select p.pid, p.name, p.priceUSD, i.location, quantity from products as p, images as i, (select p.pid, count(p.pid) as quantity from products as p join orders as o, ordereditems as oi, stockitems as s where o.ordernum = oi.ordernum and oi.stockid = s.stockid and s.pid = p.pid and o.ordernum = ".$order_num." group by pid) as quantity join orders as o, ordereditems as oi, stockitems as s where o.ordernum = ".$order_num." and o.ordernum = oi.ordernum and oi.stockid = s.stockid and s.pid = p.pid and i.pid = p.pid group by pid");
 	    
 	    foreach($products_cursor->result_array() as $product) {
 	        $products[] = $product;

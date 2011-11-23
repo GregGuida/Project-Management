@@ -7,6 +7,15 @@
     <form action="/orders/complete" method="post">
       <fieldset>
         <legend><h3>Shipping Address <small>Last thing, we promise</small></h3></legend>
+        <?php foreach($shipping_addresses as $address) { ?>
+        <div class="shipping-address-radio">
+            <input id="shipping-address-<?php echo $address['sid'] ?>"type="radio" name="order-sid" value="<?php echo $address['sid'] ?>">
+            <div>
+                <span><?php echo $address['Street'] ?></span><br>
+                <span><?php echo $address['City'] ?>, <?php echo $address['State'] ?> <?php echo $address['Zip'] ?></span>
+            </div>
+        </div>
+        <?php } ?>
       </fieldset>
       <div class="clearfix">
         <label for="complete-address-one">Address 1</label>
@@ -85,9 +94,9 @@
         </div>
       </div>
       <div class="actions">
-          <p>Subtotal: $1175.00</p>
-          <p>Shipping: $40.00</p>
-          <p><strong>Total: $1280.00</strong></p>
+          <p>Subtotal: $<?php echo $totalPrice ?></p>
+          <p>Shipping: $<?php echo $shippingCost ?></p>
+          <p><strong>Total: $<?php echo number_format($totalPrice + $shippingCost, 2) ?></strong></p>
         <p>
           <img id="checkout-with-paypal" src="/img/paypal.gif" />
         </p>

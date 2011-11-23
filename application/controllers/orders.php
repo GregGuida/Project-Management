@@ -22,7 +22,14 @@ class Orders extends CI_Controller {
   }
 
   public function checkout() {
-    $this->load->view('orders/checkout');
+    $this->load->model('Cart_Item', 'item');
+    $this->load->model('Shipping_Address', 'address');
+    
+    $data['shipping_addresses'] = $this->address->find_by(array('uid' => get_current_user_stuff('uid')));
+    $data['totalPrice'] = $this->item->totalPrice(get_current_user_stuff('uid'));
+    $data['shippingCost'] = number_format($data['totalPrice'] * 0.06, 2);
+    
+    $this->load->view('orders/checkout', $data);
   }
 
   public function complete() {

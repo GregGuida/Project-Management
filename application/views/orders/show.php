@@ -11,8 +11,9 @@
                       <a href="/products/show/<?php echo $product['pid'] ?>"><img class="image_90x90" src="<?php echo $product['location'] ?>" /></a>
                   </div>
                   <div class="span5">
-                      <p><?php echo $product['name'] ?></p>
-                      <p>Price: $<?php echo $product['priceUSD'] ?></p>
+                      <p><strong><?php echo $product['name'] ?></strong></p>
+                      <p><strong>Price:</strong> $<?php echo $product['priceUSD'] ?></p>
+                      <p><strong>Quantity:</strong> <?php echo $product['quantity'] ?></p>
                   </div>
               </div>
           <?php } ?>
@@ -23,7 +24,6 @@
             <h3>And here's what you need to know:</h3>
           </div>
           <p>Total: <strong>$<?php echo $order['TotalPriceUSD'] ?></strong></p>
-          <p>Estimated Arrival: <strong>2 days from now</strong></p>
           <p><a href="http://www.fedex.com/Tracking">Tracking Information</a></p>
           <p><a href="/customers/show/<?php echo get_current_user_stuff('uid') ?>">Find all this and more on the My Account page</a></p>
         </section>
