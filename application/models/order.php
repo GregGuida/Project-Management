@@ -175,10 +175,10 @@ class Order extends CI_Model {
         $items_creation_success = $this->item->create($ordered_items);
         
         // Set the 'didPurchase' flag in the CartItems table to 1 for the user.
-        //$cart_update_success = $this->cart_item->updatePurchased($uid);
+        $cart_update_success = $this->cart_item->updatePurchased($uid);
         
         // Check for error messages
-        if(!$this->db->_error_message() && $items_creation_success) {
+        if(!$this->db->_error_message() && $items_creation_success && $cart_update_success) {
             $success = true;
         }
 	    

@@ -23,6 +23,7 @@ class Cart extends CI_Controller {
       $data['size'] = count($cart);
       $data['cart'] = $this->cart_item->getDisplayArray($uid);
       $data['sum'] = $this->totalPrice($uid);
+      $data['shippingCost'] = number_format($data['sum'] * 0.06, 2);
 
       $this->load->view('cart/show', $data);
   }

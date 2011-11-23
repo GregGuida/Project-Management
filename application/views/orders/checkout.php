@@ -104,6 +104,7 @@
           <input type="text" id="complete-zipcode" name="zip" />
         </div>
       </div>
+      <input type="hidden" name="ajax" value="0" />
       <div class="actions plainify">
           <input id="shipping-address-create" type="submit" class="btn primary" value="Add Address" />
       </div>

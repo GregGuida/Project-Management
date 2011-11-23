@@ -87,7 +87,7 @@ class Shipping_Address extends CI_Model
         $this->db->insert('ShippingAddresses', $data);
         
         if(!$this->db->_error_message()) {
-            $result = true;
+            $result = $this->db->insert_id();
         }
         
         return $result;
