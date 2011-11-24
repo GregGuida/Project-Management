@@ -1,16 +1,17 @@
 <div class="row">
 	<h2>Wishlist</h2>
-	<?php for ($i = 0; $i<5; $i++) { ?>
+	<h3><?=$wname ?></h3>
+	<?php foreach($list as $item) { ?>
 	<div class="row clearfix cart-item">
 		<div class="span4 item-photo">
-			<img src="http://placekitten.com/160/160" />
+			<img class="image_90x90" src=<?php echo $item['location']?> />
 		</div>
 		<div class="span12 item-info">
 			<button class="remove-item btn">remove</button>
-			<h3 class="item-title"><a href="/products/show/<?php echo $i ?>">Cute Kitty</a></h3>
-			<div class="item-price"><h4>Price:</h4><p>$235.00</p></div>
-			<div class="item-description"><h4>Description</h4><p>A kitten is a juvenile domesticated cat. The young of big cats are called cubs rather than kittens. Either term may be used for the young of smaller wild felids such as ocelots, caracals, and lynx, but kitten is usually more common for these species.</p></div>
-			<div class="item-quantity"><h4>Quantity</h4><input class="span1" type="text" value="1" /></div>
+			<h3 class="item-title"><a href="/products/show/<?php echo $item['pid'] ?>"><?php echo $item['name']?></a></h3>
+			<div class="item-price"><h4>Price:</h4><p>$<?php echo $item['priceUSD']?></p></div>
+			<div class="item-description"><h4>Description</h4><p><?php echo $item['description']?></p></div>
+			<div class="item-quantity"><h4>Quantity</h4><input class="span1" type="text" value="<?php echo $item['quantity']?>" /></div>
 		</div>	
 	</div>
 	<?php } ?>
