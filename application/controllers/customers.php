@@ -225,17 +225,18 @@ class Customers extends CI_Controller {
   function show() {
     $this->load->model('cart_item');
     $this->load->model('order');
+    $this->load->model('ordered_item');
     $this->load->model('wishList');
     $data = array();
     //Get current user
     $user = current_user();
     $uid = $user['uid'];
     //Fill data array with the info we need
-    $data['numItems'] = $this->cart_item->numItems($uid);
     $data['cart'] = $this->cart_item->getDisplayArray($uid);
-//    $data['activeOrders'];
-//    $data['prevOrders'];
-//	$data['wishLists']		= $this->wishList->getListsOfUser($uid);
+    $data['numItems'] = $this->cart_item->numItems($uid);
+	$data['activeOrders'] = $this->order->getActiveOrders($uid);
+    $data['prevOrders'] = $this->order->getPastOrders($uid);
+	$data['wishLists'] = $this->wishList->getListsOfUsers($uid);
     
     $this->load->view('customers/account', $data);
   }

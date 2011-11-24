@@ -92,7 +92,7 @@
           <img id="checkout-with-paypal" src="/img/paypal.gif" />
         </p>
         <p>
-          <a href="/customers/account">I'll sleep on it</a>
+          <a href="/customers/show/<?php echo get_current_user_stuff('uid') ?>">I'll sleep on it</a>
         </p>
       </div>
     </form>

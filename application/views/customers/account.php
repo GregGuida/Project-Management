@@ -9,20 +9,21 @@
         <div class="page-header">
           <h3>Your Active Orders</h3>
         </div>
+        <?php foreach($activeOrders as $order) { ?>
         <ul id="account-active-orders" class="unstyled">
-          <li><p><b>10/10/2011 - $100.95</b> 3 Items. <a href="/orders/complete" class="btn">View</a></p><p>Status: Processing</p></li>
-          <li><p><b>10/10/2011 - $100.95</b> 3 Items. <a href="/orders/complete" class="btn">View</a></p><p>Status: Processing</p></li>
+          <li><p><b><?php echo $order['Date'] ?> - <?= $order['TotalPriceUSD'] ?></b> <?= $order['count']?> Items. <a href="/orders/show/<?php echo $order['OrderNum']?>" class="btn">View</a></p><p>Status: <?= $order['Status']?></p></li>
         </ul>
+        <? } ?>
       </div>
       <div class="span8">
         <div class="page-header">
           <h3>Your Prevous Orders</h3>
         </div>
+        <?php foreach($prevOrders as $order) { ?>
         <ul id="account-previous-orders" class="unstyled">
-          <li><b>10/10/2011 - $100.95</b> 3 Items. <a href="#" class="btn">View</a></li>
-          <li><b>10/10/2011 - $100.95</b> 3 Items. <a href="#" class="btn">View</a></li>
-          <li><b>10/10/2011 - $100.95</b> 3 Items. <a href="#" class="btn">View</a></li>
+          <li><p><b><?php echo $order['Date'] ?> - <?= $order['TotalPriceUSD'] ?></b> <?= $order['count']?> Items. <a href="/orders/show/<?php echo $order['OrderNum']?>" class="btn">View</a></p><p>Status: <?= $order['Status']?></p></li>
         </ul>
+        <? } ?>
       </div>
     </div>
     <div class="row">
@@ -40,12 +41,12 @@
         <div class="page-header">
           <h3><a href="/wishlists">Your Wish Lists</a></h3>
         </div>
+        <?php foreach($wishLists as $row) { ?>
           <ul id="account-previous-orders" class="unstyled">
-            <li><b>10/10/2011 - $100.95</b> 3 Items. <a href="/wishlists/show" class="btn">View</a></li>
-            <li><b>10/10/2011 - $100.95</b> 3 Items. <a href="/wishlists/show" class="btn">View</a></li>
-            <li><b>10/10/2011 - $100.95</b> 3 Items. <a href="/wishlists/show" class="btn">View</a></li>
+            <li><b><?=$row['name']?> - </b> <?=$row['count']?> Items. <a href="/wishlists/show/<?php echo $row['wishID'] ?>" class="btn">View</a></li>
           </ul>
         </ul>
+        <? } ?>
       </div>
     </div>
   </section>
