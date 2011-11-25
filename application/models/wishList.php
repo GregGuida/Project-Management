@@ -45,6 +45,29 @@ class WishList extends CI_Model
 		$query2->free_result();
 		return $result;
 	}
+	
+	//Returns all the wishlists a user has as an array
+	function getListsOfUsers($uid)
+	{
+		$query = $this->db->select('wishID')->from('WishLists')->where('uid', $uid)->get();
+		$result = array();
+		$temp = array();
+		$data = $query->result_array();
+		foreach($data as $row)
+		{
+			$list = $this->getWishList($row['wishID']);
+			//Do this so we can display how many items the list contains
+			$list['count'] = $this->count($row['wishID']);
+			$result[] = $list;
+		}
+		return $result;
+	}
+	
+	//Returns the number of products in a wish list
+	function count($wishID)
+	{
+		return count($this->getWishList($wishID));
+	}
 
 	//Add a single item to a given wishlist
 	function addItemToList($pid,$wishID)
