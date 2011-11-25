@@ -13,6 +13,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
   <!-- CSS concatenated and minified via ant build script-->
+  <link rel="stylesheet" href="/css/vendor/flick/jquery-ui-1.8.16.custom.css">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/bootstrap.css">
   <!-- end CSS-->
@@ -39,6 +40,7 @@
         <div class="row" id="action-nav">
           <div class="container">
             <div class="" id="nav-logo"><a href="/employees/dashboard">TFM</a></div>
+            <?php if (is_employee()) { ?>
             <ul class="dropdowns">
 		<li><a href="/employees/dashboard/">Dashboard</a></li>
 		<li class="dropdown" data-dropdown="dropdown">
@@ -66,7 +68,7 @@
 			<a href="#" class="dropdown-toggle">Customer</a>
 			<ul class="dropdown-menu">
 				<li><a href="/customers/">Find Customers</a></li>
-				<li><a href="/customers/contact/">Customer Chat</a></li>
+				<!-- <li><a href="/customers/contact/">Customer Chat</a></li> -->
 			</ul>
 		</li>
     <li class="dropdown" data-dropdown="dropdown">
@@ -77,12 +79,19 @@
       </ul>
     </li>
 	    </ul>
+          <?php } ?>
           </div>
         </div>
       </div>
     </header>
 
     <div id="main" class="container">
+      <?php $response = get_message(); ?>
+      <?php if ($response) { ?>
+        <div class="alert-message <?php echo $response['status'] ?>">
+          <?php echo $response['message']; ?>
+        </div>
+      <?php } ?>
       {yield}
     </div>
 
@@ -101,7 +110,7 @@
   <script defer src="/js/script.js"></script>
   <script defer src="/js/libs/bootstrap/bootstrap-dropdown.js"></script>
   <script defer src="/js/libs/bootstrap/bootstrap-modal.js"></script>
-  <script type="text/javascript"></script>
+  <script defer src="/js/libs/jquery-ui-1.8.16.custom.min.js"></script>
   <script defer src="/js/libs/nivo-slider/jquery.nivo.slider.pack.js"></script>
   <link rel="stylesheet" type="text/css" href="/js/libs/nivo-slider/nivo-slider.css"/>        
   <link rel="stylesheet" type="text/css" href="/js/libs/nivo-slider/themes/default/default.css"/>
@@ -113,6 +122,13 @@
 
   <script>
     jQuery(document).ready(function() {
+
+      // automatic datepicker assignment
+      (function() {
+        var datepicker_selector = '.im-a-datepicker';
+        $(datepicker_selector).datepicker();
+      }());
+
       var category_row = $("#category-nav");
       $("#categories-nav-tab-pull, #close-category-nav").click(function(e) {
         e.preventDefault();
