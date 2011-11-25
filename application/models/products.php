@@ -17,7 +17,29 @@ class Products extends CI_Model
 	function __construct() {
 		parent::__construct();
 	}
-	
+	//Return the random products
+	function getRandomProduct()
+	{
+	    $data = array();
+		$query = $this->db->get('Products');
+		
+		if($query->num_rows() > 0)
+		{
+			foreach($query->result_array() as $row)
+				$data[] = $row;
+				
+		}
+		else
+			return false;
+		
+		$query->free_result();
+		for($i=0; $i<=15; i++)
+		{
+		    $random = array_rand($data); // select the random product
+			return $random;
+		}
+		
+	}
 	//Returns the Product with the given id# as an array
 	function getProduct($id)
 	{
