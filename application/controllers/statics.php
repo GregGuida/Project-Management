@@ -5,7 +5,15 @@ class Statics extends CI_Controller {
 
   // homepage
   public function index() {
-   $this->load->view('statics/homepage');
+    $this->load->model('Products');
+    $products = array();
+
+    if( $query = $this->Products->getRandomProduct() ) {
+       $products['records'] = $query;
+    }
+
+    //$this->layout = 'admin';
+    $this->load->view('statics/homepage',$products);
   }
 
   public function help() {

@@ -33,7 +33,7 @@ class Products extends CI_Model
 			return false;
 		
 		$query->free_result();
-		for($i=0; $i<=15; i++)
+		for($i=0; $i<=15; $i++)
 		{
 		    $random = array_rand($data); // select the random product
 			return $random;
