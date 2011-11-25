@@ -10,13 +10,44 @@
 
 <section class="category-list">
   <div class="row">
-    <div class="page-header"><h2><?= $product[0]['Name'] ?></h2></div>
-    <div class="span6">
-    <p>
-    <?
+    <div class="span3">
+	<p>
+	<a href="/products/show/">
+	<?
       if(!empty($images)) {
         echo '<img src="'.$images[0]['location'].'" style="width:340px;" class="product-image" />';
-        }?>
+        }
+	?>
+    </p>
+    <p class="alt-images">
+    <?
+        foreach( $images as $preview_image) {
+            echo '<img src="'.$preview_image['location'].'" style="width:60px;height:60px;class="thumbnail"/>';
+        }
+    ?>
+        <button id="new-image" class="btn"> Add An <br/>Image </butto</a></p><span class="help-block"><b><?= $products[0]['Name'] ?></b></span></div>
+		
+		<div class="span3"><p><a href="/products/show/">
+	<?
+      if(!empty($images)) {
+        echo '<img src="'.$images[0]['location'].'" style="width:340px;" class="product-image" />';
+        }
+	?>
+    </p>
+    <p class="alt-images">
+    <?
+        foreach( $images as $preview_image) {
+            echo '<img src="'.$preview_image['location'].'" style="width:60px;height:60px;class="thumbnail"/>';
+        }
+    ?>
+        <button id="new-image" class="btn"> Add An <br/>Image </butto</a></p><span class="help-block"><b><?= $products[0]['Name'] ?></b></span></div>
+		
+		<div class="span3"><p><a href="/products/show/">
+	<?
+      if(!empty($images)) {
+        echo '<img src="'.$images[0]['location'].'" style="width:340px;" class="product-image" />';
+        }
+	?>
     </p>
     <p class="alt-images">
     <?
@@ -25,14 +56,45 @@
         }
     ?>
         <button id="new-image" class="btn"> Add An <br/>Image </button>
+	</a>
+	</p>
+	<span class="help-block"><b><?= $products[0]['Name'] ?></b></span>
+	</div>
+		
+	<div class="span3"><p><a href="/products/show/">
+	<?
+      if(!empty($images)) {
+        echo '<img src="'.$images[0]['location'].'" style="width:340px;" class="product-image" />';
+        }
+	?>
     </p>
+    <p class="alt-images">
+    <?
+        foreach( $images as $preview_image) {
+            echo '<img src="'.$preview_image['location'].'" style="width:60px;height:60px;class="thumbnail"/>';
+        }
+    ?>
+        <button id="new-image" class="btn"> Add An <br/>Image </butto</a></p><span class="help-block"><b><?= $products[0]['Name'] ?></b></span></div>
+		
+		<div class="span3"><p><a href="/products/show/">
+	<?
+      if(!empty($images)) {
+        echo '<img src="'.$images[0]['location'].'" style="width:340px;" class="product-image" />';
+        }
+	?>
+    </p>
+    <p class="alt-images">
+    <?
+        foreach( $images as $preview_image) {
+            echo '<img src="'.$preview_image['location'].'" style="width:60px;height:60px;class="thumbnail"/>';
+        }
+    ?>
+        <button id="new-image" class="btn"> Add An <br/>Image </butto</a></p>
+		<span class="help-block"><b><?= $products[0]['Name'] ?></b></span>
+		</div>
+		
     </div>
-    <div class="span3"><p><a href="/products/show/"><img src="http://placekitten.com/120/120" class="thumbnail" /></a></p><span class="help-block"><b>A Cute Kitty</b></span></div>
-    <div class="span3"><p><a href="/products/show/"><img src="http://placekitten.com/120/120" class="thumbnail" /></a></p><span class="help-block"><b>A Cute Kitty</b></span></div>
-    <div class="span3"><p><a href="/products/show/"><img src="http://placekitten.com/120/120" class="thumbnail" /></a></p><span class="help-block"><b>A Cute Kitty</b></span></div>
-    <div class="span3"><p><a href="/products/show/"><img src="http://placekitten.com/120/120" class="thumbnail" /></a></p><span class="help-block"><b>A Cute Kitty</b></span></div>
-  </div>
-  <div class="row">
+    <div class="row">
     <div class="span3"><p><a href="/products/show/"><img src="http://placekitten.com/120/120" class="thumbnail" /></a></p><span class="help-block"><b>A Cute Kitty</b></span></div>
     <div class="span3"><p><a href="/products/show/"><img src="http://placekitten.com/120/120" class="thumbnail" /></a></p><span class="help-block"><b>A Cute Kitty</b></span></div>
     <div class="span3"><p><a href="/products/show/"><img src="http://placekitten.com/120/120" class="thumbnail" /></a></p><span class="help-block"><b>A Cute Kitty</b></span></div>
