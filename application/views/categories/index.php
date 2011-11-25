@@ -3,7 +3,7 @@
 </div>
 
 <ul>
-  <?php for ($i = 0; $i < 15; $i++) { ?>
-    <li><a href="/categories/show/1">Category</a></li>
+  <?php foreach ($categories as $category) { ?>
+    <li><a href="/categories/show/<?= $category['catID'] ?>"> <?= $category['name'] ?> </a></li>
   <?php } ?>
 </ul>

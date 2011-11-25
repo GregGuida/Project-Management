@@ -137,7 +137,6 @@
         $this.addClass('active');
         title = $this.attr('title');
 
-        console.log(title);
         $('.tab-paine > div').css('display','none');
         $('.tab-paine > div.'+title).css('display','block');
       });

@@ -21,9 +21,35 @@ class Product extends CI_Model {
 	function get($id) {
 		$data = array();
 		
-		$query = $this->db->get_where('Products', array('pid'=>$id));
-		if($query->num_rows()==0)
-			return false;
+    $this->db->select('*');
+    $this->db->from('Products');
+    $this->db->where('pid',$id);
+		$query = $this->db->get();
+
+		if($query->num_rows()==0) {
+      return false;
+    }
+			
+		$data = $query->result_array();
+		
+		$query->free_result(); //Release our memory
+		return $data[0];
+	}
+
+	function find_by_category($catID) {
+		$data = array();
+		
+		$this->db->select('*');	
+    $this->db->group_by('Products.pid');
+	  $this->db->from('Products');
+	  $this->db->where('Products.catID',$catID);
+	  $this->db->join('Images','Images.pid = Products.pid','left');
+	  $query = $this->db->get();
+
+		if($query->num_rows()==0) {
+      return false;
+    }
+			
 		$data = $query->result_array();
 		
 		$query->free_result(); //Release our memory
@@ -33,12 +59,15 @@ class Product extends CI_Model {
 	//Returns an array of all the rows in the Products Table
 	function all() {
 		$data = array();
-		$query = $this->db->get('Products');
+    $this->db->select('Products.pid, Products.Name, Products.Description, Products.PriceUSD, Categories.name');
+    $this->db->from('Products');
+    $this->db->join('Categories','Products.catID = Categories.catID','left');
+		$query = $this->db->get();
 		
-		if($query->num_rows() > 0)
-		{
-			foreach($query->result_array() as $row)
+		if($query->num_rows() > 0) {
+			foreach($query->result_array() as $row) {
 				$data[] = $row;
+      }
 		}
 		else
 			return false;
@@ -47,8 +76,7 @@ class Product extends CI_Model {
 		return $data;
 	}
 
-	function add($name,$description,$price,$catID)
-	{
+	function add($name,$description,$price,$catID) {
 		$data = array(
 				'Name' => $name,
 				'Description' => $description,
@@ -60,14 +88,12 @@ class Product extends CI_Model {
 		return $this->db->insert_id();
 	}
 	
-	function destroy($id)
-	{
+	function destroy($id)	{
 		$this->db->delete('Products', array('pid' => $id));
 		return true;
 	}
 	
-	function update($id,$name,$description,$price,$catID)
-	{
+	function update($id,$name,$description,$price,$catID) {
 		$data = array(
 				'Name' => $name,
 				'Description' => $description,				

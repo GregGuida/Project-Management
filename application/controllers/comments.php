@@ -4,19 +4,29 @@ class Comments extends CI_Controller {
   public $layout = 'main';
 
   public function index() {
-    $this->load->view('welcome_message');
+    redirect('/');
   }
 
-  // will add a comment to a product specified by $id
-  public function create($id = 0) {
-    // either ajax or redirect, no view loading...
-    $this->load->view('comments/show');
+  public function create($pid) {
+    $this->load->model('Comment');
+
+    $user = current_user();
+    $remark = $this->input->post('message');
+
+    $this->Comment->create($pid,$user['uid'],$remark);
+    redirect('/products/show/'.$pid);
   }
 
-  // will add a rating to a comment specified by $id
-  public function rating($id = 0) {
-    // either ajax or redirect, no view loading...
-    $this->load->view('comments/show');
+  public function destroy($id) {
+    $this->load->model('Comment');
+    $comment = $this->Comment->get($id);
+    $this->Comment->destroy($id);
+    if ($this->input->get('ajax') == 'true'){
+      return '{"status":"success"}';
+    } else {
+      redirect('/products/admin_show/'.$comment['pid']);
+    }
+    
   }
+
 }
-
