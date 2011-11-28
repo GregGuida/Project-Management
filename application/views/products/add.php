@@ -26,9 +26,13 @@
           <label for="product-category">Product Category</label>
           <div class="input">
             <select class="xlarge" name="product-category" >
-            <? foreach ($categories as $category) { ?>
-              <option value="<?= $category['catID']?>"> <?= $category['name'] ?> </option>
-            <? } ?>
+            <?
+              if ( $categories ) {
+                foreach ($categories as $category) { 
+                  echo '<option value="'.$category['catID'].'">'.$category['name'].'</option>';
+                } 
+              }
+            ?>
             </select>
           </div>
         </div>
