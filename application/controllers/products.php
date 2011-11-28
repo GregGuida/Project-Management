@@ -4,6 +4,18 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Products extends CI_Controller {
   public $layout = 'main';
+  public $auth = array();
+  public $admin = array(
+    'admin_browse' => array(),
+    'admin_show' => array(),
+    'destroy' => array(),
+    'update' => array(),
+    'edit' => array(),
+    'add' => array(),
+    'create' => array(),
+    'add_image' => array(),
+    'create_image' => array()
+  );
 
   public function show($id) {
     $this->load->model('Product');
@@ -97,10 +109,12 @@ class Products extends CI_Controller {
 
     if( $query = $this->Product->all() ) {
        $data['products'] = $query;
+       $this->load->view('products/admin_browse', $data);
+    } else {
+      $this->load->view('error/404');
     }
 
     $this->layout = 'admin';
-    $this->load->view('products/admin_browse', $data);
   }
 
   public function add() {
