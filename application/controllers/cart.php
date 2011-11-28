@@ -49,7 +49,7 @@ class Cart extends CI_Controller {
     $this->load->model('Cart_Item', 'cart_item');
     //Get the logged in user's ID
     $user = current_user();
-    if ($this->cart_items->remove($stockID,$user['uid']);) {
+    if ($this->cart_items->remove($stockID,$user['uid'])) {
       set_message('success','Item removed from the cart');
     } else {
       set_message('error','Item not found');

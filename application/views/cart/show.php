@@ -15,7 +15,7 @@
     			<div class="item-quantity"><h4>Quantity</h4><input class="span1" type="text" value="<?php echo $item['quantity']?>" /></div>
     		</div>	
     	</div>
-    	<?php } ?>
+	    	<?php } ?>
 	<?php } else { ?>
 	    <section class="alert-message error">
             <p>Uh oh, looks like you don't have anything in your cart :(</p>
