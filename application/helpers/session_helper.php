@@ -5,6 +5,28 @@ if (!defined('BASEPATH'))
 
 
 // returns the current user
+if (!function_exists('set_session_stuff')) {
+
+    function set_session_stuff($name, $data) {
+
+        $CI = & get_instance();
+        return $CI->session->set_userdata($name, $data);
+    }
+
+}
+
+// returns the current user
+if (!function_exists('get_session_stuff')) {
+
+    function get_session_stuff($name) {
+
+        $CI = & get_instance();
+        return $CI->session->userdata($name);
+    }
+
+}
+
+// returns the current user
 if (!function_exists('current_user')) {
 
     function current_user() {

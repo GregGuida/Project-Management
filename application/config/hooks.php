@@ -17,6 +17,12 @@ $hook['post_controller_constructor'][] = array(
     'filepath' => 'hooks'
 );
 
+$hook['post_controller_constructor'][] = array(
+    'class' => 'TFMSession',
+    'function' => 'loadCategories',
+    'filename' => 'TFMSession.php',
+    'filepath' => 'hooks'
+);
 
 $hook['display_override'][] = array(
     'class' => 'Yield',
