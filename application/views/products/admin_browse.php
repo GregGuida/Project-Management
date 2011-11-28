@@ -1,3 +1,8 @@
+
+	<?php
+	  if ( $products ) {
+	?>
+
 <div class="page-header">
   <h2>The things that make us money!</h2>
 </div>
@@ -12,6 +17,7 @@
 		</tr>
 	</thead>
 	<tbody>
+
 	<?php
 		foreach ($products as $product) {
 			echo '<tr id="'.$product['pid'].'">';
@@ -23,6 +29,13 @@
 			echo '</tr>';
 		}
 	?>
+
 	</tbody>
 </table> 
+
+    <?php
+	  } else {
+	  	echo '<h1> There are currently no products </h1>';
+	  }
+	?>
 
