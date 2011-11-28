@@ -226,7 +226,7 @@ class Customers extends CI_Controller {
     $this->load->model('cart_item');
     $this->load->model('order');
     $this->load->model('ordered_item');
-    $this->load->model('WishList', 'wishlist');
+    //$this->load->model('WishList', 'wishlist');
     $data = array();
     
     //Fill data array with the info we need
@@ -239,7 +239,7 @@ class Customers extends CI_Controller {
 	$data['activeOrders'] = array_filter($orders, array($this, "is_not_delivered"));
     $data['prevOrders'] = array_filter($orders, array($this, "is_delivered"));
     
-	$data['wishLists'] = $this->wishlist->getListsOfUsers(get_current_user_stuff('uid'));
+	//$data['wishLists'] = $this->wishlist->getListsOfUsers(get_current_user_stuff('uid'));
     
     $this->load->view('customers/account', $data);
   }
