@@ -22,5 +22,7 @@
 		<input class="btn" type="submit" value="SHARE"/> 
 	</form>
 	<div style="clear:both;"></div>
-	<input type="submit" class="btn primary clearfix checkout-button" value="CHECKOUT" />
+      <form action="/orders/checkout" method="post">
+       	<input type="submit" class="btn primary clearfix checkout-button" value="CHECKOUT" />
+      </form>
 </div>
