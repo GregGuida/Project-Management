@@ -97,16 +97,11 @@ class Cart_Item extends CI_Model
 		return $result;
 	}
 	
-	//update CartItems <uid> to change didPurchase to true
-	function purchased($cart,$stockID,$date)
-	{
+	function updatePurchased($uid) {
 		$result = false;
-		$where = array(
-			'uid' 		=> $uid,
-			'stockID' 	=> $stockID,
-			'dateAdded' => $date
-		);
-		$this->db->update('CartItems',array('didPurchase'=>true),$where);
+		
+		$this->db->update('CartItems', array('didPurchase' => '1'), array('uid' => $uid));
+		
 		if(!$this->db->_error_message()) {
           $result = true;
         }		
