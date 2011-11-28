@@ -8,7 +8,7 @@
  *		`PriceUSD` DOUBLE NOT NULL ,
  *		PRIMARY KEY ( `pid` )
  *	) ENGINE = INNODB;
- */
+*/
 
 class Product extends CI_Model {
 	
@@ -16,7 +16,7 @@ class Product extends CI_Model {
 	function __construct() {
 		parent::__construct();
 	}
-	
+
 	//Returns the Product with the given id# as an array
 	function get($id) {
 		$data = array();
@@ -71,10 +71,10 @@ class Product extends CI_Model {
 		}
 		else
 			return false;
-		
 		$query->free_result();
 		return $data;
 	}
+
 
 	function add($name,$description,$price,$catID) {
 		$data = array(
@@ -84,11 +84,11 @@ class Product extends CI_Model {
 				'catID' => $catID
 				);
 		$this->db->insert('Products', $data);
-		
+
 		return $this->db->insert_id();
 	}
 	
-	function destroy($id)	{
+	function destroy($id) {
 		$this->db->delete('Products', array('pid' => $id));
 		return true;
 	}
@@ -101,13 +101,9 @@ class Product extends CI_Model {
 				'catID' => $catID
 				);
 		$this->db->update('Products', $data, array('pid' => $id));
-		
+
 		return true;
 	}	
 }
 
 ?>
-
-
-
-

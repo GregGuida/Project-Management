@@ -3,7 +3,7 @@
 /*
  *	CREATE TABLE `CodeIgniter2`.`WishLists` (
  *		`wishID` INT NOT NULL AUTO_INCREMENT ,
- *		`cid` INT NOT NULL REFERENCES `CodeIgniter2`.`Customers` (`cid`),
+ *		`uid` INT NOT NULL REFERENCES `CodeIgniter2`.`Users` (`uid`),
  *		`name` VARCHAR( 75 ) NOT NULL ,
  *	PRIMARY KEY ( `wishID`)
  *	) ENGINE = INNODB;
@@ -15,10 +15,10 @@
  *	) ENGINE = INNODB;
 */
 
-class WishLists extends CI_Model
+class WishList extends CI_Model
 {
 	//Constructor
-	public __construct(){
+	function __construct(){
 		parent :: __construct();
 	}
 	
@@ -36,8 +36,8 @@ class WishLists extends CI_Model
 		$query->free_result();
 		
 		//Gets the products in our wish list from the WishListItems Table
-		$this->db->select('pid');
-		$query2 = $this->db->get_where('WishListItems', array('wishID' => $wishID));
+		$query2 = $this->db->select('pid')
+		                   ->get_where('WishListItems', array('wishID' => $wishID));
 		$items = $query2->result_array(); //Use result_array because we may have multiple products in a given list
 		
 		//Put all our info into one array and return it
@@ -45,49 +45,88 @@ class WishLists extends CI_Model
 		$query2->free_result();
 		return $result;
 	}
+	
+	//Returns all the wishlists a user has as an array
+	function getListsOfUsers($uid)
+	{
+		$query = $this->db->select('wishID')->from('WishLists')->where('uid', $uid)->get();
+		$result = array();
+		$temp = array();
+		$data = $query->result_array();
+		foreach($data as $row)
+		{
+			$list = $this->getWishList($row['wishID']);
+			//Do this so we can display how many items the list contains
+			$list['count'] = $this->count($row['wishID']);
+			$result[] = $list;
+		}
+		return $result;
+	}
+	
+	//Returns the number of products in a wish list
+	function count($wishID)
+	{
+		return count($this->getWishList($wishID));
+	}
 
 	//Add a single item to a given wishlist
-	function addItemToWishList($pid,$wishID)
+	function addItemToList($pid,$wishID)
 	{
+		$result = false;
 		$data = array(
 			'wishID' => $wishID,
 			'pid' 	 => $pid
 		);
 		
 		$this->db->insert('WishListItems', $data);
-		return true;
+		if(!$this->db->_error_message()) {
+          $result = true;
+        }		
+		return $result;
 	}
 
 	//Remove a single item from a given wishlist
-	function removeItemFromWishList($pid,$wishID)
+	function removeItemFromList($pid,$wishID)
 	{
+		$result = false;
 		$data = array(
 			'wishID' => $wishID,
 			'pid' 	 => $pid
 		);
 		
 		$this->db->delete('WishListItems', $data);
-		return true;
+		if(!$this->db->_error_message()) {
+          $result = true;
+        }		
+		return $result;
 	}
 
 	//Create a new wishlist. Name not required.
-	function newWishList($cid,$name='')
+	function newWishList($uid,$name='')
 	{
+		$result = false;
 		$data = array(
-			'cid'  => $cid,
+			'uid'  => $uid,
 			'name' => $name
 		);
 		
 		$this->db->insert('WishLists', $data);
-		return true;
+		if(!$this->db->_error_message()) {
+          $result = true;
+        }		
+		return $result;
 	}
 	
 	//Delete a given wishlist
 	function deleteWishList($wishID)
 	{
+		$result = false;
 		$this->db->delete('WishListItems', array('wishID' => $wishID));
 		$this->db->delete('WishLists', array('wishID' => $wishID));
-		return true;
+		if(!$this->db->_error_message()) {
+          $result = true;
+        }		
+		return $result;
 	}
 	
 }

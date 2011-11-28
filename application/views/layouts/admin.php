@@ -13,6 +13,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
   <!-- CSS concatenated and minified via ant build script-->
+  <link rel="stylesheet" href="/css/vendor/flick/jquery-ui-1.8.16.custom.css">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/bootstrap.css">
   <!-- end CSS-->
@@ -39,6 +40,7 @@
         <div class="row" id="action-nav">
           <div class="container">
             <div class="" id="nav-logo"><a href="/employees/dashboard">TFM</a></div>
+            <?php if (is_employee()) { ?>
             <ul class="dropdowns">
 		<li><a href="/employees/dashboard/">Dashboard</a></li>
 		<li class="dropdown" data-dropdown="dropdown">
@@ -66,17 +68,18 @@
 			<a href="#" class="dropdown-toggle">Customer</a>
 			<ul class="dropdown-menu">
 				<li><a href="/customers/">Find Customers</a></li>
-				<li><a href="/customers/contact/">Customer Chat</a></li>
+				<!-- <li><a href="/customers/contact/">Customer Chat</a></li> -->
 			</ul>
 		</li>
     <li class="dropdown" data-dropdown="dropdown">
       <a href="#" class="dropdown-toggle">Stock</a>
       <ul class="dropdown-menu">
-        <li><a href="/stock_items/admin_browse">View Stock</a></li>
-        <li><a href="/stock_tickets/admin_add">Add Stock</a></li>
+        <li><a href="/stock_tickets/admin_browse">View Stock</a></li>
+        <li><a href="/stock_tickets/add">Add Stock</a></li>
       </ul>
     </li>
 	    </ul>
+          <?php } ?>
           </div>
         </div>
       </div>
@@ -85,9 +88,9 @@
     <div id="main" class="container">
       <?php $response = get_message(); ?>
       <?php if ($response) { ?>
-        <p class="alert-message <?php echo $response['status'] ?>">
+        <div class="alert-message <?php echo $response['status'] ?>">
           <?php echo $response['message']; ?>
-        </p>
+        </div>
       <?php } ?>
 
       {yield}
@@ -110,12 +113,24 @@
   <script defer src="/js/libs/bootstrap/bootstrap-dropdown.js"></script>
   <script defer src="/js/libs/bootstrap/bootstrap-modal.js"></script>
   <script defer src="/js/libs/bootstrap/bootstrap-tabs.js"></script>
-  <script type="text/javascript"></script>
+  <script defer src="/js/libs/jquery-ui-1.8.16.custom.min.js"></script>
+  <script defer src="/js/libs/nivo-slider/jquery.nivo.slider.pack.js"></script>
+  <link rel="stylesheet" type="text/css" href="/js/libs/nivo-slider/nivo-slider.css"/>        
+  <link rel="stylesheet" type="text/css" href="/js/libs/nivo-slider/themes/default/default.css"/>
+   <script type="text/javascript"> jQuery(document).ready(function(){     jQuery("#main-slider").nivoSlider({         effect:"random",         slices:15,         boxCols:8,         boxRows:4,         animSpeed:500,         pauseTime:3000,         startSlide:0,         directionNav:true,         directionNavHide:true,         controlNav:true,         controlNavThumbs:false,         controlNavThumbsFromRel:true,         keyboardNav:true,         pauseOnHover:true,         manualAdvance:false     }); });         </script>
+  <!-- end scripts-->
 
   <?php echo isset($js) ? $this->htmlbuilder->makeHeadJS($js) : ''; ?>
 
   <script>
     jQuery(document).ready(function() {
+
+      // automatic datepicker assignment
+      (function() {
+        var datepicker_selector = '.im-a-datepicker';
+        $(datepicker_selector).datepicker();
+      }());
+
       var category_row = $("#category-nav");
       $("#categories-nav-tab-pull, #close-category-nav").click(function(e) {
         e.preventDefault();

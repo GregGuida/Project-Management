@@ -525,6 +525,11 @@ header #action-nav, footer {
   cursor: pointer;
 }
 
+.image_90x90 {
+    height: 90px;
+    width: 90px;
+}
+
 /*==|== admin specific css styles =========================================== */
 
 .admin footer, .admin .push {
@@ -646,6 +651,18 @@ color: black;
   background: #FCF8E9;
 }
 
+.align-center {
+    text-align:center;
+}
+
+.align-right {
+    text-align:right;
+}
+
+#stock-ticket-form select, #stock-ticket-form input[type="text"] {
+    width: 80%;
+    margin: 0px 10%;
+}
 
 .tabs > li{
   margin:0;
@@ -657,6 +674,7 @@ color: black;
   display:block;
   overflow:hidden;
 }
+
 /* ==|== non-semantic helper classes ======================================== */
 .ir { display: block; border: 0; text-indent: -999em; overflow: hidden; background-color: transparent; background-repeat: no-repeat; text-align: left; direction: ltr; }
 .ir br { display: none; }
