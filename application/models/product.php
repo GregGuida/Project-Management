@@ -57,20 +57,26 @@ class Product extends CI_Model {
 	}
 	
 	//Returns an array of all the rows in the Products Table
-	function all() {
+	function all($limit = 0) {
 		$data = array();
-    $this->db->select('Products.pid, Products.Name, Products.Description, Products.PriceUSD, Categories.name');
-    $this->db->from('Products');
-    $this->db->join('Categories','Products.catID = Categories.catID','left');
+    		$this->db->select('Products.pid, Products.Name, Products.Description, Products.PriceUSD, Categories.name, Images.location');
+    		$this->db->group_by('Products.pid');
+    		$this->db->from('Products');
+    		$this->db->join('Categories','Products.catID = Categories.catID','left');
+	  	$this->db->join('Images','Images.pid = Products.pid','left');
+		if ($limit) {
+			$this->db->limit($limit);
+  		}
 		$query = $this->db->get();
 		
 		if($query->num_rows() > 0) {
 			foreach($query->result_array() as $row) {
 				$data[] = $row;
-      }
+      			}
 		}
-		else
+		else {
 			return false;
+  		}
 		$query->free_result();
 		return $data;
 	}

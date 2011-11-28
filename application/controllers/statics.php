@@ -5,7 +5,14 @@ class Statics extends CI_Controller {
 
   // homepage
   public function index() {
-   $this->load->view('statics/homepage');
+   $this->load->model('Product');
+   $this->load->model('Category');
+   $products = $this->Product->all(15);
+   if (!$products) {
+     $products = array();
+   }
+   $data['products'] = $products;
+   $this->load->view('statics/homepage', $data);
   }
 
   public function help() {

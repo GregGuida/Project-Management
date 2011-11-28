@@ -50,10 +50,13 @@ class Category extends CI_Model {
 		return $data;
 	}
 	
-	function all() {
+	function all($limit = 0) {
 		$data = array();
-    $this->db->select('*');
-    $this->db->from('Categories');
+		$this->db->select('*');
+    		$this->db->from('Categories');
+		if ($limit) {
+			$this->db->limit($limit);
+		}
 		$query = $this->db->get();
 		//Check if empty query
 		if($query->num_rows() <= 0)
