@@ -13,8 +13,17 @@ class WishLists extends CI_Controller {
     $this->load->view('wishlists/index');
   }
   
-  public function show() {
-    $this->load->view('wishlists/show');
+  public function show($wishID) {
+    $this->load->model('wishList');
+    $data = array();
+    $user = current_user();
+    $uid = $user['uid'];
+    $wish = $this->wishList->getWishList($wishID);
+    $wishName = $wish['name'];
+    $list = $this->wishList->getDisplayArray($uid, $wishID);
+    $data['list'] = $list;
+    $data['wname'] = $wishName;
+    $this->load->view('wishlists/show', $data);
   }
   
   public function test_run() {
