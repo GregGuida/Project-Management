@@ -49,16 +49,21 @@ class WishList extends CI_Model
 	//Returns all the wishlists a user has as an array
 	function getListsOfUsers($uid)
 	{
-		$query = $this->db->select('wishID')->from('WishLists')->where('uid', $uid)->get();
+		//Get each Wish list
+		$query = $this->db->select()->from('WishLists')->where('uid', $uid)->get();
 		$result = array();
 		$temp = array();
 		$data = $query->result_array();
+		//Find out how many items in each list
 		foreach($data as $row)
 		{
-			$list = $this->getWishList($row['wishID']);
-			//Do this so we can display how many items the list contains
-			$list['count'] = $this->count($row['wishID']);
-			$result[] = $list;
+		  $query2 = $this->db->select('pid')->from('WishListItems')
+						     ->where('wishID', $row['wishID'])
+						     ->get();
+		  $count = $query2->result_array();
+	  	  $row['count'] = count($count);
+	  	  $query2->free_result();
+		  $result[] = $row;
 		}
 		return $result;
 	}
