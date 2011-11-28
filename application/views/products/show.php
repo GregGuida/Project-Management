@@ -20,9 +20,9 @@
             <div class="span10">
               <div class="row">
                 <div class="span7">
-                  <div class="page-header"><h2><?=$product['Name'] ?></h2></div>
+                  <div class="page-header"><h2><?= $product['Name'] ?></h2></div>
                   <div class="product_description">
-                    <p><?=$product['Description'] ?></p>
+                    <p><?= $product['Description'] ?></p>
                   </div>
                 </div>
                 <div class="span3" id="product-actions">
@@ -47,34 +47,40 @@
               </div>
             </div>
           </div>
-          <div id="product-review-section" class="row">
-            <form method="post" action="/comments/create/<?= $product['pid'] ?>">
-              <fieldset>
-                <legend>Write a Review</legend>
-                <div class="clearfix">
-                  <label for="review_message">Comment</label>
-                  <div class="input">
-                    <textarea name="message" class="xlarge" id="review_message" cols="40" rows="2"></textarea>
+            <div id="product-review-section" class="row">
+              <?php if ( $current_user ) { ?>
+              <form method="post" action="/comments/create/<?= $product['pid'] ?>">
+                <fieldset>
+                  <legend>Write a Review</legend>
+                  <div class="clearfix">
+                    <label for="review_message">Comment</label>
+                    <div class="input">
+                      <textarea name="message" class="xlarge" id="review_message" cols="40" rows="2"></textarea>
+                    </div>
                   </div>
+                </fieldset>
+                <div class="actions">
+                  <input type="submit" value="Save" class="btn primary" />
                 </div>
-              </fieldset>
-              <div class="actions">
-                <input type="submit" value="Save" class="btn primary" />
-              </div>
-            </form>
-            <div class="page-header"><h3>Reviews</h3></div>
-            <ul id="product-reviews" class="unstyled">
-              <?
-                foreach($comments as $comment) {
-                  echo '<li class="clearfix">';
-                  echo '<img src="http://gravatar.com/avatar/'.md5( strtolower( trim($comment['Email'] ) ) ).'" style="float:left;width:40px;margin:0 10px 10px 0;" />';
-                  echo '<small>'.$comment['FirstName'].' '.$comment['LastName'].' on '.$comment['Date'].' said </small><br/>'; 
-                  echo '<p>'.$comment['Remark'].'</p>';
-                  echo '</li>';
-                }
-              ?>
-            </ul>
-          </div>
+              </form>
+              <?php } ?>
+              <div class="page-header"><h3>Reviews</h3></div>
+              <ul id="product-reviews" class="unstyled">
+                <?php
+                  if ($comments) {
+                    foreach($comments as $comment) {
+                      echo '<li class="clearfix">';
+                      echo '<img src="http://gravatar.com/avatar/'.md5( strtolower( trim($comment['Email'] ) ) ).'?d=identicon" style="float:left;width:40px;margin:0 10px 10px 0;" />';
+                      echo '<small>'.$comment['FirstName'].' '.$comment['LastName'].' on '.$comment['Date'].' said </small><br/>'; 
+                      echo '<p>'.$comment['Remark'].'</p>';
+                      echo '</li>';
+                    }
+                  } else {
+                    echo '<h3>No Comments</h3>';
+                  }
+                ?>
+              </ul>
+            </div>
         </div>
       </div>
 

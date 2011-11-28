@@ -18,11 +18,11 @@
       <div class="row span12 product-details">
         <div class="page-header"><h2><?= $product['Name'] ?></h2></div>
         <div class="span6">
-          <p>
-           <? 
+          <?php
              if(!empty($images)) {
-               echo '<img src="'.$images[0]['location'].'" style="width:340px;" class="product-image" />';
-             }?>
+          ?>
+          <p>
+              <?= '<img src="'.$images[0]['location'].'" style="width:340px;" class="product-image" />'; ?>
           </p>
           <p class="alt-images">
             <?
@@ -32,6 +32,7 @@
             ?>
             <button id="new-image" class="btn"> Add An <br/>Image </button>
           </p>
+          <?php } ?>
         </div>
         <div class="span5">
           <div class="row">
@@ -49,13 +50,17 @@
           <div class="page-header"><h2><?= $product['Name'] ?></h2></div>  
           <ul id="product-reviews" class="unstyled">
           <?
-            foreach($comments as $comment) {
-              echo '<li class="clearfix">';
-              echo '<a href="/comments/destroy/'.$comment['comID'].'" class="btn danger delete-comment" style="float:right;">Delete</a>';
-              echo '<img src="http://gravatar.com/avatar/'.md5( strtolower( trim($comment['Email'] ) ) ).'" style="float:left;width:40px;margin:0 10px 10px 0;" />';
-              echo '<small>'.$comment['FirstName'].' '.$comment['LastName'].' on '.$comment['Date'].' said </small><br/>'; 
-              echo '<p>'.$comment['Remark'].'</p>';
-              echo '</li>';
+            if ($comments){
+              foreach($comments as $comment) {
+                echo '<li class="clearfix">';
+                echo '<a href="/comments/destroy/'.$comment['comID'].'" class="btn danger delete-comment" style="float:right;">Delete</a>';
+                echo '<img src="http://gravatar.com/avatar/'.md5( strtolower( trim( $comment['Email'] ) ) ).'?d=identicon" style="float:left;width:40px;margin:0 10px 10px 0;" />';
+                echo '<small>'.$comment['FirstName'].' '.$comment['LastName'].' on '.$comment['Date'].' said </small><br/>'; 
+                echo '<p>'.$comment['Remark'].'</p>';
+                echo '</li>';
+              }
+            } else {
+              echo '<h3>No Comments</h3>';
             }
           ?>
           </ul>
@@ -66,16 +71,20 @@
           <div class="page-header"><h2><?= $product['Name'] ?></h2></div>
           <ul class="unstyled">
             <?
-              foreach ( $votes as $vote ) {
-                echo '<li class="clearfix">';
-                echo '<img src="http://gravatar.com/avatar/'.md5( strtolower( trim($comment['Email'] ) ) ).'" style="float:left;width:20px;margin:0 10px 10px 0;" />';
-                echo $vote['FirstName'].' '.$vote['LastName'];
-                if ( $vote['direction'] == 0 ){
-                  echo ' voted this down';
-                } else {
-                  echo ' voted this up';
+              if ($comments) {
+                foreach ( $votes as $vote ) {
+                  echo '<li class="clearfix">';
+                  echo '<img src="http://gravatar.com/avatar/'.md5( strtolower( trim($vote['Email'] ) ) ).'?d=identicon" style="float:left;width:20px;margin:0 10px 10px 0;" />';
+                  echo $vote['FirstName'].' '.$vote['LastName'];
+                  if ( $vote['direction'] == 0 ){
+                    echo ' voted this down';
+                  } else {
+                    echo ' voted this up';
+                  }
+                  echo '</li>';
                 }
-                echo '</li>';
+              } else {
+              echo '<h3>No Votes</h3>';
               }
             ?>
           </ul>

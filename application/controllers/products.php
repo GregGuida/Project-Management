@@ -9,17 +9,20 @@ class Products extends CI_Controller {
     $this->load->model('Product');
     $data = array();
 
-    $data['comments'] = $this->_comments($id);
-    $data['votes'] = $this->_votes($id); 
-    $data['images'] = $this->_images($id);
-
     if ( $query = $this->Product->get($id) ) {
-       $data['product'] = $query;
+      $data['product'] = $query;
+      $data['comments'] = $this->_comments($id);
+      $data['votes'] = $this->_votes($id); 
+      $data['images'] = $this->_images($id);
+      $data['current_user'] = current_user();
+      $data['js'] = 'products.js';
+
+      $this->load->view('products/show',$data);
+    } else {
+      $this->load->view('error/error_404',$data);
     }
 
-    $data['js'] = 'products.js';
-
-    $this->load->view('products/show',$data);
+    
   }
 
   private function _votes($pid){
@@ -90,7 +93,7 @@ class Products extends CI_Controller {
 
   public function admin_browse() {
     $this->load->model('Product');
-    $products = array();
+    $data = array();
 
     if( $query = $this->Product->all() ) {
        $data['products'] = $query;
