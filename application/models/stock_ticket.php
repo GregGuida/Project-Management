@@ -89,7 +89,7 @@ class Stock_Ticket extends CI_Model
         $this->db->insert('StockTickets', $data);
         
         if(!$this->db->_error_message()) {
-            $result = true;
+            $result = $this->db->insert_id();
         }
         
         return $result;
@@ -117,7 +117,7 @@ class Stock_Ticket extends CI_Model
     /*
 	 * Removes a Stock Ticket from the database
 	 *
-	 * @param int $ticket_num array of the items you want to create.
+	 * @param int $ticket_num id of the ticket to delete.
 	 *
 	 * @return boolean returns true is the delete executed without issue, otherwise false.
 	 */
@@ -125,4 +125,33 @@ class Stock_Ticket extends CI_Model
         $this->db->delete('StockTickets', array('ticketNum' => $ticket_num));
         return !!$this->db->_error_message();
     }
+    
+    // ---------Convenience Functions---------
+    
+    /*
+	 * Finds all the necessary information for a Stock Ticket to be shown in stock_tickets/show
+	 *
+	 * @param int $ticket_num id of the ticket you want to find.
+	 *
+	 * @return array $result associative array of the return values from the query.
+	 */
+	 function get_ticket_show_info($ticket_num) {
+	     $result = false;
+	     
+	     // Query executed: select StockTickets.ticketNum, Products.name, Products.description, Images.location, StockTickets.PriceUSD, StockTickets.Quantity, StockTickets.DateSubmitted, StockTickets.Status from StockTickets, Products, Images where StockTickets.pid = Products.pid and Products.pid = Images.pid and StockTickets.ticketNum = 1 group by StockTickets.ticketNum;
+         $cursor = $this->db->select("StockTickets.ticketNum, StockTickets.pid, Products.name, Products.description, Images.location, StockTickets.PriceUSD, StockTickets.Quantity, StockTickets.DateSubmitted, StockTickets.Status")
+                            ->from("StockTickets, Products, Images")
+                            ->where("StockTickets.pid = Products.pid")
+                            ->where("Products.pid = Images.pid")
+                            ->where("StockTickets.ticketNum", $ticket_num)
+                            ->group_by("StockTickets.ticketNum")
+                            ->get();
+
+         if($cursor->num_rows() > 0) {
+             $result = $cursor->row_array();
+             $cursor->free_result();
+         }
+
+         return $result;
+	 }
 }

@@ -12,6 +12,10 @@ class Orders extends CI_Controller {
       'admin_browse' => array('message' => 'Please Log In to browse Orders'),
       'admin_show' => array('message' => 'Please Log In to view an Order')
     );
+
+  public function index() {
+    $this->load->view('welcome_message');
+  }
   
   public function show($order_num) {
       $data = array();

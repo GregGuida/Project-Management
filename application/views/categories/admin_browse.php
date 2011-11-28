@@ -14,8 +14,13 @@
     </tr>
   </thead>
   <tbody>
-    <?php for ($i = 0; $i < 15; $i++) { ?>
-    <tr><td>Kitties</td><td><a href="/categories/edit/<?php echo $i ?>">Edit</a> | <a href="/categories/delete/<?php echo $i ?>">Delete</a></td></tr>
-    <?php } ?>
+    <? foreach ($categories as $category) { ?>
+      <tr>
+        <td><?= $category['name'] ?></td>
+        <td>
+          <a href="/categories/edit/<?= $category['catID'] ?>">Edit</a> | <a href="/categories/delete/<?= $category['catID'] ?>">Delete</a>
+        </td>
+      </tr>
+    <? } ?>
   </tbody>
 </table>

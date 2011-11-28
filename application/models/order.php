@@ -126,6 +126,48 @@ class Order extends CI_Model {
 	    return !!$this->db->_error_message();
 	}
 	
+	//Returns the any order of the User which has not been delivered
+	function getActiveOrders($uid) {
+		$query = $this->db->select()->from('Orders')
+				      ->where('Status !=', 'Delivered')
+				      ->where('uid', $uid)->get();
+		$data = $query->result_array();
+		$result = array();
+		foreach($data as $row)
+	    {
+		  $query2 = $this->db->select('stockID')->from('OrderedItems')
+						     ->where('OrderNum', $row['OrderNum'])
+						     ->get();
+		  $count = $query2->result_array();
+	  	  $row['count'] = count($count);
+	  	  $query2->free_result();
+	      $result[] = $row;
+	    }
+	    $query->free_result();
+		return $result;
+	}
+	
+	//Returns the any order of the User which has been delivered
+	function getPastOrders($uid){
+		$query = $this->db->select()->from('Orders')
+				      ->where('Status', 'Delivered')
+				      ->where('uid', $uid)->get();
+		$data = $query->result_array();
+		$result = array();
+		foreach($data as $row)
+	    {
+		  $query2 = $this->db->select('stockID')->from('OrderedItems')
+						     ->where('OrderNum', $row['OrderNum'])
+						     ->get();
+		  $count = $query2->result_array();
+	  	  $row['count'] = count($count);
+	  	  $query2->free_result();
+	      $result[] = $row;
+	    }
+	    $query->free_result();
+		return $result;	
+	}
+	
 	// ---------Convenience Functions---------
 	
 	/*

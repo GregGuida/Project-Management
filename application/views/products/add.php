@@ -1,43 +1,42 @@
-	<div class="row">
-    <div id="product-area" class="span16">
-      <div class="row">
-
-        <div class="span8 offset4">
-          <div class="row">
-            <form action="/products/admin_show/" method="post" class="span3">
-              <div class="page-header">
-                <h2>Title</h2>
-                <input class="xlarge" type="text" name="product-title" value="" />
-              </div>
-              <div class="product-description">
-                <p>Product Description</p>
-                <textarea class="xxlarge" id="textarea2" name="product-description" rows="3"></textarea>
-              </div>
-              <div class="product-price">
-                <p>Product Description</p>
-                <textarea class="xxlarge" id="textarea2" name="product-price" rows="3"></textarea>
-              </div>
-              <div class="product_categories">
-                <p>Product Category</p>
-                <select name="product-category" id="category">
-                  <option>Kitties</option>
-                  <option>&nbsp;&nbsp;Cute Kitties</option>
-                  <option>&nbsp;&nbsp;Fuzzy Kitties</option>
-                  <option>Kittens</option>
-                  <option>&nbsp;&nbsp;Adorable Kittens</option>
-                  <option>&nbsp;&nbsp;Loveable Kitties</option>
-                  <option>Cats</option>
-                  <option>&nbsp;&nbsp;Fat Cats</option>
-                </select>
-              </div>
-              <div class="clearfix span6" id="edit-actions">
-                <button class="btn primary">Done Editing</button>
-                <button class="btn danger">Cancel Edits</button>
-              </div>
-            </form>
+<div class="row">
+  <div id="product-area" class="span16">
+    <div class="row">
+      <h1 class="span10 offset2"> Add A New Product </h1>
+      <form action="/products/create/" method="post" class="span10 offset2">
+        
+        <div class="clearfix">
+          <label for="product-name">Product Name</label>
+          <div class="input">
+            <input class="xlarge" name="product-name" size="30" type="text">
           </div>
         </div>
-
-      </div>
+        <div class="clearfix">
+          <label for="product-description">Product Description</label>
+          <div class="input">
+            <textarea class="xxlarge" name="product-description" rows="3"></textarea>
+          </div>
+        </div>
+        <div class="clearfix">
+          <label for="product-price">Product Price</label>
+          <div class="input">
+            <input class="xlarge" name="product-price" size="30" type="text">
+          </div>
+        </div>
+        <div class="clearfix">
+          <label for="product-category">Product Category</label>
+          <div class="input">
+            <select class="xlarge" name="product-category" >
+            <? foreach ($categories as $category) { ?>
+              <option value="<?= $category['catID']?>"> <?= $category['name'] ?> </option>
+            <? } ?>
+            </select>
+          </div>
+        </div>
+        <div class="clearfix span6" id="edit-actions">
+          <button type="submit"class="btn primary">Done Editing</button>
+          <a href="/products/admin_browse/" class="btn danger">Cancel Edits</a>
+        </div>
+      </form>
     </div>
   </div>
+</div>

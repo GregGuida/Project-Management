@@ -112,7 +112,7 @@
                         <h3>Links</h3>
                         <ul class="unstyled">
                                 <li><a href="/">Home</a></li>
-                                <li><a href="/customers/show/<?php echo get_current_user_stuff('uid') ?>">My account</a></li>
+                                <li><a href="/customers/show/<?php echo get_current_user_stuff('uid') ?>">My Account</a></li>
                                 <li><a href="/cart">Cart</a></li>
                                 <li><a href="/statics/about">About</a></li>
                                 <li><a href="/statics/privacy">Privacy policy</a></li>

@@ -55,13 +55,24 @@
      return $votes;
 
    }
+
+   function has_voted( $uid, $pid ) {
+     $votes = array();
+     $query = $this->db->get_where('Votes', array('uid' => $uid, 'pid' => $pid));
+
+     if (count($query->result_array()) >= 1 ) {
+       return true;
+     } else {
+       return false;
+     }
+   }
   
-   function create($vote, $product, $direction) {
+   function create($uid, $pid, $direction) {
 
      $result = false;
      $data = array(
-       'uid'        => $vote,
-       'pid'       => $product,
+       'uid'        => $uid,
+       'pid'       => $pid,
        'direction' => $direction
      );
      
