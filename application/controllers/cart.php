@@ -24,10 +24,25 @@ class Cart extends CI_Controller {
       $data['cart'] = $this->cart_item->getDisplayArray($uid);
 
       $data['sum'] = $this->cart_item->totalPrice($uid);
-//      $data['sum'] = $this->totalPrice($uid);
+      //$data['sum'] = $this->totalPrice($uid);
       $data['shippingCost'] = number_format($data['sum'] * 0.06, 2);
 
       $this->load->view('cart/show', $data);
+  }
+
+  public function add ( $pid ) {
+    $this->load->model('Cart_Item', 'cart_item');
+
+    //Get the logged in user's ID
+    $user = current_user();
+
+    if ($user) {
+      $this->cart_item->addItem($pid,$user['uid']);
+      redirect('/cart');
+    } else {
+      set_message('error','You must be logged in to add items to your cart');
+      redirect('/products/show'.$pid);
+    }
   }
   
   public function test_run() {

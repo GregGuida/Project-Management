@@ -32,7 +32,7 @@
                   </div>
                 </div>
                 <div class="span3" id="product-actions">
-                  <section class="add-product-to-cart"><img src="/img/shopping-cart.png" /> <a href="/cart">Add to cart</a></section>
+                  <section class="add-product-to-cart"><img src="/img/shopping-cart.png" /> <a href="/cart/add/<?= $product['pid'] ?>">Add to cart</a></section>
                   <section class="product-price"><h3>Price</h3><?= $product['PriceUSD'] ?></section>
                   <section class="product-rating">
                     <h3>Rating</h3>
