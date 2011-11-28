@@ -26,14 +26,14 @@
             <div class="span10">
               <div class="row">
                 <div class="span7">
-                  <div class="page-header"><h2><?= $product['Name'] ?></h2></div>
+                  <div class="page-header"><h2><?php echo $product['Name'] ?></h2></div>
                   <div class="product_description">
-                    <p><?= $product['Description'] ?></p>
+                    <p><?php echo $product['Description'] ?></p>
                   </div>
                 </div>
                 <div class="span3" id="product-actions">
                   <section class="add-product-to-cart"><img src="/img/shopping-cart.png" /> <a href="/cart">Add to cart</a></section>
-                  <section class="product-price"><h3>Price</h3><?= $product['PriceUSD'] ?></section>
+                  <section class="product-price"><h3>Price</h3><?php echo $product['PriceUSD'] ?></section>
                   <section class="product-rating">
                     <h3>Rating</h3>
                     <p>
@@ -41,11 +41,11 @@
                       <button id="vote-down-button" class="btn">-</button>
                     </p>
                     <p>
-                      <?
+                      <?php
                         if( $votes[0] == 0 ){
                           echo 'no votes yet';
                         } else {
-                          echo $votes[0].' votes, '.floor(($votes[1]/$votes[0])*100);
+                          echo $votes[0].' votes, '.floor(($votes[1]/$votes[0])*100) . '%';
                         } ?>
                     </p>
                   </section>
@@ -55,7 +55,7 @@
           </div>
             <div id="product-review-section" class="row">
               <?php if ( $current_user ) { ?>
-              <form method="post" action="/comments/create/<?= $product['pid'] ?>">
+              <form method="post" action="/comments/create/<?php echo $product['pid'] ?>">
                 <fieldset>
                   <legend>Write a Review</legend>
                   <div class="clearfix">
