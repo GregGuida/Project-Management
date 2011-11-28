@@ -240,7 +240,7 @@ class Customers extends CI_Controller {
     $data['prevOrders'] = array_filter($orders, array($this, "is_delivered"));
     
 	$data['wishLists'] = $this->wishList->getListsOfUsers(get_current_user_stuff('uid'));
-    
+    $data['email'] = get_current_user_stuff('Email');    
     $this->load->view('customers/account', $data);
   }
 
