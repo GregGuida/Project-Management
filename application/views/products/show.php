@@ -2,20 +2,26 @@
       <div class="row">
         <div id="product-area" class="span16">
           <div class="row">
-            <div class="span6">
-              <p>
-               <? 
+            <div class="span6 product-image-area">
+              <?php
                  if(!empty($images)) {
-                   echo '<img src="'.$images[0]['location'].'" style="width:340px;" id="product-image" />';
-                 }?>
+              ?>
+              <p>
+                  <?php echo '<img src="'.$images[0]['location'].'" style="width:340px;" class="product-image" />'; ?>
               </p>
               <p class="alt-images">
-	        <?
+                <?php
                   foreach( $images as $preview_image) {
-                    echo '<img src="'.$preview_image['location'].'" style="width:60px;height:60px;class="thumbnail"/>';
+                    echo '<img src="'.$preview_image['location'].'"  style="width:60px;height:60px;class="thumbnail"/>';
                   }
                 ?>
+                <button id="new-image" class="btn"> Add An <br/>Image </button>
               </p>
+              <?php 
+                } else {
+                  echo '<h3>No Images</h3>';
+                }
+              ?>
             </div>
             <div class="span10">
               <div class="row">

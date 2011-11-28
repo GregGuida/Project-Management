@@ -17,22 +17,26 @@
     <div class="row tab-paine">
       <div class="row span12 product-details">
         <div class="page-header"><h2><?= $product['Name'] ?></h2></div>
-        <div class="span6">
+        <div class="span6 product-image-area">
           <?php
              if(!empty($images)) {
           ?>
           <p>
-              <?= '<img src="'.$images[0]['location'].'" style="width:340px;" class="product-image" />'; ?>
+              <?php echo '<img src="'.$images[0]['location'].'" style="width:340px;" class="product-image" />'; ?>
           </p>
           <p class="alt-images">
-            <?
+            <?php
               foreach( $images as $preview_image) {
                 echo '<img src="'.$preview_image['location'].'"  style="width:60px;height:60px;class="thumbnail"/>';
               }
             ?>
             <button id="new-image" class="btn"> Add An <br/>Image </button>
           </p>
-          <?php } ?>
+          <?php 
+            } else {
+              echo '<h3>No Images</h3>';
+            }
+          ?>
         </div>
         <div class="span5">
           <div class="row">
