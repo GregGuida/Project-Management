@@ -100,7 +100,7 @@
                         <ul class="unstyled">
 				<?php $categories = get_session_stuff('categories'); ?>
 				<?php foreach($categories as $category) { ?>
-                                  <li><a href="/categories/show/<?php echo $category['catID'] ?>"><?php echo $category['Name'] ?></a></li>
+                                  <li><a href="/categories/show/<?php echo $category['catID'] ?>"><?php echo $category['name'] ?></a></li>
 				<?php } ?>
                         </ul>
                 </div>
