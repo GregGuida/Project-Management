@@ -424,6 +424,7 @@ footer, .push {
 footer {
   background-color:rgb(191,191,191);
   border:none !important;
+  overflow:hidden;
 }
 
 #footer-category-links, #footer-nav-links{
