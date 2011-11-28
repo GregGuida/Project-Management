@@ -530,6 +530,15 @@ header #action-nav, footer {
     width: 90px;
 }
 
+div.plainify {
+    border: 0px #FFF solid;
+    background-color: #FFF;
+}
+
+form[action="/shipping_addresses/create"] {
+    margin-top: 50px;
+}
+
 /*==|== admin specific css styles =========================================== */
 
 .admin footer, .admin .push {
@@ -662,6 +671,17 @@ color: black;
 #stock-ticket-form select, #stock-ticket-form input[type="text"] {
     width: 80%;
     margin: 0px 10%;
+}
+.shipping-address-radio {
+    margin: 10px 0px;
+}
+
+.shipping-address-radio > input {
+    float: left;
+}
+
+.shipping-address-radio > div {
+    margin-left: 25px;
 }
 
 .tabs > li{

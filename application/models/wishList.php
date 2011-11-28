@@ -129,6 +129,60 @@ class WishList extends CI_Model
 		return $result;
 	}
 	
+	function getDisplayArray($uid, $wishID)
+	{
+	 $result = array();
+     $query = $this->db->select("Products.description, Products.name, Products.priceUSD, Products.pid, Images.location")->from("Products, Images")->join("WishListItems", "WishListItems.pid = Products.pid")->join("WishLists", "WishLists.wishID = WishListItems.wishID")->where("Products.pid = Images.pid")->where("WishLists.uid", $uid)->where("WishListItems.wishID", $wishID)->group_by("Products.pid")->get();
+     $result = $query->result_array();
+     $moreResult = array();
+     foreach($result as $item)
+     {
+       $item['quantity'] = 0;
+       $item['dup'] = 'false';
+       array_push($moreResult,$item);
+     }
+     $result = $this->getQuantities($moreResult);
+     return $result;	   
+	}
+	
+  //Helper function - ugly, i know
+  private function getQuantities($array)
+  {
+     $ids = array();
+     $result = array();
+     $temp = array();
+     
+     foreach($array as $row)
+     {
+        $pid = $row['pid'];
+        $ids[] = $pid;
+        $a = array_count_values($ids);
+        $count = $a[$pid];
+        $row['quantity'] = $count;
+        if($count >= 2)
+        foreach($array as $row2)
+        {
+           if($row2['pid'] == $pid)
+           {
+              $row['dup'] = 'true';
+           }
+        }
+       array_push($temp,$row);
+     }
+     
+     foreach($temp as $row)
+     {
+          $pid = $row['pid'];
+          $a = array_count_values($ids);
+          $count = $a[$pid];
+          $row['quantity'] = $count;
+          if($row['dup'] != 'true')
+            array_push($result,$row);
+     }
+
+     return $result;
+  }
+	
 }
 
 ?>
