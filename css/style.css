@@ -69,6 +69,10 @@ td { vertical-align: top; }
    ========================================================================== */
 
 
+.homepage_slider_image {
+  width: 900px;
+  height: 400px;
+}
 
 .demo-section {
   margin: 30px 0;
@@ -307,6 +311,8 @@ section > .row {
   -webkit-transition: all .2s linear;
 }
 .category-list .thumbnail{
+  width: 90px;
+  height: 90px;
   border: 1px solid #ccc;
 }
 .category-list .row:hover {

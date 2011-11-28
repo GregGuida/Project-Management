@@ -20,7 +20,7 @@
 
   <script src="/js/libs/modernizr-2.0.6.min.js"></script>
   <!-- start Mixpanel --><script type="text/javascript">var mpq=[];mpq.push(["init","83404691134345be69c8e274ebd34ee9"]);(function(){var b,a,e,d,c;b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=(document.location.protocol==="https:"?"https:":"http:")+"//api.mixpanel.com/site_media/js/api/mixpanel.js";a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a);e=function(f){return function(){mpq.push([f].concat(Array.prototype.slice.call(arguments,0)))}};d=["init","track","track_links","track_forms","register","register_once","identify","name_tag","set_config"];for(c=0;c<d.length;c++){mpq[d[c]]=e(d[c])}})();
- mpq.name_tag('User email address');
+ mpq.name_tag('<?php echo get_current_user_stuff('Email')?: 'Anon' ?>');
 </script><!-- end Mixpanel -->
 </head>
 
@@ -98,14 +98,10 @@
                 <div id="footer-category-links">
                         <h3>Categories</h3>
                         <ul class="unstyled">
-                                <li><a href="/categories/show/">Kittens</a></li>
-                                <li><a href="/categories/show/">Grey Kittens</a></li>
-                                <li><a href="/categories/show/">Cute Kittens</a></li>
-                                <li><a href="/categories/show/">Green Kittens</a></li>
-                                <li><a href="/categories/show/">Happy Kittens</a></li>
-                                <li><a href="/categories/show/">Cats</a></li>
-                                <li><a href="/categories/show/">Happy Cats</a></li>
-                                <li><a href="/categories/show/">Angry Cats</a></li>
+				<?php $categories = get_session_stuff('categories'); ?>
+				<?php foreach($categories as $category) { ?>
+                                  <li><a href="/categories/show/<?php echo $category['catID'] ?>"><?php echo $category['Name'] ?></a></li>
+				<?php } ?>
                         </ul>
                 </div>
                 <div id="footer-nav-links">
