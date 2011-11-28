@@ -24,11 +24,11 @@ class Comment extends CI_Model {
   }
 	
   //Returns the Comment with the given id# as an array
-  function find($id) {
+  function get($id) {
     $data = array();
 
 
-    $this->db->select('Remark,Date,FirstName,LastName,Email');	
+    $this->db->select('pid,Remark,Date,FirstName,LastName,Email');	
     $this->db->from('Comments');
     $this->db->where('Comments.comID',$id);
     $this->db->join('Users','Users.uid = Comments.uid');
@@ -86,12 +86,11 @@ class Comment extends CI_Model {
     return $comments;
   }
 	
-  function create($pid) {
+  function create($pid,$uid,$remark) {
     $data = array(
-      'Name' => $name,
-      'Description' => $description,
-      'PriceUSD' => $price,
-      'catID' => $catID
+      'Remark' => $remark,
+      'pid' => $pid,
+      'uid' => $uid
       );
     $this->db->insert('Comments', $data);
 
@@ -99,20 +98,10 @@ class Comment extends CI_Model {
   }
 	
   function destroy($id) {
-    $this->db->delete('Comments', array('pid' => $id));
+    $this->db->delete('Comments', array('comID' => $id));
     return true;
   }
-	
-  function update($id,$name,$description,$price,$catID){
-    $data = array(
-      'Name' => $name,
-      'Description' => $description,				
-      'PriceUSD' => $price,
-      'catID' => $catID
-    );
-    $this->db->update('Comments', $data, array('pid' => $id));
-    return true;
-  }
+
 	
 }
 
