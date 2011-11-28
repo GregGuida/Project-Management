@@ -5,7 +5,6 @@ if (!defined('BASEPATH')) {
 }
 
 /**
- * Auth :: HOOKS
  */
 class TFMSession {
 
@@ -14,14 +13,14 @@ class TFMSession {
         $CI = & get_instance();
 
 	$categories = get_session_stuff('categories');
-        if (!$categories) {
+//        if (!$categories) {
 		$CI->load->model('Category');
 		$new_categories = $CI->Category->all(8);
 		if (!$new_categories) {
 			$new_categories = array();
 		}
 		set_session_stuff('categories', $new_categories);
-	}
+//	}
     }
 
 }
