@@ -31,7 +31,7 @@ class Shipping_Addresses extends CI_Controller {
             }
             else {
                 $this->layout = 'ajax';
-                echo '{ "status":"success", "message":"Success! Your Shipping Address has been created.", "sid":"'.$address_id.'"}';
+                echo json_encode(array("status" => "success", "message" => "Success! Your Shipping Address has been created.", "sid" => $address_id));
             }
         }
         else {

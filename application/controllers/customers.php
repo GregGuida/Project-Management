@@ -219,7 +219,7 @@ class Customers extends CI_Controller {
     set_message('Successfully ' . ($active ? 'enabled' : 'disabled') . ' customer\'s account', 'success');
     header('Location: /customers/');
   }
-
+  
   // GET - 200
   // account page
   function show() {
@@ -228,15 +228,18 @@ class Customers extends CI_Controller {
     $this->load->model('ordered_item');
     $this->load->model('wishList');
     $data = array();
-    //Get current user
-    $user = current_user();
-    $uid = $user['uid'];
+    
     //Fill data array with the info we need
-    $data['cart'] = $this->cart_item->getDisplayArray($uid);
-    $data['numItems'] = $this->cart_item->numItems($uid);
-	$data['activeOrders'] = $this->order->getActiveOrders($uid);
-    $data['prevOrders'] = $this->order->getPastOrders($uid);
-	$data['wishLists'] = $this->wishList->getListsOfUsers($uid);
+    $data['cart'] = $this->cart_item->getDisplayArray(get_current_user_stuff('uid'));
+    $data['numItems'] = $this->cart_item->numItems(get_current_user_stuff('uid'));
+    
+    // Get the users orders
+    $orders = $this->order->find_by(array("uid" => get_current_user_stuff('uid')));
+    
+	$data['activeOrders'] = array_filter($orders, array($this, "is_not_delivered"));
+    $data['prevOrders'] = array_filter($orders, array($this, "is_delivered"));
+    
+	$data['wishLists'] = $this->wishList->getListsOfUsers(get_current_user_stuff('uid'));
     
     $this->load->view('customers/account', $data);
   }
@@ -299,6 +302,14 @@ class Customers extends CI_Controller {
     $this->User->destroy($uid);
     set_message('Successfully deleted customer', 'error');
     header('Location: /Customers/');
+  }
+  
+  function is_not_delivered($var) { 
+      return $var['Status'] !== "Delivered"; 
+  }
+  
+  function is_delivered($var) { 
+      return $var['Status'] === "Delivered"; 
   }
 
   

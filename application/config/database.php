@@ -49,7 +49,11 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
+<<<<<<< HEAD
 $db['default']['password'] = 'password';
+=======
+$db['default']['password'] = '';
+>>>>>>> integration
 $db['default']['database'] = 'CodeIgniter2';
 $db['default']['port'] = '3306';
 $db['default']['dbdriver'] = 'mysql';
