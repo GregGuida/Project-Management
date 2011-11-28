@@ -2,6 +2,9 @@
 
 class WishLists extends CI_Controller {
   public $layout = 'main';
+  public $auth = array(
+    'show' => array('message' => 'Sign up now to start shopping!', 'redirect' => '/customers/signup')
+    );
 
   public function index() {
     $this->load->model('wishList');

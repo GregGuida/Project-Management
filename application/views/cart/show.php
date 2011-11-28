@@ -8,7 +8,7 @@
     			<img class="image_90x90" src=<?php echo $item['location']?> />
     		</div>
     		<div class="span12 item-info">
-    			<a class="remove-item btn">remove</a>
+    			<a href="/cart/remove/<?php echo $item['stockID']?>" class="remove-item btn">remove</a>
     			<h3 class="item-title"><a href="/products/show/<?php echo $item['pid'] ?>"><?php echo $item['name']?></a></h3>
     			<div class="item-price"><h4>Price:</h4><p>$<?php echo $item['priceUSD']?></p></div>
     			<div class="item-description"><h4>Description</h4><p><?php echo $item['description']?></p></div>
