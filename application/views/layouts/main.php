@@ -59,13 +59,10 @@
         <div class="row" id="category-nav">
           <div class="container" id="categories-nav-tab">
             <ul class="unstyled" id="category-nav-list">
-              <li data-text="Kitties"><a href="/categories/show/1"><span class="category-name"></span><img src="http://placekitten.com/90/90" class="thumbnail" /></a></li>
-              <li data-text="Kitties"><a href="/categories/show/1"><span class="category-name"></span><img src="http://placekitten.com/g/90/90" class="thumbnail" /></a></li>
-              <li data-text="Kitties"><a href="/categories/show/1"><span class="category-name"></span><img src="http://placekitten.com/90/90" class="thumbnail" /></a></li>
-              <li data-text="Kitties"><a href="/categories/show/1"><span class="category-name"></span><img src="http://placekitten.com/g/90/90" class="thumbnail" /></a></li>
-              <li data-text="Kitties"><a href="/categories/show/1"><span class="category-name"></span><img src="http://placekitten.com/90/90" class="thumbnail" /></a></li>
-              <li data-text="Kitties"><a href="/categories/show/1"><span class="category-name"></span><img src="http://placekitten.com/g/90/90" class="thumbnail" /></a></li>
-              <li data-text="Kitties"><a href="/categories/show/1"><span class="category-name"></span><img src="http://placekitten.com/90/90" class="thumbnail" /></a></li>
+	    <?php $categories = get_session_stuff('categories'); ?>
+     	    <?php foreach($categories as $category) { ?>
+              <li data-text="<?php echo $category['name'] ?>"><a href="/categories/show/<?php echo $category['catID'] ?>"><span class="category-name"></span><img src="<?php echo $category['location'] ?>" class="thumbnail" /></a></li>
+            <?php } ?>
             </ul>
             <div id="categories-nav-tab-pull">
               Categories

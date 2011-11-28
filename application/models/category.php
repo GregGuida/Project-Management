@@ -54,6 +54,9 @@ class Category extends CI_Model {
 		$data = array();
 		$this->db->select('*');
     		$this->db->from('Categories');
+                $this->db->group_by('Categories.catID');
+                $this->db->join('Products','Products.catID = Categories.catID','left');
+                $this->db->join('Images','Images.pid = Products.pid','left');
 		if ($limit) {
 			$this->db->limit($limit);
 		}
