@@ -15,10 +15,10 @@ class TFMSession {
 	//echo print_r($CI->session->all_userdata());
 
 	$session = $CI->session->all_userdata();
-	$CI->session->set_userdata('categories', '');
+//	$CI->session->set_userdata('categories', '');
 	$categories = $session['categories'];
 	//$categories = false;
-        //if (!$categories) {
+       /* if (!$categories) {
 		$CI->load->model('Category');
 		$new_categories = $CI->Category->all(8);
 		if (!$new_categories) {
@@ -36,7 +36,7 @@ class TFMSession {
 
 		$session['categories'] = $new_categories;
 		$CI->session->set_userdata($session);//set_session_stuff('categories', $new_categories);
-	//}
+	//}*/
 	//echo print_r($CI->session->all_userdata());
     }
 
