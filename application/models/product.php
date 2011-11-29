@@ -55,6 +55,37 @@ class Product extends CI_Model {
 		$query->free_result(); //Release our memory
 		return $data;
 	}
+
+	function find_by($data) {
+   $products = array();
+
+   $cursor = $this->db->get_where('Products', $data);
+
+   foreach($cursor->result_array() as $product) {
+     $products[] = $product;
+   }
+
+     return $products;
+ }
+
+  function find_like_search($search) {
+    
+   $products = array();
+
+  $this->db->select('*');
+  $this->db->from('Products');
+  $this->db->like('Name', $search);
+    		$this->db->group_by('Products.pid');
+	  	$this->db->join('Images','Images.pid = Products.pid','left');
+  $cursor = $this->db->get();
+
+     foreach($cursor->result_array() as $product) {
+       $products[] = $product;
+     }
+
+     return $products;
+  }
+
 	
 	//Returns an array of all the rows in the Products Table
 	function all($limit = 0) {

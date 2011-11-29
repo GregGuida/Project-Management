@@ -46,7 +46,7 @@
           <div class="container">
             <div class="" id="nav-logo"><a href="/">TFM</a></div>
             <div class="" id="nav-search">
-              <form action="/products/search"  method="post">
+              <form action="/products/search" method="post">
                 <input type="text" name="q" class="span8" />
                 <input type="submit" class="btn" >
               </form>
