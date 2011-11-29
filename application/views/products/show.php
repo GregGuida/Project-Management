@@ -7,15 +7,17 @@
                  if(!empty($images)) {
               ?>
               <p>
-                  <?php echo '<img src="'.$images[0]['location'].'" style="width:340px;" class="product-image" />'; ?>
+                  <?php echo '<img src="'.$images[0]['location'].'" style="width:340px;" id="product-image" />'; ?>
               </p>
               <p class="alt-images">
                 <?php
                   foreach( $images as $preview_image) {
-                    echo '<img src="'.$preview_image['location'].'"  style="width:60px;height:60px;class="thumbnail"/>';
+                    echo '<img src="'.$preview_image['location'].'"  style="width:60px;height:60px;" class="thumbnail"/>';
                   }
                 ?>
+		<?php if (is_employee()) { ?>
                 <button id="new-image" class="btn"> Add An <br/>Image </button>
+ 		<?php } ?>
               </p>
               <?php 
                 } else {
