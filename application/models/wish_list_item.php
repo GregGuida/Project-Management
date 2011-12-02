@@ -2,7 +2,7 @@
 
 /*
  *	CREATE TABLE `CodeIgniter2`.`WishListItems` (
- *		`wishID` INT NOT NULL REFERENCES `CodeIgniter2`.`WishLists` (`wishID`),
+ *		`wishID` INT NOT NULL REFERENCES `CodeIgniter2`.`WishListItems` (`wishID`),
  *		`pid` INT NOT NULL REFERENCES `CodeIgniter2`.`Products` (`pid`),
  *	PRIMARY KEY ( `wishID` , `pid` )
  *	) ENGINE = INNODB;
@@ -15,65 +15,51 @@ class Wish_List extends CI_Model
 		// Custom constructor code goes here...
 	}
 	
-	function find($order_num) {
-	    $order = false;
-	    $cursor = $this->db->get_where('Orders', array('OrderNum' => $order_num));
-        
-        if($cursor->num_rows() > 0) {
-            $order = $cursor->row_array();
-            $cursor->free_result();
-        }
-	    
-	    return $order;
-	}
-	
 	function find_by($data) {
-	    $orders = array();
-	    $cursor = $this->db->get_where('Orders', $data);
+	    $wish_lists = array();
+	    $cursor = $this->db->get_where('WishListItems', $data);
         
-        foreach($cursor->result_array() as $order) {
-            $orders[] = $order;
+        foreach($cursor->result_array() as $wish_list) {
+            $wish_lists[] = $wish_list;
         }
 	    
-	    return $orders;
+	    return $wish_lists;
 	}
 	
 	function all($limit = 0) {
-	    $orders = array();
-	    $cursor = $this->db->get('Orders', $limit);
+	    $wish_lists = array();
+	    $cursor = $this->db->get('WishListItems', $limit);
 
-        foreach($cursor->result_array() as $order) {
-            $orders[] = $order;
+        foreach($cursor->result_array() as $wish_list) {
+            $wish_lists[] = $wish_list;
         }
 	    
-	    return $orders;
+	    return $wish_lists;
 	}
 	
 	function create($data) {	    
-	    $order_num = false;
-        $this->db->insert('Orders', $data);
+	    $wishId = false;
+        $this->db->insert('WishListItems', $data);
         
         if(!$this->db->_error_message()) {
-            $order_num = $this->db->insert_id();
+            $wishId = $this->db->insert_id();
         }
 
-	    return $order_num;
+	    return $wishId;
 	}
 	
-	function update($order_num, $data) {
+	function update($wishId, $data) {
 	    $result = false;
-	    $this->db->update('Orders', $data, array('OrderNum' => $order_num));
+	    $this->db->update('WishListItems', $data, array('wishID' => $wishId));
 
         if (!$this->db->_error_message()) {
-          $result = $order_num;
+          $result = $wishId;
         }
 	    return $result;
 	}
 	
-	function delete($order_num) {	    
-	    $this->db->delete('Orders', array('OrderNum' => $order_num));
-	    $this->db->delete('OrderedItems', array('OrderNum' => $order_num));
+	function delete($wishId, $pid) {	    
+	    $this->db->delete('WishListItems', array('wishID' => $wishId, 'pid' => $pid));
 	    return !!$this->db->_error_message();
-	}
-}
+    }
 }
