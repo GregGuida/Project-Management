@@ -55,7 +55,7 @@
           </div>
             <div id="product-review-section" class="row">
               <?php if ( $current_user ) { ?>
-              <form method="post" action="/comments/create/<?php echo $product['pid'] ?>">
+              <form method="post" id="new_comment_form" action="/comments/create/<?php echo $product['pid'] ?>">
                 <fieldset>
                   <legend>Write a Review</legend>
                   <div class="clearfix">
@@ -65,7 +65,10 @@
                     </div>
                   </div>
                 </fieldset>
-                <div class="actions">
+                <div class="row">
+                  <div class="response span8"></div>
+                </div>
+                <div class="actions clearfix">
                   <input type="submit" value="Save" class="btn primary" />
                 </div>
               </form>
