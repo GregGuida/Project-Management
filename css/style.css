@@ -551,6 +551,15 @@ form[action="/shipping_addresses/create"] {
     margin-top: 50px;
 }
 
+.my-account-section {
+    margin-top: 0px;
+}
+
+section > div.name-header {
+    margin-top: 3px;
+    margin-bottom: 30px;
+}
+
 /*==|== admin specific css styles =========================================== */
 
 .admin footer, .admin .push {
