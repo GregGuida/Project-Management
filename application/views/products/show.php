@@ -12,12 +12,10 @@
               <p class="alt-images">
                 <?php
                   foreach( $images as $preview_image) {
-                    echo '<img src="'.$preview_image['location'].'"  style="width:60px;height:60px;" class="thumbnail"/>';
+                    echo '<img src="'.$preview_image['location'].'"  style="width:60px;height:60px;class="thumbnail"/>';
                   }
                 ?>
-		<?php if (is_employee()) { ?>
                 <button id="new-image" class="btn"> Add An <br/>Image </button>
- 		<?php } ?>
               </p>
               <?php 
                 } else {
@@ -34,7 +32,7 @@
                   </div>
                 </div>
                 <div class="span3" id="product-actions">
-                  <section class="add-product-to-cart"><img src="/img/shopping-cart.png" /> <a href="/cart">Add to cart</a></section>
+                  <section class="add-product-to-cart"><img src="/img/shopping-cart.png" /> <a href="/cart/add/<?php echo $product['pid'] ?>">Add to cart</a></section>
                   <section class="product-price"><h3>Price</h3>$<?php echo number_format($product['PriceUSD'],2) ?></section>
                   <section class="product-rating">
                     <h3>Rating</h3>

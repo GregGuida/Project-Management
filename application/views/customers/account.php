@@ -7,7 +7,7 @@
     <div class="row">
     <div class="span8">
         <h3>Avatar</h3>
-       <img src="http://gravatar.com/avatar/<?php echo md5(strtolower(trim($email))) ?>" />
+       <img src="http://gravatar.com/avatar/<?php echo $email ?>" />
        </br>
        <a href="http://gravatar.com/">Change Picture</a>
     </div>
