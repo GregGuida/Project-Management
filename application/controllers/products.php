@@ -171,7 +171,13 @@ class Products extends CI_Controller {
 
 
   public function search() {
-    $this->load->view('products/search');
+    $this->load->model('Product');
+    $query = $this->input->post('q');
+    $results = $this->Product->find_like_search($query);
+    $data=  array();
+    $data['results'] = $results;
+    $data['query'] = $query;
+    $this->load->view('products/search', $data);
   }
 
   public function destroy($id){

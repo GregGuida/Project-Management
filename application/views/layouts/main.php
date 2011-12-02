@@ -46,9 +46,9 @@
           <div class="container">
             <div class="" id="nav-logo"><a href="/">TFM</a></div>
             <div class="" id="nav-search">
-              <form action="/products/search"  method="post">
+              <form action="/products/search" method="post">
                 <input type="text" name="q" class="span8" />
-                <input type="submit" class="btn" >
+                <input type="submit" class="btn" value="Search">
               </form>
             </div>
             <div id="nav-cart" class="">
@@ -59,10 +59,14 @@
         <div class="row" id="category-nav">
           <div class="container" id="categories-nav-tab">
             <ul class="unstyled" id="category-nav-list">
-	    <?php $categories = get_session_stuff('categories'); ?>
-     	    <?php foreach($categories as $category) { ?>
-              <li data-text="<?php echo $category['name'] ?>"><a href="/categories/show/<?php echo $category['catID'] ?>"><span class="category-name"></span><img src="<?php echo $category['location'] ?>" class="thumbnail" /></a></li>
-            <?php } ?>
+   <li data-text="supplies"><a href="/categories/show/1"><span class="category-name"></span><img src="http://img1.etsystatic.com/il_fullxfull.279215185.jpg" class="thumbnail" /></a></li>
+                          <li data-text="everything_else"><a href="/categories/show/2"><span class="category-name"></span><img src="http://img3.etsystatic.com/il_fullxfull.181088395.jpg" class="thumbnail" /></a></li>
+                          <li data-text="jewelry"><a href="/categories/show/3"><span class="category-name"></span><img src="http://img3.etsystatic.com/il_fullxfull.241302107.jpg" class="thumbnail" /></a></li>
+                          <li data-text="accessories"><a href="/categories/show/4"><span class="category-name"></span><img src="http://img0.etsystatic.com/il_fullxfull.279583156.jpg" class="thumbnail" /></a></li>
+                          <li data-text="children"><a href="/categories/show/5"><span class="category-name"></span><img src="http://img1.etsystatic.com/il_fullxfull.255054269.jpg" class="thumbnail" /></a></li>
+                          <li data-text="vintage"><a href="/categories/show/6"><span class="category-name"></span><img src="http://img2.etsystatic.com/il_fullxfull.166860350.jpg" class="thumbnail" /></a></li>
+                          <li data-text="art"><a href="/categories/show/7"><span class="category-name"></span><img src="http://img2.etsystatic.com/il_fullxfull.223953234.jpg" class="thumbnail" /></a></li>
+                          <li data-text="crochet"><a href="/categories/show/8"><span class="category-name"></span><img src="http://img2.etsystatic.com/il_fullxfull.215808398.jpg" class="thumbnail" /></a></li>
             </ul>
             <div id="categories-nav-tab-pull">
               Categories
@@ -94,12 +98,15 @@
                 </div>
                 <div id="footer-category-links">
                         <h3>Categories</h3>
-                        <ul class="unstyled">
-				<?php $categories = get_session_stuff('categories'); ?>
-				<?php foreach($categories as $category) { ?>
-                                  <li><a href="/categories/show/<?php echo $category['catID'] ?>"><?php echo $category['name'] ?></a></li>
-				<?php } ?>
-                        </ul>
+                        <ul class="unstyled"> <li><a href="/categories/show/1">supplies</a></li>
+				                                  <li><a href="/categories/show/2">everything_else</a></li>
+				                                  <li><a href="/categories/show/3">jewelry</a></li>
+				                                  <li><a href="/categories/show/4">accessories</a></li>
+				                                  <li><a href="/categories/show/5">children</a></li>
+				                                  <li><a href="/categories/show/6">vintage</a></li>
+				                                  <li><a href="/categories/show/7">art</a></li>
+				                                  <li><a href="/categories/show/8">crochet</a></li>
+                        <ul>
                 </div>
                 <div id="footer-nav-links">
                         <h3>Links</h3>

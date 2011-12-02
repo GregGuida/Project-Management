@@ -7,7 +7,7 @@
                  if(!empty($images)) {
               ?>
               <p>
-                  <?php echo '<img src="'.$images[0]['location'].'" style="width:340px;" class="product-image" />'; ?>
+                  <?php echo '<img src="'.$images[0]['location'].'" style="width:340px;" id="product-image" />'; ?>
               </p>
               <p class="alt-images">
                 <?php
@@ -32,7 +32,7 @@
                   </div>
                 </div>
                 <div class="span3" id="product-actions">
-                  <section class="add-product-to-cart"><img src="/img/shopping-cart.png" /> <a href="/cart">Add to cart</a></section>
+                  <section class="add-product-to-cart"><img src="/img/shopping-cart.png" /> <a href="/cart/add/<?php echo $product['pid'] ?>">Add to cart</a></section>
                   <section class="product-price"><h3>Price</h3>$<?php echo number_format($product['PriceUSD'],2) ?></section>
                   <section class="product-rating">
                     <h3>Rating</h3>
