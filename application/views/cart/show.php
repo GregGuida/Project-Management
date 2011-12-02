@@ -5,11 +5,11 @@
       <?php foreach ($cart as $item) { ?>
         <div class="row clearfix cart-item">
           <div class="span4 item-photo">
-            <img class="image_90x90" src=<?php echo $item['location']?> />
+            <a href="/products/show/<?php echo $item['pid'] ?>"><img class="image_90x90" src=<?php echo $item['location']?> /></a>
           </div>
         <div class="span12 item-info">
           <a href="/cart/remove/<?php echo $item['pid']?>" class="remove-item btn">remove</a>
-          <h3 class="item-title"><a href="/products/show/<?php echo $item['pid'] ?>"><?php echo $item['name']?></a></h3>
+          <h5 class="item-title"><a href="/products/show/<?php echo $item['pid'] ?>"><?php echo $item['name']?></a></h5>
           <div class="pull-right">
             <div class="item-price"><h4>Price: <small class="label success">$<?php echo $item['priceUSD'] ?></small></div>
             <div class="item-quantity">
@@ -18,7 +18,7 @@
           </div>
         </div>	
       </div>
-   <?php } ?>
+    <?php } ?>
   <?php } else { ?>
     <section class="alert-message error">
       <p>Uh oh, looks like you don't have anything in your cart :(</p>
