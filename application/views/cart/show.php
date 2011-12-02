@@ -13,7 +13,7 @@
     			<h3 class="item-title"><a href="/products/show/<?php echo $item['pid'] ?>"><?php echo $item['Name']?></a></h3>
     			<div class="item-price"><h4>Price:</h4><p>$<?php echo $item['PriceUSD']?></p></div>
     			<div class="item-description"><h4>Description</h4><p><?php echo $item['Description']?></p></div>
-    			<div class="item-quantity"><h4>Quantity</h4><input class="span1" type="text" value="<?php echo $item['quantity']?>" /></div>
+    			<div class="item-quantity"><h4>Quantity</h4><input class="span1" type="text" disaled="disabled" value="<?php echo $item['quantity']?>" /></div>
     		</div>	
     	</div>
 	    	<?php } ?>
