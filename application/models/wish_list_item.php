@@ -8,7 +8,7 @@
  *	) ENGINE = INNODB;
 */
 
-class Wish_List extends CI_Model
+class Wish_List_Item extends CI_Model
 {
 	function __construct(){
 		parent::__construct();

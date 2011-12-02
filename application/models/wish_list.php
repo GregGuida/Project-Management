@@ -76,4 +76,16 @@ class Wish_List extends CI_Model
 	    $this->db->delete('WishListItems', array('wishID' => $wishId));
 	    return !!$this->db->_error_message();
 	}
+	
+	function get_products_in_wishlist($wishId) {
+	    $products = array();
+	    
+	    $products_cursor = $this->db->query("select p.pid, p.name, p.priceUSD, i.location, quantity from products as p, images as i, (select p.pid, count(p.pid) as quantity from products as p join wishlists as w, wishlistitems as wi where w.wishid = wi.wishid and wi.pid = p.pid and w.wishid = ".$wishId." group by pid) as quantity join wishlists as w, wishlistitems as wi where w.wishid = ".$wishId." and w.wishid = wi.wishid and wi.pid = p.pid and i.pid = p.pid group by pid");
+	    
+	    foreach($products_cursor->result_array() as $product) {
+	        $products[] = $product;
+	    }
+	    
+	    return $products;
+	}
 }

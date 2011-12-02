@@ -59,9 +59,9 @@
             <div class="page-header">
               <h3>Your Wish Lists</h3>
             </div>
-            <?php foreach($wishLists as $row) { ?>
+            <?php foreach($wishlists as $row) { ?>
             <ul id="account-previous-orders" class="unstyled">
-              <li><b><?php echo $row['name']?>- </b> <?php echo $row['count']?> Items.  <a href="/wishlists/show/<?php echo $row['wishID'] ?>" class="btn pull-right">View</a></li>
+              <li><b><?php echo $row['name']?><a href="/wish_lists/show/<?php echo $row['wishID'] ?>" class="btn pull-right">View</a></li>
             </ul>
             <?php } ?>
         </div>
