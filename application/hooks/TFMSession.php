@@ -14,9 +14,9 @@ class TFMSession {
 
 	//echo print_r($CI->session->all_userdata());
 
-	$session = $CI->session->all_userdata();
+//	$session = $CI->session->all_userdata();
 //	$CI->session->set_userdata('categories', '');
-	$categories = $session['categories'];
+//	$categories = $session['categories'];
 	//$categories = false;
        /* if (!$categories) {
 		$CI->load->model('Category');

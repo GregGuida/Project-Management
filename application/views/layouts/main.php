@@ -48,7 +48,7 @@
             <div class="" id="nav-search">
               <form action="/products/search" method="post">
                 <input type="text" name="q" class="span8" />
-                <input type="submit" class="btn" >
+                <input type="submit" class="btn" value="Search">
               </form>
             </div>
             <div id="nav-cart" class="">
@@ -98,13 +98,14 @@
                 </div>
                 <div id="footer-category-links">
                         <h3>Categories</h3>
-                        <ul class="unstyled">
-		<?php $this->load->model('Category');
-                  $new_categories = $this->Category->all(8);
-?>
-				<?php foreach($new_categories as $category) { ?>
-                                  <li><a href="/categories/show/<?php echo $category['catID'] ?>"><?php echo $category['name'] ?></a></li>
-				<?php } ?>
+                        <ul class="unstyled"> <li><a href="/categories/show/1">supplies</a></li>
+				                                  <li><a href="/categories/show/2">everything_else</a></li>
+				                                  <li><a href="/categories/show/3">jewelry</a></li>
+				                                  <li><a href="/categories/show/4">accessories</a></li>
+				                                  <li><a href="/categories/show/5">children</a></li>
+				                                  <li><a href="/categories/show/6">vintage</a></li>
+				                                  <li><a href="/categories/show/7">art</a></li>
+				                                  <li><a href="/categories/show/8">crochet</a></li>
                         <ul>
                 </div>
                 <div id="footer-nav-links">
