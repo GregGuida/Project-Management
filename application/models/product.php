@@ -40,15 +40,15 @@ class Product extends CI_Model {
 		$data = array();
 		
 		$this->db->select('*');	
-    $this->db->group_by('Products.pid');
-	  $this->db->from('Products');
-	  $this->db->where('Products.catID',$catID);
-	  $this->db->join('Images','Images.pid = Products.pid','left');
-	  $query = $this->db->get();
+        $this->db->group_by('Products.pid');
+        $this->db->from('Products');
+	    $this->db->where('Products.catID',$catID);
+	    $this->db->join('Images','Images.pid = Products.pid','left');
+	    $query = $this->db->get();
 
 		if($query->num_rows()==0) {
-      return false;
-    }
+          return false;
+        }
 			
 		$data = $query->result_array();
 		
