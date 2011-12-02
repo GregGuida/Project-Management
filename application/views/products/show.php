@@ -77,7 +77,7 @@
                     foreach($comments as $comment) {
                       echo '<li class="clearfix">';
                       echo '<img src="http://gravatar.com/avatar/'.md5( strtolower( trim($comment['Email'] ) ) ).'?d=identicon" style="float:left;width:40px;margin:0 10px 10px 0;" />';
-                      echo '<small>'.$comment['FirstName'].' '.$comment['LastName'].' on '.$comment['Date'].' said </small><br/>'; 
+                      echo '<small>'.$comment['FirstName'].' '.$comment['LastName'].' on ' . date('g:iA m/d/y', strtotime($comment['Date'])) . ' said </small><br/>';
                       echo '<p>'.$comment['Remark'].'</p>';
                       echo '</li>';
                     }
