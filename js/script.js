@@ -27,4 +27,12 @@ $(document).ready(function() {
 
     form.submit();
   }); 
+
+  $('#new_comment_form').submit(function(e) {
+    var el = $(this);
+    if ($.trim(el.find('textarea').val()) == '') {
+      e.preventDefault();
+      el.find('.response').text("You didn't write a comment").addClass('error alert-message');
+    }
+  });
 });

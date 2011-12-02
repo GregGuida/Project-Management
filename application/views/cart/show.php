@@ -1,3 +1,4 @@
+
 <div class="row">
    <form action="/orders/checkout" method="post">
 	<h2>Shopping Cart</h2>
@@ -31,3 +32,4 @@
 	<input type="submit" class="btn primary clearfix checkout-button" value="CHECKOUT" />
   </form>
 </div>
+
