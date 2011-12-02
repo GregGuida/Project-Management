@@ -216,10 +216,12 @@ class Cart_Item extends CI_Model
                               "  JOIN StockItems si ON si.stockID = ci.stockID ".
                               "  JOIN Products p ON p.pid = si.pid ".
                               "  WHERE ci.uid =".$uid." ".
+                              "  AND ci.didPurchase = 0 ".
                               "  GROUP BY p.pid ".
                               ")q ON q.pid = p.pid ".
                               "LEFT JOIN Images i ON p.pid = i.pid ".
                               "WHERE ci.uid =".$uid." ".
+                              "AND ci.didPurchase = 0 ".
                               "GROUP BY p.pid");
    
 

@@ -9,8 +9,8 @@
 			<button class="remove-item btn">remove</button>
 			<h3 class="item-title"><a href="/products/show/<?php echo $item['pid'] ?>"><?php echo $item['name']?></a></h3>
 			<div class="item-price">
-			    <div class="pull-left"><strong>Price:</strong> $<?php echo $item['priceUSD']?></div>
-			    <div class="pull-right"><strong>Quantity:</strong> <?php echo $item['quantity']?></div>
+			    <h4 class="pull-left">Price: $<?php echo $item['priceUSD']?></h4>
+			    <h4 class="pull-right">Quantity: <?php echo $item['quantity']?></h4>
 			</div>
 			<div class="item-quantity"></div>
 		</div>	

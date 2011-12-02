@@ -24,11 +24,11 @@ class Cart extends CI_Controller {
       $data['sum'] = 0;
 
       foreach ( $cartitems as $cartitem ) {
-        $data['sum'] = $cartitem['PriceUSD'] * $cartitem['quantity'];
+        $data['sum'] += $cartitem['PriceUSD'] * $cartitem['quantity'];
       }
       
       $data['shippingCost'] = number_format($data['sum'] * 0.06, 2);
-      $data['sum'] = number_format($data['sum']);
+      $data['sum'] = number_format($data['sum'], 2);
 
       $this->load->view('cart/show', $data);
       } else {
