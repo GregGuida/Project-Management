@@ -99,11 +99,13 @@
                 <div id="footer-category-links">
                         <h3>Categories</h3>
                         <ul class="unstyled">
-				<?php $categories = get_session_stuff('categories'); ?>
-				<?php foreach($categories as $category) { ?>
+		<?php $this->load->model('Category');
+                  $new_categories = $this->Category->all(8);
+?>
+				<?php foreach($new_categories as $category) { ?>
                                   <li><a href="/categories/show/<?php echo $category['catID'] ?>"><?php echo $category['name'] ?></a></li>
 				<?php } ?>
-                        </ul>
+                        <ul>
                 </div>
                 <div id="footer-nav-links">
                         <h3>Links</h3>

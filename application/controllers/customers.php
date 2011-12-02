@@ -238,8 +238,9 @@ class Customers extends CI_Controller {
     
 	$data['activeOrders'] = array_filter($orders, array($this, "is_not_delivered"));
     $data['prevOrders'] = array_filter($orders, array($this, "is_delivered"));
-    
-	//$data['wishLists'] = $this->wishlist->getListsOfUsers(get_current_user_stuff('uid'));
+
+	$data['wishLists'] = $this->wishList->getListsOfUsers(get_current_user_stuff('uid'));
+    $data['email'] = md5(strtolower(trim(get_current_user_stuff('Email'))));    
     
     $this->load->view('customers/account', $data);
   }
