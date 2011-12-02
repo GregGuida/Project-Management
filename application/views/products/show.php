@@ -61,7 +61,7 @@
                   <div class="clearfix">
                     <label for="review_message">Comment</label>
                     <div class="input">
-                      <textarea name="message" class="xlarge" id="review_message" cols="40" rows="2"></textarea>
+                      <textarea name="message" class="xxlarge" id="review_message" cols="40" rows="4"></textarea>
                     </div>
                   </div>
                 </fieldset>
