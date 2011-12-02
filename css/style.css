@@ -508,12 +508,14 @@ header #action-nav, footer {
     width: 500px;
 }
 .cart-item .item-price {
-    width: 100px;
-    float: left;
+  text-align: left;
 }
-.cart-item .item-quantity {
-    width: 100px;
-    float: left;
+.cart-item .item-price .label{
+  text-align: right;
+}
+.cart-item .item-quantity input{
+  text-align: center;
+  width: 15px;
 }
 .checkout-button{
     float:right;

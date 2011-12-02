@@ -45,7 +45,7 @@
                         if( $votes[0] == 0 ){
                           echo 'no votes yet';
                         } else {
-                          echo $votes[0].' votes, '.floor(($votes[1]/$votes[0])*100) . '%';
+                          echo $votes[0] . ' votes, '.floor(($votes[1] / $votes[0]) * 100) . '%';
                         } ?>
                     </p>
                   </section>
@@ -77,7 +77,7 @@
                     foreach($comments as $comment) {
                       echo '<li class="clearfix">';
                       echo '<img src="http://gravatar.com/avatar/'.md5( strtolower( trim($comment['Email'] ) ) ).'?d=identicon" style="float:left;width:40px;margin:0 10px 10px 0;" />';
-                      echo '<small>'.$comment['FirstName'].' '.$comment['LastName'].' on ' . date('g:iA m/d/y', strtotime($comment['Date'])) . ' said </small><br/>';
+                      echo '<small>'.$comment['FirstName'].' '.$comment['LastName'].' <i>on ' . date('g:iA m/d/y', strtotime($comment['Date'])) . ' said </small></i><br/>';
                       echo '<p>'.$comment['Remark'].'</p>';
                       echo '</li>';
                     }
