@@ -13,21 +13,28 @@ class Cart extends CI_Controller {
   } 
 
   public function index() {
-      $this->load->model('Cart_Item', 'cart_item');
-      //Get the logged in user's ID
-      $user = current_user();
+    $this->load->model('Cart_Item', 'cart_item');
 
-      $uid = $user['uid'];
+    //Get the logged in user's ID
+    $user = current_user();
+    if ($user){
       //Things for customer's cart
-      $cart = $this->cart_item->get($uid);
-      $data['size'] = count($cart);
-      $data['cart'] = $this->cart_item->getDisplayArray($uid);
+      $cartitems = $this->cart_item->thisFunctionIsHereBecauseAlecCantWriteQueries($user['uid']);
+      $data['cartitems'] =  $cartitems;
+      $data['sum'] = 0;
 
-      $data['sum'] = $this->cart_item->totalPrice($uid);
-      //$data['sum'] = $this->totalPrice($uid);
+      foreach ( $cartitems as $cartitem ) {
+        $data['sum'] = $cartitem['PriceUSD'] * $cartitem['quantity'];
+      }
+      
       $data['shippingCost'] = number_format($data['sum'] * 0.06, 2);
+      $data['sum'] = number_format($data['sum']);
 
       $this->load->view('cart/show', $data);
+      } else {
+        set_message('info','You must log in to view your cart');
+        redirect('/customers/login/');
+      }
   }
 
   public function add ( $pid ) {
@@ -45,17 +52,17 @@ class Cart extends CI_Controller {
     }
   }
 
-  public function remove ( $stockID ) {
-    $this->load->model('Cart_Item', 'cart_item');
-    //Get the logged in user's ID
+  public function remove ( $pid ) {
+    $this->load->model('Cart_Item','cart_item');
     $user = current_user();
-    if ($this->cart_items->remove($stockID,$user['uid'])) {
-      set_message('success','Item removed from the cart');
-    } else {
-      set_message('error','Item not found');
-    }
+    
+    $query = $this->cart_item->remove_by_pid($pid,$user['uid']);
 
-    rediect('/cart/');
+    if ( !$query ) {
+      set_message('error','An Error occured, please try again');
+    }    
+
+    redirect('/cart/');
   }
   
   public function test_run() {

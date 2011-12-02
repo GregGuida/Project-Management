@@ -43,8 +43,9 @@ class Category extends CI_Model {
 		$data = array();
 		$query = $this->db->get_where('Categories', array('catID' => $catID));
 		//Check if empty query
-		if($query->num_rows() > 0)
+		if($query->num_rows() > 0){
 			$data = $query->row_array();
+		}
 		
 		$query->free_result();
 		return $data;
@@ -53,10 +54,11 @@ class Category extends CI_Model {
 	function all($limit = 0) {
 		$data = array();
 		$this->db->select('*');
-    		$this->db->from('Categories');
-                $this->db->group_by('Categories.catID');
-                $this->db->join('Products','Products.catID = Categories.catID','left');
-                $this->db->join('Images','Images.pid = Products.pid','left');
+    	$this->db->from('Categories');
+        $this->db->group_by('Categories.catID');
+        $this->db->join('Products','Products.catID = Categories.catID','left');
+        $this->db->join('Images','Images.pid = Products.pid','left');
+
 		if ($limit) {
 			$this->db->limit($limit);
 		}

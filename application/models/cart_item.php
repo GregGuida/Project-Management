@@ -190,7 +190,45 @@ class Cart_Item extends CI_Model
     $totalPriceUSD = current($this->db->select("SUM(Products.priceUSD)")->from("Products")->join("StockItems", "Products.pid = StockItems.pid")->join("CartItems", "CartItems.stockID = StockItems.stockID")->where("CartItems.uid", $uid)->where("didPurchase = 0")->get()->row_array());
     return $totalPriceUSD;
   }
-  
+
+  function remove_by_pid($pid,$uid) {
+
+    $this->db->query("DELETE FROM CartItems WHERE stockID ".
+                     "IN ( SELECT si.stockID FROM Products p JOIN StockItems si ON si.pid = p.pid WHERE p.pid = ".$pid." ".
+                     ") AND uid =".$uid);
+
+    if(!$this->db->_error_message()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  function thisFunctionIsHereBecauseAlecCantWriteQueries($uid) {
+    $products  = array();
+    $query = $this->db->query("SELECT p.pid as pid, p.catID as catID, p.Name as Name, p.Description as Description, p.PriceUSD as PriceUSD, i.location as imageURL, q.quantity as  quantity ".
+                              "FROM CartItems ci ".
+                              "JOIN StockItems si ON si.stockID = ci.stockID ".
+                              "JOIN Products p ON p.pid = si.pid ".
+                              "JOIN ( ".
+                              "  SELECT p.pid, COUNT( si.stockID ) AS quantity ".
+                              "  FROM CartItems ci ".
+                              "  JOIN StockItems si ON si.stockID = ci.stockID ".
+                              "  JOIN Products p ON p.pid = si.pid ".
+                              "  WHERE ci.uid =".$uid." ".
+                              "  GROUP BY p.pid ".
+                              ")q ON q.pid = p.pid ".
+                              "LEFT JOIN Images i ON p.pid = i.pid ".
+                              "WHERE ci.uid =".$uid." ".
+                              "GROUP BY p.pid");
+   
+
+    foreach( $query->result_array() as $product) {
+      $products[] = $product;
+    }
+      
+    return $products;
+  }
 }
 
 ?>
