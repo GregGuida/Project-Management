@@ -43,7 +43,7 @@ class Wish_Lists extends CI_Controller {
               }
               else {
                   $this->layout = 'ajax';
-                  echo json_encode(array("status" => "success", "message" => "Success! Your Wish List has been created.", "wishID" => $address_id));
+                  echo json_encode(array("status" => "success", "message" => "Success! Your Wish List has been created.", "wish_id" => $wish_id));
               }
           }
           else {

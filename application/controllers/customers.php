@@ -229,6 +229,9 @@ class Customers extends CI_Controller {
     $this->load->model('Wish_List', 'wishlist');
     $data = array();
     
+    // Add necessary javascript
+    $data['js'] = 'wish_list_create.js';
+    
     //Fill data array with the info we need
     $data['cart'] = $this->cart_item->getDisplayArray(get_current_user_stuff('uid'));
     $data['numItems'] = $this->cart_item->numItems(get_current_user_stuff('uid'));

@@ -69,8 +69,8 @@
             </ul>
             <span id="add-wish-list">
                 <form action="/wish_lists/create" method="post">
-                    <input name="name" placeholder="Wish List Name" value="">
-                    <input class="success btn pull-right" type="submit" value="Add Wish List">
+                    <input id="wish-list-name" name="name" placeholder="Wish List Name" value="">
+                    <input id="wish-list-create" class="success btn pull-right" type="submit" value="Add Wish List">
                 </form>
             </span>
             
