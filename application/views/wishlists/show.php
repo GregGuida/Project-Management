@@ -10,11 +10,12 @@
     			<h4 class="pull-left">Price: $<?php echo $item['priceUSD']?></h4>
     		</div>
     		<div class="span4">
-    		    <div class="span4">
-    		        <button class="btn danger">remove</button>
-    		        <a href="/cart/add/<?php echo $item['pid'] ?>"><button class="btn"><img src="/img/shopping-cart.png" />Add to cart</button></a>
-    		    </div>
-    		    <h4 class="pull-right">Quantity: <?php echo $item['quantity']?></h4>
+    		        <a class="pull-right" href="/cart/add/<?php echo $item['pid'] ?>"><button class="btn">Add to cart</button></a>
+    		        <form class="wish-list-item-delete" action="/wish_list_items/delete" method="post">
+    		          <input type="hidden" name="pid" value="<?php echo $item['pid'] ?>">
+    		          <input type="hidden" name="wishID" value="<?php echo $list['wishID'] ?>">
+    		          <input class="btn danger" type="submit" value="Remove">
+    		        </form>
     		</div>	
     	</div>
 	<?php } ?>

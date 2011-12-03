@@ -570,6 +570,16 @@ section > div.name-header {
     margin-top: 30px;
 }
 
+.wish-list-item-delete {
+    margin-left: 40px;
+}
+
+select[name=wish-id] {
+    width: 130px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 /*==|== admin specific css styles =========================================== */
 
 .admin footer, .admin .push {

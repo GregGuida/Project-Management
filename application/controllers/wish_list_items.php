@@ -1,25 +1,52 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Wish_Lists extends CI_Controller {
+class Wish_List_Items extends CI_Controller {
   public $layout = 'main';
   public $auth = array(
-    'show' => array('message' => 'Sign up now to start shopping!', 'redirect' => '/customers/signup')
+    'create' => array(),
+    'delete' => array()
     );
     
-    public function add() {
-        $this->load->model('Wish_List_Item', 'item');
-        $rules = array(
-            array('field' => 'name', 'label' => 'Address', 'rules' => 'trim|required')
-        );
-        
-        $this->form_validation->set_rules($rules);
-
-        if ($this->form_validation->run() == TRUE) {
-            $new_wish_list_item = array(
-                'uid' => get_current_user_stuff('uid'),
-                'name' => $this->input->post('name')
-            );
+  public function create() {
+      $this->load->model('Wish_List_Item', 'item');
+      
+      $form_data = array(
+          'wishID' => $this->input->post('wish-id'),
+          'pid' => $this->input->post('pid')
+      );
+      
+      if($this->item->create($form_data) !== false) {
+          set_message('Congratulations! You have added an item to you Wish List.', 'success');
+          header('Location: /wish_lists/show/'.$form_data['wishID']);
+      }
+      else {
+          set_message('Whoops! Something went wrong trying to add the item.', 'error');
+          header('Location: /products/show/'.$form_data['pid']);
+      }
+  }
+  
+  public function delete() {
+      $this->load->model('Wish_List_Item', 'item');
+      
+      if($this->item->delete($this->input->post('wishID'), $this->input->post('pid')) !== false) {
+        if(!$this->input->post('ajax')) {
+            set_message('Item removed from Wish List.', 'success');
+            header('Location: /wish_lists/show/'.$this->input->post('wishID'));
         }
-    }
-    
+        else {
+            $this->layout = 'ajax';
+            echo json_encode(array("status" => "success", "message" => "Item removed from Wish List."));
+        }
+      }
+      else {
+        if(!$this->input->post('ajax')) {
+            set_message('There was an error removing the item from your Wish List. Please try again.', 'error');
+            header('Location: /wish_lists/show/'.$this->input->post('wishID'));
+        }
+        else {
+            $this->layout = 'ajax';
+            echo json_encode(array("status" => "error", "message" => "There was an error removing the item from your Wish List. Please try again."));
+        }
+      }
+  }
 }

@@ -84,8 +84,6 @@ class Wish_Lists extends CI_Controller {
       }
   }
   
-  
-  
   /*
   public function test_run() {
       $this->load->library('unit_test');

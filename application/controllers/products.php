@@ -19,10 +19,12 @@ class Products extends CI_Controller {
 
   public function show($id) {
     $this->load->model('Product');
+    $this->load->model('Wish_List', 'list');
     $data = array();
 
     if ( $query = $this->Product->get($id) ) {
       $data['product'] = $query;
+      $data['wishlists'] = $this->list->find_by(array('uid' => get_current_user_stuff('uid')));
       $data['comments'] = $this->_comments($id);
       $data['votes'] = $this->_votes($id); 
       $data['images'] = $this->_images($id);

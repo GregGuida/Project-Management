@@ -33,6 +33,19 @@
                 </div>
                 <div class="span3" id="product-actions">
                   <section class="add-product-to-cart"><img src="/img/shopping-cart.png" /> <a href="/cart/add/<?php echo $product['pid'] ?>">Add to cart</a></section>
+                  <?php if(count($wishlists) > 0) { ?>
+                  <section class="add-product-to-wish-list">
+                      <form action="/wish_list_items/create" method="post">
+                          <select name="wish-id">
+                                <?php foreach($wishlists as $list) { ?>
+                                    <option value="<?php echo $list["wishID"] ?>"><?php echo $list["name"] ?></option>
+                                <?php } ?>
+                          </select>
+                          <input type="hidden" name="pid" value="<?php echo $product['pid'] ?>" />
+                          <input type="submit" class="success btn" value="Add to Wish List">
+                      </form>
+                  </section>
+                  <?php } ?>
                   <section class="product-price"><h3>Price</h3>$<?php echo number_format($product['PriceUSD'],2) ?></section>
                   <section class="product-rating">
                     <h3>Rating</h3>

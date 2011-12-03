@@ -44,7 +44,7 @@
     <div class="row">
         <div class="span8">
             <div class="page-header">
-              <h3><a href="/cart">Your Cart</a> - <?php echo $numItems ?> Item(s)</h3>
+              <h3><a href="/cart">Your Cart</a></h3>
             </div>
             <ul id="account-cart-items" class="unstyled">
             <?php foreach($cart as $item) { ?>
