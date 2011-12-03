@@ -238,7 +238,7 @@ class Order extends CI_Model {
 	    $products = array();
 
 	    // This is awful...but it must be done: A Straight Query!!
-	    $products_cursor = $this->db->query("select p.pid, p.name, p.priceUSD, i.location, quantity from products as p, images as i, (select p.pid, count(p.pid) as quantity from products as p join orders as o, ordereditems as oi, stockitems as s where o.ordernum = oi.ordernum and oi.stockid = s.stockid and s.pid = p.pid and o.ordernum = ".$order_num." group by pid) as quantity join orders as o, ordereditems as oi, stockitems as s where o.ordernum = ".$order_num." and o.ordernum = oi.ordernum and oi.stockid = s.stockid and s.pid = p.pid and i.pid = p.pid group by pid");
+	    $products_cursor = $this->db->query("select p.pid, p.name, p.priceUSD, i.location, quantity from Products as p, Images as i, (select p.pid, count(p.pid) as quantity from Products as p join Orders as o, OrderedItems as oi, StockItems as s where o.orderNum = oi.orderNum and oi.stockID = s.stockID and s.pid = p.pid and o.orderNum = ".$order_num." group by pid) as quantity join Orders as o, OrderedItems as oi, StockItems as s where o.orderNum = ".$order_num." and o.orderNum = oi.orderNum and oi.stockID = s.stockID and s.pid = p.pid and i.pid = p.pid group by pid");
 	    
 	    foreach($products_cursor->result_array() as $product) {
 	        $products[] = $product;
