@@ -3,7 +3,9 @@
 class Wish_Lists extends CI_Controller {
   public $layout = 'main';
   public $auth = array(
-    'show' => array('message' => 'Sign up now to start shopping!', 'redirect' => '/customers/signup')
+    'show' => array('message' => 'Sign up now to start shopping!', 'redirect' => '/customers/signup'),
+    'create' => array(),
+    'delete' => array()
     );
   
   public function show($wishID) {
@@ -69,8 +71,17 @@ class Wish_Lists extends CI_Controller {
       }
   }
   
-  public function delete() {
+  public function delete($wish_id) {
+      $this->load->model("Wish_List", "list");
       
+      if($this->list->delete($wish_id)) {
+          set_message('Success! Your Wish List has been deleted.', 'success');
+          header('Location: /customers/show/'.get_current_user_stuff('uid'));
+      }
+      else {
+          set_message('Something went wrong and your Wish List could not be deleted.', 'error');
+          header('Location: /customers/show/'.get_current_user_stuff('uid'));
+      }
   }
   
   

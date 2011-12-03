@@ -74,7 +74,7 @@ class Wish_List extends CI_Model
 	function delete($wishId) {	    
 	    $this->db->delete('WishLists', array('wishID' => $wishId));
 	    $this->db->delete('WishListItems', array('wishID' => $wishId));
-	    return !!$this->db->_error_message();
+	    return !$this->db->_error_message();
 	}
 	
 	function get_products_in_wishlist($wishId) {
