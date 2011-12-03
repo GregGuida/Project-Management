@@ -20,11 +20,56 @@ class Wish_Lists extends CI_Controller {
     $this->load->view('wishlists/show', $data);
   }
   
-  public function add() {
+  public function create() {
+      $this->load->model('Wish_List', 'list');
+      $rules = array(
+          array('field' => 'name', 'label' => 'Name', 'rules' => 'trim|required')
+      );
       
+      $this->form_validation->set_rules($rules);
+
+      if ($this->form_validation->run() == TRUE) {
+          $new_wish_list = array(
+              'uid' => get_current_user_stuff('uid'),
+              'name' => $this->input->post('name')
+          );
+          
+          $wish_id = $this->list->create($new_wish_list);
+          
+          if($wish_id != false) {
+              if(!$this->input->post('ajax')) {
+                  set_message('Success! Your Wish List has been created.', 'success');
+                  header('Location: /customers/show/'.get_current_user_stuff('uid'));
+              }
+              else {
+                  $this->layout = 'ajax';
+                  echo json_encode(array("status" => "success", "message" => "Success! Your Wish List has been created.", "wishID" => $address_id));
+              }
+          }
+          else {
+              if(!$this->input->post('ajax')) {
+                  set_message('There was an error adding your Wish List. Please try again.', 'error');
+                  header('Location: /customers/show/'.get_current_user_stuff('uid'));
+              }
+              else {
+                  $this->layout = 'ajax';
+                  echo json_encode(array("status" => "error", "message" => "There was an error adding your Wish List. Please try again."));
+              }
+          }
+      }
+      else {
+          if(!$this->input->post('ajax')) {
+              set_message(validation_errors(), 'error');
+              header('Location: /customers/show/'.get_current_user_stuff('uid'));
+          }
+          else {
+              $this->layout = 'ajax';
+              echo json_encode(array("status" => "error", "message" => validation_errors()));
+          }
+      }
   }
   
-  public function create() {
+  public function delete() {
       
   }
   

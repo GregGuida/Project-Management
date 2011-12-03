@@ -562,6 +562,14 @@ section > div.name-header {
     margin-bottom: 30px;
 }
 
+#account-wish-lists > li {
+    margin-bottom: 15px;
+}
+
+#add-wish-list > form {
+    margin-top: 30px;
+}
+
 /*==|== admin specific css styles =========================================== */
 
 .admin footer, .admin .push {
