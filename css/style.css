@@ -655,11 +655,12 @@ select[name=wish-id] {
   margin:10px 0 10px 20px;
 }
 
-#new-image{
-  height:60px;
-  width:60px;
-  float:left;
-  font-weight:bold;
+#new-image {
+height: 47px;
+width: 30px;
+float: left;
+font-weight: bold;
+text-align: center;
 }
 
 .admin #edit-actions{

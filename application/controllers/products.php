@@ -191,29 +191,34 @@ class Products extends CI_Controller {
 
   public function add_image( $id ) {
     $this->layout = 'ajax';
-    $this->load->view('products/upload_image',$id);
+    $data = array();
+    $data['pid'] = $id;
+    $this->load->view('products/upload_image',$data);
   }
 
 
   public function create_image(){
-    $config['upload_path'] = './img/products/'.$this->input->post('productID').'/';
-    $config['allowed_types'] = 'gif|jpg|png';
+    $this->layout = 'ajax';
+    $data = array();
+    $pid = $this->input->post('productId');
+    $data['pid'] = $pid;
+    $imgname = md5($pid.Date('U'));
+    $config['upload_path'] = './img/products/'.$pid.'/';
+    $config['allowed_types'] = 'jpg';
+    $config['file_name'] = $imgname;
     $config['max_size'] = '100';
     $config['max_width']  = '1024';
     $config['max_height']  = '768';
 
     $this->load->library('upload', $config);
+    $this->load->model('Image');
 
-    if ( ! $this->upload->do_upload())
-    {
+    if ( !$this->upload->do_upload() ) {
       $error = array('error' => $this->upload->display_errors());
-
-      $this->load->view('upload_form', $error);
-    }
-    else
-    {
+      $this->load->view('products/upload_image', $data);
+    } else {
       $data = array('upload_data' => $this->upload->data());
-
+      $this->Image->add($pid,'/img/products/'.$pid.'/'.$imgname.'.jpg');
       $this->load->view('upload_success', $data);
     }
   }

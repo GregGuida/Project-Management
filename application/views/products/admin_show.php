@@ -1,8 +1,8 @@
 <div class="row">
   <div id="tag-sidebar" class="span4">
-    <a href="/products/show/<?= $product['pid'] ?>" class="btn primary admin-product-edit">Customer View</a><br/>
-    <a href="/products/edit/<?= $product['pid'] ?>" class="btn admin-product-edit">Edit Product</a><br/>
-    <a href="/products/destroy/<?= $product['pid'] ?>" class="btn danger admin-product-delete">Delete Product</a>
+    <a href="/products/show/<?php echo $product['pid'] ?>" class="btn primary admin-product-edit">Customer View</a><br/>
+    <a href="/products/edit/<?php echo $product['pid'] ?>" class="btn admin-product-edit">Edit Product</a><br/>
+    <a href="/products/destroy/<?php echo $product['pid'] ?>" class="btn danger admin-product-delete">Delete Product</a>
   </div>
   <div id="product-area" class="span12">
     <div class="row">
@@ -30,7 +30,7 @@
                 echo '<img src="'.$preview_image['location'].'"  style="width:60px;height:60px;class="thumbnail"/>';
               }
             ?>
-            <button id="new-image" class="btn"> Add An <br/>Image </button>
+            <a href="/products/add_image/<?php echo $product['pid'] ?>" id="new-image" class="btn"> Add An <br/>Image </a>
           </p>
           <?php 
             } else {
